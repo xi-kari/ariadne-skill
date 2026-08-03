@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xi-kari/ariadne-skill/schemas/method-record.schema.json",
+  "title": "Ariadne Method Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "schema_version",
+    "record_version",
+    "parent_record_id",
+    "request_type",
+    "object_contract",
+    "evidence_cutoff",
+    "scale_scope",
+    "claim_ledger",
+    "unknowns_and_counterevidence",
+    "output_ceiling",
+    "module_runs",
+    "recommended_next_modules",
+    "authorization_effect"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^ariadne:[A-Za-z0-9._:-]+$"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "parent_record_id": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "request_type": {
+      "enum": [
+        "explanation",
+        "diagnosis",
+        "dynamic_derivation",
+        "conditional_forecast",
+        "finite_choice",
+        "intervention_review",
+        "governance_review"
+      ]
+    },
+    "object_contract": {
+      "$ref": "#/$defs/objectContract"
+    },
+    "evidence_cutoff": {
+      "$ref": "#/$defs/evidenceCutoff"
+    },
+    "scale_scope": {
+      "$ref": "#/$defs/scaleScope"
+    },
+    "claim_ledger": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    },
+    "unknowns_and_counterevidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unknowns", "counterevidence"],
+      "properties": {
+        "unknowns": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "counterevidence": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "output_ceiling": {
+      "enum": ["description_only", "diagnostic_only", "requirements_only"]
+    },
+    "module_runs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/moduleRun"
+      }
+    },
+    "recommended_next_modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/moduleName"
+      }
+    },
+    "authorization_effect": {
+      "const": "none"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"record_version": {"const": 1}},
+        "required": ["record_version"]
+      },
+      "then": {
+        "properties": {"parent_record_id": {"type": "null"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"record_version": {"minimum": 2}},
+        "required": ["record_version"]
+      },
+      "then": {
+        "properties": {"parent_record_id": {"type": "string", "minLength": 1}}
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "objectContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boundary",
+        "state_variables",
+        "relations_or_transitions",
+        "interfaces",
+        "time_window",
+        "scale_profile",
+        "identity_criterion",
+        "status"
+      ],
+      "properties": {
+        "boundary": {"type": "string", "minLength": 1},
+        "state_variables": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "relations_or_transitions": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "interfaces": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "time_window": {"type": "string", "minLength": 1},
+        "scale_profile": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "identity_criterion": {"type": "string", "minLength": 1},
+        "status": {
+          "enum": ["candidate", "incomplete", "supported", "converted", "dissolved"]
+        }
+      }
+    },
+    "evidenceCutoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["as_of", "included_source_ids", "excluded_after_cutoff"],
+      "properties": {
+        "as_of": {"type": "string", "format": "date-time"},
+        "included_source_ids": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "excluded_after_cutoff": {"const": true}
+      }
+    },
+    "scaleScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "target", "transform_status"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "transform_status": {
+          "enum": ["not_needed", "candidate", "incomplete", "audited", "failed"]
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "claim_type",
+        "text",
+        "status",
+        "support_ids",
+        "counterevidence_ids"
+      ],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "claim_type": {"enum": ["D", "G", "E", "H", "N", "O"]},
+        "text": {"type": "string", "minLength": 1},
+        "status": {
+          "enum": [
+            "candidate",
+            "observed",
+            "supported",
+            "contradicted",
+            "unresolved",
+            "withdrawn",
+            "retired"
+          ]
+        },
+        "support_ids": {"type": "array", "items": {"type": "string"}},
+        "counterevidence_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "moduleName": {
+      "enum": [
+        "ariadne-skill",
+        "ariadne-framing",
+        "ariadne-evidence",
+        "ariadne-scale",
+        "ariadne-mechanism",
+        "ariadne-human",
+        "ariadne-dynamics",
+        "ariadne-forecast",
+        "ariadne-choice",
+        "ariadne-audit"
+      ]
+    },
+    "moduleRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module", "status", "record_version"],
+      "properties": {
+        "module": {"$ref": "#/$defs/moduleName"},
+        "status": {
+          "enum": ["not_run", "running", "completed", "failed", "not_applicable"]
+        },
+        "record_version": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

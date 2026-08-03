@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Dynamics"
+  short_description: "Derive event paths across clocks, thresholds, and feedback"
+  default_prompt: "Use $ariadne-dynamics to derive event paths across states, clocks, thresholds, feedback, and branches."
+
+policy:
+  allow_implicit_invocation: true

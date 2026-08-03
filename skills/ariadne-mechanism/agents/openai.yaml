@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Mechanism"
+  short_description: "Compare mechanisms, baselines, channels, and residuals"
+  default_prompt: "Use $ariadne-mechanism to compare mechanisms, channels, baselines, falsifiers, and residuals."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Forecast"
+  short_description: "Register bounded forecasts, calibration, and failure semantics"
+  default_prompt: "Use $ariadne-forecast to register a bounded forecast with a baseline, deadline, calibration, and failure semantics."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Human"
+  short_description: "Analyze human systems with power, privacy, and role boundaries"
+  default_prompt: "Use $ariadne-human to analyze human systems while preserving power, privacy, role, and responsibility boundaries."
+
+policy:
+  allow_implicit_invocation: true

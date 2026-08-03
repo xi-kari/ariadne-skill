@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Audit"
+  short_description: "Audit high-impact judgments, appeals, rollback, and retirement"
+  default_prompt: "Use $ariadne-audit to audit a high-impact judgment for gates, appeal, rollback, downgrade, and retirement."
+
+policy:
+  allow_implicit_invocation: true

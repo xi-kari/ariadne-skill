@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Framing"
+  short_description: "Frame objects, boundaries, scales, and output types"
+  default_prompt: "Use $ariadne-framing to define the object, boundary, time window, scale, and output type."
+
+policy:
+  allow_implicit_invocation: true

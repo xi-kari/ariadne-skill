@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ariadne Evidence"
+  short_description: "Audit claims, evidence, causes, analogies, and limits"
+  default_prompt: "Use $ariadne-evidence to separate claims, sources, evidence, causes, analogies, and support limits."
+
+policy:
+  allow_implicit_invocation: true
