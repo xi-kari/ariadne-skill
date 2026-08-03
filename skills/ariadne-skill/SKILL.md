@@ -1,85 +1,113 @@
 ---
 name: ariadne-skill
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: Use when a complex problem requires multiple Lattice Kernel modules, a full methodology pass, or coordinated framing, evidence, scale, mechanism, dynamics, forecast, choice, and audit work.
 ---
 
-# Ariadne Skill
+# Ariadne
 
-## Overview
+## Core promise
 
-[TODO: 1-2 sentences explaining what this skill enables]
+Turn a complex request into a bounded, inspectable method run. Classify the requested output, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, and stop every conclusion at its supported output ceiling.
 
-## Structuring This Skill
+Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority.
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+## Required references
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" -> "Reading" -> "Creating" -> "Editing"
-- Structure: ## Overview -> ## Workflow Decision Tree -> ## Step 1 -> ## Step 2...
+Read all three references before running a full pass:
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" -> "Merge PDFs" -> "Split PDFs" -> "Extract Text"
-- Structure: ## Overview -> ## Quick Start -> ## Task Category 1 -> ## Task Category 2...
+1. [Lattice Kernel](references/lattice-kernel.md) - invariants, claim classes, missing states, and hard boundaries.
+2. [Routing](references/routing.md) - module selection, order, clustered execution, and stopping rules.
+3. [Method Record](references/method-record.md) - shared record, lineage, ceilings, and handoff format.
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" -> "Colors" -> "Typography" -> "Features"
-- Structure: ## Overview -> ## Guidelines -> ## Specifications -> ## Usage...
+## Full-pass workflow
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" -> numbered capability list
-- Structure: ## Overview -> ## Core Capabilities -> ### 1. Feature -> ### 2. Feature...
+1. Restate the user's real-world question without Ariadne vocabulary.
+2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review. Keep the outputs separate.
+3. Run `ariadne-framing`. Freeze the candidate object, boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
+4. Run `ariadne-evidence`. Freeze the evidence cutoff and separate source, material, observation, evidence, counterevidence, judgment, and external authorization.
+5. Select the minimum adequate module set. Do not retain a module merely because it is available.
+6. After framing and evidence are frozen, run independent scale, mechanism, or human-domain lanes in parallel when the runtime supports it. Otherwise run the same lanes sequentially.
+7. Run dynamics only for event propagation or path derivation. Run forecast only for a dated, evaluable future claim. Run choice only for option comparison. Run audit for high-impact use and as the merger of clustered records.
+8. Merge child records without averaging conflicts. Keep the lowest supported output ceiling and keep `authorization_effect: none`.
+9. Present a plain-language result first. Add the compact Method Record when it improves checking, continuation, challenge, or writeback.
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+## Module dispatch
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+Use these peers as independent method workers:
 
-## [TODO: Replace with the first main section based on chosen structure]
+| Need | Module |
+|---|---|
+| Object, boundary, scope, task type | `ariadne-framing` |
+| Claims, sources, causality, analogy | `ariadne-evidence` |
+| Cross-level, cross-time, cross-domain transfer | `ariadne-scale` |
+| Channels, feedback, baselines, residuals | `ariadne-mechanism` |
+| People, roles, circles, power, privacy | `ariadne-human` |
+| Events, clocks, thresholds, branches | `ariadne-dynamics` |
+| Dated future judgment and calibration | `ariadne-forecast` |
+| Action, delay, experiment, exit, inaction | `ariadne-choice` |
+| High-impact gates, appeal, rollback, retirement | `ariadne-audit` |
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+If a peer Skill is unavailable, execute that responsibility inline from the Lattice Kernel and routing reference. Mark the module run as `not_run` with reason `module_unavailable`; do not pretend the peer ran.
 
-## Resources (optional)
+## Cluster contract
 
-Create only the resource directories this skill actually needs. Delete this section if no resources are required.
+Parallelize only after the object record and evidence cutoff are identical across workers. Give each worker the raw task, frozen record, its bounded responsibility, and required output fields. Do not give it a preferred conclusion.
 
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
+Merge through `ariadne-audit` and apply these rules:
 
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
+- Shared frozen facts remain shared.
+- Distinct unknowns accumulate.
+- Incompatible boundaries, scales, or identity criteria remain conflicts.
+- Evidence grades do not rise by vote or repetition.
+- The lowest output ceiling governs the merged record.
+- No number of completed modules creates authorization.
 
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
+## Output contract
 
-**Note:** Scripts may be executed without loading into context, but can still be read by Codex for patching or environment adjustments.
+Default to two layers:
 
-### references/
-Documentation and reference material intended to be loaded into context to inform Codex's process and thinking.
+1. **Usable answer:** current bounded judgment, supporting observations, alternatives, uncertainty, and the safest next information or option.
+2. **Method record:** request type, object status, evidence cutoff, scale scope, claim ledger, counterevidence, module runs, output ceiling, and next modules.
 
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
+For low-impact questions, keep the record compact. For forecasts, high-impact judgments, public claims, automated use, or real-world choices, expose the fields needed for failure, appeal, rollback, and writeback.
 
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Codex should reference while working.
+## Stop and downgrade
 
-### assets/
-Files not intended to be loaded into context, but rather used within the output Codex produces.
+Stop or lower the ceiling when any of these holds:
 
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
+- The object changes under the chosen identity criterion.
+- Critical evidence is unknown, not observable, or protected without a trusted review path.
+- A scale bridge or causal channel is only asserted.
+- Forecast inputs were not frozen before the outcome.
+- The request asks facts or predictions to manufacture values, jurisdiction, or authorization.
+- A high-impact output lacks contestability, stopping, correction, or rollback.
 
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
+Downgrade is a valid result. Return a candidate analysis, evidence request, scenario set, requirements-only handoff, or explicit non-action state.
 
----
+## Example
 
-**Not every skill requires all three types of resources.**
+Request: “A competitor cut prices. Predict the year and tell us the one correct action.”
+
+Route:
+
+1. `ariadne-framing` fixes market, product, geography, one-year window, and decision owner.
+2. `ariadne-evidence` freezes known price facts and unknown duration/cost/demand data.
+3. `ariadne-scale` separates one competitor event from market-wide change.
+4. `ariadne-mechanism` compares clearance, cost advantage, distress, and share-grab mechanisms.
+5. `ariadne-dynamics` derives conditional branches.
+6. `ariadne-forecast` registers only branches with a baseline and signals.
+7. `ariadne-choice` compares targeted experiment, delay, value change, price response, and inaction.
+8. `ariadne-audit` checks affected positions, authority, stopping, and rollback.
+
+The result is a conditional comparison, not a prophecy or self-authorizing command.
+
+## Common mistakes
+
+| Mistake | Correction |
+|---|---|
+| Run every module to appear thorough | Run the minimum adequate set and state why each is applicable. |
+| Ask the user to fill every field | Mark ordinary gaps explicitly; ask only when a missing choice would materially change the task. |
+| Treat module agreement as proof | Preserve independent evidence and shared assumptions. |
+| Hide method vocabulary in a confident narrative | Lead with plain language but keep the record available. |
+| Let a later module repair an earlier broken gate | Restart from the earliest changed object, evidence, scale, or purpose. |
+| Turn requirements into instructions | Keep `authorization_effect: none` and identify the external decision process. |

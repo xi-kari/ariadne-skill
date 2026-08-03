@@ -1,85 +1,54 @@
 ---
 name: ariadne-evidence
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: Use when claims, sources, observations, causal stories, analogies, counterevidence, or evidence strength must be separated and audited.
 ---
 
 # Ariadne Evidence
 
 ## Overview
 
-[TODO: 1-2 sentences explaining what this skill enables]
+Audit how far the available record supports each claim. Preserve the full chain from source to material, observation, evidence, counterevidence, judgment, and external authorization without letting one level impersonate the next.
 
-## Structuring This Skill
+## Procedure
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+1. **Consume or start the Method Record.** Preserve the object contract, lineage, evidence cutoff, unknowns, counterevidence, and output ceiling. If no record exists, create a minimum candidate object and keep unresolved fields explicit.
+2. **Freeze the audit window.** Record the `evidence_cutoff` before drawing conclusions. Put later material in a child record; never repair a prior result by silently changing its inputs.
+3. **Split claims by responsibility.** Label each claim D definition, G empirical root, E epistemic constraint, H human-domain clause, N normative commitment, or O operating procedure. Split sentences that mix types.
+4. **Separate dependency types.** Mark `inferential_requires`, `protocol_requires`, `specializes`, and `applies_to` independently. Put only inferential hard prerequisites in a reasoning chain.
+5. **Build the evidence chain.** Identify source, material, observation, evidential use, counterevidence, judgment, and any external authorization as distinct records. Link each claim to supporting and contradicting IDs.
+6. **Apply the relevant contract.** Use the source, causal, analogy, root-instance, or human-instance contract in the reference. Preserve simple baselines, alternative explanations, residuals, and extrapolation limits.
+7. **Respect support and zero-result gates.** Treat definitions, framework text, examples, IDs, field completeness, exploratory work, and post-result changes as non-support. Treat a failed positive gate as unresolved unless a frozen equivalence or sufficiency test, power or sensitivity gate, and tolerance all support the bounded null.
+8. **Set the ceiling and handoff.** Use `description_only` when the chain is incomplete, `diagnostic_only` for a bounded evidence-strength judgment, and `requirements_only` when only pre-evidence requirements are justified. Never make an action recommendation or expand authorization. Always set `authorization_effect: none`.
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" -> "Reading" -> "Creating" -> "Editing"
-- Structure: ## Overview -> ## Workflow Decision Tree -> ## Step 1 -> ## Step 2...
+Read [references/evidence-contracts.md](references/evidence-contracts.md) for field-level contracts, G1-G4 and H-instance rules, E1-E5, conditional inference ceilings, and a complete standalone example.
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" -> "Merge PDFs" -> "Split PDFs" -> "Extract Text"
-- Structure: ## Overview -> ## Quick Start -> ## Task Category 1 -> ## Task Category 2...
+## Method Record Contract
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" -> "Colors" -> "Typography" -> "Features"
-- Structure: ## Overview -> ## Guidelines -> ## Specifications -> ## Usage...
+Produce every common field and add an `ariadne-evidence` entry to `module_runs`. Keep claim texts and support IDs in `claim_ledger`; put unresolved observations, missing bridges, alternative explanations, and counterevidence in `unknowns_and_counterevidence`. Recommend only modules justified by the audit.
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" -> numbered capability list
-- Structure: ## Overview -> ## Core Capabilities -> ### 1. Feature -> ### 2. Feature...
+Do not overwrite an upstream record. Create a child version when the cutoff, source set, claim meaning, object, scale, success criterion, baseline, or threshold changes.
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+## Quick Reference
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+| Evidence problem | Required move | Maximum result |
+|---|---|---|
+| Source or quote only | Recover material and observation context | Description |
+| Pre/post association | Preserve common causes, selection, measurement change, and reverse direction | Candidate relationship |
+| Causal claim | Freeze cause, result, timing, channel, counterfactual, controls, and falsifier | Candidate mechanism unless identified |
+| Analogy | State source, target, mapping, differences, and target test | Target hypothesis |
+| Positive gate fails | Check frozen null gates | Unresolved unless all null gates pass |
+| Normative or action sentence | Split N and O from empirical claims | No recommendation or authorization |
 
-## [TODO: Replace with the first main section based on chosen structure]
+## Stopping Conditions
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+Stop at description when source provenance or observation context is missing. Stop at an unresolved candidate when alternatives or counterevidence are not distinguishable. Stop at evidentiary requirements when a concrete instance was not frozen before results. Stop immediately before value, responsibility, sacrifice, choice, or real-world disposition, and route those questions to `ariadne-choice` or `ariadne-audit`.
 
-## Resources (optional)
+## Common Mistakes
 
-Create only the resource directories this skill actually needs. Delete this section if no resources are required.
-
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
-
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
-
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
-
-**Note:** Scripts may be executed without loading into context, but can still be read by Codex for patching or environment adjustments.
-
-### references/
-Documentation and reference material intended to be loaded into context to inform Codex's process and thinking.
-
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
-
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Codex should reference while working.
-
-### assets/
-Files not intended to be loaded into context, but rather used within the output Codex produces.
-
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
-
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
-
----
-
-**Not every skill requires all three types of resources.**
+- Treating a document, dashboard, testimony, or dataset as evidence for every claim it could mention.
+- Counting method definitions, examples, internal labels, or a valid-looking ID as external empirical support.
+- Calling correlation, sequence, or a plausible story a causal channel.
+- Using absent, silent, protected, or unobservable material as negative evidence.
+- Switching subtype, outcome, threshold, model, time window, or success criterion after seeing results.
+- Calling “not significant” proof of no effect.
+- Letting empirical confidence produce a value judgment, responsibility assignment, or action authority.

@@ -1,85 +1,98 @@
 ---
 name: ariadne-audit
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: Use when a high-impact judgment, automated output, public claim, governance process, or completed Ariadne record needs gates, challenge, appeal, downgrade, rollback, retirement, or AI-boundary review.
 ---
 
 # Ariadne Audit
 
 ## Overview
 
-[TODO: 1-2 sentences explaining what this skill enables]
+Audit whether a bounded methodology record may retain its current judgment and use ceiling. Treat completed forms, fluent prose, automated scores, internal tests, and framework consistency as process artifacts, never as proof of reality, safety, consent, effectiveness, or authorization.
 
-## Structuring This Skill
+## Route the Audit
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+- Audit a high-impact, public, automated, organizational, institutional, or difficult-to-reverse judgment before use.
+- Audit any Ariadne chain that crosses from observation to evidence, judgment, forecast, finite choice, intervention requirements, or governance change.
+- Separate the audit subject into text or template, concept relations, actual practice, and governing community. Do not issue one undifferentiated “framework health” verdict.
+- Treat a changed object, evidence version, affected population, use, scale, or authority scope as a trigger to rerun from the earliest affected gate.
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" -> "Reading" -> "Creating" -> "Editing"
-- Structure: ## Overview -> ## Workflow Decision Tree -> ## Step 1 -> ## Step 2...
+## Run the Audit
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" -> "Merge PDFs" -> "Split PDFs" -> "Extract Text"
-- Structure: ## Overview -> ## Quick Start -> ## Task Category 1 -> ## Task Category 2...
+1. Freeze the audit subject, version, owner, object contract, scale, evidence cutoff, intended use, affected and low-power positions, challenge path, and current output ceiling.
+2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark later transformations `not_run` and lower the ceiling.
+3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Do not let later paperwork repair an earlier failure.
+4. Expand with FG1-FG5 and DS01-DS13 when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
+5. Require SJ1-SJ8 for every L3 judgment that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output.
+6. Add DF1-DF9 when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
+7. Apply the AI boundary. Mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
+8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Require an externally verifiable approval for an applied governance change.
+9. Return findings, failed or not-run gates, affected claims, the lowered output ceiling, required corrective conditions, owners, deadlines, appeal path, rollback target, downstream writeback, and lifecycle recommendation. Keep `authorization_effect` equal to `none`.
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" -> "Colors" -> "Typography" -> "Features"
-- Structure: ## Overview -> ## Guidelines -> ## Specifications -> ## Usage...
+## Produce a Standalone Method Record
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" -> numbered capability list
-- Structure: ## Overview -> ## Core Capabilities -> ### 1. Feature -> ### 2. Feature...
+Create a schema-compatible record even when no upstream module ran. Keep detailed gate and governance registers beside it and link them by stable IDs.
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+```yaml
+record_id: ariadne:audit:<stable-id>
+schema_version: "1.0"
+record_version: 1
+parent_record_id: null
+request_type: governance_review
+object_contract:
+  boundary: <audited text, concept, practice, community, output, or intervention>
+  state_variables: [<gate, claim, use, lifecycle, or harm state>]
+  relations_or_transitions: [<proposed transition or downstream effect>]
+  interfaces: [<challenge, appeal, review, rollback, writeback channel>]
+  time_window: <audit and validity window>
+  scale_profile: {A: <aggregation>, I: <affected scope>, J: <authority scope>}
+  identity_criterion: <what change requires a new audit>
+  status: candidate
+evidence_cutoff:
+  as_of: <RFC-3339 timestamp>
+  included_source_ids: [<source-id>]
+  excluded_after_cutoff: true
+scale_scope: {source: <audited scope>, target: <use scope>, transform_status: audited}
+claim_ledger: []
+unknowns_and_counterevidence: {unknowns: [<unknown>], counterevidence: [<counterevidence>]}
+output_ceiling: requirements_only
+module_runs: [{module: ariadne-audit, status: completed, record_version: 1}]
+recommended_next_modules: []
+authorization_effect: none
+```
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+Use `intervention_review` instead of `governance_review` when the audit subject is a proposed or active real-world intervention. For a child record, preserve the parent, increment the version, and append the transition and writeback; never erase failed gates or terminal lifecycle states.
 
-## [TODO: Replace with the first main section based on chosen structure]
+## Stop and Downgrade
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+Stop at `description_only` when the object or evidence chain fails. Stop at `diagnostic_only` when you can describe a bounded defect but cannot specify a safely governed correction. Use `requirements_only` to state conditions for external correction, review, or withdrawal; do not issue execution commands.
 
-## Resources (optional)
+Block public strong judgment when any required publication gate fails. Pause high-impact use when appeal, anti-retaliation, independent review, rollback, or authoritative writeback is not real. Withdraw or retire a claim, module, or framework when repeated or high-harm counterexamples, capture, calibration failure, identity change, or a safer simpler replacement defeats its current scope.
 
-Create only the resource directories this skill actually needs. Delete this section if no resources are required.
+## Quick Reference
 
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
+| Audit surface | Required gate family | Failure response |
+|---|---|---|
+| Any judgment | IT1-IT4 plus IG1-IG7 | Mark later gates `not_run`; lower the ceiling. |
+| Complex or reflexive diagnosis | FG1-FG5 plus DS01-DS13 | Feed findings back into IG gates; do not create a second pass state. |
+| High-impact L3 judgment | SJ1-SJ8 | Fail IG6 and downgrade if any item is missing. |
+| Dynamics, forecast, choice, or intervention | DF1-DF9 after IG gates | Keep scenario, forecast, choice, and execution boundaries separate. |
+| Public strong claim | Nine publication gates | Block publication on any failure. |
+| Applied governance change | External approval, dissent effects, and VERSION-LOG writeback | Keep proposed or suspended; never self-approve. |
+| Replaced or retired subject | Terminal-state rule | Preserve history; require a new identity for any successor. |
 
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
+## Common Mistakes
 
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
+- **Treating gate completion as truth:** Report only that the process requirement passed; keep empirical support separate.
+- **Running later gates after failure:** Mark them `not_run` and preserve the earliest failure's ceiling.
+- **Using the thirteen steps as a second approval path:** Map them back to the seven main gates.
+- **Calling a named reviewer independent:** Resolve canonical identity and material conflicts; require real access and veto power.
+- **Offering an appeal that cannot change anything:** Treat it as no appeal and block high-impact use.
+- **Calling a new version rollback:** Restore state, records, downstream effects, remedies, and residual-harm tracking.
+- **Archiving counterexamples without consequences:** Bind them to text, process, ceiling, and lifecycle changes.
+- **Letting AI verify itself:** Require external evidence and accountable human review.
+- **Reviving a terminal state:** Create a new successor identity; never move `withdrawn`, `replaced`, or `retired` back to active.
+- **Letting audit authorize:** Keep every audit record at `authorization_effect: none`.
 
-**Note:** Scripts may be executed without loading into context, but can still be read by Codex for patching or environment adjustments.
+## Load Detailed Guidance
 
-### references/
-Documentation and reference material intended to be loaded into context to inform Codex's process and thinking.
-
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
-
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Codex should reference while working.
-
-### assets/
-Files not intended to be loaded into context, but rather used within the output Codex produces.
-
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
-
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
-
----
-
-**Not every skill requires all three types of resources.**
+Read [gates-and-governance.md](references/gates-and-governance.md) when applying the transformation tables, seven gates, five-gate/thirteen-step expansion, strong-judgment eight, dynamic nine, AI restrictions, intervention review, appeal and rollback tests, publication gates, governance registries, lifecycle changes, or the worked example.

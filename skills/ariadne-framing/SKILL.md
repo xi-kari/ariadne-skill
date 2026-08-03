@@ -1,85 +1,51 @@
 ---
 name: ariadne-framing
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: Use when a problem has an unclear object, boundary, time window, scale, identity criterion, task type, or requested output level.
 ---
 
 # Ariadne Framing
 
 ## Overview
 
-[TODO: 1-2 sentences explaining what this skill enables]
+Define what is being asked and what candidate object is being discussed before judging it. Treat a complete frame as a testable declaration, not as proof that the object, mechanism, or grouping exists.
 
-## Structuring This Skill
+## Procedure
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+1. **Consume or start the Method Record.** Preserve every supplied fact, unknown, counterexample, record ID, version, and ceiling. If reframing changes scope, create a child version and retain `parent_record_id`; never overwrite the prior record.
+2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, or `governance_review`. Split a mixed request into separate records or state which output comes first.
+3. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, nine-axis scale profile, and identity criterion. Keep `status` as `candidate` or `incomplete` until evidence work supports more.
+4. **Separate the task layers.** Distinguish description, structural diagnosis, future derivation, forecast, choice, and real-world intervention. Do not let an explanation silently become a prediction or a requested action.
+5. **Mark visibility and risk.** Encode every missing field as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`, with a reason. Escalate the next-module recommendation when evidence is thin, power is asymmetric, consequences are hard to reverse, or the setting is high pressure.
+6. **Apply the strong-judgment screen.** Surface unanswered questions about object validity, evidence, causal bridge, scale, alternatives, rights, authorization, stopping, remedy, and appeal. Do not answer them by completing the frame.
+7. **Return a bounded frame.** Give a short plain-language object statement, the unresolved boundary choices, and the updated Method Record. Set a standalone run to `description_only`; preserve or lower an incoming ceiling, never raise it. Always set `authorization_effect: none`.
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" -> "Reading" -> "Creating" -> "Editing"
-- Structure: ## Overview -> ## Workflow Decision Tree -> ## Step 1 -> ## Step 2...
+Read [references/object-contract.md](references/object-contract.md) when a field is disputed, a structure term needs precise use, a high-impact request needs escalation, or a complete standalone example is useful.
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" -> "Merge PDFs" -> "Split PDFs" -> "Extract Text"
-- Structure: ## Overview -> ## Quick Start -> ## Task Category 1 -> ## Task Category 2...
+## Method Record Contract
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" -> "Colors" -> "Typography" -> "Features"
-- Structure: ## Overview -> ## Guidelines -> ## Specifications -> ## Usage...
+Produce all common fields: `record_id`, `schema_version`, `record_version`, `parent_record_id`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" -> numbered capability list
-- Structure: ## Overview -> ## Core Capabilities -> ### 1. Feature -> ### 2. Feature...
+When no upstream record exists, create the minimum valid record and identify user-provided material as material, not empirical evidence. When an upstream record exists, add an `ariadne-framing` module run and preserve lineage.
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+## Quick Reference
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+| Signal | Do | Stop at |
+|---|---|---|
+| “What exactly are we analyzing?” | Freeze the seven object fields | Candidate object |
+| Explanation mixed with action | Split request types | Separate records or ordered outputs |
+| Group or system asserted by name | Keep it candidate; request an evidence audit | No object-validity claim |
+| Scale or vocabulary changes | Record source and target; route to `ariadne-scale` | No transfer claim |
+| High-impact or irreversible use | Expose protection and strong-judgment gaps | No action or authorization |
 
-## [TODO: Replace with the first main section based on chosen structure]
+## Stopping Conditions
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+Stop at an exploratory question list when boundary, time window, scale, or identity cannot be stated. Stop at a candidate frame when object validity, causality, or source support has not been audited. Route evidence questions to `ariadne-evidence`, scale changes to `ariadne-scale`, mechanisms to `ariadne-mechanism`, human-domain risks to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact gates to `ariadne-audit`.
 
-## Resources (optional)
+## Common Mistakes
 
-Create only the resource directories this skill actually needs. Delete this section if no resources are required.
-
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
-
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
-
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
-
-**Note:** Scripts may be executed without loading into context, but can still be read by Codex for patching or environment adjustments.
-
-### references/
-Documentation and reference material intended to be loaded into context to inform Codex's process and thinking.
-
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
-
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Codex should reference while working.
-
-### assets/
-Files not intended to be loaded into context, but rather used within the output Codex produces.
-
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
-
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
-
----
-
-**Not every skill requires all three types of resources.**
+- Treating a complete object contract as proof of a real, stable system.
+- Writing every imaginable variable instead of registering only task-relevant variables.
+- Using the same word across scales as evidence that the object stayed identical.
+- Marking unavailable or protected information as absent.
+- Letting broad observation, organizational rank, or model confidence imply jurisdiction.
+- Ending a framing run with a diagnosis, recommendation, or real-world permission.

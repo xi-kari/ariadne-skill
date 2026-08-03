@@ -1,85 +1,54 @@
 ---
 name: ariadne-human
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: Use when analyzing people, relationships, teams, organizations, institutions, power, privacy, roles, responsibility, or human meaning without personality or clinical diagnosis.
 ---
 
 # Ariadne Human
 
 ## Overview
 
-[TODO: 1-2 sentences explaining what this skill enables]
+Apply human-domain clauses without turning people into fixed labels or collectives into persons. Preserve roles, power, privacy, responsibility, meaning, multiple membership, and material conditions as separate, evidence-bounded records.
 
-## Structuring This Skill
+## Standalone Contract
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+Create a minimal common Method Record when none is supplied. Preserve an incoming record and its lineage when one is supplied. Populate `record_id`, `schema_version`, `record_version`, `parent_record_id`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" -> "Reading" -> "Creating" -> "Editing"
-- Structure: ## Overview -> ## Workflow Decision Tree -> ## Step 1 -> ## Step 2...
+Set `authorization_effect` to `none`. Keep or lower an inherited ceiling. Use `description_only` for observations and candidate classifications, `diagnostic_only` for bounded human-system explanations, and `requirements_only` for privacy, protection, appeal, evidence, or authorization requirements.
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" -> "Merge PDFs" -> "Split PDFs" -> "Extract Text"
-- Structure: ## Overview -> ## Quick Start -> ## Task Category 1 -> ## Task Category 2...
+## Procedure
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" -> "Colors" -> "Typography" -> "Features"
-- Structure: ## Overview -> ## Guidelines -> ## Specifications -> ## Usage...
+1. Classify the requested result. Separate human description or diagnosis from clinical assessment, personality adjudication, forecast, normative choice, intervention, and authorization.
+2. Freeze the human object, boundary, `SP/T/K`, observation position, evidence cutoff, affected positions, and allowed use. Distinguish an actor, a circle, and a multi-circle joint object.
+3. Preserve missing information as `not_collected`, `not_observable`, `not_applicable`, `conflicted`, `unknown`, or `withheld_for_protection`. Treat refusal and silence as no available information, not as evidence of intent, risk, consent, or character.
+4. Separate H1, H4, and H5 empirical hypotheses from H2 and H3 classification rules and H6 normative boundary. Require eligible H-instances for empirical elevation.
+5. Separate GC, GS, GE, CV, RS, IS, IM, and IB. Require independent evidence for each strong type; never infer responsibility, intent, or mechanism from visibility or behavior alone.
+6. Route only applicable HV01-HV11 interfaces. Fill their common field contract, choose one conditional support route at a time, and keep U01-U11 and HV01-HV11 distinct.
+7. For an actor, record roles; slow, medium, and fast variables; material and experience-meaning conditions; evidence state; privacy; and permitted use. Prefer role and circle conditions before adding a personality hypothesis.
+8. Use S0-S6 only as reversible prototypes for intentional human collectives. Allow `single_dominant`, `mixed`, `parallel`, or `unknown`; keep nonlinear paths and X0 separate; never assign a collective prototype to an individual.
+9. For multiple circles, register each `C*`, the joint `MC*`, six relation types, multiple membership, material and experience-meaning channels, five asynchronous clocks, boundary sensitivity, and the simple-model comparison.
+10. Write only supported observations, candidate hypotheses, bounded classifications, competing explanations, privacy limits, and next evidence needs into the record. Preserve counterevidence and identify only necessary handoffs.
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" -> numbered capability list
-- Structure: ## Overview -> ## Core Capabilities -> ### 1. Feature -> ### 2. Feature...
+Stop before clinical inference, personality essence, value ranking, punishment, compelled disclosure, resource redistribution, responsibility assignment beyond available evidence, or real-world authorization. Route propagation to `ariadne-dynamics`, evidence repair to `ariadne-evidence`, and value or action questions onward without deciding them here.
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+## Quick Reference
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+| Need | Apply |
+|---|---|
+| Meaning, power, history, carrying, or writeback | H1-H6 with their distinct roles |
+| Conditions, actors, events, carriers, responsibility, or instability | GC/GS/GE/CV/RS/IS/IM/IB |
+| Human variable interface | HV01-HV11 common card and one support route |
+| Individual state | Actor snapshot with slow/medium/fast variables and use limits |
+| Collective configuration | S0-S6, nonlinear path, or X0 without rank or destiny |
+| Interacting circles | `C*`, `MC*`, six relations, dual channels, five clocks, complexity gate |
 
-## [TODO: Replace with the first main section based on chosen structure]
+## Common Mistakes
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+- Turning one behavior, role response, silence, or refusal into personality or diagnosis.
+- Applying S0-S6 to a person, or treating a larger number as better, more mature, or more authorized.
+- Collapsing a carrier into a responsible subject, an instability behavior into a source, or a person into a mechanism.
+- Treating public language as shared meaning, membership as consent, visibility as representativeness, or receipt as institutional writeback.
+- Filling protected or absent information by inference, or reusing sensitive material outside its allowed purpose.
+- Averaging away low-power positions, role conflicts, disputed evidence, dual-channel differences, or asynchronous clocks.
+- Adding circles that do not explain a residual or improve on the simple baseline.
 
-## Resources (optional)
-
-Create only the resource directories this skill actually needs. Delete this section if no resources are required.
-
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
-
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
-
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
-
-**Note:** Scripts may be executed without loading into context, but can still be read by Codex for patching or environment adjustments.
-
-### references/
-Documentation and reference material intended to be loaded into context to inform Codex's process and thinking.
-
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
-
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Codex should reference while working.
-
-### assets/
-Files not intended to be loaded into context, but rather used within the output Codex produces.
-
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
-
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
-
----
-
-**Not every skill requires all three types of resources.**
+Read [human-domain.md](references/human-domain.md) for the H contracts, strong types, complete HV field semantics, actor and collective boundaries, multi-circle contracts, protection rules, and worked example.
