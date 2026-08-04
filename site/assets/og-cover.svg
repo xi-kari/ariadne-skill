@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title og-desc">
+  <title id="og-title">Ariadne · Lattice Kernel</title>
+  <desc id="og-desc">一套让 AI Agent 思考和处理复杂问题的方法论集群</desc>
+  <defs>
+    <pattern id="grid" width="108" height="108" patternUnits="userSpaceOnUse">
+      <path d="M108 0H0V108" fill="none" stroke="#B7CBC4" stroke-width="1" opacity=".7"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="m0 1 9 4-9 4Z" fill="#8B62AD"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="#EDF2EF"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="54" y="54" width="1092" height="522" fill="none" stroke="#173532" stroke-width="2"/>
+  <text x="92" y="122" fill="#315F58" font-family="Consolas, monospace" font-size="18" font-weight="700" letter-spacing="5">方法论集群 · LATTICE KERNEL</text>
+  <text x="84" y="310" fill="#173532" font-family="Georgia, 'Songti SC', serif" font-size="116" font-weight="700" letter-spacing="-5">Ariadne<tspan fill="#8B62AD">。</tspan></text>
+  <rect x="91" y="347" width="620" height="18" fill="#E7DDED"/>
+  <text x="92" y="414" fill="#173532" font-family="Georgia, 'Songti SC', serif" font-size="37" font-weight="700">复杂问题的方法，让边界保持可见。</text>
+  <text x="94" y="468" fill="#55726D" font-family="Consolas, monospace" font-size="17" letter-spacing="2">10 SKILLS · 1 + 9 · AUTHORIZATION_EFFECT: NONE</text>
+  <g fill="none" stroke="#315F58" stroke-width="2">
+    <path d="m812 185 91-54 92 61 91-87"/>
+    <path d="m812 185 93 97 90-90 93 117"/>
+    <path d="m905 282 37 128 146-101"/>
+  </g>
+  <g fill="#EDF2EF" stroke="#315F58" stroke-width="3">
+    <circle cx="812" cy="185" r="11"/>
+    <circle cx="903" cy="131" r="9"/>
+    <circle cx="995" cy="192" r="12"/>
+    <circle cx="1086" cy="105" r="9"/>
+    <circle cx="905" cy="282" r="10"/>
+    <circle cx="942" cy="410" r="9"/>
+    <circle cx="1088" cy="309" r="12"/>
+  </g>
+  <circle cx="995" cy="192" r="6" fill="#8B62AD"/>
+  <circle cx="905" cy="282" r="5" fill="#C4874F"/>
+  <path d="M786 448c50-23 62-102 119-166s108-36 181-177" fill="none" stroke="#8B62AD" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="1110" y="530" fill="#315F58" font-family="Georgia, 'Songti SC', serif" font-size="20" font-weight="700" text-anchor="end">按需选取 · 保留未知 · 止于边界</text>
+</svg>
