@@ -1,0 +1,62 @@
+name: 方法论与反例
+description: 提交来源条款、反例、适用边界或降级建议。
+title: "[Methodology] "
+labels: []
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请区分来源、观察与推断。此表单不用于安全漏洞，也不接受含隐私的真实案例材料。
+
+  - type: input
+    id: source_clause
+    attributes:
+      label: 来源条款
+      description: 请给出仓库文件、章节、字段或可核验的公开来源。
+      placeholder: skills/ariadne-evidence/SKILL.md 中的……
+    validations:
+      required: true
+
+  - type: textarea
+    id: counterexample
+    attributes:
+      label: 反例
+      description: 请描述能挑战现有条款的最小反例，并标出已知与未知。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected_module
+    attributes:
+      label: 受影响模块
+      options:
+        - ariadne-skill
+        - ariadne-framing
+        - ariadne-evidence
+        - ariadne-scale
+        - ariadne-mechanism
+        - ariadne-human
+        - ariadne-dynamics
+        - ariadne-forecast
+        - ariadne-choice
+        - ariadne-audit
+        - 多个模块
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_downgrade
+    attributes:
+      label: 建议降级
+      description: 请说明应缩小适用范围、降低结论等级、保留未知，还是暂停该条款。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我确认反例已经抽象和脱敏，不含个人资料、私密案例内容、秘密或凭据。
+          required: true
