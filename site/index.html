@@ -385,7 +385,7 @@ authorization_effect: none</code></pre>
                 <tr><th>Codex / OpenAI</th><td>原生 Agent Skills</td><td><code>.agents/skills</code>、用户 Skill 目录</td><td>保留 OpenAI metadata 与显式调用。</td></tr>
                 <tr><th>Claude Code</th><td>原生 Agent Skills</td><td><code>.claude/skills</code></td><td>支持目录发现、引用文件和斜杠调用。</td></tr>
                 <tr><th>Gemini CLI</th><td>原生 Agent Skills</td><td><code>.gemini/skills</code> 或 <code>.agents/skills</code></td><td>调用前仍由宿主决定激活授权。</td></tr>
-                <tr><th>Cursor</th><td>原生 Agent Skills</td><td><code>.cursor/skills</code> 或 <code>.agents/skills</code></td><td>支持自动发现与显式调用。</td></tr>
+                <tr><th>Cursor</th><td>原生 Agent Skills</td><td><code>.cursor/skills</code>、<code>.agents/skills</code>、<code>.claude/skills</code> 或 <code>.codex/skills</code></td><td>支持自动发现与显式调用。</td></tr>
                 <tr><th>GitHub Copilot</th><td>原生 Agent Skills</td><td><code>.github/skills</code> 或 <code>.agents/skills</code></td><td>云端、CLI 与编辑器表面可能不同。</td></tr>
                 <tr><th>Reasonix</th><td>目录兼容子集</td><td><code>.reasonix/skills</code>、<code>.agents/skills</code> 等</td><td>不声明隐式路由等价，需专项冒烟验证。</td></tr>
               </tbody>
@@ -437,6 +437,9 @@ authorization_effect: none</code></pre>
                 <li><a href="https://geminicli.com/docs/cli/using-agent-skills/">Gemini CLI Skills</a></li>
                 <li><a href="https://cursor.com/docs/context/skills">Cursor Skills</a></li>
                 <li><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot Skills</a></li>
+                <li><a href="https://reasonix.io/docs/">Reasonix Docs</a></li>
+                <li><a href="https://github.com/vercel-labs/skills">npx skills 安装工具</a></li>
+                <li><a href="../docs/agent-compatibility.md">完整兼容矩阵</a></li>
               </ul>
             </div>
           </div>

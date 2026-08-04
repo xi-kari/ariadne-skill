@@ -28,11 +28,26 @@ def _validate_output_path(repo_root: Path, source: Path, output_root: Path) -> N
         raise ValueError("unsafe site output path: repository source tree")
 
 
+def _validate_source_path(repo_root: Path, source: Path, label: str) -> None:
+    if source.is_symlink():
+        raise ValueError(f"unsafe site source: symbolic link at {label}")
+    resolved = source.resolve(strict=True)
+    if not _is_within(resolved, repo_root):
+        raise ValueError(f"unsafe site source: outside repository at {label}")
+
+
+def _validate_source_tree(repo_root: Path, source: Path) -> None:
+    _validate_source_path(repo_root, source, "site")
+    for path in source.rglob("*"):
+        _validate_source_path(repo_root, path, path.relative_to(repo_root).as_posix())
+
+
 def build_site(repo_root: Path, output_root: Path) -> Path:
     """Build the dependency-free site into an explicitly selected directory."""
 
     repo_root = repo_root.resolve(strict=True)
-    source = (repo_root / "site").resolve(strict=True)
+    source = repo_root / "site"
+    _validate_source_tree(repo_root, source)
     output_candidate = output_root.expanduser()
     if output_candidate.is_symlink():
         raise ValueError("unsafe site output path: symbolic link")
@@ -43,10 +58,17 @@ def build_site(repo_root: Path, output_root: Path) -> Path:
     for shared_asset in shared_assets:
         if not shared_asset.is_file():
             raise FileNotFoundError(f"missing shared site asset: {shared_asset}")
+        _validate_source_path(
+            repo_root,
+            shared_asset,
+            shared_asset.relative_to(repo_root).as_posix(),
+        )
 
     if output_root.exists():
         if not output_root.is_dir():
             raise ValueError("site output path exists and is not a directory")
+        if not _is_within(output_root, repo_root / "build"):
+            raise ValueError("unsafe site output path: existing external directory")
         shutil.rmtree(output_root)
 
     shutil.copytree(source, output_root)

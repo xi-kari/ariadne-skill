@@ -74,11 +74,15 @@
       "compatibility": "native-agent-skills",
       "project_paths": [
         ".cursor/skills",
-        ".agents/skills"
+        ".agents/skills",
+        ".claude/skills",
+        ".codex/skills"
       ],
       "global_paths": [
         "~/.cursor/skills",
-        "~/.agents/skills"
+        "~/.agents/skills",
+        "~/.claude/skills",
+        "~/.codex/skills"
       ],
       "invocation": "/ariadne-skill",
       "evidence_url": "https://cursor.com/docs/context/skills"

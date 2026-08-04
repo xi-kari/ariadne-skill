@@ -1,6 +1,6 @@
 # Ariadne 多智能体兼容与安装
 
-Ariadne 以仓库中的十个 `skills/ariadne-*/` 目录为唯一方法论权威源。宿主目录只是安装目标；本仓库不保存 `.agents/skills`、`.claude/skills`、`.cursor/skills`、`.gemini/skills`、`.github/skills` 或 `.reasonix/skills` 镜像。
+Ariadne 以仓库中的十个 `skills/ariadne-*/` 目录为唯一方法论权威源。宿主目录只是安装目标；本仓库不保存 `.agent/skills`、`.agents/skills`、`.claude/skills`、`.codex/skills`、`.cursor/skills`、`.gemini/skills`、`.github/skills` 或 `.reasonix/skills` 镜像。
 
 兼容等级描述 Skill 格式、发现位置与调用入口，不代表已在每个宿主、版本和运行表面完成真实任务验证。默认安装完整十 Skill；只安装总路由是有记录的降级模式。
 
@@ -42,7 +42,7 @@ Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装
 | Codex | `native-agent-skills` | `.agents/skills` | `~/.agents/skills`；安装工具也可写入 `~/.codex/skills` | 可用 `$ariadne-skill` 显式点名，也可按 `description` 路由 | [Codex Skills](https://developers.openai.com/codex/skills) |
 | Claude Code | `native-agent-skills` | `.claude/skills` | `~/.claude/skills` | `/ariadne-skill` 是显式斜杠调用，也支持按描述加载 | [Claude Code Skills](https://code.claude.com/docs/en/slash-commands) |
 | Gemini CLI | `native-agent-skills` | `.gemini/skills`、`.agents/skills` | `~/.gemini/skills`、`~/.agents/skills` | 用自然语言点名；用 `/skills list` 核对发现，激活时遵循宿主授权提示 | [Gemini CLI Skills](https://geminicli.com/docs/cli/using-agent-skills/) |
-| Cursor | `native-agent-skills` | `.cursor/skills`、`.agents/skills` | `~/.cursor/skills`、`~/.agents/skills` | 可从斜杠菜单调用 `/ariadne-skill`，也可自动发现 | [Cursor Skills](https://cursor.com/docs/context/skills) |
+| Cursor | `native-agent-skills` | `.cursor/skills`、`.agents/skills`、`.claude/skills`、`.codex/skills` | `~/.cursor/skills`、`~/.agents/skills`、`~/.claude/skills`、`~/.codex/skills` | 可从斜杠菜单调用 `/ariadne-skill`，也可自动发现 | [Cursor Skills](https://cursor.com/docs/context/skills) |
 | GitHub Copilot | `native-agent-skills` | `.github/skills`、`.claude/skills`、`.agents/skills` | `~/.copilot/skills`、`~/.agents/skills` | 云端、CLI 与编辑器表面不承诺统一斜杠入口；用自然语言点名并核对所在表面的发现结果 | [GitHub Copilot Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills) |
 | Reasonix | `directory-compatible-subset` | `.reasonix/skills`、`.agents/skills`、`.agent/skills`、`.claude/skills` | `~/.reasonix/skills`、`~/.agents/skills`、`~/.claude/skills` | 候选显式入口为 `/ariadne-skill`；必须先用 `/skills` 核对发现并完成下列专项冒烟 | [Reasonix Docs](https://reasonix.io/docs/) |
 

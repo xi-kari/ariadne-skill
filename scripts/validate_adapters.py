@@ -52,8 +52,18 @@ EXPECTED_HOSTS = {
     "cursor": {
         "name": "Cursor",
         "compatibility": "native-agent-skills",
-        "project_paths": (".cursor/skills", ".agents/skills"),
-        "global_paths": ("~/.cursor/skills", "~/.agents/skills"),
+        "project_paths": (
+            ".cursor/skills",
+            ".agents/skills",
+            ".claude/skills",
+            ".codex/skills",
+        ),
+        "global_paths": (
+            "~/.cursor/skills",
+            "~/.agents/skills",
+            "~/.claude/skills",
+            "~/.codex/skills",
+        ),
         "invocation": "/ariadne-skill",
         "evidence_url": "https://cursor.com/docs/context/skills",
     },
@@ -92,15 +102,6 @@ REASONIX_SMOKE_CHECKS = {
     "peer-routing",
     "context-growth",
 }
-
-FORBIDDEN_MIRRORS = (
-    ".agents/skills",
-    ".claude/skills",
-    ".cursor/skills",
-    ".gemini/skills",
-    ".github/skills",
-    ".reasonix/skills",
-)
 
 FRONTMATTER = re.compile(r"\A---\n(?P<body>.*?)\n---(?:\n|\Z)", re.DOTALL)
 
@@ -256,10 +257,16 @@ def validate_adapters(repo_root: Path) -> list[str]:
                 if host is not None:
                     errors.extend(_validate_host(host_id, host))
 
-    for relative in FORBIDDEN_MIRRORS:
-        path = repo_root / relative
-        if path.exists() or path.is_symlink():
-            errors.append(f"forbidden host mirror exists: {relative}")
+    if isinstance(hosts, list) and all(isinstance(host, dict) for host in hosts):
+        forbidden_mirrors = {
+            relative
+            for host in hosts
+            for relative in _string_list(host.get("project_paths")) or []
+        }
+        for relative in sorted(forbidden_mirrors):
+            path = repo_root / relative
+            if path.exists() or path.is_symlink():
+                errors.append(f"forbidden host mirror exists: {relative}")
 
     return errors
 

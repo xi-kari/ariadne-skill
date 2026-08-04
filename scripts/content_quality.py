@@ -22,20 +22,22 @@ TEXT_SUFFIXES = {
 }
 IGNORED_PARTS = {".git", ".worktrees", "__pycache__", ".pytest_cache", "build"}
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
-INLINE_CODE = re.compile(r"`[^`\n]*`")
+MARKDOWN_REFERENCE = re.compile(r"^\s{0,3}\[[^\]]+\]:\s*(\S+)", re.MULTILINE)
 EXPLICIT_ANCHOR = re.compile(r"<(?:a|[A-Za-z][\w:-]*)\b[^>]*(?:id|name)=[\"']([^\"']+)[\"']")
 MARKDOWN_HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$", re.MULTILINE)
 EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel", "data", "chatgpt-conversation"}
 RUNTIME_TAG_ATTRIBUTES = {
     "audio": {"src"},
     "iframe": {"src"},
-    "img": {"src"},
+    "img": {"src", "srcset"},
     "link": {"href"},
     "script": {"src"},
     "source": {"src", "srcset"},
     "video": {"poster", "src"},
 }
 SHARED_SITE_ASSETS = {"readme-hero.svg", "lattice-kernel-map.svg"}
+CSS_REFERENCE = re.compile(r"(?:@import\s+(?:url\(\s*)?|url\(\s*)([^)\s'\"]+|['\"][^'\"]+['\"])", re.IGNORECASE)
+SCRIPT_REFERENCE = re.compile(r"(?:import\s*(?:\(\s*)?|from\s+)[\"']([^\"']+)[\"']")
 
 
 class _HTMLReferences(HTMLParser):
@@ -43,9 +45,13 @@ class _HTMLReferences(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.references: list[tuple[str, str, str]] = []
         self.anchors: set[str] = set()
+        self.embedded_styles: list[str] = []
+        self.embedded_scripts: list[str] = []
+        self._embedded_tag: str | None = None
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         normalized = tag.lower()
+        self._embedded_tag = normalized if normalized in {"style", "script"} else None
         for name, value in attrs:
             if value is None:
                 continue
@@ -55,14 +61,34 @@ class _HTMLReferences(HTMLParser):
             if attr in {"href", "src", "srcset", "poster"}:
                 self.references.append((normalized, attr, value))
 
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() == self._embedded_tag:
+            self._embedded_tag = None
+
+    def handle_data(self, data: str) -> None:
+        if self._embedded_tag == "style":
+            self.embedded_styles.append(data)
+        elif self._embedded_tag == "script":
+            self.embedded_scripts.append(data)
+
 
 def _iter_text_files(root: Path) -> list[Path]:
+    def is_text_candidate(path: Path) -> bool:
+        if path.suffix.lower() in TEXT_SUFFIXES:
+            return True
+        if path.suffix:
+            return False
+        try:
+            return b"\0" not in path.read_bytes()
+        except OSError:
+            return False
+
     return sorted(
         (
             path
             for path in root.rglob("*")
             if path.is_file()
-            and path.suffix.lower() in TEXT_SUFFIXES
+            and is_text_candidate(path)
             and not IGNORED_PARTS.intersection(path.relative_to(root).parts)
         ),
         key=lambda path: path.relative_to(root).as_posix(),
@@ -75,16 +101,43 @@ def _issue(code: str, root: Path, path: Path, detail: str) -> str:
 
 def _strip_markdown_code(text: str) -> str:
     visible: list[str] = []
-    fence: str | None = None
+    fence: tuple[str, int] | None = None
     for line in text.splitlines(keepends=True):
         match = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
         if match:
-            marker = match.group(1)[0]
-            fence = None if fence == marker else marker
-            visible.append("\n" if line.endswith("\n") else "")
-            continue
+            run = match.group(1)
+            marker = run[0]
+            if fence is None:
+                fence = (marker, len(run))
+                visible.append("\n" if line.endswith("\n") else "")
+                continue
+            if marker == fence[0] and len(run) >= fence[1]:
+                fence = None
+                visible.append("\n" if line.endswith("\n") else "")
+                continue
         visible.append(("\n" if line.endswith("\n") else "") if fence else line)
-    return INLINE_CODE.sub("", "".join(visible))
+    return _strip_inline_code("".join(visible))
+
+
+def _strip_inline_code(text: str) -> str:
+    visible: list[str] = []
+    index = 0
+    while index < len(text):
+        if text[index] != "`":
+            visible.append(text[index])
+            index += 1
+            continue
+        end = index
+        while end < len(text) and text[end] == "`":
+            end += 1
+        marker = text[index:end]
+        closing = text.find(marker, end)
+        if closing == -1 or "\n" in text[end:closing]:
+            visible.append(marker)
+            index = end
+            continue
+        index = closing + len(marker)
+    return "".join(visible)
 
 
 def _github_slug(value: str) -> str:
@@ -94,10 +147,11 @@ def _github_slug(value: str) -> str:
 
 
 def _anchors_for(path: Path, text: str) -> set[str]:
-    anchors = set(EXPLICIT_ANCHOR.findall(text))
+    visible = _strip_markdown_code(text) if path.suffix.lower() == ".md" else text
+    anchors = set(EXPLICIT_ANCHOR.findall(visible))
     if path.suffix.lower() == ".md":
         counts: dict[str, int] = {}
-        for heading in MARKDOWN_HEADING.findall(_strip_markdown_code(text)):
+        for heading in MARKDOWN_HEADING.findall(visible):
             base = _github_slug(heading)
             if not base:
                 continue
@@ -157,12 +211,14 @@ def _validate_reference(
                 resolved = shared_source
     if not resolved.exists():
         return [_issue("missing-target", root, source, raw_target)]
+    if not resolved.is_file():
+        return [_issue("directory-target", root, source, raw_target)]
+    if resolved not in decoded:
+        try:
+            decoded[resolved] = resolved.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            return [_issue("unreadable-target", root, source, raw_target)]
     if fragment:
-        if resolved not in decoded:
-            try:
-                decoded[resolved] = resolved.read_text(encoding="utf-8")
-            except (OSError, UnicodeDecodeError):
-                return []
         anchors = anchor_cache.setdefault(
             resolved,
             _anchors_for(resolved, decoded[resolved]),
@@ -175,10 +231,47 @@ def _validate_reference(
 def _has_accessible_svg_text(root: ET.Element) -> bool:
     if root.attrib.get("aria-label", "").strip():
         return True
-    for element in root.iter():
+    for element in root:
         if element.tag.rsplit("}", maxsplit=1)[-1] == "title" and (element.text or "").strip():
             return True
     return False
+
+
+def _reference_candidates(value: str, attribute: str) -> list[str]:
+    if attribute != "srcset":
+        return [value]
+    return [
+        candidate.strip().split(maxsplit=1)[0]
+        for candidate in value.split(",")
+        if candidate.strip()
+    ]
+
+
+def _validate_runtime_reference(
+    root: Path,
+    source: Path,
+    tag: str,
+    attribute: str,
+    value: str,
+    decoded: dict[Path, str],
+    anchor_cache: dict[Path, set[str]],
+) -> list[str]:
+    errors: list[str] = []
+    for candidate in _reference_candidates(value, attribute):
+        local = _local_target(candidate)
+        if local is None:
+            if attribute in RUNTIME_TAG_ATTRIBUTES.get(tag, set()) or tag in {"css", "script", "svg"}:
+                errors.append(
+                    _issue(
+                        "external-runtime-asset",
+                        root,
+                        source,
+                        f"{tag}[{attribute}] -> {candidate}",
+                    )
+                )
+            continue
+        errors.extend(_validate_reference(root, source, candidate, decoded, anchor_cache))
+    return errors
 
 
 def validate_content(root: Path) -> list[str]:
@@ -186,6 +279,24 @@ def validate_content(root: Path) -> list[str]:
     errors: list[str] = []
     decoded: dict[Path, str] = {}
     anchor_cache: dict[Path, set[str]] = {}
+
+    def validate_embedded_html_runtime(path: Path, parser: _HTMLReferences) -> list[str]:
+        embedded_errors: list[str] = []
+        for style in parser.embedded_styles:
+            for raw in CSS_REFERENCE.findall(style):
+                embedded_errors.extend(
+                    _validate_runtime_reference(
+                        root, path, "css", "url", raw.strip("'\""), decoded, anchor_cache
+                    )
+                )
+        for script in parser.embedded_scripts:
+            for raw in SCRIPT_REFERENCE.findall(script):
+                embedded_errors.extend(
+                    _validate_runtime_reference(
+                        root, path, "script", "script", raw, decoded, anchor_cache
+                    )
+                )
+        return embedded_errors
 
     for path in _iter_text_files(root):
         raw = path.read_bytes()
@@ -209,6 +320,8 @@ def validate_content(root: Path) -> list[str]:
             except ET.ParseError as exc:
                 errors.append(_issue("invalid-svg", root, path, str(exc)))
             else:
+                if svg_root.tag.rsplit("}", maxsplit=1)[-1] != "svg":
+                    errors.append(_issue("invalid-svg-root", root, path, "root element must be svg"))
                 if not _has_accessible_svg_text(svg_root):
                     errors.append(
                         _issue(
@@ -218,12 +331,50 @@ def validate_content(root: Path) -> list[str]:
                             "add aria-label or a non-empty title",
                         )
                     )
+                for element in svg_root.iter():
+                    tag = element.tag.rsplit("}", maxsplit=1)[-1].lower()
+                    for attribute, value in element.attrib.items():
+                        if value is None:
+                            continue
+                        name = attribute.rsplit("}", maxsplit=1)[-1].lower()
+                        if name in {"href", "src"}:
+                            errors.extend(
+                                _validate_runtime_reference(
+                                    root, path, "svg", name, value, decoded, anchor_cache
+                                )
+                            )
+                    if tag == "style" and element.text:
+                        for raw in CSS_REFERENCE.findall(element.text):
+                            errors.extend(
+                                _validate_runtime_reference(
+                                    root,
+                                    path,
+                                    "svg",
+                                    "style",
+                                    raw.strip("'\""),
+                                    decoded,
+                                    anchor_cache,
+                                )
+                            )
+                    if tag == "script" and element.text:
+                        for raw in SCRIPT_REFERENCE.findall(element.text):
+                            errors.extend(
+                                _validate_runtime_reference(
+                                    root,
+                                    path,
+                                    "svg",
+                                    "script",
+                                    raw,
+                                    decoded,
+                                    anchor_cache,
+                                )
+                            )
 
     for path, text in sorted(decoded.items(), key=lambda item: item[0].as_posix()):
         suffix = path.suffix.lower()
         if suffix == ".md":
             visible = _strip_markdown_code(text)
-            for raw in MARKDOWN_LINK.findall(visible):
+            for raw in [*MARKDOWN_LINK.findall(visible), *MARKDOWN_REFERENCE.findall(visible)]:
                 errors.extend(
                     _validate_reference(
                         root,
@@ -233,25 +384,35 @@ def validate_content(root: Path) -> list[str]:
                         anchor_cache,
                     )
                 )
+            parser = _HTMLReferences()
+            parser.feed(visible)
+            for tag, attr, raw in parser.references:
+                errors.extend(
+                    _validate_runtime_reference(
+                        root, path, tag, attr, raw, decoded, anchor_cache
+                    )
+                )
+            errors.extend(validate_embedded_html_runtime(path, parser))
         elif suffix == ".html":
             parser = _HTMLReferences()
             parser.feed(text)
             for tag, attr, raw in parser.references:
-                value = raw.split(",", maxsplit=1)[0].strip().split(" ", maxsplit=1)[0]
-                local = _local_target(value)
-                if local is None:
-                    if attr in RUNTIME_TAG_ATTRIBUTES.get(tag, set()):
-                        errors.append(
-                            _issue(
-                                "external-runtime-asset",
-                                root,
-                                path,
-                                f"{tag}[{attr}] -> {value}",
-                            )
-                        )
-                    continue
                 errors.extend(
-                    _validate_reference(root, path, value, decoded, anchor_cache)
+                    _validate_runtime_reference(root, path, tag, attr, raw, decoded, anchor_cache)
+                )
+            errors.extend(validate_embedded_html_runtime(path, parser))
+        elif suffix == ".css":
+            for raw in CSS_REFERENCE.findall(text):
+                errors.extend(
+                    _validate_runtime_reference(
+                        root,
+                        path,
+                        "css",
+                        "url",
+                        raw.strip("'\""),
+                        decoded,
+                        anchor_cache,
+                    )
                 )
 
     return sorted(set(errors))
