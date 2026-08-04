@@ -133,7 +133,7 @@ def test_site_links_to_all_adapter_compatibility_evidence() -> None:
     for href in (
         "https://reasonix.io/docs/",
         "https://github.com/vercel-labs/skills",
-        "../docs/agent-compatibility.md",
+        "https://github.com/xi-kari/ariadne-skill/blob/main/docs/agent-compatibility.md",
     ):
         assert f'href="{href}"' in html
 
