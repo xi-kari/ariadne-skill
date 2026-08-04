@@ -10,9 +10,9 @@ For a standalone run, create the common Method Record and make these module-spec
 - Put `S*=<B,X,R,I,T,SP,K>` and the target residual in `object_contract`.
 - Freeze source and observation availability in `evidence_cutoff`.
 - Put the active scale profile and generalization unit in `scale_scope`.
-- Put baselines, candidate mechanisms, dependency status, evidence status, falsifiers, and residuals in `claim_ledger`.
+- Put bounded claims in `claim_ledger`; put every mechanism candidate's channel observation, discriminating prediction, reverse or falsifier, and residual comparison rule in the typed mechanism payload.
 - Preserve missing fields and competing accounts in `unknowns_and_counterevidence`.
-- Use `description_only`, `diagnostic_only`, or `requirements_only` as the ceiling; never exceed an inherited ceiling.
+- Apply the ordered ceiling transition algebra. A normal module child preserves or lowers; only newly admitted external evidence or protocol fulfillment in a child can raise.
 - Append this run to `module_runs`, name only useful handoffs in `recommended_next_modules`, and set `authorization_effect: none`.
 
 Create a child record instead of overwriting a parent whenever evidence, scope, object identity, or a frozen comparison changes.
@@ -88,9 +88,9 @@ For every candidate CM, record:
 2. Formal inferential dependencies separately from protocol gates.
 3. Enabling conditions, typed variables, mechanism chain, direction, timing, threshold, and measured dimensions.
 4. Minimum external evidence and eligible instance references.
-5. Complexity-matched simple baseline and at least one competing mechanism.
-6. Blocking, substitution, or no-channel counterfactual; counterexamples and falsifiers.
-7. Failure boundary, residual, output ceiling, and next discriminating observation.
+5. Complexity-matched simple baseline and at least two competing mechanisms for every causal or analogy route.
+6. For every candidate: a channel observation, discriminating prediction, reverse condition or falsifier, and a residual comparison rule under the same cutoff and baseline.
+7. Blocking, substitution, or no-channel counterfactual; counterexamples, failure boundary, output ceiling, and next discriminating observation.
 
 | Mechanism | Required branch conditions | Downgrade or reject when |
 |---|---|---|
@@ -132,6 +132,8 @@ For each target residual, present the simple baseline first, then a compact comp
 | Residual after fit | What the candidate still does not explain |
 
 Retain multiple candidates when present evidence cannot distinguish them. Prefer the simple baseline when added mechanisms do not improve out-of-sample explanation or intervention performance.
+
+In the typed payload, every candidate separately fills `channel_observation`, `discriminating_prediction`, `reverse_or_falsifier`, and `residual_comparison_rule`. Candidate IDs and the four-field test signatures must be distinct; relabeling the same story does not create a competitor.
 
 ## Worked Example: Complaint Receipt, Writeback, or Learning
 

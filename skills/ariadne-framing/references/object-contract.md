@@ -114,72 +114,89 @@ Request: “Incident reports rose after a school changed its reporting app. Shou
 
 Frame the reporting question before the intervention question. Do not equate reported incidents with incident occurrence, and do not treat the proposed camera system as already inside the observed object.
 
+<!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:school-reporting-frame-001
-schema_version: "1.0"
+schema_version: '1.1'
 record_version: 1
+lineage_kind: root
 parent_record_id: null
+parent_records: []
 request_type: intervention_review
 object_contract:
-  boundary: "The incident-reporting workflow in three named district schools after the app change; excludes unreported events and the proposed camera system."
+  boundary: The incident-reporting workflow in three named district schools after the app change; excludes unreported events
+    and the proposed camera system.
   state_variables:
-    - "reported incident count by school and week"
-    - "reporting participation by role"
-    - "report classification and duplicate rate"
-    - "response time after a report"
+  - reported incident count by school and week
+  - reporting participation by role
+  - report classification and duplicate rate
+  - response time after a report
   relations_or_transitions:
-    - "app access and prompts may change report submission; causal status unknown"
-    - "submitted reports enter review, classification, and response stages"
+  - app access and prompts may change report submission; causal status unknown
+  - submitted reports enter review, classification, and response stages
   interfaces:
-    - "student, staff, and parent submission channels"
-    - "school review and escalation channel"
-  time_window: "2025-08-01 through 2026-07-31, with the app-change date retained"
+  - student, staff, and parent submission channels
+  - school review and escalation channel
+  time_window: 2025-08-01 through 2026-07-31, with the app-change date retained
   scale_profile:
-    A: "individual reports to school-level summaries"
-    X: "three named schools"
-    T: "weekly observations across one school year"
-    O: "school workflows within one district"
-    C: "candidate reporting-channel effect only"
-    R: "report-level records plus weekly summaries"
-    I: "students, staff, parents, and school response units"
-    N: "submission and escalation network"
-    J: "unknown: camera authorization and district jurisdiction not audited"
-  identity_criterion: "The same reporting workflow while submission, classification, and escalation rules remain materially unchanged."
+    A: individual reports to school-level summaries
+    X: three named schools
+    T: weekly observations across one school year
+    O: school workflows within one district
+    C: candidate reporting-channel effect only
+    R: report-level records plus weekly summaries
+    I: students, staff, parents, and school response units
+    N: submission and escalation network
+    J: 'unknown: camera authorization and district jurisdiction not audited'
+  identity_criterion: The same reporting workflow while submission, classification, and escalation rules remain materially
+    unchanged.
   status: candidate
 evidence_cutoff:
-  as_of: "2026-08-04T00:00:00+08:00"
+  as_of: '2026-08-04T00:00:00+08:00'
   included_source_ids:
-    - source:user-request
+  - source:user-request
   excluded_after_cutoff: true
 scale_scope:
-  source: "report-level events"
-  target: "school and district summaries"
+  source: report-level events
+  target: school and district summaries
   transform_status: candidate
 claim_ledger:
-  - claim_id: D1
-    claim_type: D
-    text: "The current object is the reporting workflow, not all incidents and not the proposed camera intervention."
-    status: candidate
-    support_ids: []
-    counterevidence_ids: []
+- claim_id: D1
+  claim_type: D
+  text: The current object is the reporting workflow, not all incidents and not the proposed camera intervention.
+  status: candidate
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids: []
+rule_registry: []
 unknowns_and_counterevidence:
   unknowns:
-    - "unknown: whether underlying incident occurrence changed"
-    - "unknown: reporting participation and duplicate-classification changes"
-    - "unknown: camera necessity, privacy effects, alternatives, jurisdiction, stopping, remedy, and appeal"
+  - 'unknown: whether underlying incident occurrence changed'
+  - 'unknown: reporting participation and duplicate-classification changes'
+  - 'unknown: camera necessity, privacy effects, alternatives, jurisdiction, stopping, remedy, and appeal'
   counterevidence: []
 output_ceiling: description_only
+ceiling_transition:
+  operation: root
+  inputs: []
+  basis: []
+  result: description_only
 module_runs:
-  - module: ariadne-framing
-    status: completed
+- module: ariadne-framing
+  status: completed
+  input_records: []
+  output_record:
+    record_id: ariadne:school-reporting-frame-001
     record_version: 1
+module_payloads: []
 recommended_next_modules:
-  - ariadne-evidence
-  - ariadne-scale
-  - ariadne-human
-  - ariadne-choice
-  - ariadne-audit
+- ariadne-evidence
+- ariadne-scale
+- ariadne-human
+- ariadne-choice
+- ariadne-audit
 authorization_effect: none
 ```
+<!-- method-record-example:end -->
 
 This frame permits an evidence audit of reporting and incident measures. It does not diagnose the cause of the increase or authorize cameras.

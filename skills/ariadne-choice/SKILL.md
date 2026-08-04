@@ -29,39 +29,11 @@ Compare a finite option set without turning facts, forecasts, efficiency, surviv
 8. Freeze O4: cap execution at the narrowest intersection of evidence, values, rights, selected option, J authority, reversibility, trial scope, and expiry. Register prohibited actions, monitors, stop authority, appeal, anti-retaliation, independent review, rollback, remedy, and reauthorization.
 9. Assign the record state and append every transition. Never erase `paused`, `stopped`, `rolled_back`, or expired history. Keep `authorization_effect` equal to `none`, including when the module verifies an external authorization record.
 
-## Produce a Standalone Method Record
+## Method Record
 
-Create the common record even when no upstream module ran. Put the detailed choice card beside it and link stable IDs; do not add undeclared keys to the Method Record.
+Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition. For every action request, write the typed choice payload with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan. Use `unknown` rather than omit any boundary.
 
-```yaml
-record_id: ariadne:choice:<stable-id>
-schema_version: "1.0"
-record_version: 1
-parent_record_id: null
-request_type: finite_choice
-object_contract:
-  boundary: <who and what the decision covers and excludes>
-  state_variables: [<decision-relevant state>]
-  relations_or_transitions: [<option consequences>]
-  interfaces: [<participation, authority, execution, appeal channel>]
-  time_window: <review and validity window>
-  scale_profile: {A: <aggregation>, I: <affected scope>, J: <jurisdiction>}
-  identity_criterion: <what change requires a new choice record>
-  status: candidate
-evidence_cutoff:
-  as_of: <RFC-3339 timestamp>
-  included_source_ids: [<source-id>]
-  excluded_after_cutoff: true
-scale_scope: {source: <evidence scope>, target: <choice scope>, transform_status: audited}
-claim_ledger: []
-unknowns_and_counterevidence: {unknowns: [<unknown>], counterevidence: [<counterevidence>]}
-output_ceiling: requirements_only
-module_runs: [{module: ariadne-choice, status: completed, record_version: 1}]
-recommended_next_modules: [ariadne-audit]
-authorization_effect: none
-```
-
-Use `description_only` when only a system-selection description is justified. Use `diagnostic_only` when you can compare consequences but cannot complete normative requirements. Use `requirements_only` to state the conditions an external decision and authorization process must satisfy; never turn that ceiling into an executable command.
+Use `description_only` for incomplete facts, `diagnostic_only` for bounded consequence comparison, and `requirements_only` only when lower permissions remain satisfied and external process requirements are explicit. Keep `authorization_effect: none`.
 
 ## Stop and Handoff
 
@@ -93,4 +65,4 @@ Do not choose values for the subject, infer consent from silence or non-exit, si
 
 ## Load Detailed Guidance
 
-Read [choice-and-authorization.md](references/choice-and-authorization.md) when defining N, PF, J, O1-O4, C12, option and distribution cards, selection states, intervention ceilings, T0-T4 tasks, application gates, or the worked example.
+Read [choice-and-authorization.md](references/choice-and-authorization.md) when defining N, PF, J, O1-O4, C12, boundary cards, options, distribution, selection states, intervention ceilings, T0-T4 tasks, or the worked example. Handoff any domain application to `ariadne-audit` for its matching Part 15 APP contract before external use.

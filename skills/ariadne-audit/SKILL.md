@@ -19,48 +19,20 @@ Audit whether a bounded methodology record may retain its current judgment and u
 ## Run the Audit
 
 1. Freeze the audit subject, version, owner, object contract, scale, evidence cutoff, intended use, affected and low-power positions, challenge path, and current output ceiling.
-2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark later transformations `not_run` and lower the ceiling.
-3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Do not let later paperwork repair an earlier failure.
+2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark every later transformation `not_run`. An IT1 failure fixes `output_ceiling: description_only`; describe missing requirements or a protective pause without issuing requirements.
+3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Mark every gate after the first failure `not_run`. An IG1 failure fixes `output_ceiling: description_only`; do not let later paperwork repair or elevate it.
 4. Expand with FG1-FG5 and DS01-DS13 when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
 5. Require SJ1-SJ8 for every L3 judgment that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output.
 6. Add DF1-DF9 when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
 7. Apply the AI boundary. Mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
 8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Require an externally verifiable approval for an applied governance change.
-9. Return findings, failed or not-run gates, affected claims, the lowered output ceiling, required corrective conditions, owners, deadlines, appeal path, rollback target, downstream writeback, and lifecycle recommendation. Keep `authorization_effect` equal to `none`.
+9. Return findings, failed or not-run gates, affected claims, the lowered output ceiling, and a typed contestability payload with a reachable owner, deadline, retained original record, downstream correction target, rollback recovery target, and remedy. Keep `authorization_effect` equal to `none`.
 
-## Produce a Standalone Method Record
+## Method Record
 
-Create a schema-compatible record even when no upstream module ran. Keep detailed gate and governance registers beside it and link them by stable IDs.
+Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition. A merge lists every sibling parent in canonical order and uses the ceiling meet. Put reachable contestability, correction, rollback-recovery, retention, deadline, and remedy fields in the typed audit payload. Keep detailed gate registers beside the record under stable IDs.
 
-```yaml
-record_id: ariadne:audit:<stable-id>
-schema_version: "1.0"
-record_version: 1
-parent_record_id: null
-request_type: governance_review
-object_contract:
-  boundary: <audited text, concept, practice, community, output, or intervention>
-  state_variables: [<gate, claim, use, lifecycle, or harm state>]
-  relations_or_transitions: [<proposed transition or downstream effect>]
-  interfaces: [<challenge, appeal, review, rollback, writeback channel>]
-  time_window: <audit and validity window>
-  scale_profile: {A: <aggregation>, I: <affected scope>, J: <authority scope>}
-  identity_criterion: <what change requires a new audit>
-  status: candidate
-evidence_cutoff:
-  as_of: <RFC-3339 timestamp>
-  included_source_ids: [<source-id>]
-  excluded_after_cutoff: true
-scale_scope: {source: <audited scope>, target: <use scope>, transform_status: audited}
-claim_ledger: []
-unknowns_and_counterevidence: {unknowns: [<unknown>], counterevidence: [<counterevidence>]}
-output_ceiling: requirements_only
-module_runs: [{module: ariadne-audit, status: completed, record_version: 1}]
-recommended_next_modules: []
-authorization_effect: none
-```
-
-Use `intervention_review` instead of `governance_review` when the audit subject is a proposed or active real-world intervention. For a child record, preserve the parent, increment the version, and append the transition and writeback; never erase failed gates or terminal lifecycle states.
+Use `intervention_review` for a proposed or active real-world intervention and `governance_review` for claim, process, model, or framework governance. Preserve failed gates and terminal states in child versions. Keep `authorization_effect: none`.
 
 ## Stop and Downgrade
 
@@ -95,4 +67,4 @@ Block public strong judgment when any required publication gate fails. Pause hig
 
 ## Load Detailed Guidance
 
-Read [gates-and-governance.md](references/gates-and-governance.md) when applying the transformation tables, seven gates, five-gate/thirteen-step expansion, strong-judgment eight, dynamic nine, AI restrictions, intervention review, appeal and rollback tests, publication gates, governance registries, lifecycle changes, or the worked example.
+Read [gates-and-governance.md](references/gates-and-governance.md) for gate, AI, contestability, rollback, publication, governance, and lifecycle contracts. For any relationship, family, organization, platform, institution, public-opinion, space, emergency, or ultra-large application, also read the direct [Part 15 application contracts](references/application-contracts.json) and enforce the matching domain stop and handoff.

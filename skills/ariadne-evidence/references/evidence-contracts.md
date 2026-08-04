@@ -40,6 +40,8 @@ Keep these levels separate and justify every conversion:
 
 Silence or absence is not negative evidence unless observation opportunity, expected signal, sensitivity, window, and alternative reasons for absence were frozen. Treat protected opacity as a reason to lower public confidence, not as guilt, pathology, or nonexistence.
 
+For every `supported` Method Record claim, resolve each `support_id` to a source admitted by this record's cutoff or to an earlier claim ID in the same ledger. Resolve each `support_rule_id` to a full entry in this record's `rule_registry`. A module name, heading, ghost source, or undeclared `RULE:*` string is not support. A ceiling raise additionally requires exact parent-record context and a named evidence or protocol basis absent from every parent.
+
 ## Source Contract
 
 For every source, record:
@@ -114,7 +116,7 @@ Only confirmatory or replication instances frozen before evidence and completed 
 | G3 historical increment | Does a predeclared history variable add out-of-sample information after controlling current registered state, environment, and measurement? For causal path dependence, preselect erasure, restoration, or equivalent intervention. | Predictive or causal path difference within the frozen window | Destiny, irreversibility, progress, fault, or authority |
 | G4 scale closure or conversion | Preselect G4a conditional information, prediction, or intervention gain, or G4b one non-commutation, K violation, relation change, or intervention-response change. | Bounded closure failure or preselected object/intervention conversion | A higher scale is truer, more important, or more authorized |
 
-Never rescue one subtype or success criterion with an unselected favorable result. A positive failure is not a baseline victory; only the complete frozen null gate supports `N0`.
+Never rescue one subtype or success criterion with an unselected favorable result. A positive failure is not a baseline victory; only the complete frozen null gate supports `N0`. A null comparator is a preregistered rule or model, not an observation. Only externally observed outcomes collected under the frozen comparator contract may support `null_supported`; writing `null`, naming `N0`, or observing no supplied counterexample is not evidence.
 
 ## Human Empirical Instances
 
@@ -165,7 +167,7 @@ Root templates in combination are never sufficient by themselves. Definitions, e
 - List only included sources in `evidence_cutoff` and preserve the cutoff timestamp.
 - Put each split D/G/E/H/N/O claim in `claim_ledger` with explicit support and counterevidence IDs.
 - Put alternatives, residuals, missing observations, invalid bridges, and protected opacity in `unknowns_and_counterevidence`.
-- Set `description_only`, `diagnostic_only`, or `requirements_only` to match the weakest critical link and never loosen an upstream ceiling.
+- Set the local ceiling to match the weakest critical link. A normal child applies the minimum of that ceiling and its parent. Raise only in a child that newly admits named external evidence or a newly fulfilled declared protocol; module completion never raises.
 - Add `ariadne-evidence` to `module_runs`, route scale questions to `ariadne-scale`, and keep `authorization_effect: none`.
 
 ## Strong Example
@@ -182,94 +184,112 @@ Split the statement before auditing it:
 
 The dashboard is material. Its time-stamped records can become observations for a defined metric. Without a frozen comparison, channel test, and alternatives such as staffing, workload, seasonality, message mix, and measurement change, it does not identify the tool as the cause. The recommendation additionally lacks values, local feasibility, authorization, stopping, rollback, and remedy.
 
+<!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:chat-response-audit-001
-schema_version: "1.0"
+schema_version: '1.1'
 record_version: 1
+lineage_kind: root
 parent_record_id: null
+parent_records: []
 request_type: diagnosis
 object_contract:
-  boundary: "One support team's work-message intake and response workflow; other departments are outside the audited object."
+  boundary: One support team's work-message intake and response workflow; other departments are outside the audited object.
   state_variables:
-    - "response-time metric under a frozen inclusion rule"
-    - "message volume and mix"
-    - "staffing and shift coverage"
-    - "chat-tool use"
+  - response-time metric under a frozen inclusion rule
+  - message volume and mix
+  - staffing and shift coverage
+  - chat-tool use
   relations_or_transitions:
-    - "incoming message to first qualifying response"
-    - "tool adoption precedes the observed post-period but its causal channel is unresolved"
+  - incoming message to first qualifying response
+  - tool adoption precedes the observed post-period but its causal channel is unresolved
   interfaces:
-    - "customer-message intake"
-    - "staff scheduling"
-    - "chat notifications and routing"
-  time_window: "eight weeks before and eight weeks after adoption"
+  - customer-message intake
+  - staff scheduling
+  - chat notifications and routing
+  time_window: eight weeks before and eight weeks after adoption
   scale_profile:
-    A: "messages aggregated to team-week summaries"
-    X: "one support team"
-    T: "sixteen-week pre/post window"
-    O: "single team"
-    C: "candidate channel effect"
-    R: "message records and weekly summaries"
-    I: "team and its incoming customers"
-    N: "message-routing network"
-    J: "not_applicable: no action authorization is evaluated in this evidence audit"
-  identity_criterion: "The same workflow while message definition, staffing unit, and response rule remain comparable."
+    A: messages aggregated to team-week summaries
+    X: one support team
+    T: sixteen-week pre/post window
+    O: single team
+    C: candidate channel effect
+    R: message records and weekly summaries
+    I: team and its incoming customers
+    N: message-routing network
+    J: 'not_applicable: no action authorization is evaluated in this evidence audit'
+  identity_criterion: The same workflow while message definition, staffing unit, and response rule remain comparable.
   status: candidate
 evidence_cutoff:
-  as_of: "2026-08-04T00:00:00+08:00"
+  as_of: '2026-08-04T00:00:00+08:00'
   included_source_ids:
-    - source:team-dashboard-export
-    - source:tool-rollout-log
+  - source:team-dashboard-export
+  - source:tool-rollout-log
   excluded_after_cutoff: true
 scale_scope:
-  source: "message-level observations in one team"
-  target: "claims about all departments"
+  source: message-level observations in one team
+  target: claims about all departments
   transform_status: failed
 claim_ledger:
-  - claim_id: D-response-time
-    claim_type: D
-    text: "Response time requires a frozen message inclusion and first-response rule."
-    status: candidate
-    support_ids: []
-    counterevidence_ids: []
-  - claim_id: G-tool-cause
-    claim_type: G
-    text: "The chat tool caused the observed response-time decrease."
-    status: unresolved
-    support_ids:
-      - observation:pre-post-dashboard-change
-    counterevidence_ids:
-      - alternative:staffing-workload-seasonality-measurement
-  - claim_id: N-speed-priority
-    claim_type: N
-    text: "Faster response should take priority over privacy, workload, and other outcomes."
-    status: unresolved
-    support_ids: []
-    counterevidence_ids: []
-  - claim_id: O-universal-adoption
-    claim_type: O
-    text: "Every department should adopt the tool."
-    status: unresolved
-    support_ids: []
-    counterevidence_ids: []
+- claim_id: D-response-time
+  claim_type: D
+  text: Response time requires a frozen message inclusion and first-response rule.
+  status: candidate
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids: []
+- claim_id: G-tool-cause
+  claim_type: G
+  text: The chat tool caused the observed response-time decrease.
+  status: unresolved
+  support_ids:
+  - observation:pre-post-dashboard-change
+  counterevidence_ids:
+  - alternative:staffing-workload-seasonality-measurement
+  support_rule_ids: []
+- claim_id: N-speed-priority
+  claim_type: N
+  text: Faster response should take priority over privacy, workload, and other outcomes.
+  status: unresolved
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids: []
+- claim_id: O-universal-adoption
+  claim_type: O
+  text: Every department should adopt the tool.
+  status: unresolved
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids: []
+rule_registry: []
 unknowns_and_counterevidence:
   unknowns:
-    - "unknown: frozen response-time definition and dashboard protocol stability"
-    - "unknown: complexity-matched baseline, comparison group, channel intervention, and independent replication"
-    - "unknown: department-specific feasibility, values, authorization, stopping, rollback, and remedy"
+  - 'unknown: frozen response-time definition and dashboard protocol stability'
+  - 'unknown: complexity-matched baseline, comparison group, channel intervention, and independent replication'
+  - 'unknown: department-specific feasibility, values, authorization, stopping, rollback, and remedy'
   counterevidence:
-    - "staffing, workload, seasonality, message mix, and metric changes remain live alternatives"
+  - staffing, workload, seasonality, message mix, and metric changes remain live alternatives
 output_ceiling: diagnostic_only
+ceiling_transition:
+  operation: root
+  inputs: []
+  basis: []
+  result: diagnostic_only
 module_runs:
-  - module: ariadne-evidence
-    status: completed
+- module: ariadne-evidence
+  status: completed
+  input_records: []
+  output_record:
+    record_id: ariadne:chat-response-audit-001
     record_version: 1
+module_payloads: []
 recommended_next_modules:
-  - ariadne-scale
-  - ariadne-mechanism
-  - ariadne-choice
-  - ariadne-audit
+- ariadne-scale
+- ariadne-mechanism
+- ariadne-choice
+- ariadne-audit
 authorization_effect: none
 ```
+<!-- method-record-example:end -->
 
 The bounded result is: a pre/post decrease was observed under an incompletely specified metric; causality and cross-department transfer remain unresolved; universal adoption is not supported or authorized.

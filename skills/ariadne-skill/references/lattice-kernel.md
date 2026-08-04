@@ -147,13 +147,15 @@ Silence is not absence. Non-observation is not nonexistence. Protected withholdi
 
 ## Output ceilings
 
+The ceilings form the total order `description_only < diagnostic_only < requirements_only`. Each higher ceiling includes everything permitted below it.
+
 | Ceiling | May produce | May not produce |
 |---|---|---|
 | `description_only` | Facts/materials as bounded, questions, missing fields, candidate objects | Mechanism ranking, forecast, action requirement |
-| `diagnostic_only` | Candidate or comparative mechanisms and bounded diagnosis | Real-world action instruction or authorization |
-| `requirements_only` | Conditions an external choice/authorization process would need | Permission, execution, or self-reported authorization |
+| `diagnostic_only` | Description plus candidate or comparative mechanisms, bounded diagnosis, conditional paths, and eligible forecast evaluation | Normative/process requirements, recommendation, instruction, authorization |
+| `requirements_only` | Description and diagnosis plus conditions an external choice/authorization process would need | Ariadne selecting an action, permission, execution, or self-reported authorization |
 
-Any module may lower a ceiling. Raising it requires a new record version with the missing evidence or external record, not more confident prose.
+For an ordinary child, take the minimum of the inherited ceiling and the module's locally supported ceiling. A module run never raises the ceiling. A child may raise only after newly admitting external evidence or recording fulfillment of a declared protocol; register the basis ID in the Method Record. A merge takes the minimum ranked parent ceiling. More modules, votes, simulations, or confident prose never raise it.
 
 ## AI and self-governance boundary
 

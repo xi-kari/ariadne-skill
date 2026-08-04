@@ -7,11 +7,13 @@ Use the H-World adapter only after declaring a D0 object and scale. Apply it to 
 For a standalone run, create the common Method Record and record:
 
 - the actor, circle, or joint object and its `B/X/R/I/T/SP/K` in `object_contract`;
-- observation position, source cutoff, privacy level, and allowed purpose in `evidence_cutoff`;
-- the nine-axis profile, affected positions, low-visibility positions, and atomic jurisdiction in `scale_scope`;
+- only the source cutoff timestamp, admitted source IDs, and after-cutoff exclusion flag in `evidence_cutoff`;
+- only source scale, target scale, and transformation status in `scale_scope`;
 - observed behavior, candidate variables, H-instance state, HV route, circle relations, and bounded conclusions in `claim_ledger`;
 - missing states, refusals, conflicts, counterexamples, local exclusion zones, and competing explanations in `unknowns_and_counterevidence`;
-- an inherited or lower `output_ceiling`, the module run and necessary handoffs, and `authorization_effect: none`.
+- observation position, privacy state, allowed purpose, at least two distinct alternatives, and responsible human review in the typed `ariadne-human` module payload;
+- `affected_positions` as a closed four-class object: `direct`, `indirect`, `low_power`, and `no_exit`; every class contains `status`, `positions`, and `reason`, and an unknown/protected/non-applicable class remains explicit with an empty list rather than collapsing into free text;
+- the ceiling transition, traceable module input/output records, necessary handoffs, and `authorization_effect: none`.
 
 Create a child record rather than overwriting a parent when the object, evidence, permitted use, identity, or scale changes. Do not let a fuller form raise the empirical or action status of its contents.
 
@@ -67,6 +69,8 @@ Keep the four dependency relations disjoint:
 Put level-specific conditions inside `conditional_support_routes`. Fill each route with `route_id`, `claim_level`, `when`, `additional_inferential_requires`, `additional_protocol_requires`, `allowed_conclusion`, and `result_ceiling`. Read one route as a whole. Do not combine favorable fields from different routes after seeing a result. Use qualified IDs such as `human_variable:HV03`, `human_strong_type:RS`, `universal_primitive:U07`, `scale_axis:J`, and explicit `O1`-`O4`; do not use ambiguous bare `O`.
 
 ### HV01-HV11 Route Map
+
+The table below is an orientation index only. Before invoking a route, load [human-variable-cards.json](human-variable-cards.json), select the matching ID, and preserve all 39 fields exactly as its one-to-one Appendix A map. Do not reconstruct a card from this summary.
 
 | Interface | Base object and route | Elevation requirements and ceiling | Prohibited leap |
 |---|---|---|---|

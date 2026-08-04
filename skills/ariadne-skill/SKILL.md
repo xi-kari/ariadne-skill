@@ -13,11 +13,12 @@ Do not use Ariadne as an ontology, truth engine, personality judge, clinical too
 
 ## Required references
 
-Read all three references before running a full pass:
+Read all four references before running a full pass:
 
 1. [Lattice Kernel](references/lattice-kernel.md) - invariants, claim classes, missing states, and hard boundaries.
 2. [Routing](references/routing.md) - module selection, order, clustered execution, and stopping rules.
 3. [Method Record](references/method-record.md) - shared record, lineage, ceilings, and handoff format.
+4. [Source navigation](references/source-navigation.json) - stable numbering and terminology ownership, dual-text difference retention, and the cross-scale proof heuristic.
 
 ## Full-pass workflow
 
@@ -26,10 +27,12 @@ Read all three references before running a full pass:
 3. Run `ariadne-framing`. Freeze the candidate object, boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
 4. Run `ariadne-evidence`. Freeze the evidence cutoff and separate source, material, observation, evidence, counterevidence, judgment, and external authorization.
 5. Select the minimum adequate module set. Do not retain a module merely because it is available.
+   When a source code or shared term is ambiguous, resolve its owner through `source-navigation.json`; use the D.4 difference rule before mapping paired source contracts and route the D.5 eight-field bridge checklist to `ariadne-scale`.
 6. After framing and evidence are frozen, run independent scale, mechanism, or human-domain lanes in parallel when the runtime supports it. Otherwise run the same lanes sequentially.
 7. Run dynamics only for event propagation or path derivation. Run forecast only for a dated, evaluable future claim. Run choice only for option comparison. Run audit for high-impact use and as the merger of clustered records.
-8. Merge child records without averaging conflicts. Keep the lowest supported output ceiling and keep `authorization_effect: none`.
-9. Present a plain-language result first. Add the compact Method Record when it improves checking, continuation, challenge, or writeback.
+8. Merge child records without averaging conflicts. Preserve every parent ID/version and module input/output reference; apply the deterministic ceiling meet and keep `authorization_effect: none`.
+9. For every action request, emit the complete facts/values/options/jurisdiction/authorization/stop/rollback boundary card even when entries are `unknown`.
+10. Present a plain-language result first. Add the compact Method Record when it improves checking, continuation, challenge, or writeback.
 
 ## Module dispatch
 
@@ -59,7 +62,8 @@ Merge through `ariadne-audit` and apply these rules:
 - Distinct unknowns accumulate.
 - Incompatible boundaries, scales, or identity criteria remain conflicts.
 - Evidence grades do not rise by vote or repetition.
-- The lowest output ceiling governs the merged record.
+- Sort all sibling parent references canonically and retain them in the audit merge.
+- The ordered meet `description_only < diagnostic_only < requirements_only` governs the merged record.
 - No number of completed modules creates authorization.
 
 ## Output contract

@@ -19,7 +19,7 @@ Never let a framework prove its own safety. Internal consistency, completed form
 
 ## 2. Run the Four Transformations
 
-Run IT1-IT4 in order. On failure, mark every later transformation `not_run`, preserve the break, and lower the output ceiling.
+Run IT1-IT4 in order. On failure, mark every later transformation `not_run`, preserve the break, and lower the output ceiling. IT1 failure is a hard `description_only` ceiling: the record may name missing requirements and a protective pause, but it may not issue a `requirements_only` result.
 
 | ID | Transformation | Required artifact | Failure ceiling |
 |---|---|---|---|
@@ -32,7 +32,7 @@ Do not use a complete SJ package to bridge a failed transformation. Passing all 
 
 ## 3. Run the Seven Main Gates
 
-Treat IG1-IG7 as the only main flow. Use `passed`, `failed`, `not_run`, or a reasoned `not_applicable` only where permitted.
+Treat IG1-IG7 as the only main flow. Use `passed`, `failed`, `not_run`, or a reasoned `not_applicable` only where permitted. After the first `failed`, every later gate is exactly `not_run`. IG1 failure is a hard `description_only` ceiling with the same missing-requirement/protective-pause distinction.
 
 | ID | Gate | Pass question | Failure response |
 |---|---|---|---|
@@ -120,7 +120,7 @@ Use these tools as bounded records:
 
 Allow tools to reference stable record IDs. Reject circular references that make the tools support one another without external evidence.
 
-In every execution record, keep `passed`, `failed`, and `not_run` distinct. Keep `unknown`, `not_applicable`, `not_observable`, and `withheld_for_protection` distinct. Use only `description_only`, `diagnostic_only`, or `requirements_only`; set `can_authorize=false`, `can_execute=false`, and `authorization_effect=none` in any companion register.
+In every execution record, keep `passed`, `failed`, and `not_run` distinct. Put the complete IT1-IT4 and IG1-IG7 status maps in the typed audit `gate_register`; semantic validation enforces the first-failure stop. Keep `unknown`, `not_applicable`, `not_observable`, and `withheld_for_protection` distinct. Use only `description_only`, `diagnostic_only`, or `requirements_only`; set `can_authorize=false`, `can_execute=false`, and `authorization_effect=none` in any companion register.
 
 ## 7. Add the Dynamic Nine When Needed
 
@@ -277,6 +277,8 @@ Remove an open assertion from use when it enters assessment, records, discipline
 
 Treat an appeal as effective only when it is accessible, safe, time-bounded, owned, able to change the record or action, protected from retaliation, and escalatable to an independent reviewer for high impact or conflict.
 
+Every high-impact audit writes the typed `contestability` payload. `owner` must contain a tested reachable contact, not a role label; `deadline` is an RFC 3339 response deadline; `original_record_retention` stays true; `downstream_correction_target` names every registry or decision surface to correct; `rollback_recovery_target` names the state, rights, resources, services, access, and records to restore; and `remedy` names restitution plus residual-harm tracking. If any field is missing or the owner is unreachable, fail the relevant gate and pause high-impact use.
+
 Treat rollback as complete only when it:
 
 1. names the target state and stop authority;
@@ -338,69 +340,155 @@ IT2: not_run
 IT3: not_run
 IT4: not_run
 IG1: failed  # Person, role, team, and model-version boundaries are mixed.
-IG2: failed  # Training provenance and counterevidence are unavailable.
-IG3: failed  # Household, visa, disability, and low-power employment positions are absent.
-IG4: failed  # No safe appeal; the manager who uses the score receives the appeal.
-IG5: failed  # Employees change behavior under surveillance, but reflexivity is ignored.
+IG2: not_run
+IG3: not_run
+IG4: not_run
+IG5: not_run
 IG6: not_run
-IG7: failed  # No prohibition, stop owner, rollback, remedy, or expiry exists.
+IG7: not_run
 AI_boundary: failed
 malicious_compliance_signals: 5
 publication_state: publication_blocked
 use_state: suspended
-required_actions:
-  - Stop using the score in staffing, promotion, discipline, or records.
-  - Preserve evidence and create a protected independent appeal and correction path.
-  - Remove or mark downstream score-derived records and remediate resulting harms.
-  - Require external review before any new, bounded research-only proposal.
+missing_requirements_and_protective_pause:
+  - Protective pause description: high-impact use remains suspended while the first gates are failed.
+  - Missing requirement: a frozen observable protocol and traceable evidence chain.
+  - Missing requirement: a protected independent appeal, correction, rollback, and external-review path.
+  - Missing requirement: verified downstream correction and remedy before any new bounded proposal.
+contestability:
+  owner: {contact: independent-review@example.invalid, status: reachable}
+  deadline: '2026-08-18T12:00:00+08:00'
+  original_record_retention: true
+  downstream_correction_target: all score-derived staffing, promotion, and personnel records
+  rollback_recovery_target: last verified pre-score employment and access state
+  remedy: restore affected rights and resources, correct propagated records, and record residual harm
 authorization_effect: none
 ```
 
-The failure starts at observable definition and evidence trace, so later transformations and IG6 remain `not_run`; a polished SJ template could not repair the break. Five malicious-compliance signals justify high-risk classification, but the audit still issues requirements and suspension, not personnel decisions or authorization.
+IT1 is the first failed transformation, so IT2-IT4 are `not_run`. IG1 is the first failed main gate, so IG2-IG7 are `not_run`; the unavailable evidence and protection facts remain findings outside those unrun gate results. A polished later template cannot repair either break. Five malicious-compliance signals justify high-risk classification. The result may describe missing requirements and the protective pause, but the first-gate failures cap the Method Record at `description_only`; it does not issue requirements, personnel decisions, or authorization.
 
 ### Linked common Method Record
 
+<!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:audit:AUD-AI-HR-009
-schema_version: "1.0"
+schema_version: '1.1'
 record_version: 1
+lineage_kind: root
 parent_record_id: null
+parent_records: []
 request_type: governance_review
 object_contract:
-  boundary: The named score, model version, input pipeline, proposed staffing and promotion use, and downstream records; exclude any claim about employee personality.
-  state_variables: [source traceability, proxy validity, affected positions, appeal effectiveness, rollback capacity, use state]
-  relations_or_transitions: [score generation, manager use, record writeback, appeal, suspension, correction]
-  interfaces: [data source, model output, manager decision, protected appeal, external review, authoritative record]
+  boundary: The named score, model version, input pipeline, proposed staffing and promotion use, and downstream records; exclude
+    any claim about employee personality.
+  state_variables:
+  - source traceability
+  - proxy validity
+  - affected positions
+  - appeal effectiveness
+  - rollback capacity
+  - use state
+  relations_or_transitions:
+  - score generation
+  - manager use
+  - record writeback
+  - appeal
+  - suspension
+  - correction
+  interfaces:
+  - data source
+  - model output
+  - manager decision
+  - protected appeal
+  - external review
+  - authoritative record
   time_window: Audit current use and all score-derived records since deployment.
-  scale_profile: {A: individual scores within one employer, I: employment and household spillover, J: no verified authority for automated disposition}
+  scale_profile:
+    A: individual scores within one employer
+    I: employment and household spillover
+    J: no verified authority for automated disposition
   identity_criterion: A model, input, use, population, or authority change requires a new audit.
   status: candidate
 evidence_cutoff:
-  as_of: 2026-08-04T12:00:00+08:00
-  included_source_ids: [SRC-SCORE-REPORT, SRC-USE-PROPOSAL, SRC-APPEAL-PROCESS]
+  as_of: '2026-08-04T12:00:00+08:00'
+  included_source_ids:
+  - SRC-SCORE-REPORT
+  - SRC-USE-PROPOSAL
+  - SRC-APPEAL-PROCESS
   excluded_after_cutoff: true
-scale_scope: {source: model and proposed employer use, target: high-impact employee disposition, transform_status: failed}
+scale_scope:
+  source: model and proposed employer use
+  target: high-impact employee disposition
+  transform_status: failed
 claim_ledger:
-  - claim_id: AUD-CLAIM-TRACE
-    claim_type: E
-    text: The available material does not support an auditable evidence chain for the risk score.
-    status: supported
-    support_ids: [SRC-SCORE-REPORT]
-    counterevidence_ids: []
-  - claim_id: AUD-CLAIM-USE
-    claim_type: O
-    text: High-impact use must remain suspended until external evidence, protection, appeal, and rollback requirements pass.
-    status: supported
-    support_ids: [AUD-CLAIM-TRACE, SRC-APPEAL-PROCESS]
-    counterevidence_ids: []
+- claim_id: AUD-CLAIM-TRACE
+  claim_type: E
+  text: The available material does not support an auditable evidence chain for the risk score.
+  status: supported
+  support_ids:
+  - SRC-SCORE-REPORT
+  counterevidence_ids: []
+  support_rule_ids: []
+- claim_id: AUD-CLAIM-USE
+  claim_type: O
+  text: The audit records a protective pause while external evidence, protection, appeal, and rollback remain missing.
+  status: candidate
+  support_ids:
+  - AUD-CLAIM-TRACE
+  - SRC-APPEAL-PROCESS
+  counterevidence_ids: []
+  support_rule_ids: []
+rule_registry: []
 unknowns_and_counterevidence:
-  unknowns: [Training provenance, group error, protected-position testimony, and independent review are unavailable.]
-  counterevidence: [A future externally verified study could support a narrower research-only use under a new record.]
-output_ceiling: requirements_only
+  unknowns:
+  - Training provenance
+  - group error
+  - protected-position testimony
+  - and independent review are unavailable.
+  counterevidence:
+  - A future externally verified study could support a narrower research-only use under a new record.
+output_ceiling: description_only
+ceiling_transition:
+  operation: root
+  inputs: []
+  basis: []
+  result: description_only
 module_runs:
-  - {module: ariadne-audit, status: completed, record_version: 1}
+- module: ariadne-audit
+  status: completed
+  input_records: []
+  output_record:
+    record_id: ariadne:audit:AUD-AI-HR-009
+    record_version: 1
+module_payloads:
+- module: ariadne-audit
+  payload:
+    gate_register:
+      transformations:
+        IT1: {status: failed, finding: No frozen observable protocol; silence is used as a proxy.}
+        IT2: {status: not_run, finding: Stopped after IT1.}
+        IT3: {status: not_run, finding: Stopped after IT1.}
+        IT4: {status: not_run, finding: Stopped after IT1.}
+      main_gates:
+        IG1: {status: failed, finding: 'Person, role, team, and model-version boundaries are mixed.'}
+        IG2: {status: not_run, finding: Stopped after IG1.}
+        IG3: {status: not_run, finding: Stopped after IG1.}
+        IG4: {status: not_run, finding: Stopped after IG1.}
+        IG5: {status: not_run, finding: Stopped after IG1.}
+        IG6: {status: not_run, finding: Stopped after IG1.}
+        IG7: {status: not_run, finding: Stopped after IG1.}
+    contestability:
+      owner:
+        contact: independent-review@example.invalid
+        status: reachable
+      deadline: '2026-08-18T12:00:00+08:00'
+      original_record_retention: true
+      downstream_correction_target: all score-derived staffing, promotion and personnel records
+      rollback_recovery_target: the last verified pre-score employment and access state
+      remedy: restore affected rights and resources, correct propagated records, and record residual harm
 recommended_next_modules: []
 authorization_effect: none
 ```
+<!-- method-record-example:end -->
 
 If the score is later withdrawn, append a child record that names the rollback target, corrected authoritative records, downstream synchronization, remedies, residual harms, and terminal lifecycle state. Never revive the withdrawn score by renaming it or issuing an internal approval.

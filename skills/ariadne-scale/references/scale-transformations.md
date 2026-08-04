@@ -111,6 +111,12 @@ Keep these fourteen sections in the detailed audit adjacent to the common Method
 
 A descriptive scale audit normally fills normative and action sections with an explicit non-action boundary, not an invented authorization procedure.
 
+### Cross-scale proof heuristic
+
+For a proposed bridge that claims more than a descriptive translation, carry all eight fields together: `source_object`, `target_object`, `limit_or_scale_law`, `initial_conditions`, `history_structure`, `error`, `valid_time`, and `failure_boundary`. Treat the result as a proof-discipline checklist under explicit conditions. Missing fields leave a candidate bridge or requirements for a test; they do not permit a strong transfer claim.
+
+This heuristic does not prove that every scale transfer loses information. It does not import a kinetic equation or physical model into a social or psychological object. It does not identify task-relevant representation loss with physical entropy. Preserve those non-proof boundaries in every cross-domain handoff.
+
 ## Identity Mapping
 
 Preserve `source_K`, `target_K`, the forward and reverse mappings, criteria preserved and violated, preregistration reference, evidence, verification artifact, and hash. Test source under source K, source under target K, target under source K, and target under target K with `passed`, `failed`, or `undetermined`.
@@ -180,78 +186,95 @@ Claim: “Company engagement is 82, so each employee is engaged.” The source i
 
 The atomic operator is M01 aggregation in descriptive mode. A expands from units to the company total, O expands from employee positions to the company node, and R contracts because the target statistic loses individual distinctions. The profile change is `mixed`, not elevation. The weighted mean can be reproducible while the inference back to each employee remains prohibited. Preserve response distribution, missingness, subgroup and low-visibility positions, and protected omissions.
 
+<!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:engagement-aggregation-audit-001
-schema_version: "1.0"
+schema_version: '1.1'
 record_version: 1
+lineage_kind: root
 parent_record_id: null
+parent_records: []
 request_type: diagnosis
 object_contract:
-  boundary: "Responses included in the named company's Q2 engagement survey and the published company-level statistic."
+  boundary: Responses included in the named company's Q2 engagement survey and the published company-level statistic.
   state_variables:
-    - "individual response values"
-    - "response and missingness indicators"
-    - "registered aggregation weights"
-    - "company-level weighted mean"
+  - individual response values
+  - response and missingness indicators
+  - registered aggregation weights
+  - company-level weighted mean
   relations_or_transitions:
-    - "individual responses are mapped to one weighted company statistic by M01"
+  - individual responses are mapped to one weighted company statistic by M01
   interfaces:
-    - "survey collection channel"
-    - "aggregation and publication channel"
-  time_window: "2026 Q2 survey collection and publication window"
+  - survey collection channel
+  - aggregation and publication channel
+  time_window: 2026 Q2 survey collection and publication window
   scale_profile:
-    A: "individual response units to company aggregate"
-    X: "one named company"
-    T: "one survey wave"
-    O: "employee positions to company node"
-    C: "descriptive only; no causal level claimed"
-    R: "individual response resolution compressed to one mean"
-    I: "published statistic may be read as applying company-wide"
-    N: "survey collection and reporting network"
-    J: "not_applicable: no action authorization is evaluated"
-  identity_criterion: "The same survey wave, inclusion rule, weighting rule, and response scale."
+    A: individual response units to company aggregate
+    X: one named company
+    T: one survey wave
+    O: employee positions to company node
+    C: descriptive only; no causal level claimed
+    R: individual response resolution compressed to one mean
+    I: published statistic may be read as applying company-wide
+    N: survey collection and reporting network
+    J: 'not_applicable: no action authorization is evaluated'
+  identity_criterion: The same survey wave, inclusion rule, weighting rule, and response scale.
   status: candidate
 evidence_cutoff:
-  as_of: "2026-08-04T00:00:00+08:00"
+  as_of: '2026-08-04T00:00:00+08:00'
   included_source_ids:
-    - source:q2-survey-export
-    - source:q2-aggregation-specification
+  - source:q2-survey-export
+  - source:q2-aggregation-specification
   excluded_after_cutoff: true
 scale_scope:
-  source: "individual Q2 survey-response records"
-  target: "company-level weighted mean of 82"
+  source: individual Q2 survey-response records
+  target: company-level weighted mean of 82
   transform_status: audited
 claim_ledger:
-  - claim_id: D-company-mean
-    claim_type: D
-    text: "The value 82 is a company-level weighted aggregate under the registered rule."
-    status: supported
-    support_ids:
-      - observation:reproduced-weighted-mean
-    counterevidence_ids: []
-  - claim_id: E-each-employee
-    claim_type: E
-    text: "The company mean can be assigned back to every employee as their state."
-    status: contradicted
-    support_ids: []
-    counterevidence_ids:
-      - loss:individual-distribution-and-missingness
+- claim_id: D-company-mean
+  claim_type: D
+  text: The value 82 is a company-level weighted aggregate under the registered rule.
+  status: supported
+  support_ids:
+  - source:q2-survey-export
+  - source:q2-aggregation-specification
+  counterevidence_ids: []
+  support_rule_ids: []
+- claim_id: E-each-employee
+  claim_type: E
+  text: The company mean can be assigned back to every employee as their state.
+  status: contradicted
+  support_ids: []
+  counterevidence_ids:
+  - loss:individual-distribution-and-missingness
+  support_rule_ids: []
+rule_registry: []
 unknowns_and_counterevidence:
   unknowns:
-    - "withheld_for_protection: individual responses require a bounded trusted review path"
-    - "unknown: task-relevant subgroup distributions and nonresponse effects"
+  - 'withheld_for_protection: individual responses require a bounded trusted review path'
+  - 'unknown: task-relevant subgroup distributions and nonresponse effects'
   counterevidence:
-    - "M01 preserves the registered weighted mean but loses individual and minority-position distinctions"
+  - M01 preserves the registered weighted mean but loses individual and minority-position distinctions
 output_ceiling: diagnostic_only
+ceiling_transition:
+  operation: root
+  inputs: []
+  basis: []
+  result: diagnostic_only
 module_runs:
-  - module: ariadne-scale
-    status: completed
+- module: ariadne-scale
+  status: completed
+  input_records: []
+  output_record:
+    record_id: ariadne:engagement-aggregation-audit-001
     record_version: 1
+module_payloads: []
 recommended_next_modules:
-  - ariadne-evidence
-  - ariadne-human
-  - ariadne-audit
+- ariadne-evidence
+- ariadne-human
+- ariadne-audit
 authorization_effect: none
 ```
+<!-- method-record-example:end -->
 
 The bounded result is: 82 may be a reproducible company statistic under the frozen aggregation rule; it is not an individual score, proof of shared meaning, or authority to act on any employee.

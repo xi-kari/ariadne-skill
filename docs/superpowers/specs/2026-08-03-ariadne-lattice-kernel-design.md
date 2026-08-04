@@ -64,20 +64,25 @@ Every standalone or clustered run uses a human-readable record with a machine-ch
 record_id
 schema_version
 record_version
+lineage_kind
 parent_record_id
+parent_records
 request_type
 object_contract
 evidence_cutoff
 scale_scope
 claim_ledger
+rule_registry
 unknowns_and_counterevidence
 output_ceiling
+ceiling_transition
 module_runs
+module_payloads
 recommended_next_modules
 authorization_effect
 ```
 
-`authorization_effect` is always `none`. Valid output ceilings are `description_only`, `diagnostic_only`, and `requirements_only`. A downstream module may lower an upstream ceiling but may not raise it without a new evidence-bearing record version.
+`authorization_effect` is always `none`. Output ceilings form `description_only < diagnostic_only < requirements_only`; ordinary children preserve or lower, evidence/protocol-bearing children may raise only with a resolved basis newly added relative to the exact parent, and merges take the ordered minimum. A root is version 1, a linear child is its sole parent version plus one, and a merge is the highest parent version plus one. Root, linear, and merge lineages retain every parent ID/version and every exact module input/output record.
 
 ## Execution modes
 
@@ -115,7 +120,7 @@ On the current workstation, development and evaluation use explicit `$ariadne-*`
 | Part 12: conditional forecast and calibration | `ariadne-forecast` |
 | Parts 14-15: normative choice and intervention boundary | `ariadne-choice` |
 | Parts 13 and 16: tools, gates, AI boundary, and governance | `ariadne-audit` |
-| Appendices B-D: terminology and shared kernel mapping | `ariadne-skill` plus repository coverage tests |
+| Appendices B-D: terminology and shared kernel mapping | `ariadne-skill` through the direct `source-navigation.json` reference plus repository semantic coverage tests |
 
 ## Repository shape
 

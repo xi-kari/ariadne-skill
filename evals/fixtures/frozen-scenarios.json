@@ -1,0 +1,1216 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-08-04T00:00:00+08:00",
+  "scenarios": [
+    {
+      "id": "C01",
+      "kind": "chain",
+      "prompt": "Using only the frozen materials, assess the claim that remote work reduces innovation. Run framing, evidence, scale, mechanism, dynamics and forecast in that order; publish a forecast only if its contract is complete.",
+      "materials": [
+        {
+          "source_id": "SRC-C01-CLAIM",
+          "text": "A stakeholder asserts: remote work reduces innovation. This sentence is a claim, not an observation or result."
+        }
+      ],
+      "source_ids": [
+        "SRC-C01-CLAIM"
+      ],
+      "seed_parent_record": {
+        "record_id": "ariadne:eval:C01:seed-v1",
+        "schema_version": "1.1",
+        "record_version": 1,
+        "lineage_kind": "root",
+        "parent_record_id": null,
+        "parent_records": [],
+        "request_type": "diagnosis",
+        "object_contract": {
+          "boundary": "Only the frozen C01 materials; the named real-world object is not yet established.",
+          "state_variables": [
+            "task label",
+            "material inventory"
+          ],
+          "relations_or_transitions": [
+            "unknown"
+          ],
+          "interfaces": [
+            "SRC-C01-CLAIM"
+          ],
+          "time_window": "unknown",
+          "scale_profile": {
+            "A": "unknown",
+            "T": "unknown",
+            "J": "observation only"
+          },
+          "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "status": "incomplete"
+        },
+        "evidence_cutoff": {
+          "as_of": "2026-08-04T00:00:00+08:00",
+          "included_source_ids": [
+            "SRC-C01-CLAIM"
+          ],
+          "excluded_after_cutoff": true
+        },
+        "scale_scope": {
+          "source": "frozen task materials",
+          "target": "requested real-world claim",
+          "transform_status": "incomplete"
+        },
+        "claim_ledger": [
+          {
+            "claim_id": "C01-LABEL",
+            "claim_type": "D",
+            "text": "The supplied material contains the unverified task label: remote work reduces innovation.",
+            "status": "observed",
+            "support_ids": [
+              "SRC-C01-CLAIM"
+            ],
+            "support_rule_ids": [],
+            "counterevidence_ids": []
+          }
+        ],
+        "rule_registry": [],
+        "unknowns_and_counterevidence": {
+          "unknowns": [
+            "Remote-work definition, innovation measure, population, comparison group and time window are unknown.",
+            "No observation, causal channel, competing mechanism, target, deadline or fair forecast baseline is supplied."
+          ],
+          "counterevidence": []
+        },
+        "output_ceiling": "description_only",
+        "ceiling_transition": {
+          "operation": "root",
+          "inputs": [],
+          "basis": [],
+          "result": "description_only"
+        },
+        "module_runs": [
+          {
+            "module": "ariadne-framing",
+            "status": "completed",
+            "input_records": [],
+            "output_record": {
+              "record_id": "ariadne:eval:C01:seed-v1",
+              "record_version": 1
+            }
+          }
+        ],
+        "module_payloads": [],
+        "recommended_next_modules": [
+          "ariadne-scale",
+          "ariadne-mechanism"
+        ],
+        "authorization_effect": "none"
+      },
+      "expected": {
+        "frozen_facts": [
+          "The frozen material contains one stakeholder claim and no observation or result."
+        ],
+        "unknowns": [
+          "Remote-work definition, innovation measure, population, comparison group and time window are unknown.",
+          "No observation, causal channel, competing mechanism, target, deadline or fair forecast baseline is supplied."
+        ],
+        "conflicts": [],
+        "output_ceiling": "description_only",
+        "authorization_effect": "none"
+      },
+      "mode_contract": {
+        "sequential_order": [
+          "ariadne-framing",
+          "ariadne-evidence",
+          "ariadne-scale",
+          "ariadne-mechanism",
+          "ariadne-dynamics",
+          "ariadne-forecast"
+        ],
+        "clustered": {
+          "prefix_order": ["ariadne-framing", "ariadne-evidence"],
+          "parallel_modules": ["ariadne-scale", "ariadne-mechanism"],
+          "merge_module": "ariadne-audit",
+          "suffix_order": ["ariadne-dynamics", "ariadne-forecast"]
+        }
+      },
+      "mode_results": {
+        "sequential": {
+          "frozen_facts": [
+            "The frozen material contains one stakeholder claim and no observation or result."
+          ],
+          "unknowns": [
+            "Remote-work definition, innovation measure, population, comparison group and time window are unknown.",
+            "No observation, causal channel, competing mechanism, target, deadline or fair forecast baseline is supplied."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [
+              {"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}
+            ],
+            "terminal_record": {"record_id": "ariadne:eval:C01:seq-forecast-v6", "record_version": 6},
+            "nodes": [
+              {
+                "record_id": "ariadne:eval:C01:seq-evidence-v2",
+                "record_version": 2,
+                "module": "ariadne-evidence",
+                "input_records": [{"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:seq-scale-v3",
+                "record_version": 3,
+                "module": "ariadne-scale",
+                "input_records": [{"record_id": "ariadne:eval:C01:seq-evidence-v2", "record_version": 2}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:seq-mechanism-v4",
+                "record_version": 4,
+                "module": "ariadne-mechanism",
+                "input_records": [{"record_id": "ariadne:eval:C01:seq-scale-v3", "record_version": 3}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:seq-dynamics-v5",
+                "record_version": 5,
+                "module": "ariadne-dynamics",
+                "input_records": [{"record_id": "ariadne:eval:C01:seq-mechanism-v4", "record_version": 4}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:seq-forecast-v6",
+                "record_version": 6,
+                "module": "ariadne-forecast",
+                "input_records": [{"record_id": "ariadne:eval:C01:seq-dynamics-v5", "record_version": 5}]
+              }
+            ]
+          }
+        },
+        "clustered": {
+          "frozen_facts": [
+            "The frozen material contains one stakeholder claim and no observation or result."
+          ],
+          "unknowns": [
+            "Remote-work definition, innovation measure, population, comparison group and time window are unknown.",
+            "No observation, causal channel, competing mechanism, target, deadline or fair forecast baseline is supplied."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [
+              {"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}
+            ],
+            "terminal_record": {"record_id": "ariadne:eval:C01:clu-forecast-v6", "record_version": 6},
+            "nodes": [
+              {
+                "record_id": "ariadne:eval:C01:clu-evidence-v2",
+                "record_version": 2,
+                "module": "ariadne-evidence",
+                "input_records": [{"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:clu-mechanism-v3",
+                "record_version": 3,
+                "module": "ariadne-mechanism",
+                "input_records": [{"record_id": "ariadne:eval:C01:clu-evidence-v2", "record_version": 2}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:clu-scale-v3",
+                "record_version": 3,
+                "module": "ariadne-scale",
+                "input_records": [{"record_id": "ariadne:eval:C01:clu-evidence-v2", "record_version": 2}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:clu-merge-v4",
+                "record_version": 4,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {"record_id": "ariadne:eval:C01:clu-mechanism-v3", "record_version": 3},
+                  {"record_id": "ariadne:eval:C01:clu-scale-v3", "record_version": 3}
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:C01:clu-dynamics-v5",
+                "record_version": 5,
+                "module": "ariadne-dynamics",
+                "input_records": [{"record_id": "ariadne:eval:C01:clu-merge-v4", "record_version": 4}]
+              },
+              {
+                "record_id": "ariadne:eval:C01:clu-forecast-v6",
+                "record_version": 6,
+                "module": "ariadne-forecast",
+                "input_records": [{"record_id": "ariadne:eval:C01:clu-dynamics-v5", "record_version": 5}]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "kind": "chain",
+      "prompt": "Using only the frozen materials, analyze delayed delivery in the team and compare action, delay, experiment, exit and inaction. Run framing, evidence, human, mechanism, dynamics, choice and audit; do not create authorization.",
+      "materials": [
+        {
+          "source_id": "SRC-C02-LABEL",
+          "text": "Task label: delayed delivery in a team. No delivery records, interviews, dates or decision authority are supplied."
+        }
+      ],
+      "source_ids": [
+        "SRC-C02-LABEL"
+      ],
+      "seed_parent_record": {
+        "record_id": "ariadne:eval:C02:seed-v1",
+        "schema_version": "1.1",
+        "record_version": 1,
+        "lineage_kind": "root",
+        "parent_record_id": null,
+        "parent_records": [],
+        "request_type": "diagnosis",
+        "object_contract": {
+          "boundary": "Only the frozen C02 materials; the named real-world object is not yet established.",
+          "state_variables": [
+            "task label",
+            "material inventory"
+          ],
+          "relations_or_transitions": [
+            "unknown"
+          ],
+          "interfaces": [
+            "SRC-C02-LABEL"
+          ],
+          "time_window": "unknown",
+          "scale_profile": {
+            "A": "unknown",
+            "T": "unknown",
+            "J": "observation only"
+          },
+          "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "status": "incomplete"
+        },
+        "evidence_cutoff": {
+          "as_of": "2026-08-04T00:00:00+08:00",
+          "included_source_ids": [
+            "SRC-C02-LABEL"
+          ],
+          "excluded_after_cutoff": true
+        },
+        "scale_scope": {
+          "source": "frozen task materials",
+          "target": "requested real-world claim",
+          "transform_status": "incomplete"
+        },
+        "claim_ledger": [
+          {
+            "claim_id": "C02-LABEL",
+            "claim_type": "D",
+            "text": "The supplied material contains the unverified task label: delayed delivery in a team.",
+            "status": "observed",
+            "support_ids": [
+              "SRC-C02-LABEL"
+            ],
+            "support_rule_ids": [],
+            "counterevidence_ids": []
+          }
+        ],
+        "rule_registry": [],
+        "unknowns_and_counterevidence": {
+          "unknowns": [
+            "Team boundary, delay measure, baseline, dependencies, roles, affected positions and causal channels are unknown.",
+            "Values, options, jurisdiction, authorization, stop conditions and rollback recovery target are unknown."
+          ],
+          "counterevidence": []
+        },
+        "output_ceiling": "description_only",
+        "ceiling_transition": {
+          "operation": "root",
+          "inputs": [],
+          "basis": [],
+          "result": "description_only"
+        },
+        "module_runs": [
+          {
+            "module": "ariadne-framing",
+            "status": "completed",
+            "input_records": [],
+            "output_record": {
+              "record_id": "ariadne:eval:C02:seed-v1",
+              "record_version": 1
+            }
+          }
+        ],
+        "module_payloads": [],
+        "recommended_next_modules": [
+          "ariadne-human",
+          "ariadne-mechanism"
+        ],
+        "authorization_effect": "none"
+      },
+      "expected": {
+        "frozen_facts": [
+          "The frozen material supplies only a task label and explicitly supplies no delivery evidence."
+        ],
+        "unknowns": [
+          "Team boundary, delay measure, baseline, dependencies, roles, affected positions and causal channels are unknown.",
+          "Values, options, jurisdiction, authorization, stop conditions and rollback recovery target are unknown."
+        ],
+        "conflicts": [],
+        "output_ceiling": "description_only",
+        "authorization_effect": "none"
+      },
+      "mode_contract": {
+        "sequential_order": [
+          "ariadne-framing",
+          "ariadne-evidence",
+          "ariadne-human",
+          "ariadne-mechanism",
+          "ariadne-dynamics",
+          "ariadne-choice",
+          "ariadne-audit"
+        ],
+        "clustered": {
+          "prefix_order": ["ariadne-framing", "ariadne-evidence"],
+          "parallel_modules": ["ariadne-human", "ariadne-mechanism"],
+          "merge_module": "ariadne-audit",
+          "suffix_order": ["ariadne-dynamics", "ariadne-choice", "ariadne-audit"]
+        }
+      },
+      "mode_results": {
+        "sequential": {
+          "frozen_facts": [
+            "The frozen material supplies only a task label and explicitly supplies no delivery evidence."
+          ],
+          "unknowns": [
+            "Team boundary, delay measure, baseline, dependencies, roles, affected positions and causal channels are unknown.",
+            "Values, options, jurisdiction, authorization, stop conditions and rollback recovery target are unknown."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval:C02:seq-audit-v7", "record_version": 7},
+            "nodes": [
+              {"record_id": "ariadne:eval:C02:seq-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval:C02:seq-human-v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C02:seq-evidence-v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval:C02:seq-mechanism-v4", "record_version": 4, "module": "ariadne-mechanism", "input_records": [{"record_id": "ariadne:eval:C02:seq-human-v3", "record_version": 3}]},
+              {"record_id": "ariadne:eval:C02:seq-dynamics-v5", "record_version": 5, "module": "ariadne-dynamics", "input_records": [{"record_id": "ariadne:eval:C02:seq-mechanism-v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval:C02:seq-choice-v6", "record_version": 6, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C02:seq-dynamics-v5", "record_version": 5}]},
+              {"record_id": "ariadne:eval:C02:seq-audit-v7", "record_version": 7, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C02:seq-choice-v6", "record_version": 6}]}
+            ]
+          }
+        },
+        "clustered": {
+          "frozen_facts": [
+            "The frozen material supplies only a task label and explicitly supplies no delivery evidence."
+          ],
+          "unknowns": [
+            "Team boundary, delay measure, baseline, dependencies, roles, affected positions and causal channels are unknown.",
+            "Values, options, jurisdiction, authorization, stop conditions and rollback recovery target are unknown."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval:C02:clu-final-audit-v7", "record_version": 7},
+            "nodes": [
+              {"record_id": "ariadne:eval:C02:clu-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval:C02:clu-human-v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C02:clu-evidence-v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval:C02:clu-mechanism-v3", "record_version": 3, "module": "ariadne-mechanism", "input_records": [{"record_id": "ariadne:eval:C02:clu-evidence-v2", "record_version": 2}]},
+              {
+                "record_id": "ariadne:eval:C02:clu-merge-v4",
+                "record_version": 4,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {"record_id": "ariadne:eval:C02:clu-human-v3", "record_version": 3},
+                  {"record_id": "ariadne:eval:C02:clu-mechanism-v3", "record_version": 3}
+                ]
+              },
+              {"record_id": "ariadne:eval:C02:clu-dynamics-v5", "record_version": 5, "module": "ariadne-dynamics", "input_records": [{"record_id": "ariadne:eval:C02:clu-merge-v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval:C02:clu-choice-v6", "record_version": 6, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C02:clu-dynamics-v5", "record_version": 5}]},
+              {"record_id": "ariadne:eval:C02:clu-final-audit-v7", "record_version": 7, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C02:clu-choice-v6", "record_version": 6}]}
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "C03",
+      "kind": "chain",
+      "prompt": "Using only the frozen materials, audit a proposed automated eligibility rule. Run framing, evidence, scale, human, choice and audit; preserve missing affected-party input and do not infer legality or authorization.",
+      "materials": [
+        {
+          "source_id": "SRC-C03-PROPOSAL",
+          "text": "Proposal label: use an automated rule for eligibility. No rule, model, data, law, impact study or affected-party material is attached."
+        }
+      ],
+      "source_ids": [
+        "SRC-C03-PROPOSAL"
+      ],
+      "seed_parent_record": {
+        "record_id": "ariadne:eval:C03:seed-v1",
+        "schema_version": "1.1",
+        "record_version": 1,
+        "lineage_kind": "root",
+        "parent_record_id": null,
+        "parent_records": [],
+        "request_type": "diagnosis",
+        "object_contract": {
+          "boundary": "Only the frozen C03 materials; the named real-world object is not yet established.",
+          "state_variables": [
+            "task label",
+            "material inventory"
+          ],
+          "relations_or_transitions": [
+            "unknown"
+          ],
+          "interfaces": [
+            "SRC-C03-PROPOSAL"
+          ],
+          "time_window": "unknown",
+          "scale_profile": {
+            "A": "unknown",
+            "T": "unknown",
+            "J": "observation only"
+          },
+          "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "status": "incomplete"
+        },
+        "evidence_cutoff": {
+          "as_of": "2026-08-04T00:00:00+08:00",
+          "included_source_ids": [
+            "SRC-C03-PROPOSAL"
+          ],
+          "excluded_after_cutoff": true
+        },
+        "scale_scope": {
+          "source": "frozen task materials",
+          "target": "requested real-world claim",
+          "transform_status": "incomplete"
+        },
+        "claim_ledger": [
+          {
+            "claim_id": "C03-LABEL",
+            "claim_type": "D",
+            "text": "The supplied material contains the unverified task label: proposed automated eligibility rule.",
+            "status": "observed",
+            "support_ids": [
+              "SRC-C03-PROPOSAL"
+            ],
+            "support_rule_ids": [],
+            "counterevidence_ids": []
+          }
+        ],
+        "rule_registry": [],
+        "unknowns_and_counterevidence": {
+          "unknowns": [
+            "Eligibility object, protected classes, model, data, error distribution, legal basis and affected-party evidence are unknown.",
+            "Rights floor, options, jurisdiction, authorization, appeal owner, remedy and rollback target are unknown."
+          ],
+          "counterevidence": []
+        },
+        "output_ceiling": "description_only",
+        "ceiling_transition": {
+          "operation": "root",
+          "inputs": [],
+          "basis": [],
+          "result": "description_only"
+        },
+        "module_runs": [
+          {
+            "module": "ariadne-framing",
+            "status": "completed",
+            "input_records": [],
+            "output_record": {
+              "record_id": "ariadne:eval:C03:seed-v1",
+              "record_version": 1
+            }
+          }
+        ],
+        "module_payloads": [],
+        "recommended_next_modules": [
+          "ariadne-scale",
+          "ariadne-human",
+          "ariadne-audit"
+        ],
+        "authorization_effect": "none"
+      },
+      "expected": {
+        "frozen_facts": [
+          "The frozen material records that an automated eligibility rule is proposed and supplies no implementation evidence."
+        ],
+        "unknowns": [
+          "Eligibility object, protected classes, model, data, error distribution, legal basis and affected-party evidence are unknown.",
+          "Rights floor, options, jurisdiction, authorization, appeal owner, remedy and rollback target are unknown."
+        ],
+        "conflicts": [],
+        "output_ceiling": "description_only",
+        "authorization_effect": "none"
+      },
+      "mode_contract": {
+        "sequential_order": [
+          "ariadne-framing",
+          "ariadne-evidence",
+          "ariadne-scale",
+          "ariadne-human",
+          "ariadne-choice",
+          "ariadne-audit"
+        ],
+        "clustered": {
+          "prefix_order": ["ariadne-framing", "ariadne-evidence"],
+          "parallel_modules": ["ariadne-scale", "ariadne-human"],
+          "merge_module": "ariadne-audit",
+          "suffix_order": ["ariadne-choice", "ariadne-audit"]
+        }
+      },
+      "mode_results": {
+        "sequential": {
+          "frozen_facts": [
+            "The frozen material records that an automated eligibility rule is proposed and supplies no implementation evidence."
+          ],
+          "unknowns": [
+            "Eligibility object, protected classes, model, data, error distribution, legal basis and affected-party evidence are unknown.",
+            "Rights floor, options, jurisdiction, authorization, appeal owner, remedy and rollback target are unknown."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval:C03:seq-audit-v6", "record_version": 6},
+            "nodes": [
+              {"record_id": "ariadne:eval:C03:seq-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval:C03:seq-scale-v3", "record_version": 3, "module": "ariadne-scale", "input_records": [{"record_id": "ariadne:eval:C03:seq-evidence-v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval:C03:seq-human-v4", "record_version": 4, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C03:seq-scale-v3", "record_version": 3}]},
+              {"record_id": "ariadne:eval:C03:seq-choice-v5", "record_version": 5, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C03:seq-human-v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval:C03:seq-audit-v6", "record_version": 6, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C03:seq-choice-v5", "record_version": 5}]}
+            ]
+          }
+        },
+        "clustered": {
+          "frozen_facts": [
+            "The frozen material records that an automated eligibility rule is proposed and supplies no implementation evidence."
+          ],
+          "unknowns": [
+            "Eligibility object, protected classes, model, data, error distribution, legal basis and affected-party evidence are unknown.",
+            "Rights floor, options, jurisdiction, authorization, appeal owner, remedy and rollback target are unknown."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval:C03:clu-final-audit-v6", "record_version": 6},
+            "nodes": [
+              {"record_id": "ariadne:eval:C03:clu-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval:C03:clu-human-v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C03:clu-evidence-v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval:C03:clu-scale-v3", "record_version": 3, "module": "ariadne-scale", "input_records": [{"record_id": "ariadne:eval:C03:clu-evidence-v2", "record_version": 2}]},
+              {
+                "record_id": "ariadne:eval:C03:clu-merge-v4",
+                "record_version": 4,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {"record_id": "ariadne:eval:C03:clu-human-v3", "record_version": 3},
+                  {"record_id": "ariadne:eval:C03:clu-scale-v3", "record_version": 3}
+                ]
+              },
+              {"record_id": "ariadne:eval:C03:clu-choice-v5", "record_version": 5, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C03:clu-merge-v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval:C03:clu-final-audit-v6", "record_version": 6, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C03:clu-choice-v5", "record_version": 5}]}
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "K01",
+      "kind": "cluster",
+      "prompt": "Using only the frozen materials, analyze the label platform creator decline. After the seed parent, run scale, mechanism and human lanes both sequentially and as siblings, then audit. Do not treat the label as an observation.",
+      "materials": [
+        {
+          "source_id": "SRC-K01-LABEL",
+          "text": "Task label: platform creator decline. No platform, metric, records, population or time window is supplied."
+        }
+      ],
+      "source_ids": [
+        "SRC-K01-LABEL"
+      ],
+      "seed_parent_record": {
+        "record_id": "ariadne:eval:K01:seed-v1",
+        "schema_version": "1.1",
+        "record_version": 1,
+        "lineage_kind": "root",
+        "parent_record_id": null,
+        "parent_records": [],
+        "request_type": "diagnosis",
+        "object_contract": {
+          "boundary": "Only the frozen K01 materials; the named real-world object is not yet established.",
+          "state_variables": [
+            "task label",
+            "material inventory"
+          ],
+          "relations_or_transitions": [
+            "unknown"
+          ],
+          "interfaces": [
+            "SRC-K01-LABEL"
+          ],
+          "time_window": "unknown",
+          "scale_profile": {
+            "A": "unknown",
+            "T": "unknown",
+            "J": "observation only"
+          },
+          "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "status": "incomplete"
+        },
+        "evidence_cutoff": {
+          "as_of": "2026-08-04T00:00:00+08:00",
+          "included_source_ids": [
+            "SRC-K01-LABEL"
+          ],
+          "excluded_after_cutoff": true
+        },
+        "scale_scope": {
+          "source": "frozen task materials",
+          "target": "requested real-world claim",
+          "transform_status": "incomplete"
+        },
+        "claim_ledger": [
+          {
+            "claim_id": "K01-LABEL",
+            "claim_type": "D",
+            "text": "The supplied material contains the unverified task label: platform creator decline.",
+            "status": "observed",
+            "support_ids": [
+              "SRC-K01-LABEL"
+            ],
+            "support_rule_ids": [],
+            "counterevidence_ids": []
+          }
+        ],
+        "rule_registry": [],
+        "unknowns_and_counterevidence": {
+          "unknowns": [
+            "Platform, creator definition, decline metric, baseline, population, region and time window are unknown.",
+            "Aggregation rule, missingness, heterogeneity, causal channels, affected roles, power, privacy, expression safety and exit conditions are unknown.",
+            "Competing activity, composition, measurement, visibility, demand and policy mechanisms remain unresolved; no counterevidence is supplied."
+          ],
+          "counterevidence": []
+        },
+        "output_ceiling": "description_only",
+        "ceiling_transition": {
+          "operation": "root",
+          "inputs": [],
+          "basis": [],
+          "result": "description_only"
+        },
+        "module_runs": [
+          {
+            "module": "ariadne-evidence",
+            "status": "completed",
+            "input_records": [],
+            "output_record": {
+              "record_id": "ariadne:eval:K01:seed-v1",
+              "record_version": 1
+            }
+          }
+        ],
+        "module_payloads": [],
+        "recommended_next_modules": [
+          "ariadne-scale",
+          "ariadne-mechanism",
+          "ariadne-human"
+        ],
+        "authorization_effect": "none"
+      },
+      "expected": {
+        "frozen_facts": [
+          "The frozen material contains the task label platform creator decline; decline is not an observed fact."
+        ],
+        "unknowns": [
+          "Platform, creator definition, decline metric, baseline, population, region and time window are unknown.",
+          "Aggregation rule, missingness, heterogeneity, causal channels, affected roles, power, privacy, expression safety and exit conditions are unknown.",
+          "Competing activity, composition, measurement, visibility, demand and policy mechanisms remain unresolved; no counterevidence is supplied."
+        ],
+        "conflicts": [],
+        "output_ceiling": "description_only",
+        "authorization_effect": "none"
+      },
+      "mode_contract": {
+        "sequential_order": [
+          "ariadne-evidence",
+          "ariadne-scale",
+          "ariadne-mechanism",
+          "ariadne-human",
+          "ariadne-audit"
+        ],
+        "clustered": {
+          "prefix_order": ["ariadne-evidence"],
+          "parallel_modules": ["ariadne-scale", "ariadne-mechanism", "ariadne-human"],
+          "merge_module": "ariadne-audit",
+          "suffix_order": []
+        }
+      },
+      "mode_results": {
+        "sequential": {
+          "frozen_facts": [
+            "The frozen material contains the task label platform creator decline; decline is not an observed fact."
+          ],
+          "unknowns": [
+            "Platform, creator definition, decline metric, baseline, population, region and time window are unknown.",
+            "Aggregation rule, missingness, heterogeneity, causal channels, affected roles, power, privacy, expression safety and exit conditions are unknown.",
+            "Competing activity, composition, measurement, visibility, demand and policy mechanisms remain unresolved; no counterevidence is supplied."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [
+              {"record_id": "ariadne:eval:K01:seed-v1", "record_version": 1}
+            ],
+            "terminal_record": {"record_id": "ariadne:eval:K01:seq-audit-v5", "record_version": 5},
+            "nodes": [
+              {
+                "record_id": "ariadne:eval:K01:seq-scale-v2",
+                "record_version": 2,
+                "module": "ariadne-scale",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K01:seq-mechanism-v3",
+                "record_version": 3,
+                "module": "ariadne-mechanism",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seq-scale-v2",
+                    "record_version": 2
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K01:seq-human-v4",
+                "record_version": 4,
+                "module": "ariadne-human",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seq-mechanism-v3",
+                    "record_version": 3
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K01:seq-audit-v5",
+                "record_version": 5,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seq-human-v4",
+                    "record_version": 4
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "clustered": {
+          "frozen_facts": [
+            "The frozen material contains the task label platform creator decline; decline is not an observed fact."
+          ],
+          "unknowns": [
+            "Platform, creator definition, decline metric, baseline, population, region and time window are unknown.",
+            "Aggregation rule, missingness, heterogeneity, causal channels, affected roles, power, privacy, expression safety and exit conditions are unknown.",
+            "Competing activity, composition, measurement, visibility, demand and policy mechanisms remain unresolved; no counterevidence is supplied."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [
+              {"record_id": "ariadne:eval:K01:seed-v1", "record_version": 1}
+            ],
+            "terminal_record": {"record_id": "ariadne:eval:K01:clu-audit-v3", "record_version": 3},
+            "nodes": [
+              {
+                "record_id": "ariadne:eval:K01:clu-human-v2",
+                "record_version": 2,
+                "module": "ariadne-human",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K01:clu-mechanism-v2",
+                "record_version": 2,
+                "module": "ariadne-mechanism",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K01:clu-scale-v2",
+                "record_version": 2,
+                "module": "ariadne-scale",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K01:clu-audit-v3",
+                "record_version": 3,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K01:clu-human-v2",
+                    "record_version": 2
+                  },
+                  {
+                    "record_id": "ariadne:eval:K01:clu-mechanism-v2",
+                    "record_version": 2
+                  },
+                  {
+                    "record_id": "ariadne:eval:K01:clu-scale-v2",
+                    "record_version": 2
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "K02",
+      "kind": "cluster",
+      "prompt": "Using only the frozen materials, analyze the label supply shock, forecast and choice. Compare sequential with clustered scale and mechanism work; dynamics must follow the merge, forecast must remain unregistered if incomplete, choice follows the forecast record, and final audit creates no authorization.",
+      "materials": [
+        {
+          "source_id": "SRC-K02-LABEL",
+          "text": "Task label: supply shock, forecast and choice. No event observation, market data, model, target, deadline, values or authority record is supplied."
+        }
+      ],
+      "source_ids": [
+        "SRC-K02-LABEL"
+      ],
+      "seed_parent_record": {
+        "record_id": "ariadne:eval:K02:seed-v1",
+        "schema_version": "1.1",
+        "record_version": 1,
+        "lineage_kind": "root",
+        "parent_record_id": null,
+        "parent_records": [],
+        "request_type": "diagnosis",
+        "object_contract": {
+          "boundary": "Only the frozen K02 materials; the named real-world object is not yet established.",
+          "state_variables": [
+            "task label",
+            "material inventory"
+          ],
+          "relations_or_transitions": [
+            "unknown"
+          ],
+          "interfaces": [
+            "SRC-K02-LABEL"
+          ],
+          "time_window": "unknown",
+          "scale_profile": {
+            "A": "unknown",
+            "T": "unknown",
+            "J": "observation only"
+          },
+          "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "status": "incomplete"
+        },
+        "evidence_cutoff": {
+          "as_of": "2026-08-04T00:00:00+08:00",
+          "included_source_ids": [
+            "SRC-K02-LABEL"
+          ],
+          "excluded_after_cutoff": true
+        },
+        "scale_scope": {
+          "source": "frozen task materials",
+          "target": "requested real-world claim",
+          "transform_status": "incomplete"
+        },
+        "claim_ledger": [
+          {
+            "claim_id": "K02-LABEL",
+            "claim_type": "D",
+            "text": "The supplied material contains the unverified task label: supply shock, forecast and choice.",
+            "status": "observed",
+            "support_ids": [
+              "SRC-K02-LABEL"
+            ],
+            "support_rule_ids": [],
+            "counterevidence_ids": []
+          }
+        ],
+        "rule_registry": [],
+        "unknowns_and_counterevidence": {
+          "unknowns": [
+            "Shock type, product, region, event time, market boundary and supply, price or availability measures are unknown.",
+            "Inventory, substitution, demand, logistics, transmission capacity, lags, thresholds and recovery mechanisms are unknown.",
+            "Forecast target, observer, deadline, baseline, calibration and signals, plus chooser, values, affected positions, jurisdiction, authorization, appeal, rollback and remedy are unknown."
+          ],
+          "counterevidence": []
+        },
+        "output_ceiling": "description_only",
+        "ceiling_transition": {
+          "operation": "root",
+          "inputs": [],
+          "basis": [],
+          "result": "description_only"
+        },
+        "module_runs": [
+          {
+            "module": "ariadne-evidence",
+            "status": "completed",
+            "input_records": [],
+            "output_record": {
+              "record_id": "ariadne:eval:K02:seed-v1",
+              "record_version": 1
+            }
+          }
+        ],
+        "module_payloads": [],
+        "recommended_next_modules": [
+          "ariadne-scale",
+          "ariadne-mechanism"
+        ],
+        "authorization_effect": "none"
+      },
+      "expected": {
+        "frozen_facts": [
+          "The frozen material contains the task label supply shock, forecast and choice; no shock or effect is observed."
+        ],
+        "unknowns": [
+          "Shock type, product, region, event time, market boundary and supply, price or availability measures are unknown.",
+          "Inventory, substitution, demand, logistics, transmission capacity, lags, thresholds and recovery mechanisms are unknown.",
+          "Forecast target, observer, deadline, baseline, calibration and signals, plus chooser, values, affected positions, jurisdiction, authorization, appeal, rollback and remedy are unknown."
+        ],
+        "conflicts": [],
+        "output_ceiling": "description_only",
+        "authorization_effect": "none"
+      },
+      "mode_contract": {
+        "sequential_order": [
+          "ariadne-evidence",
+          "ariadne-scale",
+          "ariadne-mechanism",
+          "ariadne-dynamics",
+          "ariadne-forecast",
+          "ariadne-choice",
+          "ariadne-audit"
+        ],
+        "clustered": {
+          "prefix_order": ["ariadne-evidence"],
+          "parallel_modules": ["ariadne-scale", "ariadne-mechanism"],
+          "merge_module": "ariadne-audit",
+          "suffix_order": ["ariadne-dynamics", "ariadne-forecast", "ariadne-choice", "ariadne-audit"]
+        }
+      },
+      "mode_results": {
+        "sequential": {
+          "frozen_facts": [
+            "The frozen material contains the task label supply shock, forecast and choice; no shock or effect is observed."
+          ],
+          "unknowns": [
+            "Shock type, product, region, event time, market boundary and supply, price or availability measures are unknown.",
+            "Inventory, substitution, demand, logistics, transmission capacity, lags, thresholds and recovery mechanisms are unknown.",
+            "Forecast target, observer, deadline, baseline, calibration and signals, plus chooser, values, affected positions, jurisdiction, authorization, appeal, rollback and remedy are unknown."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [
+              {"record_id": "ariadne:eval:K02:seed-v1", "record_version": 1}
+            ],
+            "terminal_record": {"record_id": "ariadne:eval:K02:seq-audit-v7", "record_version": 7},
+            "nodes": [
+              {
+                "record_id": "ariadne:eval:K02:seq-scale-v2",
+                "record_version": 2,
+                "module": "ariadne-scale",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:seq-mechanism-v3",
+                "record_version": 3,
+                "module": "ariadne-mechanism",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seq-scale-v2",
+                    "record_version": 2
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:seq-dynamics-v4",
+                "record_version": 4,
+                "module": "ariadne-dynamics",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seq-mechanism-v3",
+                    "record_version": 3
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:seq-forecast-v5",
+                "record_version": 5,
+                "module": "ariadne-forecast",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seq-dynamics-v4",
+                    "record_version": 4
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:seq-choice-v6",
+                "record_version": 6,
+                "module": "ariadne-choice",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seq-forecast-v5",
+                    "record_version": 5
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:seq-audit-v7",
+                "record_version": 7,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seq-choice-v6",
+                    "record_version": 6
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "clustered": {
+          "frozen_facts": [
+            "The frozen material contains the task label supply shock, forecast and choice; no shock or effect is observed."
+          ],
+          "unknowns": [
+            "Shock type, product, region, event time, market boundary and supply, price or availability measures are unknown.",
+            "Inventory, substitution, demand, logistics, transmission capacity, lags, thresholds and recovery mechanisms are unknown.",
+            "Forecast target, observer, deadline, baseline, calibration and signals, plus chooser, values, affected positions, jurisdiction, authorization, appeal, rollback and remedy are unknown."
+          ],
+          "conflicts": [],
+          "output_ceiling": "description_only",
+          "authorization_effect": "none",
+          "lineage": {
+            "root_records": [
+              {"record_id": "ariadne:eval:K02:seed-v1", "record_version": 1}
+            ],
+            "terminal_record": {"record_id": "ariadne:eval:K02:clu-final-audit-v7", "record_version": 7},
+            "nodes": [
+              {
+                "record_id": "ariadne:eval:K02:clu-mechanism-v2",
+                "record_version": 2,
+                "module": "ariadne-mechanism",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:clu-scale-v2",
+                "record_version": 2,
+                "module": "ariadne-scale",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:seed-v1",
+                    "record_version": 1
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:clu-merge-v3",
+                "record_version": 3,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:clu-mechanism-v2",
+                    "record_version": 2
+                  },
+                  {
+                    "record_id": "ariadne:eval:K02:clu-scale-v2",
+                    "record_version": 2
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:clu-dynamics-v4",
+                "record_version": 4,
+                "module": "ariadne-dynamics",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:clu-merge-v3",
+                    "record_version": 3
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:clu-forecast-v5",
+                "record_version": 5,
+                "module": "ariadne-forecast",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:clu-dynamics-v4",
+                    "record_version": 4
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:clu-choice-v6",
+                "record_version": 6,
+                "module": "ariadne-choice",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:clu-forecast-v5",
+                    "record_version": 5
+                  }
+                ]
+              },
+              {
+                "record_id": "ariadne:eval:K02:clu-final-audit-v7",
+                "record_version": 7,
+                "module": "ariadne-audit",
+                "input_records": [
+                  {
+                    "record_id": "ariadne:eval:K02:clu-choice-v6",
+                    "record_version": 6
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

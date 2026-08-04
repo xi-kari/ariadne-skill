@@ -10,16 +10,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / "skills"
 
 EXPECTED_REFERENCES = {
-    "ariadne-skill": {"lattice-kernel.md", "routing.md", "method-record.md"},
+    "ariadne-skill": {"lattice-kernel.md", "routing.md", "method-record.md", "source-navigation.json"},
     "ariadne-framing": {"object-contract.md"},
     "ariadne-evidence": {"evidence-contracts.md"},
     "ariadne-scale": {"scale-transformations.md"},
     "ariadne-mechanism": {"mechanism-contracts.md"},
-    "ariadne-human": {"human-domain.md"},
+    "ariadne-human": {"human-domain.md", "human-variable-cards.json"},
     "ariadne-dynamics": {"dynamic-derivation.md"},
     "ariadne-forecast": {"forecast-contract.md"},
     "ariadne-choice": {"choice-and-authorization.md"},
-    "ariadne-audit": {"gates-and-governance.md"},
+    "ariadne-audit": {"gates-and-governance.md", "application-contracts.json"},
 }
 
 FORBIDDEN_MARKERS = ("TODO", "TBD", "PLACEHOLDER", "implement later", "fill in details")
@@ -83,12 +83,68 @@ def test_installable_files_have_no_unfinished_or_foreign_product_text() -> None:
 
 
 def test_skill_reference_links_are_one_level_and_resolve() -> None:
-    link_pattern = re.compile(r"\[[^\]]+\]\(([^)]+\.md)\)")
+    link_pattern = re.compile(r"\[[^\]]+\]\((references/[^)]+)\)")
     for name in EXPECTED_REFERENCES:
         skill_md = SKILLS_ROOT / name / "SKILL.md"
         for target in link_pattern.findall(skill_md.read_text(encoding="utf-8")):
             assert not target.startswith("../"), f"deep reference in {skill_md}: {target}"
             assert (skill_md.parent / target).is_file(), f"missing link target: {target}"
+
+
+def test_appendix_a_cards_are_complete_one_to_one_maps() -> None:
+    import json
+
+    path = SKILLS_ROOT / "ariadne-human" / "references" / "human-variable-cards.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    fields = data["field_order"]
+    assert len(fields) == 39
+    assert [card["id"] for card in data["human_variables"]] == [
+        f"HV{index:02d}" for index in range(1, 12)
+    ]
+    for card in data["human_variables"]:
+        assert list(card) == fields
+        assert card["conditional_support_routes"]
+        for route in card["conditional_support_routes"]:
+            assert set(route) == {
+                "route_id",
+                "claim_level",
+                "when",
+                "additional_inferential_requires",
+                "additional_protocol_requires",
+                "allowed_conclusion",
+                "result_ceiling",
+            }
+
+
+def test_part_15_application_contracts_cover_all_domains_and_boundaries() -> None:
+    import json
+
+    path = SKILLS_ROOT / "ariadne-audit" / "references" / "application-contracts.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert [contract["id"] for contract in data["contracts"]] == [
+        "APP-REL",
+        "APP-FAM",
+        "APP-ORG",
+        "APP-PLT",
+        "APP-INS",
+        "APP-OPI",
+        "APP-SPC",
+        "APP-EMG",
+        "APP-ULS",
+    ]
+    required = {
+        "id",
+        "object_and_method",
+        "protected_positions",
+        "evidence_scope",
+        "allowed_output",
+        "prohibited_leap_or_action",
+        "stop_or_failure_boundary",
+        "next_handoff",
+    }
+    for contract in data["contracts"]:
+        assert set(contract) == required
+        assert all(contract[field] for field in required - {"id"})
 
 
 def test_source_coverage_maps_all_parts_and_appendices() -> None:
@@ -97,4 +153,3 @@ def test_source_coverage_maps_all_parts_and_appendices() -> None:
         assert f"Part {part}" in text
     for appendix in "ABCD":
         assert f"Appendix {appendix}" in text
-

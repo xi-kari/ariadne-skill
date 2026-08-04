@@ -18,13 +18,13 @@ Audit how far the available record supports each claim. Preserve the full chain 
 5. **Build the evidence chain.** Identify source, material, observation, evidential use, counterevidence, judgment, and any external authorization as distinct records. Link each claim to supporting and contradicting IDs.
 6. **Apply the relevant contract.** Use the source, causal, analogy, root-instance, or human-instance contract in the reference. Preserve simple baselines, alternative explanations, residuals, and extrapolation limits.
 7. **Respect support and zero-result gates.** Treat definitions, framework text, examples, IDs, field completeness, exploratory work, and post-result changes as non-support. Treat a failed positive gate as unresolved unless a frozen equivalence or sufficiency test, power or sensitivity gate, and tolerance all support the bounded null.
-8. **Set the ceiling and handoff.** Use `description_only` when the chain is incomplete, `diagnostic_only` for a bounded evidence-strength judgment, and `requirements_only` when only pre-evidence requirements are justified. Never make an action recommendation or expand authorization. Always set `authorization_effect: none`.
+8. **Set the ceiling and handoff.** Use `description_only` when the chain is incomplete and `diagnostic_only` for a bounded evidence-strength judgment. Use `requirements_only` only when the diagnostic basis already holds and the output adds explicit external process requirements. A child module run preserves or lowers its parent unless this version newly admits named external evidence or a fulfilled protocol. Never make an action recommendation or expand authorization. Always set `authorization_effect: none`.
 
 Read [references/evidence-contracts.md](references/evidence-contracts.md) for field-level contracts, G1-G4 and H-instance rules, E1-E5, conditional inference ceilings, and a complete standalone example.
 
 ## Method Record Contract
 
-Produce every common field and add an `ariadne-evidence` entry to `module_runs`. Keep claim texts and support IDs in `claim_ledger`; put unresolved observations, missing bridges, alternative explanations, and counterevidence in `unknowns_and_counterevidence`. Recommend only modules justified by the audit.
+Produce every common field and add an `ariadne-evidence` entry to `module_runs`. Keep claim texts and support IDs in `claim_ledger`; a supported claim resolves every `support_id` to an admitted source or earlier in-record claim and every `support_rule_id` to the explicit `rule_registry`. Reject ghost sources and invented `RULE:*` labels. Put unresolved observations, missing bridges, alternative explanations, and counterevidence in `unknowns_and_counterevidence`. Recommend only modules justified by the audit.
 
 Do not overwrite an upstream record. Create a child version when the cutoff, source set, claim meaning, object, scale, success criterion, baseline, or threshold changes.
 

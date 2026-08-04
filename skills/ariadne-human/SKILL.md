@@ -11,9 +11,9 @@ Apply human-domain clauses without turning people into fixed labels or collectiv
 
 ## Standalone Contract
 
-Create a minimal common Method Record when none is supplied. Preserve an incoming record and its lineage when one is supplied. Populate `record_id`, `schema_version`, `record_version`, `parent_record_id`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
+Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and use the typed human payload for observation position, privacy, purpose, affected positions, alternatives, and responsible human review. `affected_positions` is a closed object with all four keys: `direct`, `indirect`, `low_power`, and `no_exit`. Each key records status, positions, and reason; use explicit `unknown`, `not_applicable`, or `withheld_for_protection` rather than one free-text substitute.
 
-Set `authorization_effect` to `none`. Keep or lower an inherited ceiling. Use `description_only` for observations and candidate classifications, `diagnostic_only` for bounded human-system explanations, and `requirements_only` for privacy, protection, appeal, evidence, or authorization requirements.
+Set `authorization_effect` to `none`. A module run preserves or lowers its parent ceiling; only a child with newly admitted external evidence or a newly fulfilled protocol may raise it. Use `description_only` for observations and candidate classifications, `diagnostic_only` for bounded human-system explanations, and `requirements_only` only when a retained diagnosis is accompanied by explicit privacy, protection, appeal, evidence, or external authorization requirements.
 
 ## Procedure
 
@@ -26,7 +26,7 @@ Set `authorization_effect` to `none`. Keep or lower an inherited ceiling. Use `d
 7. For an actor, record roles; slow, medium, and fast variables; material and experience-meaning conditions; evidence state; privacy; and permitted use. Prefer role and circle conditions before adding a personality hypothesis.
 8. Use S0-S6 only as reversible prototypes for intentional human collectives. Allow `single_dominant`, `mixed`, `parallel`, or `unknown`; keep nonlinear paths and X0 separate; never assign a collective prototype to an individual.
 9. For multiple circles, register each `C*`, the joint `MC*`, six relation types, multiple membership, material and experience-meaning channels, five asynchronous clocks, boundary sensitivity, and the simple-model comparison.
-10. Write only supported observations, candidate hypotheses, bounded classifications, competing explanations, privacy limits, and next evidence needs into the record. Preserve counterevidence and identify only necessary handoffs.
+10. Write only supported observations, candidate hypotheses, bounded classifications, competing explanations, privacy limits, and next evidence needs into the record. For every high-impact output, include at least two distinct alternative explanations, the privacy state, and the four separately closed affected-position classes. An identified class names at least one position; an unknown, non-applicable, or protected class has an empty positions list and a reason. Add a named responsible human review with status. Preserve counterevidence and identify only necessary handoffs.
 
 Stop before clinical inference, personality essence, value ranking, punishment, compelled disclosure, resource redistribution, responsibility assignment beyond available evidence, or real-world authorization. Route propagation to `ariadne-dynamics`, evidence repair to `ariadne-evidence`, and value or action questions onward without deciding them here.
 
@@ -51,4 +51,4 @@ Stop before clinical inference, personality essence, value ranking, punishment, 
 - Averaging away low-power positions, role conflicts, disputed evidence, dual-channel differences, or asynchronous clocks.
 - Adding circles that do not explain a residual or improve on the simple baseline.
 
-Read [human-domain.md](references/human-domain.md) for the H contracts, strong types, complete HV field semantics, actor and collective boundaries, multi-circle contracts, protection rules, and worked example.
+Read [human-domain.md](references/human-domain.md) for H contracts, actor and collective boundaries, multi-circle contracts, and protection rules. Read the complete one-to-one [HV01-HV11 interface cards](references/human-variable-cards.json) before invoking any human-variable route.

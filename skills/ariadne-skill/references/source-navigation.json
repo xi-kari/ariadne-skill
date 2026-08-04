@@ -1,0 +1,96 @@
+{
+  "purpose": "Stable Appendix B numbering and Appendix D shared-kernel navigation. Definitions, contracts, and use boundaries remain authoritative only in their owning references.",
+  "appendix_b_numbering": [
+    {"code": "D0-D3", "meaning": "candidate object, state vocabulary, effective feedback, and scale transformation definitions", "authority": "Part 3", "owner": "ariadne-framing"},
+    {"code": "U01-U11", "meaning": "general structural primitives", "authority": "Part 3", "owner": "ariadne-mechanism"},
+    {"code": "G1-G4", "meaning": "empirical root-hypothesis templates instantiated through G-instance records", "authority": "Part 4", "owner": "ariadne-evidence"},
+    {"code": "E1-E5", "meaning": "epistemic constraints", "authority": "Part 4", "owner": "ariadne-evidence"},
+    {"code": "C1-C12", "meaning": "conditional conclusion contracts", "authority": "Part 4", "owner": "ariadne-evidence"},
+    {"code": "A/X/T/O/C/R/I/N/J", "meaning": "nine axes of the SP scale profile", "authority": "Part 5", "owner": "ariadne-scale"},
+    {"code": "M01-M09", "meaning": "scale-transformation operators", "authority": "Part 5", "owner": "ariadne-scale"},
+    {"code": "CM-*", "meaning": "conditional feedback, learning, maintenance, load, phase, and selection mechanisms", "authority": "Part 6", "owner": "ariadne-mechanism"},
+    {"code": "H1-H6", "meaning": "human-domain clauses", "authority": "Part 7", "owner": "ariadne-human"},
+    {"code": "GC/GS/GE/CV/RS/IS/IM/IB", "meaning": "non-interchangeable generation, carrier, responsibility, and instability types", "authority": "Part 7", "owner": "ariadne-human"},
+    {"code": "HV01-HV11", "meaning": "human-variable unified interfaces", "authority": "Part 7 and Appendix A", "owner": "ariadne-human"},
+    {"code": "S0-S6/X0", "meaning": "human collective state prototypes and the separate orderly-exit path", "authority": "Part 8", "owner": "ariadne-human"},
+    {"code": "IG1-IG7", "meaning": "seven-gate main audit flow", "authority": "Part 13", "owner": "ariadne-audit"},
+    {"code": "SJ1-SJ8", "meaning": "strong-judgment eight-item contract", "authority": "Part 13", "owner": "ariadne-audit"},
+    {"code": "L1-L3", "meaning": "method depth and responsibility levels", "authority": "Part 13", "owner": "ariadne-skill"},
+    {"code": "TOOL-*", "meaning": "evidence, assertion, claim, forecast, stress-test, and AI-boundary tools", "authority": "Part 13", "owner": "ariadne-audit"},
+    {"code": "N1-N5", "meaning": "runtime premises for normative choice", "authority": "Part 14", "owner": "ariadne-choice"},
+    {"code": "O1-O4", "meaning": "finite external authorization procedure", "authority": "Part 14", "owner": "ariadne-choice"},
+    {"code": "PF-1-PF-10", "meaning": "normative-choice and choice-record interfaces", "authority": "Part 14", "owner": "ariadne-choice"},
+    {"code": "T0-T4", "meaning": "intervention levels", "authority": "Part 15", "owner": "ariadne-choice"},
+    {"code": "APP-*", "meaning": "nine application contracts", "authority": "Part 15", "owner": "ariadne-audit"},
+    {"code": "GOV-01-GOV-24", "meaning": "framework governance clauses", "authority": "Part 16", "owner": "ariadne-audit"}
+  ],
+  "shared_notation": [
+    {"notation": "S*=<B,X,R,I,T,SP,K>", "meaning": "candidate-object fields: boundary, variables, relations or transitions, interfaces, time window, scale profile, and identity criterion", "owner": "ariadne-framing"},
+    {"notation": "N0", "meaning": "simple or zero model used as a comparison responsibility", "owner": "ariadne-mechanism"},
+    {"notation": "K*/F*", "meaning": "target identity and function criteria for repair", "owner": "ariadne-choice"},
+    {"notation": "G-instance/H-instance", "meaning": "preregistered root-hypothesis and human-clause instances", "owner": "ariadne-evidence"}
+  ],
+  "appendix_d": {
+    "dual_text_difference": {
+      "mapping_rule": "A shared kernel aligns reasoning responsibilities and boundaries while each source retains its own authoritative definitions, operating form, chapter order, artifact count, and numbering.",
+      "retained_differences": [
+        {
+          "id": "operator_alignment",
+          "rule": "Do not force the nine registered scale operators to align one-to-one with another text's common operator steps.",
+          "semantic_elements": ["nine_scale_operators", "common_operator_steps", "no_forced_one_to_one_alignment"]
+        },
+        {
+          "id": "record_system_separation",
+          "rule": "Do not merge the fourteen-section scale-transformation record with a closed artifact system.",
+          "semantic_elements": ["fourteen_section_scale_record", "closed_artifact_system", "no_merge"]
+        }
+      ],
+      "minimum_shared_semantics": [
+        "preserved",
+        "changed",
+        "collapsed",
+        "omitted",
+        "new_unknowns",
+        "source_lineage",
+        "applicability",
+        "residuals",
+        "stopping"
+      ],
+      "prohibited_substitutions": [
+        {
+          "id": "contract_substitution",
+          "rule": "A name, analogy, example, or familiar step sequence cannot replace the other source's complete contract.",
+          "guards": ["names", "analogies", "examples", "shared_steps", "complete_contract"]
+        },
+        {
+          "id": "difference_erasure",
+          "rule": "Shared vocabulary cannot erase non-transferable elements, source authority, or a recorded difference.",
+          "guards": ["shared_vocabulary", "non_transferable_elements", "source_authority", "recorded_differences"]
+        }
+      ]
+    },
+    "cross_scale_proof_heuristic": {
+      "execution_owner": "ariadne-scale",
+      "applicability": {
+        "kind": "conditional_proof_discipline",
+        "admissible_output": ["testable_bridge_requirements", "bounded_candidate"],
+        "prohibited_output": ["cross_domain_theorem", "empirical_transfer_without_conditions"]
+      },
+      "required_fields": [
+        "source_object",
+        "target_object",
+        "limit_or_scale_law",
+        "initial_conditions",
+        "history_structure",
+        "error",
+        "valid_time",
+        "failure_boundary"
+      ],
+      "non_proof_boundaries": [
+        "not_all_transfers_lose_information",
+        "not_social_or_psychological_boltzmann",
+        "task_loss_not_physical_entropy"
+      ]
+    }
+  }
+}

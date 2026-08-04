@@ -11,9 +11,9 @@ Build bounded mechanism diagnoses. Compare the simplest adequate baseline with e
 
 ## Standalone Contract
 
-Create a minimal common Method Record when none is supplied. Preserve an incoming record and its lineage when one is supplied. Populate `record_id`, `schema_version`, `record_version`, `parent_record_id`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
+Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and put every mechanism candidate in the typed module payload.
 
-Set `authorization_effect` to `none`. Keep an upstream ceiling or lower it; never raise it without a new evidence-bearing record version. Use `description_only` when the object or evidence is inadequate, `diagnostic_only` for a bounded mechanism comparison, and `requirements_only` when reporting only the requirements for a stronger claim.
+Set `authorization_effect` to `none`. A module run preserves or lowers its parent ceiling. Raise only in a child that newly admits named external evidence or a newly fulfilled protocol. Use `description_only` when the object or evidence is inadequate, `diagnostic_only` for a bounded mechanism comparison, and `requirements_only` only when that diagnosis is retained and explicit external process requirements are added.
 
 ## Procedure
 
@@ -21,11 +21,11 @@ Set `authorization_effect` to `none`. Keep an upstream ceiling or lower it; neve
 2. Freeze the candidate object as `S*=<B,X,R,I,T,SP,K>`, the evidence cutoff, the target difference, and the permitted generalization unit. Mark absent fields as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`.
 3. Scan D0-D3 and U01-U11. Select only applicable primitives, preserve their distinct roles, and record why any required primitive is unavailable.
 4. State the simplest adequate baseline and the residual it leaves. Add a circle, variable, or mechanism only when it addresses that residual through a plausible, observable channel.
-5. Build at least one competing explanation. For each candidate, state formal dependencies, enabling conditions, mechanism chain, measured dimensions, minimum evidence, counterexample, falsifier, failure boundary, and unresolved residual.
+5. Build at least two competing mechanisms for every causal or analogy route. For every candidate, record a channel observation, a discriminating prediction, a reverse condition or falsifier, and a residual comparison rule against the same simple baseline; also retain dependencies, enabling conditions, measured dimensions, minimum evidence, failure boundary, and unresolved residual.
 6. Apply G1-G4 and C1-C12 only through eligible instances and their allowed conclusions. Treat definitions, contract completion, internal labels, and examples as no empirical support.
 7. Select only applicable CM contracts. Keep feedback separate from learning, instantaneous load separate from cumulative damage, phase patterns separate from causal or hysteretic transitions, and selection patterns separate from carriers and cross-round history.
 8. Compare candidates against the baseline. Retain ties, null or undecided results, unmeasured dimensions, competing causes, and zero-result requirements instead of choosing the smoothest story.
-9. Write the bounded finding into `claim_ledger`, preserve residuals and counterevidence, record this module run, and recommend only the next modules actually needed.
+9. Write the bounded finding into `claim_ledger`, preserve residuals and counterevidence, and put every complete candidate in the typed mechanism payload. If fewer than two complete candidates exist, stop at `description_only`. Record this module run and recommend only the next modules actually needed.
 
 Stop before assigning value, responsibility, obligation, remedy, or permission. Route event propagation to `ariadne-dynamics`, human roles or privacy to `ariadne-human`, scale translation to `ariadne-scale`, evidence repair to `ariadne-evidence`, and any real-world choice or authorization question onward without answering it here.
 

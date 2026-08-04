@@ -23,7 +23,7 @@ Read [references/object-contract.md](references/object-contract.md) when a field
 
 ## Method Record Contract
 
-Produce all common fields: `record_id`, `schema_version`, `record_version`, `parent_record_id`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
+Produce every schema field, including `lineage_kind`, complete `parent_records`, `ceiling_transition`, traceable module input/output records, and `module_payloads`. Keep `parent_record_id` only as the sole-parent alias for a linear child.
 
 When no upstream record exists, create the minimum valid record and identify user-provided material as material, not empirical evidence. When an upstream record exists, add an `ariadne-framing` module run and preserve lineage.
 

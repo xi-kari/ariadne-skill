@@ -37,6 +37,23 @@ RED BASELINE
 
 Before `WHOLE_SUITE_CONTENT_COMPLETE`, do not run module reviews, forward tests, polish passes, partial release checks, or user checkpoints. Baseline evaluation is allowed before the build because it defines the failures the complete suite must correct. Local commits may preserve work, but nothing is pushed as a partial implementation.
 
+## Current execution status
+
+<!-- ariadne-stage-status:start -->
+| Phase | Status |
+|---|---|
+| RED_BASELINE | complete |
+| BUILD_ALL_CONTENT | complete |
+| WHOLE_SUITE_CONTENT_COMPLETE | complete |
+| INTEGRATED_REVIEW | complete |
+| WHOLE_SUITE_REPAIR | complete |
+| WORKER_FINAL_VALIDATION | complete |
+| PARENT_INDEPENDENT_VALIDATION | complete |
+| RELEASE | not_authorized |
+<!-- ariadne-stage-status:end -->
+
+The complete suite passed the content gate before integrated review began. The consolidated repair and independent parent validation are complete. Repository commit, branch publication, and merge follow Task 6; global installation, release tags, and package publication remain outside the authorized scope.
+
 ## Planned file map
 
 ### Primary router
@@ -46,6 +63,7 @@ Before `WHOLE_SUITE_CONTENT_COMPLETE`, do not run module reviews, forward tests,
 - `skills/ariadne-skill/references/lattice-kernel.md`
 - `skills/ariadne-skill/references/routing.md`
 - `skills/ariadne-skill/references/method-record.md`
+- `skills/ariadne-skill/references/source-navigation.json`
 
 ### Peer modules
 
@@ -118,7 +136,7 @@ Before `WHOLE_SUITE_CONTENT_COMPLETE`, do not run module reviews, forward tests,
 
 **Interfaces:**
 
-- `method-record.schema.json` requires `record_id`, `schema_version`, `record_version`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
+- `method-record.schema.json` requires lossless root/linear/merge lineage, an explicit rule registry, typed module payloads, auditable ceiling transitions, exact module input/output references, and the original bounded object/evidence/claim/authorization fields.
 - `authorization_effect` accepts only `none`.
 - `output_ceiling` accepts only `description_only`, `diagnostic_only`, and `requirements_only`.
 - A child record identifies its parent and never overwrites it.
@@ -177,11 +195,11 @@ python "$creator\init_skill.py" ariadne-audit --path skills --resources referenc
 ```powershell
 $validator = 'C:\Users\cangm\.codex\skills\.system\skill-creator\scripts\quick_validate.py'
 Get-ChildItem -LiteralPath skills -Directory | Sort-Object Name | ForEach-Object {
-    python $validator $_.FullName
+    python -X utf8 -B $validator $_.FullName
     if ($LASTEXITCODE -ne 0) { throw "Skill validation failed: $($_.Name)" }
 }
 ```
-- [ ] Run `python -m pytest -q` and `python scripts/validate_repo.py` from the repository root.
+- [ ] Run `python -X utf8 -B -m pytest -q`, `python -X utf8 -B scripts/validate_repo.py`, and `python -X utf8 -B scripts/validate_evals.py` from the repository root.
 - [ ] Run all frozen scenarios with each relevant standalone skill.
 - [ ] Run sequential and clustered versions of the same composite scenarios and compare frozen facts, unknowns, lineage, output ceilings, and `authorization_effect`.
 - [ ] Run the full router against the same scenarios used in the no-guidance baseline and score improvement with the frozen rubric.
@@ -191,9 +209,10 @@ Get-ChildItem -LiteralPath skills -Directory | Sort-Object Name | ForEach-Object
 Expected validation environment:
 
 ```powershell
-python -c "import yaml, pytest; print(yaml.__version__); print(pytest.__version__)"
-python -m pytest -q
-python scripts/validate_repo.py
+python -X utf8 -B -c "import yaml, pytest; print(yaml.__version__); print(pytest.__version__)"
+python -X utf8 -B -m pytest -q
+python -X utf8 -B scripts/validate_repo.py
+python -X utf8 -B scripts/validate_evals.py
 ```
 
 ## Task 5: Apply whole-suite corrections and validate release state

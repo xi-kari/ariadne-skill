@@ -7,11 +7,12 @@ Use dynamic derivation to ask which registered variables may change first, throu
 For a standalone run, create the common Method Record and record:
 
 - the frozen joint object and identities in `object_contract`;
-- the source and observation cutoff, event fact status, and model version in `evidence_cutoff`;
+- only the source and observation cutoff in `evidence_cutoff`;
+- every event ID, fact status, source IDs, window, observation position, and model version in the typed `ariadne-dynamics` payload;
 - active actor, circle, network, temporal, impact, and jurisdiction axes in `scale_scope`;
 - event contracts, state deltas, mechanism provenance, branches, signals, and stop states in `claim_ledger`;
 - disputed facts, missing channels, parameter intervals, residuals, candidate variables, and counterpaths in `unknowns_and_counterevidence`;
-- `description_only`, `diagnostic_only`, or `requirements_only` in `output_ceiling`, never above the parent ceiling;
+- the ordered ceiling transition; a normal child preserves or lowers, and only newly admitted external evidence or protocol fulfillment in a child can raise;
 - this run and its parent path in `module_runs`, necessary handoffs in `recommended_next_modules`, and `authorization_effect: none`.
 
 Create a new child record when a later observation, changed scope, altered model, or new event enters. Never pour later outcomes back into the original starting state.

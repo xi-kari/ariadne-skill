@@ -18,7 +18,7 @@ Audit what happens when an object, observation, claim, or action moves between s
 5. **Separate transformation kinds.** Distinguish scale transformation, circle-relation change, and representation or wording translation. Split a combined process into an ordered chain.
 6. **Choose one atomic operator.** Select exactly one of M01-M09 and one compatible branch and claim mode for each atomic record. Do not switch branch or mode after seeing results.
 7. **Audit identity, evidence, and loss.** Record source and target K, mapping, preserved and allowed changes, lost or collapsed distinctions, error, alternatives, residuals, and independent evidence on both sides. Treat three evaluated outcomes (`supported`, `unsupported_or_undecided`, `null_supported`) separately from `not_evaluated`.
-8. **Update the Method Record.** Use `description_only` for an incomplete mapping, `diagnostic_only` for a bounded transfer audit, or `requirements_only` when only bridge requirements can be stated. Never transfer values, responsibility, or authority. Keep `authorization_effect: none`.
+8. **Update the Method Record.** Use `description_only` for an incomplete mapping and `diagnostic_only` for a bounded transfer audit. Add `requirements_only` only after that diagnostic basis when an external process must satisfy named bridge requirements. Apply the inherited-ceiling transition algebra. Never transfer values, responsibility, or authority. Keep `authorization_effect: none`.
 
 Read [references/scale-transformations.md](references/scale-transformations.md) for axis contracts, operator signatures, identity mapping, circle relations, translation-loss auditing, and a complete standalone example.
 

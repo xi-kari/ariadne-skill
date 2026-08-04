@@ -26,6 +26,8 @@ Use four operational transformations:
 
 Do not skip a stage because the diagnosis is severe or forecast confidence is high.
 
+For every action request, populate the typed Method Record choice payload before deciding whether choice work can proceed: `facts`, `values`, `options`, `jurisdiction`, `authorization`, `stop_conditions`, and `rollback_plan`. Include explicit inaction in `options`. Use the literal state `unknown` inside any unresolved field rather than omitting it. Missing fields lower the usable result; they do not excuse an incomplete boundary card.
+
 ## 2. Classify the Selection Process
 
 | Type | Required subject and evidence | Hard boundary |
@@ -244,47 +246,113 @@ The card keeps the urgent reorganization option visible but does not treat urgen
 
 ### Linked common Method Record
 
+<!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:choice:CH-TEAM-022
-schema_version: "1.0"
+schema_version: '1.1'
 record_version: 1
+lineage_kind: root
 parent_record_id: null
+parent_records: []
 request_type: finite_choice
 object_contract:
-  boundary: Work-allocation and appeal arrangements for the frozen 24-person product team; exclude employment termination and compensation changes.
-  state_variables: [workload distribution, appeal access, departure notices, transfer availability]
-  relations_or_transitions: [status quo, mandatory reorganization, delay, reversible trial, transfer, no action]
-  interfaces: [protected participation, independent appeal, management authority, execution monitor]
+  boundary: Work-allocation and appeal arrangements for the frozen 24-person product team; exclude employment termination
+    and compensation changes.
+  state_variables:
+  - workload distribution
+  - appeal access
+  - departure notices
+  - transfer availability
+  relations_or_transitions:
+  - status quo
+  - mandatory reorganization
+  - delay
+  - reversible trial
+  - transfer
+  - no action
+  interfaces:
+  - protected participation
+  - independent appeal
+  - management authority
+  - execution monitor
   time_window: Review now; any trial may last no more than eight weeks.
-  scale_profile: {A: individual distribution within one team, I: direct and household spillover, J: unverified team-level authority}
+  scale_profile:
+    A: individual distribution within one team
+    I: direct and household spillover
+    J: unverified team-level authority
   identity_criterion: A change to team, action, territory, or duration requires a new choice version.
   status: candidate
 evidence_cutoff:
-  as_of: 2026-08-31T16:00:00+08:00
-  included_source_ids: [FC-F-TEAM-017, SRC-WORKLOAD, SRC-APPEAL]
+  as_of: '2026-08-31T16:00:00+08:00'
+  included_source_ids:
+  - FC-F-TEAM-017
+  - SRC-WORKLOAD
+  - SRC-APPEAL
   excluded_after_cutoff: true
-scale_scope: {source: individual and team evidence, target: bounded team choice, transform_status: audited}
+scale_scope:
+  source: individual and team evidence
+  target: bounded team choice
+  transform_status: audited
 claim_ledger:
-  - claim_id: CH-N2
-    claim_type: N
-    text: The choice must not lower protection for low-power positions.
-    status: supported
-    support_ids: [N2]
-    counterevidence_ids: []
-  - claim_id: CH-O3
-    claim_type: O
-    text: No selected action has a verified atomic J authorization.
-    status: unresolved
-    support_ids: []
-    counterevidence_ids: []
+- claim_id: CH-N2
+  claim_type: N
+  text: The choice must not lower protection for low-power positions.
+  status: supported
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids:
+  - RULE:N2
+- claim_id: CH-O3
+  claim_type: O
+  text: No selected action has a verified atomic J authorization.
+  status: unresolved
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids: []
+rule_registry:
+- rule_id: RULE:N2
+  rule_type: normative
+  text: Affected positions and the rights floor must be explicit before a choice handoff.
 unknowns_and_counterevidence:
-  unknowns: [The independent appeal owner and full affected-position distribution are not verified.]
-  counterevidence: [Immediate reorganization may create irreversible burden before protected participation occurs.]
+  unknowns:
+  - The independent appeal owner and full affected-position distribution are not verified.
+  counterevidence:
+  - Immediate reorganization may create irreversible burden before protected participation occurs.
 output_ceiling: requirements_only
+ceiling_transition:
+  operation: root
+  inputs: []
+  basis: []
+  result: requirements_only
 module_runs:
-  - {module: ariadne-choice, status: completed, record_version: 1}
-recommended_next_modules: [ariadne-audit]
+- module: ariadne-choice
+  status: completed
+  input_records: []
+  output_record:
+    record_id: ariadne:choice:CH-TEAM-022
+    record_version: 1
+module_payloads:
+- module: ariadne-choice
+  payload:
+    facts:
+    - Frozen workload, appeal and forecast materials listed in evidence_cutoff
+    values:
+    - Do not lower protection for low-power positions
+    options:
+    - status quo
+    - delay
+    - reversible trial
+    - transfer
+    - inaction
+    jurisdiction: unknown
+    authorization: unknown
+    stop_conditions:
+    - Protection floor, appeal access or rollback capacity fails
+    rollback_plan: Restore the pre-trial work and record state; responsible owner remains external and unverified.
+recommended_next_modules:
+- ariadne-audit
 authorization_effect: none
 ```
+<!-- method-record-example:end -->
 
 Do not rewrite this record as “Ariadne recommends the pilot.” State instead which external conditions must be satisfied before a qualified subject may select and authorize any option.

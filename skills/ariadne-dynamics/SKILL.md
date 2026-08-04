@@ -11,9 +11,9 @@ Derive conditional event paths from a frozen state. Preserve event fact status, 
 
 ## Standalone Contract
 
-Create a minimal common Method Record when none is supplied. Preserve an incoming record and its lineage when one is supplied. Populate `record_id`, `schema_version`, `record_version`, `parent_record_id`, `request_type`, `object_contract`, `evidence_cutoff`, `scale_scope`, `claim_ledger`, `unknowns_and_counterevidence`, `output_ceiling`, `module_runs`, `recommended_next_modules`, and `authorization_effect`.
+Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and use the typed dynamics payload for event fact status, sources, windows, observation position, and model version.
 
-Set `authorization_effect` to `none`. Keep or lower an inherited ceiling. Use `description_only` when the starting state, event, or mechanism is inadequate, `diagnostic_only` for bounded conditional paths, and `requirements_only` when only the missing conditions for a valid derivation can be reported.
+Set `authorization_effect` to `none`. A module run preserves or lowers its parent ceiling; only a child with newly admitted external evidence or a newly fulfilled protocol may raise it. Use `description_only` when the starting state, event, or mechanism is inadequate, `diagnostic_only` for bounded conditional paths, and `requirements_only` only when a retained diagnosis is accompanied by explicit external process requirements.
 
 ## Procedure
 

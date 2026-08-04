@@ -28,43 +28,15 @@ Register future-facing claims before outcomes appear, then evaluate them against
 7. Append the observation source, actual result, metric, baseline comparison, distributional errors, unexpected effects, downgrade or retirement decision, and next review. Never overwrite the original target, probability, horizon, or failure.
 8. State the narrowest output ceiling and recommended handoff. Keep `authorization_effect` equal to `none` in every version.
 
-## Produce a Standalone Method Record
+## Method Record
 
-Create a schema-compatible record even when no upstream Ariadne module ran. Populate every required key; use explicit unknowns instead of silent guesses.
+Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace module inputs and output, and apply the ceiling algebra. The typed forecast payload always carries both closed branches and exactly one is non-null. For a live forecast, fill the complete `preregistration`, link its `record_id` and `record_version` to the current Method Record, and set `post_hoc_reconstruction: null`. For an outcome-aware reconstruction, set `preregistration: null`, fill every reconstruction field including `calibration` and `failure_classification`, and never disguise it as preregistration.
 
-```yaml
-record_id: ariadne:forecast:<stable-id>
-schema_version: "1.0"
-record_version: 1
-parent_record_id: null
-request_type: conditional_forecast
-object_contract:
-  boundary: <included and excluded object>
-  state_variables: [<observable state>]
-  relations_or_transitions: [<candidate path or transition>]
-  interfaces: [<observation or influence channel>]
-  time_window: <baseline through deadline>
-  scale_profile: {A: <aggregation>, T: <time>, J: <jurisdiction>}
-  identity_criterion: <what keeps this the same forecast object>
-  status: candidate
-evidence_cutoff:
-  as_of: <RFC-3339 timestamp>
-  included_source_ids: [<source-id>]
-  excluded_after_cutoff: true
-scale_scope: {source: <source scope>, target: <target scope>, transform_status: not_needed}
-claim_ledger: []
-unknowns_and_counterevidence: {unknowns: [<unknown>], counterevidence: [<counterevidence>]}
-output_ceiling: diagnostic_only
-module_runs: [{module: ariadne-forecast, status: completed, record_version: 1}]
-recommended_next_modules: []
-authorization_effect: none
-```
-
-For version 2 or later, preserve the earlier record, increment `record_version`, and set `parent_record_id` to the prior record ID. Never raise an inherited output ceiling without a new evidence-bearing version.
+A normal module child preserves or lowers its parent ceiling. Raise only in a child that newly admits named external evidence or a newly fulfilled declared protocol. Keep `authorization_effect: none`.
 
 ## Output Contract
 
-Return plain-language reasoning first. Then expose the forecast ID, frozen target and deadline, input cutoff, simple baseline, paths, expression strength, early and reverse signals, evaluation rule, failure states, next review, and compact Method Record. Use `requirements_only` only to list conditions a downstream choice process still needs; do not phrase those conditions as a recommendation.
+Return plain-language reasoning first. Then expose the forecast ID, frozen target and deadline, input cutoff, simple baseline, paths, expression strength, early and reverse signals, evaluation rule, failure states, next review, and compact Method Record. Use `requirements_only` only when lower permissions remain satisfied and the output adds conditions a downstream external choice process still needs; do not phrase those conditions as a recommendation.
 
 Stop at `description_only` when the object, target, observation rule, horizon, or cutoff is not stable. Stop at `diagnostic_only` after publishing or evaluating a forecast. Never claim inevitability, empirical verification from simulation, value priority, consent, jurisdiction, or permission to act.
 

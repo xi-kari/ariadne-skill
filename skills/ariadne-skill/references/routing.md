@@ -45,7 +45,7 @@ A higher level means more record responsibility, not greater truth.
 | Event propagation or paths | `ariadne-dynamics` | Frozen state and mechanisms | Branch graph and signals |
 | Dated future claim | `ariadne-forecast` | Eligible paths and baseline | Forecast registry record |
 | Real-world options | `ariadne-choice` | Bounded conclusions and explicit norms | Option comparison and external requirements |
-| High-impact use or merge | `ariadne-audit` | Complete child records | Gate results, conflicts, lowest ceiling, writeback |
+| High-impact use or merge | `ariadne-audit` | Complete child records | Gate results, conflicts, ceiling meet, writeback |
 
 ## Routing algorithm
 
@@ -53,10 +53,10 @@ A higher level means more record responsibility, not greater truth.
 2. Run evidence before any comparative mechanism, forecast, or choice.
 3. Add scale when an inference changes aggregation, space, time, organization, causal level, observation resolution, impact, network, jurisdiction, domain, representation, or vocabulary.
 4. Add human when a claim concerns people, roles, institutions, meaning, power, privacy, responsibility, consent, appeal, or refusal.
-5. Add mechanism for explanation or diagnosis. Require competitors and a simple baseline.
+5. Add mechanism for explanation, diagnosis, every causal route, and every analogy route. Require at least two competitors, a simple baseline, channel observations, discriminating predictions, reverse or falsifying conditions, and a residual comparison rule.
 6. Add dynamics only when events, transitions, clocks, thresholds, feedback, or branch paths matter.
 7. Add forecast only when the request needs an evaluable future judgment. Without registration, keep scenarios.
-8. Add choice only when comparing action, delay, experiment, exit, or inaction. Do not let it generate external authorization.
+8. Add choice for every action request, even when choice fields are unknown. Emit a complete typed boundary card with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan; write `unknown` rather than omitting a field. Do not let it generate external authorization.
 9. Add audit for L2 merging and every L3 use. Audit is mandatory for public, automated, institutional, eligibility, allocation, safety, or difficult-to-reverse output.
 
 ## Sequential execution
@@ -65,7 +65,7 @@ Use this dependency order, skipping only non-applicable lanes:
 
 `framing -> evidence -> [scale, mechanism, human] -> dynamics -> forecast -> choice -> audit`
 
-Each module creates a child record with a new version. If a module changes the object, evidence cutoff, scale, or purpose, restart at the earliest affected dependency.
+Each module creates a linear child with one parent reference. Its module run copies that reference into `input_records` and names the child in `output_record`. If a module changes the object, evidence cutoff, scale, or purpose, restart at the earliest affected dependency.
 
 ## Clustered execution
 
@@ -77,13 +77,15 @@ After framing and evidence are frozen, scale, mechanism, and human lanes may run
 - no preferred answer;
 - the required Method Record fields.
 
+Each sibling creates a child of the same frozen parent. Derive its record ID deterministically from the case ID, module namespace, and child version. Do not let one sibling consume another sibling's output.
+
 Do not parallelize:
 
 - forecast before eligible dynamic paths exist;
 - choice before bounded conclusions and explicit normative premises exist;
 - audit as a peer whose vote can be averaged with the analyzed modules.
 
-Audit merges after the lanes complete.
+Audit merges after the lanes complete. Create `lineage_kind: merge`, set `parent_record_id: null`, list every sibling ID and version in `parent_records` sorted by ID then version, copy that list into the audit run's `input_records`, and name the merge record in `output_record`. Never select one sibling as a surrogate parent.
 
 ## Continuous execution
 
@@ -100,10 +102,10 @@ Never rewrite the parent record to make a later result appear expected.
 
 ## Merge rules
 
-1. Union compatible source IDs, unknowns, counterevidence, and module runs.
+1. Union compatible source IDs, unknowns, counterevidence, and module runs while retaining each run's exact input and output record references.
 2. Preserve incompatible object contracts, scale mappings, causal explanations, and value premises as named conflicts.
 3. Prefer no conclusion over a false synthesis.
-4. Use the lowest ceiling among required lanes.
+4. Apply the ceiling `meet`: `description_only < diagnostic_only < requirements_only`, so the result is the minimum ranked parent ceiling. A merge never raises.
 5. Mark a missing required lane `not_run`, not `passed`.
 6. Keep external authorization references outside empirical claim support.
 
