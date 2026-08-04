@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "skills",
+  "default_bundle": "complete",
+  "release_channel": "rolling-main",
+  "windows_install_mode": "copy",
+  "agent_skills_spec_url": "https://agentskills.io/specification",
+  "installer_evidence_url": "https://github.com/vercel-labs/skills",
+  "router_only_degradation": {
+    "installed_skills": [
+      "ariadne-skill"
+    ],
+    "missing_peer_status": "module_unavailable",
+    "semantic_equivalence": false
+  },
+  "skills": [
+    "ariadne-skill",
+    "ariadne-framing",
+    "ariadne-evidence",
+    "ariadne-scale",
+    "ariadne-mechanism",
+    "ariadne-human",
+    "ariadne-dynamics",
+    "ariadne-forecast",
+    "ariadne-choice",
+    "ariadne-audit"
+  ],
+  "hosts": [
+    {
+      "id": "codex",
+      "name": "Codex",
+      "compatibility": "native-agent-skills",
+      "project_paths": [
+        ".agents/skills"
+      ],
+      "global_paths": [
+        "~/.agents/skills",
+        "~/.codex/skills"
+      ],
+      "invocation": "$ariadne-skill",
+      "evidence_url": "https://developers.openai.com/codex/skills"
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "compatibility": "native-agent-skills",
+      "project_paths": [
+        ".claude/skills"
+      ],
+      "global_paths": [
+        "~/.claude/skills"
+      ],
+      "invocation": "/ariadne-skill",
+      "evidence_url": "https://code.claude.com/docs/en/slash-commands"
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "compatibility": "native-agent-skills",
+      "project_paths": [
+        ".gemini/skills",
+        ".agents/skills"
+      ],
+      "global_paths": [
+        "~/.gemini/skills",
+        "~/.agents/skills"
+      ],
+      "invocation": "natural-language: ariadne-skill",
+      "evidence_url": "https://geminicli.com/docs/cli/using-agent-skills/"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "compatibility": "native-agent-skills",
+      "project_paths": [
+        ".cursor/skills",
+        ".agents/skills"
+      ],
+      "global_paths": [
+        "~/.cursor/skills",
+        "~/.agents/skills"
+      ],
+      "invocation": "/ariadne-skill",
+      "evidence_url": "https://cursor.com/docs/context/skills"
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "compatibility": "native-agent-skills",
+      "project_paths": [
+        ".github/skills",
+        ".claude/skills",
+        ".agents/skills"
+      ],
+      "global_paths": [
+        "~/.copilot/skills",
+        "~/.agents/skills"
+      ],
+      "invocation": "natural-language: ariadne-skill",
+      "evidence_url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills"
+    },
+    {
+      "id": "reasonix",
+      "name": "Reasonix",
+      "compatibility": "directory-compatible-subset",
+      "project_paths": [
+        ".reasonix/skills",
+        ".agents/skills",
+        ".agent/skills",
+        ".claude/skills"
+      ],
+      "global_paths": [
+        "~/.reasonix/skills",
+        "~/.agents/skills",
+        "~/.claude/skills"
+      ],
+      "invocation": "/ariadne-skill",
+      "evidence_url": "https://reasonix.io/docs/",
+      "required_smoke_checks": [
+        "json-references",
+        "peer-routing",
+        "context-growth"
+      ]
+    }
+  ]
+}

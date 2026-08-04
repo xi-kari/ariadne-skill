@@ -362,7 +362,21 @@ authorization_effect
 
 ## §08 · 调用与验证
 
-<sub><b>全局分发语义 · 当前电脑显式调用</b></sub>
+<sub><b>完整包安装 · 当前电脑显式调用</b></sub>
+
+公开入口：
+
+- [Ariadne 官网](https://xi-kari.github.io/ariadne-skill/)
+- [六宿主兼容矩阵与安装说明](docs/agent-compatibility.md)
+
+默认安装完整十 Skill。Windows 使用复制模式，避免依赖符号链接权限：
+
+```powershell
+npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+```
+
+当前没有稳定 tag；以上命令跟随 `main`，属于滚动安装。只装 `ariadne-skill` 是 router-only 降级模式，缺失的 peer 必须记录为 `module_unavailable`，不能冒充完整方法运行。各宿主路径、调用差异、Reasonix 兼容上限和专项冒烟合同见兼容说明。
 
 克隆仓库：
 
@@ -392,6 +406,7 @@ $ariadne-audit 审查这份高影响结论能否公开或自动化使用
 python -X utf8 -B -m pytest -q
 python -X utf8 -B scripts/validate_repo.py
 python -X utf8 -B scripts/validate_evals.py
+python -X utf8 -B scripts/validate_adapters.py
 ```
 
 <p align="right"><sub><a href="#s00">↥ 返回目录</a></sub></p>
