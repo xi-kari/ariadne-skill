@@ -58,6 +58,22 @@ def test_external_runtime_asset_is_rejected_but_anchor_is_allowed(tmp_path: Path
     assert "external-runtime-asset" in _codes(tmp_path)
 
 
+def test_generated_site_asset_resolves_to_shared_source(tmp_path: Path) -> None:
+    (tmp_path / "site").mkdir()
+    (tmp_path / "docs" / "assets").mkdir(parents=True)
+    (tmp_path / "site" / "index.html").write_text(
+        '<!doctype html><html lang="zh-CN"><body>'
+        '<img src="assets/lattice-kernel-map.svg" alt="方法图">'
+        "</body></html>\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "docs" / "assets" / "lattice-kernel-map.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg"><title>方法图</title></svg>\n',
+        encoding="utf-8",
+    )
+    assert _validator()(tmp_path) == []
+
+
 def test_link_that_escapes_repository_is_rejected(tmp_path: Path) -> None:
     (tmp_path / "README.md").write_text("[outside](../outside.md)\n", encoding="utf-8")
     assert "path-escape" in _codes(tmp_path)

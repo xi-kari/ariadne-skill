@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
@@ -645,6 +646,26 @@ def frontmatter(path: Path) -> dict:
     return data
 
 
+def validate_extension_contracts() -> list[str]:
+    if __package__:
+        from .build_site import build_site
+        from .content_quality import validate_content
+        from .validate_adapters import validate_adapters
+    else:
+        from build_site import build_site
+        from content_quality import validate_content
+        from validate_adapters import validate_adapters
+
+    errors = validate_content(ROOT)
+    errors.extend(validate_adapters(ROOT))
+    try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            build_site(ROOT, Path(temp_dir) / "site")
+    except (OSError, ValueError) as exc:
+        errors.append(f"site-build: {exc}")
+    return errors
+
+
 def collect_errors() -> list[str]:
     errors: list[str] = []
     actual = {path.name for path in SKILLS_ROOT.iterdir() if path.is_dir()}
@@ -788,6 +809,7 @@ def collect_errors() -> list[str]:
     except (OSError, KeyError, TypeError, json.JSONDecodeError) as exc:
         errors.append(f"application contracts invalid: {exc}")
 
+    errors.extend(validate_extension_contracts())
     return errors
 
 

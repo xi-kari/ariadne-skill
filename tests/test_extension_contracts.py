@@ -164,3 +164,9 @@ def test_ci_uses_only_frozen_official_action_commits() -> None:
         "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e",
     }
     assert expected <= set(text.split())
+
+
+def test_repository_validator_executes_all_extension_contracts() -> None:
+    module = importlib.import_module("scripts.validate_repo")
+    assert hasattr(module, "validate_extension_contracts")
+    assert module.validate_extension_contracts() == []
