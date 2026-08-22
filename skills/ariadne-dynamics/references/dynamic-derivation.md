@@ -145,6 +145,16 @@ Turn a residual into a testable task rather than deleting it or naming a hidden 
 
 Use only `proposed`, `testing`, `supported_candidate`, `rejected`, or `retired`. Even a supported candidate must enter the relevant object, variable, circle, or mechanism contract before use. A post-result candidate can improve the next run but cannot support the original derivation or forecast. Treat an AI suggestion as candidate generation only.
 
+Type every candidate by its source; each source carries one allowed action and one shortcut to refuse:
+
+| Candidate source | Allowed action | Must avoid |
+|---|---|---|
+| Systemic residual | Propose multiple competing candidates with distinguishing observations, as registered above | Absorbing all error into one mysterious variable |
+| Participant account | Preserve its position, its meaning, and its verifiable parts | Automatically downgrading it to subjective noise or upgrading it to the full factual picture |
+| Cross-case repetition | Build a candidate mechanism with an explicit extrapolation boundary | Treating similar narratives as a universal law |
+| Model search | Preregister the next-round test under the post-result rule above | Reporting only favorable results after the outcome |
+| AI suggestion | Candidate generation only, as above | Letting AI output verify reality or authorize action |
+
 ## Scenarios, Counterfactuals, and Simulation
 
 Use a scenario to ask what paths follow if stated conditions hold. Use a counterfactual to compare an observed outcome with a changed event or mechanism under explicit comparability conditions. Use a simulation to expand declared rules and parameters. Keep all three distinct from factual description.

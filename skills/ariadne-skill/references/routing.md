@@ -51,13 +51,15 @@ A higher level means more record responsibility, not greater truth.
 
 1. Run framing for every new object or changed purpose.
 2. Run evidence before any comparative mechanism, forecast, or choice.
-3. Add scale when an inference changes aggregation, space, time, organization, causal level, observation resolution, impact, network, jurisdiction, domain, representation, or vocabulary.
-4. Add human when a claim concerns people, roles, institutions, meaning, power, privacy, responsibility, consent, appeal, or refusal.
+3. Add scale when an inference changes aggregation, space, time, organization, causal level, observation resolution, impact, network, jurisdiction, domain, representation, or vocabulary, and only when that change can alter the conclusion's validity. Non-triggering counterexamples: restating one team's quarterly delay in hours instead of days changes representation but not what the claim asserts, so scale is not triggered; citing last quarter's report as background while every claim stays inside the current quarter touches time without any cross-time inference, so scale is not triggered.
+4. Add human when a claim concerns people, roles, institutions, meaning, power, privacy, responsibility, consent, appeal, or refusal, and only when that human dimension can alter the conclusion's validity or affect a real position. Non-triggering counterexamples: tuning a database index where people appear only as request volume makes no claim about any person or role, so human is not triggered; quoting an engineer's published conference talk as a technical source uses a person as provenance without making a claim about people, so human is not triggered.
 5. Add mechanism for explanation, diagnosis, every causal route, and every analogy route. Require at least two competitors, a simple baseline, channel observations, discriminating predictions, reverse or falsifying conditions, and a residual comparison rule.
 6. Add dynamics only when events, transitions, clocks, thresholds, feedback, or branch paths matter.
 7. Add forecast only when the request needs an evaluable future judgment. Without registration, keep scenarios.
-8. Add choice for every action request, even when choice fields are unknown. Emit a complete typed boundary card with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan; write `unknown` rather than omitting a field. Do not let it generate external authorization.
+8. Add choice for every action request, and pick its depth explicitly. An action request that meets every L1 condition (low impact, reversible, limited material) may emit a compressed boundary card: one declaration line recording that facts, values, options, jurisdiction, authorization, stop conditions, and rollback are unknown and that no option is selected. The compressed card stays within the L1 maximum result because it selects nothing. Every other action request runs at L2 or higher and emits the complete typed boundary card with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan; write `unknown` rather than omitting a field. Neither form generates external authorization.
 9. Add audit for L2 merging and every L3 use. Audit is mandatory for public, automated, institutional, eligibility, allocation, safety, or difficult-to-reverse output.
+
+A triggered module carries one of two strengths. A trigger is required when the module's responsibility carries the conclusion: leaving it out would leave a load-bearing object, claim, bridge, or affected position unaudited. A trigger is optional when the dimension is present but bounded and its variation cannot overturn the conclusion. At L1 and L2, an optional module may be discharged with a single-line declaration instead of a full module run: state the bounded finding and its explicit gap in the record (claim ledger or unknowns), mark the module run `not_run` with a reason naming this declaration, and keep or lower the ceiling. At L3 every triggered module is required.
 
 ## Sequential execution
 
@@ -65,11 +67,11 @@ Use this dependency order, skipping only non-applicable lanes:
 
 `framing -> evidence -> [scale, mechanism, human] -> dynamics -> forecast -> choice -> audit`
 
-Each module creates a linear child with one parent reference. Its module run copies that reference into `input_records` and names the child in `output_record`. If a module changes the object, evidence cutoff, scale, or purpose, restart at the earliest affected dependency.
+Each module creates a linear child with one parent reference. Its module run copies that reference into `input_records` and names the child in `output_record`. If a module changes the object, evidence cutoff, scale, or purpose, restart at the earliest affected dependency. The restart has a budget: the same dependency may be restarted at most twice in one run. When a third restart would be needed, do not restart; close the run at the current ceiling as a downgrade and record the oscillation cause in `unknowns_and_counterevidence.unknowns`.
 
 ## Clustered execution
 
-After framing and evidence are frozen, scale, mechanism, and human lanes may run independently. Give every worker:
+After framing and evidence are frozen, scale, mechanism, and human lanes may run independently. Parallel admission is machine-checkable: two lanes may run in parallel only when their parent references carry the same `{record_id, record_version}` and the parent's `evidence_cutoff` fields (`as_of`, `included_source_ids`, `excluded_after_cutoff`) are equal item by item. Give every worker:
 
 - the same parent record;
 - the same raw materials and cutoff;
@@ -77,7 +79,7 @@ After framing and evidence are frozen, scale, mechanism, and human lanes may run
 - no preferred answer;
 - the required Method Record fields.
 
-Each sibling creates a child of the same frozen parent. Derive its record ID deterministically from the case ID, module namespace, and child version. Do not let one sibling consume another sibling's output.
+Each sibling creates a child of the same frozen parent. Derive its record ID deterministically with the normative syntax `ariadne:<case>:<module>:v<N>` defined in the Method Record reference. Do not let one sibling consume another sibling's output.
 
 Do not parallelize:
 
@@ -103,7 +105,7 @@ Never rewrite the parent record to make a later result appear expected.
 ## Merge rules
 
 1. Union compatible source IDs, unknowns, counterevidence, and module runs while retaining each run's exact input and output record references.
-2. Preserve incompatible object contracts, scale mappings, causal explanations, and value premises as named conflicts.
+2. Preserve incompatible object contracts, scale mappings, causal explanations, and value premises as named entries in the record's `conflicts` field, each with a `conflict_id`, a `kind` (`object_contract`, `scale_mapping`, `causal_explanation`, or `value_premise`), the involved `record_refs`, and a description; never average them.
 3. Prefer no conclusion over a false synthesis.
 4. Apply the ceiling `meet`: `description_only < diagnostic_only < requirements_only`, so the result is the minimum ranked parent ceiling. A merge never raises.
 5. Mark a missing required lane `not_run`, not `passed`.

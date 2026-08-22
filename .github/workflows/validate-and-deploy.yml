@@ -29,7 +29,7 @@ jobs:
         run: python -X utf8 -B -m pytest -q -p no:cacheprovider
       - name: Validate repository
         run: python -X utf8 -B scripts/validate_repo.py
-      - name: Validate evaluations
+      - name: Lint frozen eval fixtures
         run: python -X utf8 -B scripts/validate_evals.py
       - name: Validate agent adapters
         run: python -X utf8 -B scripts/validate_adapters.py

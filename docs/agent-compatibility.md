@@ -70,6 +70,21 @@ npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a cl
 
 这种安装不是完整 Ariadne。总路由仍可做边界化分流，但九个 peer 均可能不可用；每个未运行模块必须记录 `module_unavailable`，输出不能假装来自完整方法运行，也不能提高 `output_ceiling` 或改变 `authorization_effect: none`。
 
+## 单 peer 安装
+
+安装器同样允许只装某一个执行模块，例如：
+
+```powershell
+npx skills add xi-kari/ariadne-skill --skill ariadne-evidence --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+```
+
+这是与 Router-only 方向相反的降级模式：当前模块在场，但它正文里点名的转交目标（总路由或其他 peer）可能不在本机。此模式的降级语义固定如下：
+
+- 转交目标 Skill 缺失时，在 `module_runs` 把该次转交记为 `not_run`，`reason` 写 `module_unavailable`。
+- 该转交目标负责的产出保持 `unknown`，当前记录维持或降低 `output_ceiling`，不得因缺件而升档。
+- 当前 Skill 不得代跑缺失 peer 的职责，也不得把未运行的模块表述为已运行；`authorization_effect: none` 不变。
+- 源文编号（如 Part 15、Appendix A）依赖总路由的 `source-navigation.json` 才能解析；单 peer 安装读不到时，把对应引用当作未解析记入 unknowns，不自行猜测其内容。
+
 ## 本仓库的本地验证边界
 
 本机开发与评测继续只按显式 Skill 名或直接仓库路径运行，不把开发仓库安装进任何全局目录。仓库验证只检查清单、frontmatter、路径、证据 URL、Reasonix 冒烟合同和无镜像边界：

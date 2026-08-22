@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import importlib
 import importlib.util
+import json
+import shutil
 from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def _validator():
@@ -14,6 +19,23 @@ def _validator():
 
 def _codes(root: Path) -> set[str]:
     return {error.split(":", maxsplit=1)[0] for error in _validator()(root)}
+
+
+def _method_guard():
+    name = "scripts.content_quality"
+    spec = importlib.util.find_spec(name)
+    assert spec is not None, f"missing production module: {name}"
+    return importlib.import_module(name).validate_method_content
+
+
+def _method_codes(root: Path) -> set[str]:
+    return {error.split(":", maxsplit=1)[0] for error in _method_guard()(root)}
+
+
+def _copied_skills_sandbox(tmp_path: Path) -> Path:
+    sandbox = tmp_path / "repository"
+    shutil.copytree(ROOT / "skills", sandbox / "skills")
+    return sandbox
 
 
 def test_missing_relative_target_is_rejected(tmp_path: Path) -> None:
@@ -157,3 +179,94 @@ def test_trailing_whitespace_is_rejected(tmp_path: Path) -> None:
 def test_missing_final_newline_is_rejected(tmp_path: Path) -> None:
     (tmp_path / "README.md").write_text("no newline", encoding="utf-8")
     assert "missing-final-newline" in _codes(tmp_path)
+
+
+def test_repository_method_content_satisfies_its_own_floors() -> None:
+    assert _method_guard()(ROOT) == []
+
+
+def test_hollowed_reference_method_text_is_rejected(tmp_path: Path) -> None:
+    """Catches the degradation probe that keeps headings while gutting method text."""
+    sandbox = _copied_skills_sandbox(tmp_path)
+    target = sandbox / "skills" / "ariadne-mechanism" / "references" / "mechanism-contracts.md"
+    headings_only = "\n".join(
+        line for line in target.read_text(encoding="utf-8").splitlines() if line.startswith("#")
+    )
+    target.write_text(headings_only + "\n", encoding="utf-8")
+
+    codes = _method_codes(sandbox)
+    assert "reference-below-floor" in codes
+    assert "thin-h2-section" in codes
+
+
+def test_stubbed_skill_body_is_rejected(tmp_path: Path) -> None:
+    """Catches a SKILL.md body replaced by a stub while frontmatter stays valid."""
+    sandbox = _copied_skills_sandbox(tmp_path)
+    target = sandbox / "skills" / "ariadne-mechanism" / "SKILL.md"
+    text = target.read_text(encoding="utf-8")
+    frontmatter_end = text.index("\n---", 3) + len("\n---")
+    target.write_text(text[:frontmatter_end] + "\n\nStub body.\n", encoding="utf-8")
+
+    codes = _method_codes(sandbox)
+    assert "skill-body-below-floor" in codes
+    assert "skill-body-missing-sections" in codes
+
+
+def test_single_character_card_values_are_rejected(tmp_path: Path) -> None:
+    """Catches the degradation probe that rewrites card values while keeping key shape."""
+    sandbox = _copied_skills_sandbox(tmp_path)
+    cards_path = sandbox / "skills" / "ariadne-human" / "references" / "human-variable-cards.json"
+    cards = json.loads(cards_path.read_text(encoding="utf-8"))
+
+    def degrade(node: object) -> object:
+        if isinstance(node, dict):
+            return {key: degrade(value) for key, value in node.items()}
+        if isinstance(node, list):
+            return [degrade(value) for value in node]
+        if isinstance(node, str):
+            return "x"
+        return node
+
+    cards["human_variables"] = degrade(cards["human_variables"])
+    cards_path.write_text(json.dumps(cards, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    codes = _method_codes(sandbox)
+    assert "card-value-too-short" in codes
+    assert "card-below-floor" in codes
+
+
+def test_malformed_state_prototype_register_is_rejected(tmp_path: Path) -> None:
+    sandbox = tmp_path / "repository"
+    references = sandbox / "skills" / "ariadne-human" / "references"
+    references.mkdir(parents=True)
+    (references / "state-prototypes.json").write_text(
+        json.dumps({"prototypes": [{"id": "S0"}], "nonlinear_paths": []}) + "\n",
+        encoding="utf-8",
+    )
+    assert "card-structure" in _method_codes(sandbox)
+
+
+def test_malformed_intervention_level_register_is_rejected(tmp_path: Path) -> None:
+    sandbox = tmp_path / "repository"
+    references = sandbox / "skills" / "ariadne-choice" / "references"
+    references.mkdir(parents=True)
+    (references / "intervention-levels.json").write_text(
+        json.dumps({"levels": [{"id": "T0"}, {"id": "T9"}]}) + "\n",
+        encoding="utf-8",
+    )
+    assert "card-structure" in _method_codes(sandbox)
+
+
+def test_non_object_card_register_is_rejected(tmp_path: Path) -> None:
+    """Catches the degradation probe that replaces a whole card register with []."""
+    sandbox = tmp_path / "repository"
+    human_references = sandbox / "skills" / "ariadne-human" / "references"
+    choice_references = sandbox / "skills" / "ariadne-choice" / "references"
+    human_references.mkdir(parents=True)
+    choice_references.mkdir(parents=True)
+    (human_references / "state-prototypes.json").write_text("[]\n", encoding="utf-8")
+    (choice_references / "intervention-levels.json").write_text("[]\n", encoding="utf-8")
+
+    errors = _method_guard()(sandbox)
+    hits = [error for error in errors if "top-level value must be a JSON object" in error]
+    assert len(hits) == 2

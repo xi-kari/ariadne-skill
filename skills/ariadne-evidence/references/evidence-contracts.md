@@ -114,9 +114,17 @@ Only confirmatory or replication instances frozen before evidence and completed 
 | G1 candidate grouping | Does the grouping beat a complexity-matched no-grouping baseline out of sample, survive boundary perturbation, and replicate in an independent time block or place? Choose predictive gain or intervention gain before results. | Limited object-identification and boundary support within SP/T/K and the generalization unit | Ultimate ontology, natural boundary, unified subject, value, or authority |
 | G2 specified channel | Does one preselected controlled perturbation, controlled intervention, or identified natural variation change a specified transition above threshold? Measure capacity, delay, reliability, controllability, and loss separately. | Candidate causal carrier and only the measured channel dimensions | Universal cost, all channel properties, responsibility, or authorization |
 | G3 historical increment | Does a predeclared history variable add out-of-sample information after controlling current registered state, environment, and measurement? For causal path dependence, preselect erasure, restoration, or equivalent intervention. | Predictive or causal path difference within the frozen window | Destiny, irreversibility, progress, fault, or authority |
-| G4 scale closure or conversion | Preselect G4a conditional information, prediction, or intervention gain, or G4b one non-commutation, K violation, relation change, or intervention-response change. | Bounded closure failure or preselected object/intervention conversion | A higher scale is truer, more important, or more authorized |
+| G4 scale closure or conversion | Preselect G4a conditional information, prediction, or intervention gain, or G4b exactly one of object-dynamics non-commutation, intervention non-commutation, identity-criterion violation, effective-relation change, and intervention-response change; never merge the five into one disjunctive fallback. | Bounded closure failure or preselected object/intervention conversion | A higher scale is truer, more important, or more authorized |
 
 Never rescue one subtype or success criterion with an unselected favorable result. A positive failure is not a baseline victory; only the complete frozen null gate supports `N0`. A null comparator is a preregistered rule or model, not an observation. Only externally observed outcomes collected under the frozen comparator contract may support `null_supported`; writing `null`, naming `N0`, or observing no supplied counterexample is not evidence.
+
+The four root families are the complete set; this version adds no fifth root. Translation fidelity is not a new root: judge it by combining the translation contract, G2 channel tests, and G4 closure contracts. Discuss a new root family only when a question presents an irreducible independent state machine, its own inputs and outputs, its own failure semantics, and its own success criteria; do not invent a root for a new topic.
+
+### Challengeable Items and Post-Result Downgrade
+
+All four roots share the same scale invariants: the preselected subtype, the success criterion, the `decision_rule`, and the `null_decision_rule`. Every scale transfer must preserve these four unchanged; swapping any of them creates a new instance rather than a transfer.
+
+A challenge may target any of these sixteen items: candidate object, subtype, success criterion, `N0`, primary target or aggregation, model selection or ensemble, multiple-comparison rule, controls, positive threshold, null decision rule, data split, generalization unit, contract version, preregistration status, deviation record, and falsifier. Any item proven to have changed after results lowers the instance's support eligibility. Do not overwrite the frozen record with a post-result version; register the change and the downgrade in a child record.
 
 ## Human Empirical Instances
 
@@ -126,7 +134,9 @@ Apply the same freeze, result-state, support-eligibility, deviation, and null di
 |---|---|---|
 | H1 meaning and coordination | Resource allocation, action choice, or coordination outcome | Conditional directional anchor for that outcome; not a unified inner state, consent, or common will |
 | H4 power, mediation, and reflexivity | Evidence coverage, expression safety, object behavior, or reflexive response | Bounded positional, mediation, publicity, or response effect; not malice, responsibility, or disposition |
-| H5 historical carrier | One carrier family, one atomic carrier reference, and one persistence criterion | Candidate trace in the named carrier and window; future path effect still requires G3 |
+| H5 historical carrier | One of the five carrier families, one atomic carrier reference, and one of the three persistence criteria | Candidate trace in the named carrier and window; future path effect still requires G3 |
+
+H5 preselects exactly one subtype from the closed list of five carrier families: `institutional_or_textual_record`, `role_or_organizational_arrangement`, `habit_or_practice`, `trauma_record`, and `collective_memory_carrier`. It preselects exactly one criterion from the closed list of three: `threshold_persistence_over_preregistered_window`, `repeat_detection_across_preregistered_windows`, and `persistence_after_event_or_exposure_end`. `selected_carrier` is one non-empty atomic reference, never a list, and `selected_carrier_family_id` must match the preselected subtype's family exactly; any mismatch disqualifies the instance before results are read. Never search across families or criteria for one surviving result.
 
 H2 is a carrier and responsibility classification rule, H3 a classification of institutional writeback, and H6 a normative boundary. Do not treat these classifications as empirical causes. No H instance creates value, obligation, diagnosis, or authorization.
 
@@ -187,7 +197,7 @@ The dashboard is material. Its time-stamped records can become observations for 
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:chat-response-audit-001
-schema_version: '1.1'
+schema_version: '1.2'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -269,12 +279,13 @@ unknowns_and_counterevidence:
   - 'unknown: department-specific feasibility, values, authorization, stopping, rollback, and remedy'
   counterevidence:
   - staffing, workload, seasonality, message mix, and metric changes remain live alternatives
-output_ceiling: diagnostic_only
+conflicts: []
+output_ceiling: description_only
 ceiling_transition:
   operation: root
   inputs: []
   basis: []
-  result: diagnostic_only
+  result: description_only
 module_runs:
 - module: ariadne-evidence
   status: completed
@@ -293,3 +304,16 @@ authorization_effect: none
 <!-- method-record-example:end -->
 
 The bounded result is: a pre/post decrease was observed under an incompletely specified metric; causality and cross-department transfer remain unresolved; universal adoption is not supported or authorized.
+
+## Chained Virtual Instances m1-m4
+
+These virtual instances describe a fictional multi-layer transport model that cites no external observation; they only show how root contracts chain and give no empirical support to any G claim.
+
+| Instance | Candidate object | Preselected criterion | N0 | Fails when |
+|---|---|---|---|---|
+| m1 / G1a | Interconnected unit groups with frozen B, X, T, SP, K, and grouping | `out_of_sample_predictive_gain` | Complexity-matched baseline without the grouping | Gain holds only in training data, dies under slight boundary perturbation, or fails the independent time block |
+| m2 / G2a | One conduction channel and target transition on m1's object | `controlled_perturbation_effect` | Controlled blockage leaves the target transition below threshold | The blockage does not move the transition above threshold; success registers the channel only as a candidate causal carrier with delay measured, leaving capacity, reliability, controllability, and loss unknown |
+| m3 / G3a | History variable "backlog over the previous three rounds" on the same object | `historical_conditional_predictive_gain` | Current queue, environment input, and measurement protocol suffice | History adds no out-of-sample increment after controls, or causal path dependence is claimed without a preselected erasure, restoration, or equivalent intervention |
+| m4 / G4a | Micro-to-aggregate mapping M with frozen retained and excluded variables | `conditional_information_gain` | Excluded local timing adds no above-threshold conditional information given the aggregate variables | The increment stays below threshold, or the criterion is switched to prediction, intervention, or G4b conversion after results |
+
+The four instances feed one another follow-up questions but never substitute for one another: m1 passing does not guarantee m2's channel effect, m2 passing does not guarantee m3's history increment, and m3 passing does not guarantee m4's closure failure.

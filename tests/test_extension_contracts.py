@@ -173,6 +173,21 @@ def test_adapter_validator_accepts_repository_contract() -> None:
     assert module.validate_adapters(ROOT) == []
 
 
+def test_adapter_validator_rejects_whitespace_variant_install_drift(tmp_path: Path) -> None:
+    """Catches a reconciliation gate that only recognizes single-space npx commands."""
+    module = _load_module("scripts.validate_adapters")
+    copied_root = tmp_path / "repository"
+    shutil.copytree(ROOT, copied_root)
+    readme = copied_root / "README.md"
+    drifted = "npx  skills add xi-kari/ariadne-skill --skill ariadne-framing --copy -a codex"
+    readme.write_text(
+        readme.read_text(encoding="utf-8") + "\n" + drifted + "\n", encoding="utf-8"
+    )
+
+    errors = module.validate_adapters(copied_root)
+    assert any("must install the complete bundle" in error for error in errors)
+
+
 def test_adapter_validator_rejects_every_declared_host_mirror_root(tmp_path: Path) -> None:
     """Catches a mirror gate that overlooks a path declared only by one host."""
     module = _load_module("scripts.validate_adapters")

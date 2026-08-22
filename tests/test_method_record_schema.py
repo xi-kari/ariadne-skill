@@ -21,7 +21,7 @@ def load_schema() -> dict:
 def valid_record() -> dict:
     return {
         "record_id": "ariadne:case-001:v1",
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": None,
@@ -63,6 +63,7 @@ def valid_record() -> dict:
             "unknowns": ["external dependency latency"],
             "counterevidence": [],
         },
+        "conflicts": [],
         "output_ceiling": "description_only",
         "ceiling_transition": {
             "operation": "root",
@@ -140,3 +141,43 @@ def test_additional_top_level_fields_are_rejected() -> None:
     record["silent_authorization"] = True
     with pytest.raises(jsonschema.ValidationError):
         validate_method_record(record, load_schema())
+
+
+def test_conflicts_field_is_required_and_typed() -> None:
+    missing = valid_record()
+    del missing["conflicts"]
+    with pytest.raises(jsonschema.ValidationError):
+        validate_method_record(missing, load_schema())
+
+    malformed = valid_record()
+    malformed["conflicts"] = [{"conflict_id": "CONF-1", "kind": "scale_mapping"}]
+    with pytest.raises(jsonschema.ValidationError):
+        validate_method_record(malformed, load_schema())
+
+    populated = valid_record()
+    populated["conflicts"] = [
+        {
+            "conflict_id": "CONF-1",
+            "kind": "scale_mapping",
+            "record_refs": [{"record_id": "ariadne:case-001:v1", "record_version": 1}],
+            "description": "Sibling records map the team scale differently.",
+        }
+    ]
+    validate_method_record(populated, load_schema())
+
+
+def test_skipped_module_run_requires_a_reason() -> None:
+    record = valid_record()
+    record["module_runs"].append(
+        {
+            "module": "ariadne-audit",
+            "status": "not_run",
+            "input_records": [],
+            "output_record": None,
+        }
+    )
+    with pytest.raises(jsonschema.ValidationError):
+        validate_method_record(record, load_schema())
+
+    record["module_runs"][-1]["reason"] = "module_unavailable"
+    validate_method_record(record, load_schema())

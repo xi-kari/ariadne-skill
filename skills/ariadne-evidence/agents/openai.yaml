@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Evidence"
-  short_description: "Audit claims, evidence, causes, analogies, and limits"
+  short_description: "Grade how far existing materials support each claim"
   default_prompt: "Use $ariadne-evidence to separate claims, sources, evidence, causes, analogies, and support limits."
 
 policy:

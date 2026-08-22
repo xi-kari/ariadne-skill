@@ -60,6 +60,7 @@ Give each option a stable `option_id` and freeze:
 - target object, territory, validity period, and identity criterion;
 - reversibility, lock-in, resources, executor, and affected positions;
 - forecast or consequence references;
+- `worst_acceptable_outcome`, the worst result that remains acceptable on the shared baseline;
 - distribution of benefits, costs, risks, rights effects, and delayed burdens;
 - information value and what the option can distinguish;
 - authority, stop, appeal, rollback, and remedy requirements.
@@ -68,7 +69,11 @@ Include exactly one `no_action` option and point to it with `no_action_option_id
 
 Include active action, delay, a reversible experiment, and exit or transfer when applicable. Create a new version or option ID when the action, object, territory, or duration changes.
 
+For `SEL-SYS`, the additional option kind is `system_variant`: it compares differential outcomes under different environments or retention mechanisms and does not let the system decide. A `system_variant` option never enters `authorized` and never converts into `external_action`.
+
 For `no_action`, state the baseline time, expected path, current allocation, continuing harms, legal or role duties, observation owner, protective minimum, and conditions for reopening review. Never model inaction as zero consequence or zero responsibility.
+
+Review `no_action` at the same tier as `active_action` — the same C12 bridge and PF bindings — when inaction entrenches an incumbent advantage, when a low-power position cannot exit on its own, when delay would create irreversible lock-in, or when waiting for more evidence becomes indefinite postponement. In these cases, even without a main action, register the minimum protection, disclosure, appeal access, or interim carrying that remains required.
 
 ## 5. Compare Consequences and Distribution
 
@@ -87,6 +92,8 @@ Audit consequences across `SP=<A,X,T,O,C,R,I,N,J>`:
 - jurisdiction and authority.
 
 Maintain an affected-position ledger. For each position, record benefit, cost, risk, right impact, timing, power level (`low`, `medium`, `high`, or `unknown`), exit ability, and burden transfer. Pay special attention to overlapping members, bridge actors, temporary-circle residues, silent positions, and people who cannot exit.
+
+Compare each option's `worst_acceptable_outcome` on the same baseline. Never substitute average benefit or aggregate net value for it; keep the protection floor and low-probability high-consequence paths visible beside it.
 
 Instantiate two review principles rather than naming them:
 
@@ -146,6 +153,8 @@ Do not combine partial tuples. Match the selection record, selected option, exte
 
 Verify external records through stable IDs and independent evidence. The Ariadne record may link and check authorization but must keep `authorization_effect: none`.
 
+Write every external verification reference with four fields: `record_type`, the external record ID, the reported status, and an independent `verification_ref`. Keep every `record_id`, `verification_ref`, and procedure ID an external reference without leading or trailing whitespace. Treat `none`, `self`, `self:*`, `GHOST`, and their case or whitespace variants as invalid tokens, and treat self-reported status strings such as `selection:passed`, `C12:passed`, or `J:authorized` as equally invalid. The module links to and checks external records; it never generates those states inside its own record.
+
 ## 9. Bind PF-1-PF-10
 
 Create exactly ten unique protection bindings. For each, record applicability, reason, evidence, mechanism reference, owner, stop trigger, appeal, review, rollback, remedy, and expiry.
@@ -194,6 +203,8 @@ Do not average a failed or unknown hard condition against strengths elsewhere.
 
 Treat T0-T4 as intervention task types, not maturity ranks or a mandatory sequence. Re-select the task when the object, scale, identity criterion, time, jurisdiction, affected positions, or action changes. Every non-draft execution record must preserve an append-only state log; terminal `rolled_back`, `completed`, `expired`, and `withdrawn` records never return to active.
 
+Chain the `execution_state_log`: append state events in order, close each event with the previous event's hash and its own hash, and register the event count, head hash, and current state with an external anchor. Keep in every event the full choice as of that moment plus the `selected_action`, C12, unique J, and O1-O4 references. Stopping, rollback, completion, expiry, or withdrawal never deletes the historical authorization chain, and a terminal record never re-enters active by recomputing hashes over the same bundle; continuing requires new selection, authorization, and execution records. Keep the current execution state equal to the state of the complete 17-field choice record. The machine contract for T0-T4 entry and this log is the companion `intervention-levels.json`.
+
 | Type | Task | Allowed direction | Immediate stop or reroute |
 |---|---|---|---|
 | T0 | Establish a safe carrier for evidence, refusal, and help. | Anonymous, proxy, encrypted, staged, independently held evidence and support. | Identity exposure, retaliation, lost independence, or unsafe contact. |
@@ -201,6 +212,8 @@ Treat T0-T4 as intervention task types, not maturity ranks or a mandatory sequen
 | T2 | Repair a verified carrying-return chain. | Restore feedback, support middle carriers, parallel replacement channels, bounded resource or responsibility repair. | Replacement fails, return does not reach burdened positions, bad news cannot change the plan, or authority fails. |
 | T3 | Maintain slow variables, succession, redundancy, and recovery margin. | Long-horizon monitoring, multiple carriers, limited experimentation, review, and retirement preparation. | Basic protection loses resources, monitoring becomes control, or cost is exported to low-power or future positions. |
 | T4 | Exit, transfer, or preserve evolutionary memory when repair is unsafe or unjustified. | Safe exit, staged transfer, substitute support, consent-bounded memory, duty and remedy settlement. | Retaliation, withdrawn consent, unsafe new carrier, excess data use, or evaded obligations. |
+
+Three T4 clauses apply. Admit a strategic-cost action as a candidate only when the subject is voluntary and informed, the cost is bearable, the experience is explicitly recorded, and the action does not exhaust all remaining strength. Never romanticize exit as brave, loyal, mature, or the only right course; this mirrors the existing ban on romanticizing captivity. After entry into a new carrier system, re-register from the new object's T0, scale, and identity criterion; old authorizations do not carry over.
 
 Do not let a T type bypass explanation, diagnosis, normative choice, C12, PF, J, or O1-O4. In an emergency, defer to valid external emergency authority for the minimum protective act and restore ordinary review promptly.
 
@@ -249,7 +262,7 @@ The card keeps the urgent reorganization option visible but does not treat urgen
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:choice:CH-TEAM-022
-schema_version: '1.1'
+schema_version: '1.2'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -318,12 +331,13 @@ unknowns_and_counterevidence:
   - The independent appeal owner and full affected-position distribution are not verified.
   counterevidence:
   - Immediate reorganization may create irreversible burden before protected participation occurs.
-output_ceiling: requirements_only
+conflicts: []
+output_ceiling: description_only
 ceiling_transition:
   operation: root
   inputs: []
   basis: []
-  result: requirements_only
+  result: description_only
 module_runs:
 - module: ariadne-choice
   status: completed

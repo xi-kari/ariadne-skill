@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Choice"
-  short_description: "Compare action and inaction within value and authority limits"
+  short_description: "Compare action, delay, exit, and inaction on one baseline"
   default_prompt: "Use $ariadne-choice to compare action, delay, experiment, exit, and inaction within value and authority limits."
 
 policy:

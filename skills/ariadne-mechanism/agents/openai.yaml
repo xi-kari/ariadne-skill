@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Mechanism"
-  short_description: "Compare mechanisms, baselines, channels, and residuals"
+  short_description: "Explain why via competing mechanisms that beat a baseline"
   default_prompt: "Use $ariadne-mechanism to compare mechanisms, channels, baselines, falsifiers, and residuals."
 
 policy:

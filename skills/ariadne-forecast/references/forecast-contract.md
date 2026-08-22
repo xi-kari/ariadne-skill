@@ -123,6 +123,8 @@ Prefer the simple model on a tie. Restrict, downgrade, or retire the complex cap
 | Sparse data with plausible mechanisms | Conditional direction | Trigger precision, reverse-signal response, and explicit abstention. |
 | Unstable object or target | No forecast | Contract repair only. |
 
+Match the horizon to the update clock of each candidate mechanism: immediate, interaction, organizational, institutional, or long-term. An immediate reaction can use a short window; organizational or institutional change needs a longer one. Compressing a long-clock mechanism into a short window misjudges it as ineffective: that is a horizon contract error to repair, not a `not_supported` result. Extrapolating a short-window signal without limit misjudges a trend. When mechanisms on several clocks coexist, register a separate deadline for each intermediate result.
+
 Match metrics to use. Include false-positive and false-negative costs, low-probability high-harm events, timing error, and error concentration across affected positions. Good predictive metrics do not prove the mechanism, fairness, or permissibility of action.
 
 ## 6. Evaluate Recursive Orders Separately
@@ -222,7 +224,7 @@ failure_semantics: Keep supported, not_supported, unresolved, target_invalid, an
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:forecast:F-TEAM-017
-schema_version: '1.1'
+schema_version: '1.2'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -272,18 +274,19 @@ claim_ledger:
   - SRC-APPEAL-CUTOFF
   support_rule_ids: []
 rule_registry: []
+conflicts: []
 unknowns_and_counterevidence:
   unknowns:
   - Protected reports may be withheld
   - and the small sample does not support a calibrated probability.
   counterevidence:
   - A verified reduction in actual hours would strengthen P2.
-output_ceiling: diagnostic_only
+output_ceiling: description_only
 ceiling_transition:
   operation: root
   inputs: []
   basis: []
-  result: diagnostic_only
+  result: description_only
 module_runs:
 - module: ariadne-forecast
   status: completed

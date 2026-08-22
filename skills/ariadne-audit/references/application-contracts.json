@@ -1,7 +1,34 @@
 {
   "source": "Part 15.3 of Cross-scale Multi-circle Structural Reasoning Framework v8.2",
   "source_sha256": "608A4E4099B18C96C18ED3C92A2AB5CDACBD737DACA4214C77DEBDD795DA3A20",
-  "common_rule": "Every application freezes D0, SP, K, time window, sources, affected and low-power positions, applies PF-1 through PF-10, records source gaps, and keeps authorization_effect none.",
+  "common_rule": {
+    "text": "Every application freezes D0, SP, K, time window, sources, affected and low-power positions, applies PF-1 through PF-10, records source gaps, and keeps authorization_effect none.",
+    "dynamic_entry": {
+      "when": "Whenever one of the nine application modules needs dynamic analysis, it must additionally declare all nine items below.",
+      "required_declarations": [
+        "primary actor",
+        "primary circle",
+        "adjacent circles",
+        "relation types",
+        "M/Psi (material and experience-meaning) conditions",
+        "five clock classes",
+        "events",
+        "simple baseline",
+        "result writeback"
+      ],
+      "model_output_rule": "Model-generated scenarios stay hypothetical or simulated and are never written back as observed.",
+      "downgrade_exits": [
+        "When a simple baseline is sufficient, keep the simpler module record.",
+        "The existence of the complex flow never becomes pressure toward real-world disposition."
+      ]
+    },
+    "dynamic_focus": [
+      {"modules": ["APP-REL", "APP-FAM"], "focus": "role activation, inability to exit, and slow, medium, and fast states"},
+      {"modules": ["APP-ORG", "APP-PLT"], "focus": "metrics, bridging, propagation, and institutional writeback"},
+      {"modules": ["APP-INS", "APP-OPI", "APP-ULS"], "focus": "representation, low-visibility positions, cross-layer aggregation loss, and calibration drift"},
+      {"modules": ["APP-SPC", "APP-EMG"], "focus": "material channels, capacity, thresholds, delays, and emergency authorization"}
+    ]
+  },
   "contracts": [
     {
       "id": "APP-REL",

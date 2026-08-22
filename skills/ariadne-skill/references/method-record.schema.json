@@ -1,0 +1,782 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xi-kari/ariadne-skill/schemas/method-record.schema.json",
+  "title": "Ariadne Method Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "schema_version",
+    "record_version",
+    "lineage_kind",
+    "parent_record_id",
+    "parent_records",
+    "request_type",
+    "object_contract",
+    "evidence_cutoff",
+    "scale_scope",
+    "claim_ledger",
+    "rule_registry",
+    "unknowns_and_counterevidence",
+    "conflicts",
+    "output_ceiling",
+    "ceiling_transition",
+    "module_runs",
+    "module_payloads",
+    "recommended_next_modules",
+    "authorization_effect"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
+    "schema_version": {"const": "1.2"},
+    "record_version": {"type": "integer", "minimum": 1},
+    "lineage_kind": {"enum": ["root", "linear", "merge"]},
+    "parent_record_id": {"type": ["string", "null"], "minLength": 1},
+    "parent_records": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/recordRef"}
+    },
+    "request_type": {
+      "enum": [
+        "explanation",
+        "diagnosis",
+        "dynamic_derivation",
+        "conditional_forecast",
+        "finite_choice",
+        "intervention_review",
+        "governance_review"
+      ]
+    },
+    "object_contract": {"$ref": "#/$defs/objectContract"},
+    "evidence_cutoff": {"$ref": "#/$defs/evidenceCutoff"},
+    "scale_scope": {"$ref": "#/$defs/scaleScope"},
+    "claim_ledger": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "rule_registry": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/ruleEntry"}
+    },
+    "unknowns_and_counterevidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unknowns", "counterevidence"],
+      "properties": {
+        "unknowns": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "counterevidence": {"$ref": "#/$defs/nonEmptyStringArray"}
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/conflictEntry"}
+    },
+    "output_ceiling": {"$ref": "#/$defs/outputCeiling"},
+    "ceiling_transition": {"$ref": "#/$defs/ceilingTransition"},
+    "module_runs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/moduleRun"}},
+    "module_payloads": {"type": "array", "items": {"$ref": "#/$defs/modulePayload"}},
+    "recommended_next_modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/moduleName"}
+    },
+    "authorization_effect": {"const": "none"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"lineage_kind": {"const": "root"}}, "required": ["lineage_kind"]},
+      "then": {
+        "properties": {
+          "record_version": {"const": 1},
+          "parent_record_id": {"type": "null"},
+          "parent_records": {"maxItems": 0},
+          "ceiling_transition": {
+            "properties": {"operation": {"const": "root"}}
+          },
+          "module_runs": {
+            "items": {
+              "properties": {"input_records": {"maxItems": 0}}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"lineage_kind": {"const": "linear"}}, "required": ["lineage_kind"]},
+      "then": {
+        "properties": {
+          "record_version": {"minimum": 2},
+          "parent_record_id": {"type": "string", "minLength": 1},
+          "parent_records": {"minItems": 1, "maxItems": 1},
+          "ceiling_transition": {
+            "properties": {"operation": {"enum": ["preserve", "lower", "raise"]}}
+          },
+          "module_runs": {
+            "items": {
+              "properties": {"input_records": {"minItems": 1, "maxItems": 1}}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"lineage_kind": {"const": "merge"}}, "required": ["lineage_kind"]},
+      "then": {
+        "properties": {
+          "record_version": {"minimum": 2},
+          "parent_record_id": {"type": "null"},
+          "parent_records": {"minItems": 2},
+          "ceiling_transition": {
+            "properties": {"operation": {"const": "meet"}}
+          },
+          "module_runs": {
+            "contains": {
+              "type": "object",
+              "required": ["module", "status", "input_records"],
+              "properties": {
+                "module": {"const": "ariadne-audit"},
+                "status": {"const": "completed"},
+                "input_records": {"minItems": 2}
+              }
+            },
+            "minContains": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "outputCeiling": {
+      "enum": ["description_only", "diagnostic_only", "requirements_only"]
+    },
+    "ruleEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule_id", "rule_type", "text"],
+      "properties": {
+        "rule_id": {"type": "string", "pattern": "^RULE:[A-Za-z0-9._:-]+$"},
+        "rule_type": {"enum": ["inferential", "protocol", "normative", "operating"]},
+        "text": {"type": "string", "minLength": 1}
+      }
+    },
+    "recordRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_id", "record_version"],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
+        "record_version": {"type": "integer", "minimum": 1}
+      }
+    },
+    "conflictEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conflict_id", "kind", "record_refs", "description"],
+      "properties": {
+        "conflict_id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["object_contract", "scale_mapping", "causal_explanation", "value_premise"]},
+        "record_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/recordRef"}},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "ceilingInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_id", "record_version", "ceiling"],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
+        "record_version": {"type": "integer", "minimum": 1},
+        "ceiling": {"$ref": "#/$defs/outputCeiling"}
+      }
+    },
+    "ceilingBasis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis_id", "basis_kind"],
+      "properties": {
+        "basis_id": {"type": "string", "minLength": 1},
+        "basis_kind": {"enum": ["external_evidence", "protocol_fulfillment"]}
+      }
+    },
+    "ceilingTransition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "inputs", "basis", "result"],
+      "properties": {
+        "operation": {"enum": ["root", "preserve", "lower", "raise", "meet"]},
+        "inputs": {"type": "array", "items": {"$ref": "#/$defs/ceilingInput"}},
+        "basis": {"type": "array", "items": {"$ref": "#/$defs/ceilingBasis"}},
+        "result": {"$ref": "#/$defs/outputCeiling"},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"operation": {"const": "root"}}, "required": ["operation"]},
+          "then": {"properties": {"inputs": {"maxItems": 0}, "basis": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"operation": {"enum": ["preserve", "lower"]}}, "required": ["operation"]},
+          "then": {"properties": {"inputs": {"minItems": 1, "maxItems": 1}, "basis": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"operation": {"const": "raise"}}, "required": ["operation"]},
+          "then": {"properties": {"inputs": {"minItems": 1, "maxItems": 1}, "basis": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"operation": {"const": "meet"}}, "required": ["operation"]},
+          "then": {"properties": {"inputs": {"minItems": 1}, "basis": {"maxItems": 0}}}
+        }
+      ]
+    },
+    "objectContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boundary",
+        "state_variables",
+        "relations_or_transitions",
+        "interfaces",
+        "time_window",
+        "scale_profile",
+        "identity_criterion",
+        "status"
+      ],
+      "properties": {
+        "boundary": {"type": "string", "minLength": 1},
+        "state_variables": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "relations_or_transitions": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "interfaces": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "time_window": {"type": "string", "minLength": 1},
+        "scale_profile": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"type": "string", "minLength": 1}
+        },
+        "identity_criterion": {"type": "string", "minLength": 1},
+        "status": {"enum": ["candidate", "incomplete", "supported", "converted", "dissolved"]}
+      }
+    },
+    "evidenceCutoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["as_of", "included_source_ids", "excluded_after_cutoff"],
+      "properties": {
+        "as_of": {"type": "string", "format": "date-time"},
+        "included_source_ids": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "excluded_after_cutoff": {"const": true}
+      }
+    },
+    "scaleScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "target", "transform_status"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "transform_status": {"enum": ["not_needed", "candidate", "incomplete", "audited", "failed"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "claim_type",
+        "text",
+        "status",
+        "support_ids",
+        "support_rule_ids",
+        "counterevidence_ids"
+      ],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "claim_type": {"enum": ["D", "G", "E", "H", "N", "O"]},
+        "text": {"type": "string", "minLength": 1},
+        "status": {"enum": ["candidate", "observed", "supported", "contradicted", "unresolved", "withdrawn", "retired"]},
+        "support_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "support_rule_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "counterevidence_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "supported"}}, "required": ["status"]},
+          "then": {
+            "anyOf": [
+              {"properties": {"support_ids": {"minItems": 1}}},
+              {"properties": {"support_rule_ids": {"minItems": 1}}}
+            ]
+          }
+        }
+      ]
+    },
+    "moduleName": {
+      "enum": [
+        "ariadne-skill",
+        "ariadne-framing",
+        "ariadne-evidence",
+        "ariadne-scale",
+        "ariadne-mechanism",
+        "ariadne-human",
+        "ariadne-dynamics",
+        "ariadne-forecast",
+        "ariadne-choice",
+        "ariadne-audit"
+      ]
+    },
+    "moduleRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module", "status", "input_records", "output_record"],
+      "properties": {
+        "module": {"$ref": "#/$defs/moduleName"},
+        "status": {"enum": ["not_run", "running", "completed", "failed", "not_applicable"]},
+        "input_records": {"type": "array", "items": {"$ref": "#/$defs/recordRef"}},
+        "output_record": {"oneOf": [{"$ref": "#/$defs/recordRef"}, {"type": "null"}]},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "completed"}}, "required": ["status"]},
+          "then": {"properties": {"output_record": {"$ref": "#/$defs/recordRef"}}}
+        },
+        {
+          "if": {"properties": {"status": {"enum": ["not_run", "not_applicable"]}}, "required": ["status"]},
+          "then": {"properties": {"output_record": {"type": "null"}}, "required": ["reason"]}
+        }
+      ]
+    },
+    "humanPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation_position", "privacy_state", "allowed_purpose", "affected_positions", "alternative_explanations", "responsible_human_review"],
+      "properties": {
+        "observation_position": {"type": "string", "minLength": 1},
+        "privacy_state": {"enum": ["public", "internal", "restricted", "withheld_for_protection", "unknown"]},
+        "allowed_purpose": {"type": "string", "minLength": 1},
+        "affected_positions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["direct", "indirect", "low_power", "no_exit"],
+          "properties": {
+            "direct": {"$ref": "#/$defs/affectedPositionClass"},
+            "indirect": {"$ref": "#/$defs/affectedPositionClass"},
+            "low_power": {"$ref": "#/$defs/affectedPositionClass"},
+            "no_exit": {"$ref": "#/$defs/affectedPositionClass"}
+          }
+        },
+        "alternative_explanations": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 2, "uniqueItems": true},
+        "responsible_human_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["required", "reviewer", "status"],
+          "properties": {
+            "required": {"type": "boolean"},
+            "reviewer": {"type": "string", "minLength": 1},
+            "status": {"enum": ["pending", "completed"]}
+          }
+        }
+      }
+    },
+    "affectedPositionClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "positions", "reason"],
+      "properties": {
+        "status": {"enum": ["identified", "unknown", "not_applicable", "withheld_for_protection"]},
+        "positions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "identified"}}, "required": ["status"]},
+          "then": {"properties": {"positions": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"status": {"enum": ["unknown", "not_applicable", "withheld_for_protection"]}}, "required": ["status"]},
+          "then": {"properties": {"positions": {"maxItems": 0}}}
+        }
+      ]
+    },
+    "dynamicsPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_version", "observation_position", "events"],
+      "properties": {
+        "model_version": {"type": "string", "minLength": 1},
+        "observation_position": {"type": "string", "minLength": 1},
+        "events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event_id",
+              "fact_status",
+              "source_ids",
+              "time_window",
+              "observation_time",
+              "affected_actors",
+              "affected_circles",
+              "channel",
+              "direct_change",
+              "evidence_state",
+              "disputes",
+              "competing_explanations",
+              "reversibility",
+              "duration",
+              "follow_up_observations"
+            ],
+            "properties": {
+              "event_id": {"type": "string", "minLength": 1},
+              "fact_status": {"enum": ["observed", "externally_reported", "planned", "hypothetical", "simulated", "unknown"]},
+              "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "time_window": {"type": "string", "minLength": 1},
+              "observation_time": {"type": "string", "format": "date-time"},
+              "affected_actors": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+              "affected_circles": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+              "channel": {"type": "string", "minLength": 1},
+              "direct_change": {"type": "string", "minLength": 1},
+              "evidence_state": {"type": "string", "minLength": 1},
+              "disputes": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+              "competing_explanations": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+              "reversibility": {"type": "string", "minLength": 1},
+              "duration": {"type": "string", "minLength": 1},
+              "follow_up_observations": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1}
+            }
+          }
+        }
+      }
+    },
+    "mechanismPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidates"],
+      "properties": {
+        "candidates": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mechanism_id", "channel_observation", "discriminating_prediction", "reverse_or_falsifier", "residual_comparison_rule"],
+            "properties": {
+              "mechanism_id": {"type": "string", "minLength": 1},
+              "channel_observation": {"type": "string", "minLength": 1},
+              "discriminating_prediction": {"type": "string", "minLength": 1},
+              "reverse_or_falsifier": {"type": "string", "minLength": 1},
+              "residual_comparison_rule": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "choicePayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facts", "values", "options", "jurisdiction", "authorization", "stop_conditions", "rollback_plan"],
+      "properties": {
+        "facts": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "values": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "options": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "jurisdiction": {"type": "string", "minLength": 1},
+        "authorization": {"type": "string", "minLength": 1},
+        "stop_conditions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "rollback_plan": {"type": "string", "minLength": 1}
+      }
+    },
+    "auditPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_register", "contestability"],
+      "properties": {
+        "gate_register": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["transformations", "main_gates"],
+          "properties": {
+            "transformations": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["IT1", "IT2", "IT3", "IT4"],
+              "properties": {
+                "IT1": {"$ref": "#/$defs/gateResult"},
+                "IT2": {"$ref": "#/$defs/gateResult"},
+                "IT3": {"$ref": "#/$defs/gateResult"},
+                "IT4": {"$ref": "#/$defs/gateResult"}
+              }
+            },
+            "main_gates": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["IG1", "IG2", "IG3", "IG4", "IG5", "IG6", "IG7"],
+              "properties": {
+                "IG1": {"$ref": "#/$defs/gateResult"},
+                "IG2": {"$ref": "#/$defs/gateResult"},
+                "IG3": {"$ref": "#/$defs/gateResult"},
+                "IG4": {"$ref": "#/$defs/gateResult"},
+                "IG5": {"$ref": "#/$defs/gateResult"},
+                "IG6": {"$ref": "#/$defs/gateResult"},
+                "IG7": {"$ref": "#/$defs/gateResult"}
+              }
+            }
+          }
+        },
+        "contestability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["owner", "deadline", "original_record_retention", "downstream_correction_target", "rollback_recovery_target", "remedy"],
+          "properties": {
+            "owner": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["contact", "status"],
+              "properties": {
+                "contact": {"type": "string", "minLength": 1},
+                "status": {"const": "reachable"}
+              }
+            },
+            "deadline": {"type": "string", "format": "date-time"},
+            "original_record_retention": {"const": true},
+            "downstream_correction_target": {"type": "string", "minLength": 1},
+            "rollback_recovery_target": {"type": "string", "minLength": 1},
+            "remedy": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "gateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "finding"],
+      "properties": {
+        "status": {"enum": ["passed", "failed", "not_run", "not_applicable"]},
+        "finding": {"type": "string", "minLength": 1}
+      }
+    },
+    "forecastPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preregistration", "post_hoc_reconstruction"],
+      "properties": {
+        "preregistration": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/forecastPreregistration"}
+          ]
+        },
+        "post_hoc_reconstruction": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/forecastPostHocReconstruction"}
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "preregistration": {"$ref": "#/$defs/forecastPreregistration"},
+            "post_hoc_reconstruction": {"type": "null"}
+          }
+        },
+        {
+          "properties": {
+            "preregistration": {"type": "null"},
+            "post_hoc_reconstruction": {"$ref": "#/$defs/forecastPostHocReconstruction"}
+          }
+        }
+      ]
+    },
+    "forecastPreregistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "forecast_id",
+        "record_id",
+        "record_version",
+        "model_version",
+        "target",
+        "horizon",
+        "object_scope",
+        "baseline_time",
+        "input_cutoff",
+        "information_set_ids",
+        "simple_baseline",
+        "candidate_mechanisms",
+        "paths",
+        "expression",
+        "evaluation_rule",
+        "calibration_plan",
+        "early_signals",
+        "reverse_signals",
+        "review_triggers",
+        "pause_conditions",
+        "retirement_conditions",
+        "failure_semantics",
+        "result_writeback"
+      ],
+      "properties": {
+        "forecast_id": {"type": "string", "minLength": 1},
+        "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
+        "record_version": {"type": "integer", "minimum": 1},
+        "model_version": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "horizon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["start", "deadline"],
+          "properties": {
+            "start": {"type": "string", "format": "date-time"},
+            "deadline": {"type": "string", "format": "date-time"}
+          }
+        },
+        "object_scope": {"type": "string", "minLength": 1},
+        "baseline_time": {"type": "string", "format": "date-time"},
+        "input_cutoff": {"type": "string", "format": "date-time"},
+        "information_set_ids": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "simple_baseline": {"type": "string", "minLength": 1},
+        "candidate_mechanisms": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 2, "uniqueItems": true},
+        "paths": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 2, "uniqueItems": true},
+        "expression": {"type": "string", "minLength": 1},
+        "evaluation_rule": {"type": "string", "minLength": 1},
+        "calibration_plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["metric", "reference_class", "minimum_cases"],
+          "properties": {
+            "metric": {"type": "string", "minLength": 1},
+            "reference_class": {"type": "string", "minLength": 1},
+            "minimum_cases": {"type": "integer", "minimum": 1}
+          }
+        },
+        "early_signals": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "reverse_signals": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "review_triggers": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "pause_conditions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "retirement_conditions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "failure_semantics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["supported", "not_supported", "unresolved", "target_invalid", "not_evaluable"],
+          "properties": {
+            "supported": {"type": "string", "minLength": 1},
+            "not_supported": {"type": "string", "minLength": 1},
+            "unresolved": {"type": "string", "minLength": 1},
+            "target_invalid": {"type": "string", "minLength": 1},
+            "not_evaluable": {"type": "string", "minLength": 1}
+          }
+        },
+        "result_writeback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["owner", "due_at", "destination"],
+          "properties": {
+            "owner": {"type": "string", "minLength": 1},
+            "due_at": {"type": "string", "format": "date-time"},
+            "destination": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "forecastPostHocReconstruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_id",
+        "record_version",
+        "original_question",
+        "reconstruction_time",
+        "target",
+        "deadline",
+        "input_cutoff",
+        "available_information_ids",
+        "model_version",
+        "simple_baseline",
+        "expression",
+        "evaluation_rule",
+        "early_signals",
+        "reverse_signals",
+        "actual_outcome",
+        "hindsight_exclusions",
+        "calibration",
+        "failure_classification"
+      ],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
+        "record_version": {"type": "integer", "minimum": 1},
+        "original_question": {"type": "string", "minLength": 1},
+        "reconstruction_time": {"type": "string", "format": "date-time"},
+        "target": {"type": "string", "minLength": 1},
+        "deadline": {"type": "string", "format": "date-time"},
+        "input_cutoff": {"type": "string", "format": "date-time"},
+        "available_information_ids": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "model_version": {"type": "string", "minLength": 1},
+        "simple_baseline": {"type": "string", "minLength": 1},
+        "expression": {"type": "string", "minLength": 1},
+        "evaluation_rule": {"type": "string", "minLength": 1},
+        "early_signals": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "reverse_signals": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "actual_outcome": {"type": "string", "minLength": 1},
+        "hindsight_exclusions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "calibration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["metric", "assessment", "baseline_comparison", "limitations"],
+          "properties": {
+            "metric": {"type": "string", "minLength": 1},
+            "assessment": {"type": "string", "minLength": 1},
+            "baseline_comparison": {"type": "string", "minLength": 1},
+            "limitations": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1}
+          }
+        },
+        "failure_classification": {"enum": ["supported", "not_supported", "unresolved", "target_invalid", "not_evaluable"]}
+      }
+    },
+    "modulePayload": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "payload"],
+          "properties": {"module": {"const": "ariadne-human"}, "payload": {"$ref": "#/$defs/humanPayload"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "payload"],
+          "properties": {"module": {"const": "ariadne-dynamics"}, "payload": {"$ref": "#/$defs/dynamicsPayload"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "payload"],
+          "properties": {"module": {"const": "ariadne-mechanism"}, "payload": {"$ref": "#/$defs/mechanismPayload"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "payload"],
+          "properties": {"module": {"const": "ariadne-choice"}, "payload": {"$ref": "#/$defs/choicePayload"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "payload"],
+          "properties": {"module": {"const": "ariadne-audit"}, "payload": {"$ref": "#/$defs/auditPayload"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "payload"],
+          "properties": {"module": {"const": "ariadne-forecast"}, "payload": {"$ref": "#/$defs/forecastPayload"}}
+        }
+      ]
+    }
+  }
+}

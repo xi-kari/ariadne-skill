@@ -1,6 +1,9 @@
 ---
 name: ariadne-audit
-description: Use when a high-impact judgment, automated output, public claim, governance process, or completed Ariadne record needs gates, challenge, appeal, downgrade, rollback, retirement, or AI-boundary review.
+description: "Gate high-impact use of completed Ariadne records: transformation and main gates, appeal, rollback, downgrade, pause, withdrawal, retirement, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or when clustered module records must be merged and their conflicts preserved. 适用于：高影响审查、申诉与回滚、降级与退役、集群合并终审。"
+license: MIT
+metadata:
+  record_schema: "1.2"
 ---
 
 # Ariadne Audit
@@ -21,9 +24,9 @@ Audit whether a bounded methodology record may retain its current judgment and u
 1. Freeze the audit subject, version, owner, object contract, scale, evidence cutoff, intended use, affected and low-power positions, challenge path, and current output ceiling.
 2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark every later transformation `not_run`. An IT1 failure fixes `output_ceiling: description_only`; describe missing requirements or a protective pause without issuing requirements.
 3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Mark every gate after the first failure `not_run`. An IG1 failure fixes `output_ceiling: description_only`; do not let later paperwork repair or elevate it.
-4. Expand with FG1-FG5 and DS01-DS13 when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
-5. Require SJ1-SJ8 for every L3 judgment that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output.
-6. Add DF1-DF9 when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
+4. Expand with FG1-FG5 (the five expansion gates: object, evidence, scale, responsibility, and observation) and DS01-DS13 (the thirteen diagnostic steps: problem entry, object and boundary, signal layers, observation participation, dominant constraint, state and window, core structure, protected variables, carrying and repayment, hazard and boundary type, competing mechanisms, branch outlook, and output and writeback) when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
+5. Require SJ1-SJ8 (the strong-judgment eight: reverse conditions, repair window, evidence requirements, appeal entry, anti-retaliation, evidence supplementation, external-review trigger, and rollback and writeback) for every L3 judgment (the highest of the L1-L3 responsibility levels) that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output.
+6. Add DF1-DF9 (the nine dynamic gates: fact freeze, joint object, channels and clocks, mechanism propagation, path branching, forecast registration, normative choice, authorization and execution, and result writeback) when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
 7. Apply the AI boundary. Mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
 8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Require an externally verifiable approval for an applied governance change.
 9. Return findings, failed or not-run gates, affected claims, the lowered output ceiling, and a typed contestability payload with a reachable owner, deadline, retained original record, downstream correction target, rollback recovery target, and remedy. Keep `authorization_effect` equal to `none`.
@@ -34,11 +37,24 @@ Create or extend a schema-valid Method Record with complete parent references, t
 
 Use `intervention_review` for a proposed or active real-world intervention and `governance_review` for claim, process, model, or framework governance. Preserve failed gates and terminal states in child versions. Keep `authorization_effect: none`.
 
+## Mini Example
+
+Input question: "May this automated attrition score keep its staffing use?"
+
+```yaml
+request_type: governance_review
+gate_register: {IT1: failed, IG1: failed}
+output_ceiling: description_only
+authorization_effect: none
+```
+
 ## Stop and Downgrade
 
 Stop at `description_only` when the object or evidence chain fails. Stop at `diagnostic_only` when you can describe a bounded defect but cannot specify a safely governed correction. Use `requirements_only` to state conditions for external correction, review, or withdrawal; do not issue execution commands.
 
 Block public strong judgment when any required publication gate fails. Pause high-impact use when appeal, anti-retaliation, independent review, rollback, or authoritative writeback is not real. Withdraw or retire a claim, module, or framework when repeated or high-harm counterexamples, capture, calibration failure, identity change, or a safer simpler replacement defeats its current scope.
+
+If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
 
 ## Quick Reference
 

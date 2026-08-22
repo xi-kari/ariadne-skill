@@ -1,6 +1,9 @@
 ---
 name: ariadne-framing
-description: Use when a problem has an unclear object, boundary, time window, scale, identity criterion, task type, or requested output level.
+description: "Freeze what an Ariadne run is actually about: the candidate object's boundary, state variables, relations, interfaces, time window, scale profile, and identity criterion, plus the requested output type. Use when the object, scope, or task type is ambiguous or contested, or when a named group, system, or phase is treated as real without being established. Part of the Ariadne methodology suite. 适用于：问题定界、候选对象冻结、任务类型分类、边界与同一性判据。"
+license: MIT
+metadata:
+  record_schema: "1.2"
 ---
 
 # Ariadne Framing
@@ -37,9 +40,22 @@ When no upstream record exists, create the minimum valid record and identify use
 | Scale or vocabulary changes | Record source and target; route to `ariadne-scale` | No transfer claim |
 | High-impact or irreversible use | Expose protection and strong-judgment gaps | No action or authorization |
 
+## Mini Example
+
+```yaml
+# Input: "Is the new-hire onboarding process broken?"
+request_type: diagnosis
+object_contract:
+  boundary: the 2026 onboarding workflow in one named company
+  status: candidate
+output_ceiling: description_only
+```
+
 ## Stopping Conditions
 
 Stop at an exploratory question list when boundary, time window, scale, or identity cannot be stated. Stop at a candidate frame when object validity, causality, or source support has not been audited. Route evidence questions to `ariadne-evidence`, scale changes to `ariadne-scale`, mechanisms to `ariadne-mechanism`, human-domain risks to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact gates to `ariadne-audit`.
+
+If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
 
 ## Common Mistakes
 

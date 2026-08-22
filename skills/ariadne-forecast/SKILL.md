@@ -1,6 +1,9 @@
 ---
 name: ariadne-forecast
-description: Use when a future claim needs a target, deadline, frozen inputs, simple baseline, calibration, early and reverse signals, failure semantics, or result writeback.
+description: "Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable and calibrated; for undated path exploration use ariadne-dynamics instead. Part of the Ariadne methodology suite. 适用于：可评估预测、前瞻预登记、基线与校准、失败判定与结果回写。"
+license: MIT
+metadata:
+  record_schema: "1.2"
 ---
 
 # Ariadne Forecast
@@ -40,6 +43,8 @@ Return plain-language reasoning first. Then expose the forecast ID, frozen targe
 
 Stop at `description_only` when the object, target, observation rule, horizon, or cutoff is not stable. Stop at `diagnostic_only` after publishing or evaluating a forecast. Never claim inevitability, empirical verification from simulation, value priority, consent, jurisdiction, or permission to act.
 
+If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+
 ## Quick Reference
 
 | Situation | Required response |
@@ -50,6 +55,16 @@ Stop at `description_only` when the object, target, observation rule, horizon, o
 | Outcome changes the object identity | Mark `target_invalid`; preserve the original record. |
 | Complex model ties the baseline | Prefer the baseline and withdraw incremental-ability claims. |
 | Action question follows | Hand off conditions to `ariadne-choice`; keep authorization at `none`. |
+
+## Mini Example
+
+```yaml
+# Input: "Will at least 3 of the 24 team members resign by 2026-11-30?"
+target: three voluntary departure notices from the frozen roster
+horizon: {start: '2026-09-01', deadline: '2026-11-30'}
+simple_baseline: matched historical frequency predicts two departures
+output_ceiling: description_only
+```
 
 ## Common Mistakes
 
