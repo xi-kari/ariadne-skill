@@ -1,0 +1,339 @@
+{
+  "source_part": "Part 8",
+  "prototypes": [
+    {
+      "id": "S0",
+      "name": "anchor condensation",
+      "entry": [
+        "S0-E1: A shared problem or meaning arrangement produces visible local gathering, while the boundary and K are not yet stable.",
+        "S0-E2: Candidate generative actions recur, while carrying is still thin."
+      ],
+      "exit": [
+        "S0-X1: The anchor, boundary, and generative roles are stable across windows and traceable commitment with initial carrying appears; S1 may be tested.",
+        "S0-X2: The gathering disperses, splits, is absorbed, or enters dormancy, without having to pass through S1."
+      ],
+      "observables": [
+        "S0-O1: Competing formulations are still under negotiation.",
+        "S0-O2: Resource gathering comes with high entry and exit.",
+        "S0-O3: Generative actors carry translation, convening, or trial and error.",
+        "S0-O4: Failed probes and alternative histories are still preserved."
+      ],
+      "counterexamples": [
+        "A hot topic or platform recommendation can manufacture short-term synchrony; administrative naming can manufacture a formal team.",
+        "Observe whether commitment and the object boundary persist after rewards, exposure, or orders are removed."
+      ],
+      "falsifiers": [
+        "If shared direction, action clustering, and generative roles show no difference from a matched temporary gathering, withdraw S0.",
+        "If stable roles, carrying, and repeated operation already exist, S0 is not the dominant state."
+      ],
+      "scale_boundary": "Distinguish generators, early participants, potential exiters, and external namers; do not aggregate individual personalities into a collective state.",
+      "evidence_elevation": "A meaning arrangement causing resource, action, or coordination differences requires an H1-instance; a specified channel causing formation requires a G2-instance; trauma or failure changing the future requires an H5-instance first, then a G3-instance check.",
+      "contract_links": "U01/U02/U03/U08/U09/U11; H1/H2/H5; G1/G2/G3; C1/C2/C4/C5/C10/C12",
+      "non_authorization": "The only conclusion S0 permits is compatibility with the anchor-condensation prototype within the stated object, scale, and window. It cannot prove that participants lack capacity, value, or will, and it does not authorize support, dissolution, screening, or exclusion."
+    },
+    {
+      "id": "S1",
+      "name": "generative-core foundation",
+      "entry": [
+        "S1-E1: K, the anchor, and generative roles are repeatably identifiable.",
+        "S1-E2: Key functions continuously depend on the generative core rather than on a one-off emergency concentration."
+      ],
+      "exit": [
+        "S1-X1: New entrants form sustained carrying, responsibility, and boundary interfaces; S2 may be tested.",
+        "S1-X2: The generative core splits, exits, is taken over, or goes dormant, or the object dissolves; move to the corresponding path."
+      ],
+      "observables": [
+        "S1-O1: Anchor and boundary are initially stable.",
+        "S1-O2: Key decisions depend on the generative core.",
+        "S1-O3: Rules and memory carriers begin to repeat.",
+        "S1-O4: External entry is limited and directed."
+      ],
+      "counterexamples": [
+        "A mature organization may still have its founder publicly announce decisions while the actual carrying layer is already large; a newly created administrative department may be only a role unit of a higher object.",
+        "Trace actual execution, stop rights, feedback, and how the collective runs while the core is temporarily absent."
+      ],
+      "falsifiers": [
+        "If multi-center carrying still runs stably while the generative core has low involvement, core dependence is refuted.",
+        "If the anchor and K cannot be maintained across windows, return to S0, split, merge, or unknown."
+      ],
+      "scale_boundary": "Freeze generative roles, early carriers, higher-level namers, and external supporters; when the organization chart conflicts with actual channels, record conflicted.",
+      "evidence_elevation": "Outcome effects of the anchor or of the generative core require H1 and G2 respectively; future effects of early institutions or trauma require H5 and G3.",
+      "contract_links": "U01/U02/U03/U04/U06/U07/U09/U11; H1/H2/H3/H4; G1/G2/G3; C1/C2/C3/C5/C9/C10/C11/C12",
+      "non_authorization": "S1 may not be read as immature, backward, or due for integration. It grants generators no qualification for permanent leadership, expanded power, forced institutionalization, or replacing others."
+    },
+    {
+      "id": "S2",
+      "name": "first expansion and carrying differentiation",
+      "entry": [
+        "S2-E1: At least one kind of boundary keeps expanding and changes relations.",
+        "S2-E2: Distinguishable carrying, cost, exit, and unresolved participation positions appear outside the generative core."
+      ],
+      "exit": [
+        "S2-X1: Repeated load and pressure form connected constraints that persistently divide channels; S3 may be tested.",
+        "S2-X2: Expansion stops, retreats, jumps, splits, merges, is taken over, goes dormant, or collapses."
+      ],
+      "observables": [
+        "S2-O1: Entry, exit, and interface composition change.",
+        "S2-O2: Roles and responsibility differentiate.",
+        "S2-O3: Feedback volume, translation cost, lag, and recovery needs change.",
+        "S2-O4: Identification, dissent, exit, and safety are recorded separately."
+      ],
+      "counterexamples": [
+        "Headcount or user growth does not necessarily change structure; open conflict may be improved expression safety finally making old problems visible."
+      ],
+      "falsifiers": [
+        "After freezing the counting basis, if growth is not sustained and does not change boundary, roles, responsibility, interfaces, or load, withdraw S2.",
+        "If the alleged differentiation comes only from the center's unilateral labels, withdraw it as well."
+      ],
+      "scale_boundary": "The whole, the center, new carriers, exiters, and externalized costs must enter together; widening the observation scope adds no J authority over new members.",
+      "evidence_elevation": "Expansion or channels causing outcome differences require G2 or G4; anchor coordination requires H1; observation effects on expression, publicity, and power require H4; historical effects require H5 and G3.",
+      "contract_links": "U01/U02/U03/U04/U06/U07/U08/U09/U11; H1/H2/H3/H4/H5; G1/G2/G3/G4; C1/C2/C3/C4/C5/C6/C7/C9/C10/C11/C12",
+      "non_authorization": "S2 does not allow naming non-identifying, exiting, or ambiguously participating members as negative subjects, and it does not allow expansion needs to authorize unifying thought, restricting exit, or purging dissent."
+    },
+    {
+      "id": "S3",
+      "name": "development under connected constraints",
+      "entry": [
+        "S3-E1: At least two kinds of constraints reinforce each other and affect channels across windows.",
+        "S3-E2: Operation continues, but end-of-chain carrying, feedback, resources, or recovery bears persistent extra load."
+      ],
+      "exit": [
+        "S3-X1: Key relations, permissions, resources, or interfaces begin actual reconfiguration; S4 may be tested.",
+        "S3-X2: Move to regression, pseudo-steady state, dormancy, takeover, forced rewrite, migration, or collapse."
+      ],
+      "observables": [
+        "S3-O1: A constraint network and bottlenecks.",
+        "S3-O2: Output continues while loss, rework, and hidden labor increase.",
+        "S3-O3: Repairs start repeatedly but are not written back.",
+        "S3-O4: Center versus edge, metric versus carrying, and nominal versus actual keep splitting."
+      ],
+      "counterexamples": [
+        "Protective layering and redundancy in high-risk environments may raise reliability; deliberate load-shedding reconfiguration may temporarily slow output.",
+        "Check whether the restriction blocks necessary feedback or instead provides error isolation and alternative paths."
+      ],
+      "falsifiers": [
+        "If, after removing common inputs, measurement bias, and short-term peaks, the constraints show no connected relation, or alternative channels, writeback, and recovery at the carrying end remain effective, S3 is not dominant."
+      ],
+      "scale_boundary": "Split the center, the edge, functional units, carrying ends, and externally affected positions; allow parallel. The disappearance of weak signals may not be treated as the disappearance of problems.",
+      "evidence_elevation": "Power or mediation masking requires H4; specified channels and mutual reinforcement require G2; historical lock-in requires G3; cross-scale closure failure requires G4.",
+      "contract_links": "U02/U03/U05/U06/U07/U08/U09/U10/U11; H1/H2/H3/H4/H5; G2/G3/G4; C2/C3/C4/C5/C6/C7/C9/C10/C11/C12",
+      "non_authorization": "An S3 classification does not authorize breaking barriers, purging, takeover, forced reform, or handing transition costs to weak positions. It only says the constraint network must keep being distinguished from competing explanations."
+    },
+    {
+      "id": "S4",
+      "name": "structural-reconfiguration window",
+      "entry": [
+        "S4-E1: At least one key field actually changes, not merely a rename or publicity.",
+        "S4-E2: Old and new arrangements coexist, transition costs are traceable, and K is continuously checked."
+      ],
+      "exit": [
+        "S4-X1: Channels, feedback, carrying, and recovery improve across windows without hidden outsourcing; S5 may be tested.",
+        "S4-X2: The new structure is unusable; move to dormancy, regression, takeover, forced rewrite, pseudo-steady state, or collapse."
+      ],
+      "observables": [
+        "S4-O1: Permissions, resources, roles, responsibility, and stop conditions are genuinely written back.",
+        "S4-O2: Dual systems and transition costs.",
+        "S4-O3: Buffers, redundancy, cooling, stopping, and rollback.",
+        "S4-O4: Results from multiple positions enter real feedback."
+      ],
+      "counterexamples": [
+        "Large-scale renaming, personnel replacement, or redrawn process charts may be symbolic reform; demolition, overload, and output decline may be destructive purging or resource extraction."
+      ],
+      "falsifiers": [
+        "If actual relations, permissions, resources, and execution have not changed, withdraw S4.",
+        "When no usable new structure exists and functions keep rupturing, the process may not be packaged as improving reconfiguration."
+      ],
+      "scale_boundary": "Cover the pre-change baseline, transition, cooling, rollback, and recovery windows; separate reform initiators, executors, carriers, and cost bearers.",
+      "evidence_elevation": "Reconfiguration causing improvement or harm requires G2 and the CAUSAL gate; object or intervention conversion requires G4; whether failed attempts affect the future requires G3, and a tunneling analogy is no substitute.",
+      "contract_links": "U03/U05/U06/U07/U09/U10/U11; H1/H2/H3/H4/H5; G2/G3/G4; C2/C3/C4/C5/C6/C7/C9/C10/C11/C12",
+      "non_authorization": "A transition valley is at most a description awaiting testing; it cannot justify unlimited cost, irreversible harm, cancelled appeal, or sacrificing low-power positions. S4 produces no action authorization for demolition, purging, or forced migration."
+    },
+    {
+      "id": "S5",
+      "name": "efficient coordination and elastic expansion",
+      "entry": [
+        "S5-E1: Key channels are low-loss, substitutable, and writeback-capable across windows.",
+        "S5-E2: Expansion, preservation, and dissolution coordinate without relying on closed feedback or suppression of dissent."
+      ],
+      "exit": [
+        "S5-X1: Distributed carrying, self-renewal, recovery, and new generation hold across disturbances; S6 may be tested.",
+        "S5-X2: Loopholes, alienation, pseudo-steady state, regression, functional transfer, X0, takeover, or collapse ends its dominance."
+      ],
+      "observables": [
+        "S5-O1: Alternate carrying and channels are genuinely usable.",
+        "S5-O2: Output, feedback, recovery, and maintenance hold at the same time.",
+        "S5-O3: Boundary opening, protection, and exit are executable, and costs flow back.",
+        "S5-O4: Loophole audits can write back."
+      ],
+      "counterexamples": [
+        "Resource booms, selective metrics, failed complaint channels, fear-driven compliance, or pushing maintenance debt into the future can all manufacture the appearance of success."
+      ],
+      "falsifiers": [
+        "If the efficiency advantage disappears once maintenance, recovery, exit, and external costs are included, or local failures cascade rapidly while the center's involvement is low, withdraw S5."
+      ],
+      "scale_boundary": "Management-level totals must be split down to maintainers, low-power carriers, exiters, and externally affected positions; cover high-load, low-load, disturbance, recovery, and maintenance windows.",
+      "evidence_elevation": "Causes of efficient coordination and loophole effects require G2 or H4; historical inertia requires H5 and G3; cross-scale replication requires G4.",
+      "contract_links": "U01-U11; H1/H2/H3/H4/H5; G1/G2/G3/G4; C1-C12",
+      "non_authorization": "S5 is not a label of goodness, maturity, or an exportable model. Persistence, growth, and selection do not equal legitimacy, and they do not authorize expansion, replication, takeover, or demanding that members bear more."
+    },
+    {
+      "id": "S6",
+      "name": "adaptive dynamic balance",
+      "entry": [
+        "S6-E1: With low central involvement, multiple positions can still sense, correct, recover, and write back.",
+        "S6-E2: New carriers, rules, and boundaries keep renewing without depending on the same irreplaceable individuals."
+      ],
+      "exit": [
+        "S6-X1: Recovery slows, variance amplifies, writeback fails, or central dependence or carrying rupture appears; move to regression or another path.",
+        "S6-X2: Mission completion, functional transfer, split, merge, paradigm replacement, or X0 changes the object contract."
+      ],
+      "observables": [
+        "S6-O1: Recovery and secondary instability after disturbances.",
+        "S6-O2: Multi-center coordination with a higher-level backstop.",
+        "S6-O3: New carriers move from training to real takeover.",
+        "S6-O4: Feedback, audit, appeal, and rule revision stay in a closed loop."
+      ],
+      "counterexamples": [
+        "Strong control, disappearing weak signals, resource shelter, or hidden central firefighting can all manufacture low variance; frequent replacement and reorganization may be nothing more than treating people as consumables."
+      ],
+      "falsifiers": [
+        "If, under comparable disturbances, recovery keeps slowing, local failures cascade, error correction depends on a single point, or successors cannot obtain knowledge, permissions, and protection, withdraw S6."
+      ],
+      "scale_boundary": "Require long windows across disturbances, recovery, succession, and slow variables; overall averages may not mask harm at the edges. Freeze autonomy, lateral coordination, higher-level backstop, and actual authorization.",
+      "evidence_elevation": "Effects of regulation, feedback, and multi-center arrangements require G2 and the CAUSAL gate; future increments from learning, institutional memory, and intergenerational succession require H5 and G3; cross-scale extrapolation requires G4.",
+      "contract_links": "U01-U11; H1/H2/H3/H4/H5; G1/G2/G3/G4; C1-C12",
+      "non_authorization": "S6 is not an absolute end state, a conflict-free society, or the end of history. It can regress, split, be taken over, transfer functions, enter X0, or collapse, and it gains no decision power over any other object."
+    }
+  ],
+  "x0": {
+    "candidate_entries": [
+      "First: the anchor is completed, has lost applicability, has been carried by a safer object, or continued maintenance now mainly serves the organization's own survival. This judgment must be independently reviewable; the center may not rewrite the goal and then certify completion itself.",
+      "Second: people, functions, resources, relations, records, debts, and irreplaceable values have been inventoried, and a verifiable receiver or protection arrangement exists."
+    ],
+    "disguising_appearances": "A short-term setback, funding stress, leader fatigue, or responsibility evasion can each manufacture a similar appearance; satisfying the narrative alone may not enter benign completion.",
+    "completion_faces": [
+      {
+        "face": "anchor and object",
+        "must_preserve": "Independent verification of completion, termination, or lapse; the end time of K and the items not yet closed.",
+        "failure_signal": "Rewriting the goal, deleting failed items, or the center unilaterally declaring completion."
+      },
+      {
+        "face": "core functions",
+        "must_preserve": "Each function marked completed, terminated, transferred, or unresolved; receiver capacity, permissions, resources, and rollback.",
+        "failure_signal": "Only a declaration, with no continuity of maintainers or users."
+      },
+      {
+        "face": "people and relations",
+        "must_preserve": "Safety, basic rights, stop rights, freedom from retaliation, and handoff of care and dependency relations.",
+        "failure_signal": "Privatizing organizational obligations onto members to bear on their own."
+      },
+      {
+        "face": "resources",
+        "must_preserve": "Objects, boundaries, order, timing, and destinations traceable, preventing interception by high power.",
+        "failure_signal": "Dividing internally first, then leaving the losses to low-power positions."
+      },
+      {
+        "face": "memory and evidence",
+        "must_preserve": "Successes, failures, repairs, and position memory all preserved; access, privacy, correction, and anti-retaliation made explicit.",
+        "failure_signal": "Keeping only the victory history while deleting or exposing weak-position material."
+      },
+      {
+        "face": "debts and responsibility",
+        "must_preserve": "Contracts, labor, data, maintenance, environment, appeal, and future risks keep a continuing responsible subject.",
+        "failure_signal": "Responsibility, review, and maintenance vanishing the moment the object is deregistered."
+      },
+      {
+        "face": "bounded weak links",
+        "must_preserve": "Only consultation, experience, and buffering, with explicit boundaries and time limits.",
+        "failure_signal": "Reviving the original power structure without new authorization."
+      }
+    ],
+    "outcome_states": {
+      "states": ["candidate", "in_progress", "partially_complete", "complete", "unknown"],
+      "rule": "While affected groups, residual obligations, receiving capacity, appeal, or memory safety remain unknown, benign completion may not be recorded."
+    },
+    "misclassification_map": [
+      "Functional transfer without memory and responsibility continuity may be only functional_transfer.",
+      "Unilateral closure by an external power that rewrites identity may be takeover or forced_rewrite.",
+      "Rupture without a receiver is collapse; it may not be beautified as an orderly exit."
+    ],
+    "non_authorization": "An X0 classification produces no authorization for dissolution, dismissal, asset transfer, publishing archives, releasing debts, or consent on members' behalf. It can only say which objects, obligations, evidence, protections, and unknowns must be placed on one ledger to judge whether an exit is orderly."
+  },
+  "nonlinear_paths": [
+    {
+      "id": "mixed",
+      "meaning": "Necessary features of two or more prototypes co-occur in the same object, scale, and window.",
+      "key_distinction": "If the differences map stably onto independent subsystems, register parallel instead."
+    },
+    {
+      "id": "parallel",
+      "meaning": "Different regions, levels, functions, or center and edge are in different states at the same time.",
+      "key_distinction": "Do not compress into one overall stage; each subsystem keeps its own K, evidence, and exit conditions."
+    },
+    {
+      "id": "jump",
+      "meaning": "Adjacent observation windows move from one configuration to a non-adjacent configuration with no identifiable sustained window of the intermediate prototype.",
+      "key_distinction": "First rule out sparse sampling and missing material; register the skipped functions, costs, and unknowns."
+    },
+    {
+      "id": "regression",
+      "meaning": "One or more functions degrade relative to the same object's own baseline.",
+      "key_distinction": "Separate sudden, gradual, critical-jump, and cascading forms; deliberate load shedding, X0, and functional transfer are not regression."
+    },
+    {
+      "id": "split",
+      "meaning": "The original object becomes two or more candidate objects with different K.",
+      "key_distinction": "Temporary project grouping and modularization need not change the object; register each new object anew."
+    },
+    {
+      "id": "merge",
+      "meaning": "Several objects form one new object or are absorbed by one side.",
+      "key_distinction": "An alliance need not be a merger; the weaker side's boundary, memory, exit, and residual responsibility must be listed separately."
+    },
+    {
+      "id": "dormancy",
+      "meaning": "Visible activity drops while memory, relations, symbols, capacity, or reactivation conditions are preserved.",
+      "key_distinction": "Distinguish protective withdrawal, exhausted stagnation, loss of material, and true collapse."
+    },
+    {
+      "id": "takeover",
+      "meaning": "An external subject gains control of key resources, permissions, or interfaces.",
+      "key_distinction": "External support or regulation that preserves real autonomy and stop rights need not be takeover."
+    },
+    {
+      "id": "functional_transfer",
+      "meaning": "Core functions move to another object; function may continue while the original identity, relations, or memory disappears.",
+      "key_distinction": "Outsourcing a single task is not transfer; functional continuity does not prove continuity of responsibility and memory."
+    },
+    {
+      "id": "paradigm_replacement",
+      "meaning": "The old object is not repaired but bypassed by a new object with different K, interfaces, or rules.",
+      "key_distinction": "Internal upgrade or rebranding within the same object need not be paradigm replacement; legacy obligations remain."
+    },
+    {
+      "id": "trauma_built_development",
+      "meaning": "Boundary, identity, rules, or carrying form under harm, deprivation, failure, or threat.",
+      "key_distinction": "A trauma narrative does not automatically prove future effects; protection and replication of the original harm must be tested separately."
+    },
+    {
+      "id": "pseudo_steady",
+      "meaning": "Surface metrics stay stable while carrying is exhausted, weak signals disappear, feedback is not written back, or debt rises.",
+      "key_distinction": "Build a surface-versus-actual double ledger; return to costs, recovery, stop rights, and end-of-chain feedback."
+    },
+    {
+      "id": "forced_rewrite",
+      "meaning": "A high-power subject rewrites the object while correctable consent, exit, and memory protection are missing.",
+      "key_distinction": "Separate from authorized, revocable, appealable negotiated revision; check for irreversible identity erasure."
+    },
+    {
+      "id": "external_carrier_migration",
+      "meaning": "When repair is closed off, people, capacity, resources, relations, evidence, or memory move to a safer carrying system.",
+      "key_distinction": "No receiving capacity, a romanticized departure, or privatizing the harm does not constitute safe migration."
+    },
+    {
+      "id": "collapse",
+      "meaning": "The original K no longer holds; functions, carrying, relations, or boundaries rupture without a plan.",
+      "key_distinction": "Separate from X0, functional transfer, protective dormancy, and object reorganization; released resources do not legitimate the harm."
+    }
+  ]
+}

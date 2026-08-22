@@ -44,6 +44,8 @@ For every non-unknown relation, preserve comparator ID and version, verifier, ev
 
 Define equality through a shared normalizer or fixed bins, not arbitrary pairwise distance. Preserve reflexivity, antisymmetry, and transitivity only when intermediate states, versions, coordinates, graph semantics, mappings, variables, and authorization chains compose. If auxiliary fields such as interfaces, lags, errors, intervention semantics, or protected omissions conflict without a semantic map, use `incomparable` or `unknown` even when the main range is larger.
 
+**External verification registry.** Every nontrivial axis relation must resolve against an external `comparator_results` registry entry that matches the axis, comparator ID and version, source and target summaries, relation, and verification hash. A record-internal `valid` flag, or an entry ID prefix that merely looks correct, is not a witness; without a resolvable entry, record `unknown`. When both endpoints normalize to the same state, a declared `expands` or `contracts` fails outright; record the failed comparison instead of rereading it as `equal` or parking it as `unknown`.
+
 ## Product-Order Classification
 
 Classify in this exact order:
@@ -111,6 +113,8 @@ Keep these fourteen sections in the detailed audit adjacent to the common Method
 
 A descriptive scale audit normally fills normative and action sections with an explicit non-action boundary, not an invented authorization procedure.
 
+Records created under an earlier audit layout remain readable. Mark a newer field that an older record never carried as an explicit legacy absence; do not backfill it silently with reconstructed content.
+
 ### Cross-scale proof heuristic
 
 For a proposed bridge that claims more than a descriptive translation, carry all eight fields together: `source_object`, `target_object`, `limit_or_scale_law`, `initial_conditions`, `history_structure`, `error`, `valid_time`, and `failure_boundary`. Treat the result as a proof-discipline checklist under explicit conditions. Missing fields leave a candidate bridge or requirements for a test; they do not permit a strong transfer claim.
@@ -129,6 +133,8 @@ Preserve `source_K`, `target_K`, the forward and reverse mappings, criteria pres
 | `undetermined` | Mapping or criteria have not run, are unknown, or are unobservable | No identity or conversion claim |
 
 Do not use a shared name as identity evidence. A supported object-conversion mode must align with `converted_object`; a bounded null aligns with `same_object`; an unrun test remains `undetermined`.
+
+**External verification registry.** Every nontrivial preservation or conversion claim must hand its `mapping_id` to an independent `identity_mapping_results` registry and resolve there: object summaries, K summaries, both mapping directions, the four K-check outcomes, verification artifact, and hash, checked item by item. A record-internal self-reported `valid`, or a mapping ID prefix that merely looks correct, is not a witness; an entry that does not resolve leaves the classification `undetermined`.
 
 ## Circle Relations
 
@@ -189,7 +195,7 @@ The atomic operator is M01 aggregation in descriptive mode. A expands from units
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:engagement-aggregation-audit-001
-schema_version: '1.1'
+schema_version: '1.2'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -249,18 +255,19 @@ claim_ledger:
   - loss:individual-distribution-and-missingness
   support_rule_ids: []
 rule_registry: []
+conflicts: []
 unknowns_and_counterevidence:
   unknowns:
   - 'withheld_for_protection: individual responses require a bounded trusted review path'
   - 'unknown: task-relevant subgroup distributions and nonresponse effects'
   counterevidence:
   - M01 preserves the registered weighted mean but loses individual and minority-position distinctions
-output_ceiling: diagnostic_only
+output_ceiling: description_only
 ceiling_transition:
   operation: root
   inputs: []
   basis: []
-  result: diagnostic_only
+  result: description_only
 module_runs:
 - module: ariadne-scale
   status: completed

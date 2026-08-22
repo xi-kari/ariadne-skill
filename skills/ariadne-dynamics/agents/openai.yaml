@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Dynamics"
-  short_description: "Derive event paths across clocks, thresholds, and feedback"
+  short_description: "Derive conditional event paths from a frozen state"
   default_prompt: "Use $ariadne-dynamics to derive event paths across states, clocks, thresholds, feedback, and branches."
 
 policy:

@@ -40,7 +40,7 @@ Treat IG1-IG7 as the only main flow. Use `passed`, `failed`, `not_run`, or a rea
 | IG2 | Evidence trace | Can every source, material, observation, evidence item, counterexample, case, and judgment be traced without level collapse? | Return material organization, candidate question, or hypothesis. |
 | IG3 | Affected positions | Are direct, indirect, second-order, cross-domain, and cross-time positions recorded? | Complete impact accounting; pause strong judgment and high-impact use. |
 | IG4 | Power and anti-retaliation | Can low-power positions safely add evidence, rebut, refuse, stop, appeal, and exit? | Make no adverse inference from silence; lower publication and judgment levels. |
-| IG5 | Mediation and reflexivity | Do metrics, platforms, AI, publicity, or diagnosis change the evidence or object? | Represent a conditional state transition and stop uncontrolled recursive observation. |
+| IG5 | Mediation and reflexivity | Do metrics, platforms, AI, publicity, or diagnosis change the evidence or object? | Represent a conditional state transition and stop uncontrolled recursive observation for every audited object, including the Stage-6 operation and observation-recursion cap in section 13 for confirmed S6 collectives. |
 | IG6 | Strong-judgment procedure | Does every triggered high-impact judgment pass SJ1-SJ8? | Keep an internal hypothesis, open assertion, or candidate mechanism; do not retain a comparative judgment. |
 | IG7 | Action ceiling | What is the narrowest requirement, which acts are prohibited, and how do stop, appeal, and rollback work? | Description, gap list, inaction, or continued external deliberation. |
 
@@ -58,7 +58,7 @@ Use FG1-FG5 when complexity, responsibility, evidence collection, or reflexivity
 | FG2 | Evidence | Signal cost, source, weight, and review. | IG2 |
 | FG3 | Scale | Nine axes, within-scale object and evidence, and each scale change. | IG1, IG2 |
 | FG4 | Responsibility | Rights and resource impacts, reverse conditions, repair window, appeal, and review. | IG3, IG4, IG6 |
-| FG5 | Observation | Pre-observation baseline, reaction during observation, post-publication reaction, and recursion cap. | IG5 |
+| FG5 | Observation | Pre-observation baseline, reaction during observation, post-publication reaction, and a recursion cap on every audited object, including its Stage-6 instantiation in section 13 for confirmed S6 collectives. | IG5 |
 
 Run DS01-DS13 in order:
 
@@ -170,7 +170,7 @@ Treat T0-T4 as task types rather than maturity ranks or required sequence:
 - T3: maintain slow variables, succession, redundancy, and recovery;
 - T4: exit, transfer, or preserve consent-bounded memory when repair is unsafe or unjustified.
 
-For every T type, verify entry conditions, allowed and prohibited acts, evidence, C12, N, O1-O4, atomic J, PF-1-PF-10, ceiling, stop, appeal, rollback, failure, and rerouting. Preserve append-only execution states and keep `rolled_back`, `completed`, `expired`, and `withdrawn` terminal.
+For every T type, verify entry conditions, allowed and prohibited acts, evidence, C12, N, O1-O4, atomic J, PF-1-PF-10, ceiling, stop, appeal, rollback, failure, and rerouting. Preserve append-only execution states and keep `rolled_back`, `completed`, `expired`, and `withdrawn` terminal. For T4, also verify that any strategic-cost action is voluntary, informed, bearable in cost, explicitly recorded, and not exhausting of remaining strength; that exit is not romanticized as brave, loyal, mature, or the only right course; and that entry into a new carrier system re-registers from the new object's T0, scale, and identity criterion without carrying old authorizations over.
 
 Before a relationship, family, organization, platform, institution, public-opinion, space, emergency, or ultra-large application, require:
 
@@ -182,6 +182,8 @@ Before a relationship, family, organization, platform, institution, public-opini
 - a choice or explicit inaction;
 - a candidate T type only;
 - for real action, the full external choice, authorization, correction, and state-log chain.
+
+For real action, attach the complete 17-field choice record wrapper and bind it field by field to the structured `selected_action`, the C12 bridge, explicit runtime N premises, O1-O4, the unique atomic J authorization, stop, anonymous or proxy appeal, anti-retaliation monitoring, rollback, and the execution state log. Resolve every evidence, position, channel, and owner reference, including in diagnosis-only module records, to the runtime registry: a `GHOST`, `none`, `self`, or `self:*` summary never replaces an external record, and the appeal, independent-review, and rollback owners must not be the deciding subject.
 
 Treat a missing field as a reading aid only, never as a real-world disposition record. In emergencies, do not delay valid professional rescue authority; confine Ariadne to facts, risks, minimum protection, and later review unless an external rule grants a specific action.
 
@@ -244,6 +246,17 @@ Run a pre-concept gate before mapping a subject into framework language. In plai
 
 Cap concepts at expression, exploration, diagnosis, strong judgment, or disposition. Require external review, appeal, anti-retaliation, remedy, and withdrawal in addition to normative choice, J, and O for disposition use.
 
+Invisibility is not absence of information. Before classifying opacity, read six absence signals; an absence reading generates candidate questions only, never conclusions:
+
+| Absent signal | Candidate reading |
+|---|---|
+| Anchor | A shared reference point may never have formed. |
+| Feedback | The channel may not exist, or subjects may not dare to speak. |
+| Conflict | Fear, dependence, or punishment may be suppressing it. |
+| Repair | No repair interface may exist. |
+| Exit | The cost of leaving may be unbearable. |
+| Language | No usable expression tools may be available. |
+
 Classify opacity:
 
 - `protected`: shields privacy, witnesses, vulnerable people, immature experience, or low-power feedback;
@@ -253,6 +266,16 @@ Classify opacity:
 Ask who is protected, who benefits, who reviews independently, and when opacity ends. Block publication and trigger external review when suppressive opacity appears.
 
 Require all six weak-signal protections: anonymous or low-exposure entry, independent carrier, retaliation tracking, group calibration, delayed publication when safety requires it, and proof that accepted signals changed rules, resources, responsibility, or authoritative records. A weak signal does not prove a conclusion, but low frequency, anonymity, emotion, or imperfect form do not erase it.
+
+### Stage-6 operation and observation-recursion cap
+
+This cap instantiates the qualified reference `governance.module.GOV-07 -> hsp.domain.human_intentional_collective -> hsp.state.S6`. Apply it only to an object that an independent runtime record confirms as a human intentional collective whose state includes `hsp.state.S6`. Do not apply it to an individual human, a nonhuman system, or a human collective that has not met S6; Stage 6 is not a universal layer of the wider world.
+
+Stage 6 does not mean transcending entropy or reaching a perfect system. It means only that, within a bounded time window, discovery, repair, writeback, and carrier reproduction temporarily outpace loss accumulation. Never claim Stage 6 because the object currently runs well; record five operating measures: discovery lag, repair lag, recurrence rate, repair by-products, and repair-load distribution.
+
+Expand observation recursion only when a new reaction changes boundary, identity, resources, action channels, carrying relations, feedback writeback, risk, or public memory, or supplies a new high-cost signal. Close the recursion when any of five triggers appears: two consecutive rounds produce only same-kind reactions; the object starts manipulating the diagnostic rules; continued tracking increases exposure; the information gain falls below the structural disturbance; or the diagnoser can no longer distinguish the object's state from observation artifacts.
+
+After closure, stop asking what the object really is. State only that, under current observation conditions, a certain reaction pattern can be confirmed, and that further judgment requires external review or new high-cost evidence.
 
 ## 14. Detect Capture and Provide Special Safeguards
 
@@ -264,14 +287,35 @@ Use special safeguards:
 |---|---|
 | No institutional infrastructure | Permit only a protective open assertion with material, pattern, prohibited uses, escalation and withdrawal signals, and low-risk next steps. Do not use it for punishment, files, qualification, publicity, or resource loss. |
 | Unable to exit | Prioritize safety, trusted proxy, minimum choice and information, low-exposure records, local buffers, substitute exits, and a ban on romanticizing captivity as love, loyalty, maturity, sacrifice, or collective need. |
-| No healthy baseline or complex trauma | Distinguish deterioration, hollow nominal anchor, never-built healthy support, and trauma-built rules. Do not invent a healthy past; refer clinical, care, child-protection, or legal judgments externally. |
+| No healthy baseline or complex trauma | Distinguish deterioration, hollow nominal anchor, never-built healthy support, and trauma-built rules. For the last two types, ask the six replacement questions below instead of asking how to return. Do not invent a healthy past; refer clinical, care, child-protection, or legal judgments externally. |
 | Open undertaking or love language | Separate structural incentives from voluntary avoidable cost. Require real gains in safety, refusal, and appeal for affected positions; never use love to cancel responsibility. |
 | Cross-domain metaphor | Label metaphor, analogy, mechanism candidate, evidence, formal model, or validated rule; record similarity, difference, misuse risk, and stopping evidence. |
-| Accessibility debt | Provide plain language, graded ceilings, proxy expression, non-text material, equal appeal, and protection without framework mastery. Internal certification or payment never creates external qualification. |
+| Accessibility debt | Identify six threshold debts first: learning takes time and cognitive resources; plain language and terminology lose content in translation; evidence is hard to collect safely; external review may not exist; the more is invested, the harder exit becomes; and framework-mastery identity carries interpretive power and social capital. Then provide plain language, graded ceilings, proxy expression, non-text material, equal appeal, and protection without framework mastery. Internal certification or payment never creates external qualification. |
 
 Audit courses, consulting, AI tools, scoring systems, organization software, standards, and branches for commercialization, weaponization, evidence control, qualification monopoly, and selective publication. Require each branch to state retained roots, abandoned boundaries, changed concepts, and new misuse risks.
 
 Remove an open assertion from use when it enters assessment, records, discipline, qualification, resources, or public memory; suppresses appeal; becomes a clipped label; creates long exclusion under “observation”; or loses its withdrawal conditions. Mark misuse, correct or remove downstream records, remediate harm, and refuse endorsement when capture cannot be stopped.
+
+### Six replacement questions when no healthy baseline exists
+
+For a never-built object that never formed a healthy anchor, and for a trauma-built object whose rules, identity, boundaries, and relations were built from trauma, do not ask how to return to what was. Ask instead:
+
+1. What is the current minimum safety?
+2. Is the subject receiving predictable support for the first time?
+3. Is there an expression entry that is not punished?
+4. Is there a small, repeatable trust?
+5. Which survival strategies once protected the subject and are now becoming limits?
+6. Is a new anchor being discovered, or does it need to be built together?
+
+Therapeutic, clinical, care, child-protection, and legal judgments stay with the corresponding professional procedures. The framework never invents a healthy past.
+
+### Knowledge lineage and source transparency
+
+For every traceable concept, register its intellectual kinship, concrete sources, version, what was retained, what was reworked, what was abandoned, its cross-cultural and cross-domain risks, and what the sources can and cannot support. Labeling intellectual kinship does not weaken the framework; it lowers mystification and dogmatization.
+
+Keep four non-substitution boundaries: theoretical material does not replace case evidence; a single case does not replace a general rule; an internal summary does not replace original records; an AI summary does not replace traceable sources.
+
+Build interoperability interfaces with other theories. Do not write this framework as a master framework that swallows every theory.
 
 ## 15. Test Appeal, Rollback, and External Review
 
@@ -372,7 +416,7 @@ IT1 is the first failed transformation, so IT2-IT4 are `not_run`. IG1 is the fir
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:audit:AUD-AI-HR-009
-schema_version: '1.1'
+schema_version: '1.2'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -447,6 +491,7 @@ unknowns_and_counterevidence:
   - and independent review are unavailable.
   counterevidence:
   - A future externally verified study could support a narrower research-only use under a new record.
+conflicts: []
 output_ceiling: description_only
 ceiling_transition:
   operation: root

@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Scale"
-  short_description: "Audit scale changes, circle mappings, and translation loss"
+  short_description: "Audit what survives a move between scales and levels"
   default_prompt: "Use $ariadne-scale to audit scale changes, circle mappings, and translation losses."
 
 policy:

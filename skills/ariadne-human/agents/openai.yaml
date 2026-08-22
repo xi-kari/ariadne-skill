@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Human"
-  short_description: "Analyze human systems with power, privacy, and role boundaries"
+  short_description: "Constrain human-domain analysis without fixed labels"
   default_prompt: "Use $ariadne-human to analyze human systems while preserving power, privacy, role, and responsibility boundaries."
 
 policy:

@@ -1,6 +1,9 @@
 ---
 name: ariadne-evidence
-description: Use when claims, sources, observations, causal stories, analogies, counterevidence, or evidence strength must be separated and audited.
+description: "Grade how far existing materials can support each claim: freeze an evidence cutoff, then separate source, material, observation, evidence, counterevidence, judgment, and external authorization. Use when claims, citations, causal or analogy arguments need support grading, competing explanations, and counterevidence checks. Part of the Ariadne methodology suite. 适用于：证据链分级、来源核查、因果与类比检查、竞争解释与反证。"
+license: MIT
+metadata:
+  record_schema: "1.2"
 ---
 
 # Ariadne Evidence
@@ -20,7 +23,7 @@ Audit how far the available record supports each claim. Preserve the full chain 
 7. **Respect support and zero-result gates.** Treat definitions, framework text, examples, IDs, field completeness, exploratory work, and post-result changes as non-support. Treat a failed positive gate as unresolved unless a frozen equivalence or sufficiency test, power or sensitivity gate, and tolerance all support the bounded null.
 8. **Set the ceiling and handoff.** Use `description_only` when the chain is incomplete and `diagnostic_only` for a bounded evidence-strength judgment. Use `requirements_only` only when the diagnostic basis already holds and the output adds explicit external process requirements. A child module run preserves or lowers its parent unless this version newly admits named external evidence or a fulfilled protocol. Never make an action recommendation or expand authorization. Always set `authorization_effect: none`.
 
-Read [references/evidence-contracts.md](references/evidence-contracts.md) for field-level contracts, G1-G4 and H-instance rules, E1-E5, conditional inference ceilings, and a complete standalone example.
+Read [references/evidence-contracts.md](references/evidence-contracts.md) for field-level contracts, G1-G4 root rules (G1 candidate grouping, G2 specified channel, G3 historical increment, G4 scale closure or conversion) and H-instance rules, E1-E5 epistemic gates (E1 object declaration, E2 observation position, E3 conditional observation participation, E4 alternatives and residuals, E5 cross-scale transfer), conditional inference ceilings, and a complete standalone example.
 
 ## Method Record Contract
 
@@ -39,9 +42,22 @@ Do not overwrite an upstream record. Create a child version when the cutoff, sou
 | Positive gate fails | Check frozen null gates | Unresolved unless all null gates pass |
 | Normative or action sentence | Split N and O from empirical claims | No recommendation or authorization |
 
+## Mini Example
+
+Input: "Our new onboarding guide cut support tickets by 30%, right?" Skeleton only, not a complete record:
+```yaml
+request_type: diagnosis
+evidence_cutoff: {as_of: '2026-08-22T00:00:00+08:00'}
+claim_ledger:
+- {claim_id: G-guide-cause, claim_type: G, status: unresolved}
+output_ceiling: description_only
+```
+
 ## Stopping Conditions
 
 Stop at description when source provenance or observation context is missing. Stop at an unresolved candidate when alternatives or counterevidence are not distinguishable. Stop at evidentiary requirements when a concrete instance was not frozen before results. Stop immediately before value, responsibility, sacrifice, choice, or real-world disposition, and route those questions to `ariadne-choice` or `ariadne-audit`.
+
+If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
 
 ## Common Mistakes
 

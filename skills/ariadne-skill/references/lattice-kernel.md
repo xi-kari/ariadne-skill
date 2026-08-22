@@ -134,6 +134,8 @@ Internal consistency, validation, reports, and stress tests do not prove real-wo
 | Intervention review | Is a proposed action within its authority and safety ceiling? | Requirements, prohibition, stopping, rollback. |
 | Governance review | Should a claim, process, model, or framework be challenged or retired? | Contestability, writeback, downgrade, replacement. |
 
+Request-type adjudication: auditing how well existing evidence supports an already stated claim is explanation work with a ceiling of at most `diagnostic_only`, even when the claim is public. Governance review is reserved for the withdrawal, downgrade, or retirement decision about an already published claim, process, or model. Contrast pair: "Do these two papers support this causal conclusion?" routes to explanation and stops at a bounded diagnostic comparison; "Should we retract our published causal conclusion after this counterevidence?" routes to governance review and stops at contestability, downgrade, or retirement conditions.
+
 ## Missing states
 
 Use one of these labels instead of fluent completion:
@@ -155,7 +157,7 @@ The ceilings form the total order `description_only < diagnostic_only < requirem
 | `diagnostic_only` | Description plus candidate or comparative mechanisms, bounded diagnosis, conditional paths, and eligible forecast evaluation | Normative/process requirements, recommendation, instruction, authorization |
 | `requirements_only` | Description and diagnosis plus conditions an external choice/authorization process would need | Ariadne selecting an action, permission, execution, or self-reported authorization |
 
-For an ordinary child, take the minimum of the inherited ceiling and the module's locally supported ceiling. A module run never raises the ceiling. A child may raise only after newly admitting external evidence or recording fulfillment of a declared protocol; register the basis ID in the Method Record. A merge takes the minimum ranked parent ceiling. More modules, votes, simulations, or confident prose never raise it.
+Every root record starts at `description_only`; a higher ceiling is never an initial value. For an ordinary child, take the minimum of the inherited ceiling and the module's locally supported ceiling. A module run never raises the ceiling. A `lower` records its downgrade reason in the ceiling transition. A child may raise only after newly admitting external evidence or recording fulfillment of a declared protocol; register the basis ID in the Method Record, and when the lineage was previously lowered, state how the basis resolves that recorded reason. A merge takes the minimum ranked parent ceiling. More modules, votes, simulations, or confident prose never raise it.
 
 ## AI and self-governance boundary
 

@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Forecast"
-  short_description: "Register bounded forecasts, calibration, and failure semantics"
+  short_description: "Register future claims that can visibly fail"
   default_prompt: "Use $ariadne-forecast to register a bounded forecast with a baseline, deadline, calibration, and failure semantics."
 
 policy:

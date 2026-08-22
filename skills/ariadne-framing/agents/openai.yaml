@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne Framing"
-  short_description: "Frame objects, boundaries, scales, and output types"
+  short_description: "Freeze the candidate object, boundary, and output type"
   default_prompt: "Use $ariadne-framing to define the object, boundary, time window, scale, and output type."
 
 policy:

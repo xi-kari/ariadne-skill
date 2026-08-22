@@ -30,9 +30,26 @@
     {"notation": "K*/F*", "meaning": "target identity and function criteria for repair", "owner": "ariadne-choice"},
     {"notation": "G-instance/H-instance", "meaning": "preregistered root-hypothesis and human-clause instances", "owner": "ariadne-evidence"}
   ],
+  "part1_layers": {
+    "rule": "layers denote responsibility division, not value rank or a developmental ladder",
+    "layers": [
+      {"layer": "U", "meaning": "general structural core", "owner": "ariadne-framing and ariadne-mechanism"},
+      {"layer": "S", "meaning": "cross-scale and cross-circle transformation", "owner": "ariadne-scale"},
+      {"layer": "H", "meaning": "human structured world", "owner": "ariadne-human"},
+      {"layer": "A", "meaning": "actor state", "owner": "ariadne-human"},
+      {"layer": "MC", "meaning": "multi-circle joint state", "owner": "ariadne-human"},
+      {"layer": "P", "meaning": "path derivation and conditional forecast", "owner": "ariadne-dynamics and ariadne-forecast"},
+      {"layer": "I", "meaning": "inference and reality interface", "owner": "ariadne-skill and ariadne-audit"},
+      {"layer": "N", "meaning": "normative choice and authorization", "owner": "ariadne-choice"}
+    ]
+  },
   "appendix_d": {
     "dual_text_difference": {
       "mapping_rule": "A shared kernel aligns reasoning responsibilities and boundaries while each source retains its own authoritative definitions, operating form, chapter order, artifact count, and numbering.",
+      "applicability": {
+        "applies_when": "the user provides both source contract texts for the same run",
+        "otherwise": "mark dual-text difference work not_applicable in the Method Record and state the reason"
+      },
       "retained_differences": [
         {
           "id": "operator_alignment",
@@ -66,6 +83,11 @@
           "id": "difference_erasure",
           "rule": "Shared vocabulary cannot erase non-transferable elements, source authority, or a recorded difference.",
           "guards": ["shared_vocabulary", "non_transferable_elements", "source_authority", "recorded_differences"]
+        },
+        {
+          "id": "double_evidence_ban",
+          "rule": "Citing both source texts in agreement never counts as two independent pieces of empirical evidence for the same claim; dual-text agreement is one shared lineage, not replication.",
+          "guards": ["dual_text_agreement", "independent_evidence_count", "shared_lineage"]
         }
       ]
     },
@@ -90,6 +112,26 @@
         "not_all_transfers_lose_information",
         "not_social_or_psychological_boltzmann",
         "task_loss_not_physical_entropy"
+      ]
+    },
+    "shared_kernel_layers": {
+      "rule": "the five layers state argumentative responsibility, not value rank",
+      "layers": [
+        {"layer": "definition", "answers": "what objects and terms refer to", "authority_boundary": "fixes decidable semantics; does not prove real-world validity"},
+        {"layer": "method_axiom", "answers": "which silent substitutions a model must never make", "authority_boundary": "constrains records and inference; not a law of the world"},
+        {"layer": "testable_root_hypothesis", "answers": "which empirical relationships may hold", "authority_boundary": "must be preregistered, compared, and allowed to fail"},
+        {"layer": "conditional_conclusion", "answers": "what may be inferred after named root instances pass", "authority_boundary": "valid only within its dependencies, conditions, and applicability window"},
+        {"layer": "governance_invariant", "answers": "how to publish, evaluate, pause, and act", "authority_boundary": "limits power; never serves as an empirical cause"}
+      ]
+    },
+    "chinese_stable_references": {
+      "rule": "these Chinese aliases are retrieval keys only; definitions remain authoritative in the owning source text",
+      "entries": [
+        {"chinese_reference": "定义层", "content": "objects, states, feedback, scale, circles, information identity, and representation translation", "compatible_position": "the framework's own definitions and the paired source text's authoritative definitions"},
+        {"chinese_reference": "方法公理层", "content": "six shared construction constraints", "compatible_position": "first consolidated registration in this version; no earlier numbering to map to"},
+        {"chinese_reference": "根一至根四", "content": "grouping, channel, history, and scale closure", "compatible_position": "compatible with framework G1 to G4"},
+        {"chinese_reference": "论一至论十二", "content": "restricted conditional conclusions", "compatible_position": "compatible with framework C1 to C12"},
+        {"chinese_reference": "治理不变量", "content": "freezing, evidence, baselines, authorization, protection, and lifecycle", "compatible_position": "both texts' existing governance clauses"}
       ]
     }
   }

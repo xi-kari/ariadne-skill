@@ -2,6 +2,10 @@
 
 Use this reference to construct or challenge a frame. Keep the user-facing result plain unless the full contract is needed.
 
+## Domain Admission
+
+Structural explanation admits a natural process, technical system, ecological process, human action, organization, or institution only when it can leave comparable material and the analyst can declare the seven candidate fields: boundary, state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion. Purely metaphysical assertions, objects that can offer no empirical field, and systems that stand only on naming or narrative coherence do not enter empirical judgment. They may still be discussed, and may be registered as D-type definitions in the claim ledger; no version of them borrows this framework's empirical conclusion grades.
+
 ## Two-Stage Admission
 
 1. Declare a candidate object as `S*=<B,X,R,I,T,SP,K>`.
@@ -117,7 +121,7 @@ Frame the reporting question before the intervention question. Do not equate rep
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:school-reporting-frame-001
-schema_version: '1.1'
+schema_version: '1.2'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -169,6 +173,7 @@ claim_ledger:
   counterevidence_ids: []
   support_rule_ids: []
 rule_registry: []
+conflicts: []
 unknowns_and_counterevidence:
   unknowns:
   - 'unknown: whether underlying incident occurrence changed'

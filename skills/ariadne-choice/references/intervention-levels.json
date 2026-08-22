@@ -1,0 +1,53 @@
+{
+  "levels": [
+    {
+      "id": "T0",
+      "name": "Safety and trust carrier",
+      "entry_conditions": "Enter first when complex trauma, closed high power, long betrayal, inability to exit, appeals mediated by the challenged power chain, or a diagnosis that could locate, mark, or punish the affected person is present. Without a minimum safe reception point, allow only low-exposure preservation and external referral; never report T0 as completed.",
+      "execution_state_log": "Log verified channel reachability, controlled identity access, effective withdrawal and stop, independent external review, the baseline for post-feedback adverse changes, and every anonymous, encrypted, proxy, or staged submission with identity separated from factual material.",
+      "stop_or_failure": "Stop contact and dissemination immediately on identity leakage, post-submission retaliation, lost receiver independence, contact that raises immediate risk, or lapsed authorization; revoke unnecessary access, restore anonymous or proxy channels, remedy new harm, and migrate the carrier.",
+      "handoff": "Once safety holds, stay in T0 or move to T1 or T2; when safety cannot be built, go directly to T4 candidacy. Appeals allow anonymity, proxy, an independent third party, and emergency stop."
+    },
+    {
+      "id": "T1",
+      "name": "Reversible minimum order",
+      "entry_conditions": "Enter when harm is expanding and minimum function is breaking while full diagnosis still needs time. State the immediate harm, the consequence of not acting, key protection variables, the reversible path of every measure, and grouped side effects; keep every action low-risk, observable, and rollback-capable, and never press the cost of minimum order onto the lowest-power, lowest-resource, or care positions.",
+      "execution_state_log": "Log each temporary measure with its short automatic expiry and reversible path, every renewal attempt, near misses, silence, and edge anomalies as weak signals, and who bears the cost of maintaining minimum order.",
+      "stop_or_failure": "Stop when a measure creates greater harm, reversibility disappears, a term is extended without authority, low-power costs rise, appeal is suppressed, or J authorization lapses; roll back by restoring prior rights, services, resources, and records and remedying harm from the temporary measures.",
+      "handoff": "Assess T2 when harm is stable and structural evidence suffices; return to T0 when safety degrades; move to T4 when safe repair is impossible or irreversible risk rises."
+    },
+    {
+      "id": "T2",
+      "name": "Carrying-and-return chain repair",
+      "entry_conditions": "Enter only for evidence-located breakpoints in cost bearing, resource return, execution transmission, bad-news writeback, middle-layer carrying, responsibility, or bounded authorization, holding a cost-benefit return map, a responsibility and authorization chain, middle-layer carriers and bad-news channels, a parallel replacement-channel plan, and a distribution and repair baseline. Never dismantle an old channel faster than its replacement runs.",
+      "execution_state_log": "Log chain nodes, flows, delays, grouped impacts, actual end-point resources, middle-layer capacity, preregistered success and failure criteria, and side effects; admit end-point workarounds, near misses, and edge samples as weak signals.",
+      "stop_or_failure": "Stop when the replacement channel fails to run, gains do not return to burdened positions, bad news cannot change the plan, middle and end margins fall, grouped harm crosses a threshold, or authorization lapses; roll back by halting expansion, restoring or paralleling the old channel, revoking overreaching reallocation, correcting qualifications and records, compensating harm, and re-comparing options.",
+      "handoff": "Assess T3 only after a stable closed loop with long-term carrying; move to T4 when repair is blocked by power, unrepairable, or net harm expands."
+    },
+    {
+      "id": "T3",
+      "name": "Deep-time maintenance and higher-order renewal",
+      "entry_conditions": "Enter only when safety, minimum order, and key return chains show sustained evidence. Address maintenance debt, succession breaks, single-center dependence, slow variables, institutional aging, and recovery margin; never extract T0-T2 safety, order, or repair resources for system building, and never write a higher-order steady state as a terminus, maturity, or superior identity.",
+      "execution_state_log": "Log cross-cycle grouped data, maintenance debt, succession and replacement outcomes, recovery drills, independent vulnerability audits, adopted counterexamples, and version changes; account maintenance costs across generations, regions, roles, and resource positions.",
+      "stop_or_failure": "Stop when T0-T2 resources are squeezed, monitoring turns into unauthorized control, succession becomes power replication, costs are exported to low-power or future positions, or counterexamples cannot change rules; roll back by pausing long-term mechanisms, minimizing or closing monitoring data, restoring base resources, revoking stale rules, and starting retirement or replacement.",
+      "handoff": "Return to any protection or repair task, or enter T4; T3 is not the terminus of every object."
+    },
+    {
+      "id": "T4",
+      "name": "Exit, transfer, and evolutionary memory preservation",
+      "entry_conditions": "Enter candidacy directly, without prior T levels, when T0 cannot be built, anti-retaliation and appeal persistently fail, repair is blocked by power, anchors are effectively extinct, the net harm of staying exceeds the transfer cost, or external carrying is safer. Real exit, transfer, or memory disposition still requires normative selection, C12, J, and O1-O4. Admit a strategic-cost action only when the subject is voluntary and informed, the cost is bearable, the experience is explicitly recorded, and remaining strength is not exhausted. Never romanticize exit as brave, loyal, mature, or the only right course.",
+      "execution_state_log": "Log consent-bounded, minimum-necessary preservation of evidence, skills, failure lessons, and repair attempts; settlement of care, compensation, and outstanding duties; protection for stayers and those unable to exit; second-transfer options; and weak signals such as exit intent, hesitation, wariness of the new carrier, and stayer anomalies.",
+      "stop_or_failure": "Pause or reroute when new-carrier risk rises, the subject withdraws, exit triggers retaliation, memory exceeds its consented use, obligations are evaded, or authorization lapses; restore recoverable rights and resources, revoke out-of-scope data uses, correct or delete records, and remedy harm to the person and to stayers.",
+      "handoff": "After entering a new carrier system, re-register from the new object's T0, scale, and identity criterion; old authorizations do not carry over, and T4 never becomes a unilateral escape for the well-resourced."
+    }
+  ],
+  "execution_state_log_contract": {
+    "append_only": "Every non-draft record preserves a non-erasable execution_state_log; state events append in order, and history is never rewritten or deleted.",
+    "hash_chain_closure": "Each state event closes with the previous event's hash and its own hash.",
+    "external_anchor": "An external anchor registers the event count, the head hash, and the current state.",
+    "per_event_reference_retention": "Every event retains the full choice as of that moment together with the selected_action, C12, unique J, and O1-O4 references.",
+    "terminal_states": "rolled_back, completed, expired, and withdrawn are terminal for the record; stop, rollback, completion, expiry, and withdrawal never delete the historical authorization chain.",
+    "no_recompute_revival": "A terminal record never re-enters active by recomputing hashes over the same bundle; continuation requires new selection, authorization, and execution records.",
+    "seventeen_field_consistency": "The current execution state must equal the state of the complete 17-field choice record."
+  }
+}

@@ -1,6 +1,9 @@
 ---
 name: ariadne-choice
-description: Use when comparing action, delay, experiment, exit, or inaction while separating facts, values, authorization, limits, stopping, rollback, and remedy.
+description: Compare action, delay, reversible experiment, exit, and inaction on one baseline, keeping facts, values, rights, jurisdiction, and authorization separate and issuing no permissions. Use when a real-world decision, pilot, exit, or act-or-not question needs a bounded option comparison with external requirements. Part of the Ariadne methodology suite. 适用于：有限选择、方案比较、试点与退出、不行动审查、授权边界。
+license: MIT
+metadata:
+  record_schema: "1.2"
 ---
 
 # Ariadne Choice
@@ -19,13 +22,13 @@ Compare a finite option set without turning facts, forecasts, efficiency, surviv
 
 ## Run the Choice
 
-1. Freeze O1: the descriptive claims, evidence status, uncertainty, scale, forecast references, and descriptive output ceiling. Do not repair them after seeing attractive options.
+1. Freeze O1 (O1-O4 are the four operational freezes: O1 facts, O2 values, O3 subject and authority, O4 bounded execution): the descriptive claims, evidence status, uncertainty, scale, forecast references, and descriptive output ceiling. Do not repair them after seeing attractive options.
 2. Classify the process as `SEL-SYS`, `SEL-AGT`, or `SEL-GOV`. Reject language that gives a system intent, extends one person's choice over others, or turns governance into a large personal preference.
-3. Freeze O2: the runtime N1-N5 premises, each premise's role as goal, constraint, or veto, all value conflicts, dissent, beneficiaries, and burden bearers. Keep the PF-1-PF-10 rights floor separate from tradable preferences.
+3. Freeze O2: the runtime N1-N5 premises (N1 explanation does not authorize disposition, N2 protection must not degrade, N3 high-impact judgments must be correctable, N4 do not requisition love or care, N5 survival and selection are not legitimacy), each premise's role as goal, constraint, or veto, all value conflicts, dissent, beneficiaries, and burden bearers. Keep the PF-1-PF-10 rights floor (the ten protection bindings: affected positions, low-exposure submission, effective refusal, timed appeal, anti-retaliation, evidence correction, external review, operational rollback, real exit or proxy support, and a frozen action ceiling) separate from tradable preferences.
 4. Create stable option IDs. Include exactly one `no_action` option and distinguish it from maintaining the status quo. Include active action, delay, reversible experiment, and exit or transfer when applicable.
 5. Compare every option against the same baseline across consequences, distribution, nine-axis scale, affected and low-power positions, information value, reversibility, lock-in, resources, and residual harm. Keep incomparable dimensions and conflicts visible.
 6. Check coercion, defaults, information, capacity, safe refusal, and real exit. For `SEL-GOV`, also check agenda control, representation, participation, minority protection, dissent, conflicts of interest, and execution accountability.
-7. Freeze O3 and C12: bind the selected option, explicit N premises, all ten bridge components, least-harm and proportionality reviews, protection floor, atomic J tuple, jurisdiction, validity period, and external verification references.
+7. Freeze O3 and C12 (the ten-component validity bridge from description to normative choice): bind the selected option, explicit N premises, all ten bridge components, least-harm and proportionality reviews, protection floor, atomic J tuple, jurisdiction, validity period, and external verification references.
 8. Freeze O4: cap execution at the narrowest intersection of evidence, values, rights, selected option, J authority, reversibility, trial scope, and expiry. Register prohibited actions, monitors, stop authority, appeal, anti-retaliation, independent review, rollback, remedy, and reauthorization.
 9. Assign the record state and append every transition. Never erase `paused`, `stopped`, `rolled_back`, or expired history. Keep `authorization_effect` equal to `none`, including when the module verifies an external authorization record.
 
@@ -35,11 +38,24 @@ Create or extend a schema-valid Method Record with complete parent references, t
 
 Use `description_only` for incomplete facts, `diagnostic_only` for bounded consequence comparison, and `requirements_only` only when lower permissions remain satisfied and external process requirements are explicit. Keep `authorization_effect: none`.
 
+## Mini Example
+
+Input question: "May we run a reversible workload pilot now, or must we not act?"
+
+```yaml
+selection_type: SEL-AGT
+options: [active_action, reversible_experiment, delay, no_action]
+authorization: unknown
+output_ceiling: description_only
+```
+
 ## Stop and Handoff
 
 Stop at inaction, evidence collection, protective preservation, continued review, or external referral whenever a positive N premise, a C12 component, a PF binding, atomic J coverage, O1-O4, safe dissent, or rollback capacity is absent. In an emergency, identify only the minimum protective action allowed by an external emergency rule, then require prompt review, appeal, and rollback.
 
 Do not choose values for the subject, infer consent from silence or non-exit, sign authorization, execute an option, or guarantee success. Return plain-language comparison first, followed by the compact Method Record and, for high-impact cases, the detailed choice card.
+
+If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
 
 ## Quick Reference
 
@@ -65,4 +81,4 @@ Do not choose values for the subject, infer consent from silence or non-exit, si
 
 ## Load Detailed Guidance
 
-Read [choice-and-authorization.md](references/choice-and-authorization.md) when defining N, PF, J, O1-O4, C12, boundary cards, options, distribution, selection states, intervention ceilings, T0-T4 tasks, or the worked example. Handoff any domain application to `ariadne-audit` for its matching Part 15 APP contract before external use.
+Read [choice-and-authorization.md](references/choice-and-authorization.md) when defining N, PF, J, O1-O4, C12, boundary cards, options, distribution, selection states, intervention ceilings, T0-T4 tasks (the five intervention task types: T0 safety carrier, T1 reversible minimum order, T2 carrying-return repair, T3 deep-time maintenance, T4 exit and memory preservation), or the worked example. Read [intervention-levels.json](references/intervention-levels.json) for the T0-T4 machine contract covering entry conditions and the hash-chained execution-state log. Handoff any domain application to `ariadne-audit` for its matching Part 15 APP contract (APP-REL through APP-ULS, the nine domain application contracts) before external use.
