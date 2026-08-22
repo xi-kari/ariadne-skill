@@ -3,458 +3,556 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ariadne 是一套让 AI Agent 思考和处理复杂问题的方法论集群。了解 Lattice Kernel、十个方法模块、Method Record 与六宿主安装方式。">
-  <meta name="theme-color" content="#173532">
+  <meta name="description" content="Ariadne 是一套让 AI Agent 思考和处理复杂问题的方法论集群：Lattice Kernel 格点内核、十个方法论 Skill、Method Record 记录系统与六宿主安装。">
+  <meta name="theme-color" content="#F5F2E9">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ariadne · Lattice Kernel">
   <meta property="og:description" content="一套让 AI Agent 思考和处理复杂问题的方法论集群。">
   <meta property="og:image" content="assets/og-cover.svg">
-  <title>Ariadne · 复杂问题的方法</title>
+  <title>Ariadne · Lattice Kernel 方法论图册</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main-content">跳到正文</a>
-  <div class="reading-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-    <span id="reading-progress"></span>
-  </div>
 
-  <header class="site-header">
+  <header class="top-bar">
     <nav class="top-nav" aria-label="主导航">
-      <a class="wordmark" href="#top" aria-label="返回 Ariadne 首页顶部">
-        <span>Ariadne</span><i aria-hidden="true">。</i>
-      </a>
-      <div class="nav-links">
-        <a href="#about">是什么</a>
-        <a href="#kernel">方法地图</a>
-        <a href="#modules">十个模块</a>
-        <a href="#modes">协作方式</a>
-        <a href="#record">Method Record</a>
+      <a class="wordmark" href="#top">ARIADNE<span class="wordmark-sub">SHEET SET 00-07</span></a>
+      <div class="bar-links">
+        <a href="#position">定位</a>
+        <a href="#map">地图</a>
+        <a href="#modules">模块</a>
+        <a href="#modes">协作</a>
+        <a href="#record">记录</a>
         <a href="#install">安装</a>
+        <a href="#sources">引用</a>
       </div>
-      <a class="repo-link" href="https://github.com/xi-kari/ariadne-skill">GitHub <span aria-hidden="true">↗</span></a>
+      <a class="repo-link" href="https://github.com/xi-kari/ariadne-skill">GitHub<span aria-hidden="true"> ↗</span></a>
     </nav>
   </header>
 
   <main id="main-content">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-copy" data-reveal>
-        <p class="eyebrow">方法论集群 · Lattice Kernel</p>
-        <h1 id="hero-title">Ariadne<span aria-hidden="true">。</span></h1>
-        <p class="hero-lead">一套让 AI Agent 思考和处理复杂问题的方法论集群。</p>
-        <p class="hero-note">先把对象、证据和边界固定下来，再按问题需要选择方法；让未知、冲突、停止条件与输出上限保持可见。</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#kernel">查看方法地图</a>
-          <a class="button button-secondary" href="#install">安装完整套件</a>
+    <section class="sheet sheet-grid" id="cover" aria-labelledby="hero-title">
+      <div class="title-block tb-head">
+        <div><span class="tb-label">项目 Project</span><span class="tb-value">ARIADNE · LATTICE KERNEL</span></div>
+        <div><span class="tb-label">通道 Channel</span><span class="tb-value">ROLLING-MAIN · MIT</span></div>
+        <div><span class="tb-label">页 Sheet</span><span class="tb-value">00 / 07</span></div>
+      </div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="kicker">格点内核 · LATTICE KERNEL</p>
+          <h1 id="hero-title">ARIADNE</h1>
+          <p class="dim" aria-hidden="true"><span>1 ROUTER + 9 MODULES</span></p>
+          <p class="hero-lead">一套让 AI Agent 思考和处理复杂问题的方法论集群。</p>
+          <p class="hero-note">名字来自阿里阿德涅之线：在复杂问题的迷宫里，留下一条可以回溯、可以检查的线。先定界、再证据，模块按需进入，结论止步于受支持的输出上限。</p>
+          <p class="hero-actions">
+            <a class="btn btn-primary" href="#map">查看方法地图</a>
+            <a class="btn" href="#install">安装完整套件</a>
+          </p>
+        </div>
+        <figure class="hero-lattice">
+          <svg viewBox="0 0 440 300" role="img" aria-labelledby="hl-title">
+            <title id="hl-title">格点走线图：一条红色直角走线从总路由节点出发，依次穿过九个方法论模块节点</title>
+            <polyline class="thread" points="50,60 390,60 390,150 140,150 140,240 390,240" fill="none" stroke="#B03A2E" stroke-width="2"></polyline>
+            <g fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5">
+              <circle cx="50" cy="60" r="9"></circle>
+              <circle cx="140" cy="60" r="7"></circle>
+              <circle cx="265" cy="60" r="7"></circle>
+              <circle cx="390" cy="60" r="7"></circle>
+              <circle cx="140" cy="150" r="7"></circle>
+              <circle cx="265" cy="150" r="7"></circle>
+              <circle cx="390" cy="150" r="7"></circle>
+              <circle cx="140" cy="240" r="7"></circle>
+              <circle cx="265" cy="240" r="7"></circle>
+              <circle cx="390" cy="240" r="7"></circle>
+            </g>
+            <circle cx="50" cy="60" r="3.5" fill="#B03A2E"></circle>
+            <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" fill="#5B5850" text-anchor="middle">
+              <text x="50" y="40">RTR</text>
+              <text x="140" y="84">FRA</text>
+              <text x="265" y="84">EVD</text>
+              <text x="390" y="84">SCL</text>
+              <text x="140" y="174">MEC</text>
+              <text x="265" y="174">HUM</text>
+              <text x="390" y="174">DYN</text>
+              <text x="140" y="264">FOR</text>
+              <text x="265" y="264">CHO</text>
+              <text x="390" y="264">AUD</text>
+            </g>
+          </svg>
+        </figure>
+      </div>
+      <div class="title-block tb-facts">
+        <div><span class="tb-num">10</span><span class="tb-cap">个方法论 Skill</span></div>
+        <div><span class="tb-num">1 + 9</span><span class="tb-cap">总路由与平级模块</span></div>
+        <div><span class="tb-num">5</span><span class="tb-cap">种协作方式</span></div>
+        <div><span class="tb-num">3</span><span class="tb-cap">档输出上限</span></div>
+        <div class="tb-seal">
+          <span class="stamp" role="img" aria-label="授权效力恒为 none：方法不签发现实权限">
+            <span class="stamp-zh" aria-hidden="true">无授权</span>
+            <span class="stamp-en" aria-hidden="true">EFFECT: NONE</span>
+          </span>
         </div>
       </div>
-
-      <div class="hero-lattice" aria-hidden="true">
-        <svg viewBox="0 0 360 360" focusable="false">
-          <g class="lattice-lines">
-            <path d="M48 188 118 88 204 132 292 58"></path>
-            <path d="M48 188 134 252 204 132 302 228"></path>
-            <path d="M134 252 224 310 302 228"></path>
-          </g>
-          <g class="lattice-nodes">
-            <circle cx="48" cy="188" r="9"></circle>
-            <circle cx="118" cy="88" r="7"></circle>
-            <circle class="node-purple" cx="204" cy="132" r="11"></circle>
-            <circle cx="292" cy="58" r="7"></circle>
-            <circle class="node-copper" cx="134" cy="252" r="8"></circle>
-            <circle cx="224" cy="310" r="7"></circle>
-            <circle cx="302" cy="228" r="10"></circle>
-          </g>
-          <path class="thread" d="M30 316C98 292 99 210 160 178s81-11 132-120"></path>
-        </svg>
-      </div>
-
-      <dl class="fact-ledger" aria-label="Ariadne 事实概览">
-        <div>
-          <dt>10</dt>
-          <dd>个方法论 Skill</dd>
-        </div>
-        <div>
-          <dt>1 + 9</dt>
-          <dd>总路由与平级模块</dd>
-        </div>
-        <div>
-          <dt>5</dt>
-          <dd>种协作模式</dd>
-        </div>
-        <div>
-          <dt>0</dt>
-          <dd>现实授权增量</dd>
-        </div>
-      </dl>
     </section>
 
-    <div class="reading-layout">
-      <aside class="method-rail" aria-label="方法导航 · 按需选取">
-        <p>方法导航 · 按需选取</p>
-        <ol>
-          <li><a href="#module-router">总路由</a></li>
-          <li><a href="#module-framing">问题定界</a></li>
-          <li><a href="#module-evidence">证据审计</a></li>
-          <li><a href="#module-scale">尺度转换</a></li>
-          <li><a href="#module-mechanism">机制比较</a></li>
-          <li><a href="#module-human">人类领域</a></li>
-          <li><a href="#module-dynamics">动态推演</a></li>
-          <li><a href="#module-forecast">条件前瞻</a></li>
-          <li><a href="#module-choice">有限选择</a></li>
-          <li><a href="#module-audit">审计治理</a></li>
+    <section class="sheet" id="catalog" aria-labelledby="catalog-title">
+      <div class="sheet-body">
+        <p class="kicker">图纸目录 · INDEX</p>
+        <h2 class="sheet-title" id="catalog-title">这套图册怎么读。</h2>
+        <p class="sheet-lead">每个区块是一张带图框和标题栏的图纸。方法在这里被登记，而不是被讲述；遇到差异，以仓库中的 Skill 合同为准。</p>
+        <ol class="catalog-list">
+          <li><a href="#position"><span class="cat-no">ARIADNE-01</span><span class="cat-name">定位 · 是什么与不是什么</span></a></li>
+          <li><a href="#map"><span class="cat-no">ARIADNE-02</span><span class="cat-name">方法地图 · Lattice Kernel</span></a></li>
+          <li><a href="#modules"><span class="cat-no">ARIADNE-03</span><span class="cat-name">模块明细 · 十个方法论</span></a></li>
+          <li><a href="#modes"><span class="cat-no">ARIADNE-04</span><span class="cat-name">协作工况 · 五种运行方式</span></a></li>
+          <li><a href="#record"><span class="cat-no">ARIADNE-05</span><span class="cat-name">Method Record · 记录单与输出上限</span></a></li>
+          <li><a href="#install"><span class="cat-no">ARIADNE-06</span><span class="cat-name">安装 · 六宿主施工说明</span></a></li>
+          <li><a href="#sources"><span class="cat-no">ARIADNE-07</span><span class="cat-name">引用与边界 · 会签栏</span></a></li>
         </ol>
-        <span>位置提示，不是强制流程。</span>
-      </aside>
+      </div>
+    </section>
 
-      <article class="longform">
-        <section class="editorial-section" id="about" aria-labelledby="about-title" data-reveal>
-          <header class="section-heading">
-            <p class="section-kicker"><span>01</span> 定位</p>
-            <h2 id="about-title">复杂问题需要的，不是更响亮的结论，而是可检查的方法。</h2>
-          </header>
-          <div class="split-copy">
-            <div>
-              <h3>Ariadne 是什么</h3>
-              <p>Ariadne 是一个独立的方法论 Skill 集群。它把复杂请求整理成有边界、可追踪、可续接的方法运行：先说明现实问题，再冻结候选对象与证据截止点，只调用足够的模块，并把冲突、未知和证据上限原样保留下来。</p>
-              <p>它既可由总路由协调，也允许九个模块被单独点名。模块数量不会制造证据，流程完成也不会制造授权。</p>
-            </div>
-            <div class="boundary-panel">
-              <h3>Ariadne 不是什么</h3>
-              <ul class="plain-list">
-                <li>不是关于世界本身的本体论。</li>
-                <li>不是真理引擎、人格裁判或临床工具。</li>
-                <li>不替主体选择价值，也不把预测写成命令。</li>
-                <li>不是现实行动、资源处分或公共权力的授权机关。</li>
-              </ul>
-            </div>
+    <section class="sheet" id="position" aria-labelledby="t-position">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-01</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">定位</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">skills/ariadne-skill</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-position">复杂问题需要的不是更响亮的结论，而是可检查的方法。</h2>
+        <div class="split">
+          <div class="prose">
+            <h3>Ariadne 是什么</h3>
+            <p>Ariadne 是一个独立的方法论 Skill 集群。它把复杂请求整理成有边界、可追踪、可续接的方法运行：先说明现实问题，再冻结候选对象与证据截止点，只调用足够的模块，并把冲突、未知和证据上限原样保留下来。</p>
+            <p>它既可由总路由协调，也允许九个模块被单独点名。模块数量不会制造证据，流程完成也不会制造授权。降级、暂停与明确不行动，都是正常的方法结果。</p>
           </div>
-        </section>
+          <table class="neg-table">
+            <caption>边界 Boundary · Ariadne 不是什么</caption>
+            <tbody>
+              <tr><th scope="row">N-1</th><td>不是关于世界本身的本体论，也不是真理引擎。</td></tr>
+              <tr><th scope="row">N-2</th><td>不是人格裁判或临床工具，不给人固定标签。</td></tr>
+              <tr><th scope="row">N-3</th><td>不替主体选择价值，也不把预测写成命令。</td></tr>
+              <tr><th scope="row">N-4</th><td>不是现实行动、资源处分或公共权力的授权机关。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-        <section class="editorial-section" id="kernel" aria-labelledby="kernel-title" data-reveal>
-          <header class="section-heading">
-            <p class="section-kicker"><span>02</span> Lattice Kernel</p>
-            <h2 id="kernel-title">一张按需展开的方法地图。</h2>
-            <p>共同内核规定对象、证据、缺失状态、谱系与输出上限；具体模块只处理自己负责的判断环节。</p>
-          </header>
-          <figure class="kernel-map">
-            <img src="assets/lattice-kernel-map.svg" alt="Lattice Kernel 方法地图：总路由连接问题定界、证据审计与九个按需工作的平级模块">
-            <figcaption>对象与证据冻结后，尺度、机制与人类领域可以并行；动态、前瞻、选择与审计只在任务真正需要时进入。</figcaption>
-          </figure>
-          <div class="text-map" aria-label="Lattice Kernel 文本版方法地图">
-            <ol>
-              <li><strong>总路由：</strong>分类请求，选择最小充分模块集。</li>
-              <li><strong>共同冻结：</strong>由 <code>ariadne-framing</code> 与 <code>ariadne-evidence</code> 固定候选对象和证据截止点。</li>
-              <li><strong>可并行分析：</strong><code>ariadne-scale</code>、<code>ariadne-mechanism</code>、<code>ariadne-human</code> 在共享冻结记录上独立工作。</li>
-              <li><strong>按需进入：</strong>路径推演、可检验前瞻和有限选择各自保持边界。</li>
-              <li><strong>合并与治理：</strong><code>ariadne-audit</code> 保留冲突，按最低输出上限合并并检查停止、申诉和回滚。</li>
-            </ol>
-          </div>
-        </section>
+    <section class="sheet" id="map" aria-labelledby="t-map">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-02</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">方法地图</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">lattice-kernel.md · routing.md</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-map">一张按需展开的方法地图。</h2>
+        <p class="sheet-lead">Lattice Kernel 规定对象、证据、缺失状态、谱系与输出上限；具体模块只处理自己负责的判断环节。不要求每个任务把全部模块跑一遍。</p>
+        <figure class="map-fig">
+          <img src="assets/lattice-kernel-map.svg" alt="Lattice Kernel 方法地图：总路由冻结对象与证据后，尺度、机制、人类领域可并行；动态、前瞻、选择按需进入；审计合并，上限取最小、冲突具名保留">
+          <figcaption>对象与证据冻结后，尺度、机制与人类领域可以并行；动态、前瞻、选择与审计只在任务真正需要时进入。</figcaption>
+        </figure>
+        <div class="process">
+          <p class="block-label">工艺流程 Process</p>
+          <ol class="process-list">
+            <li><strong>总路由</strong>分类请求，选择最小充分模块集。</li>
+            <li><strong>共同冻结</strong>由 <code>ariadne-framing</code> 与 <code>ariadne-evidence</code> 固定候选对象和证据截止点。</li>
+            <li><strong>可并行分析</strong><code>ariadne-scale</code>、<code>ariadne-mechanism</code>、<code>ariadne-human</code> 在共享冻结记录上独立工作。</li>
+            <li><strong>按需进入</strong>路径推演、可检验前瞻和有限选择各自保持边界。</li>
+            <li><strong>合并与治理</strong><code>ariadne-audit</code> 保留冲突，按最低输出上限合并并检查停止、申诉和回滚。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
-        <section class="editorial-section" id="modules" aria-labelledby="modules-title">
-          <header class="section-heading" data-reveal>
-            <p class="section-kicker"><span>03</span> 十个方法论模块</p>
-            <h2 id="modules-title">每个模块只守住一个判断环节。</h2>
-            <p>下面的五字段卡片来自仓库中的权威 Skill 合同。它们帮助选取模块，不替代合同本身。</p>
-          </header>
-
-          <div class="module-grid">
-            <article class="module-card module-card-router" id="module-router" data-module data-reveal>
-              <header>
-                <span class="module-index">00 · 总路由</span>
-                <h3>Ariadne</h3>
-                <code>ariadne-skill</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>把复杂请求变成有边界、可检查的方法运行，分类输出并按需路由。</dd></div>
+    <section class="sheet" id="modules" aria-labelledby="t-modules">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-03</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">模块明细</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">skills/ariadne-*/SKILL.md</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-modules">十个方法论模块，每件只守住一个判断环节。</h2>
+        <p class="sheet-lead">下面的明细行来自仓库中的权威 Skill 合同。它们帮助选取模块，不替代合同本身；件号链接指向对应合同原文。</p>
+        <ol class="bom">
+          <li class="bom-row bom-row-router">
+            <div class="bom-id">
+              <span class="bom-no">00</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 33V8h25v25H14V14h13v13h-7v-7"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">方法论总控</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-skill/SKILL.md">ariadne-skill ↗</a></p>
+              <p class="bom-lead">把复杂请求变成有边界、可检查的方法运行：分类输出，冻结对象与证据，按需路由九个平级模块并合并结果。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>冻结对象与证据、选择最小模块集、协调顺序或并行工作、保留冲突并合并 Method Record。</dd></div>
                 <div><dt>适合任务</dt><dd>同时涉及解释、机制、尺度、未来、选择或高影响审查的复合问题。</dd></div>
-                <div><dt>典型产出</dt><dd>一份先说人话的有限判断，以及可追踪的模块运行、证据截止点、未知项和下一步。</dd></div>
-                <div><dt>边界</dt><dd>不是本体论、真理引擎、价值选择器或授权机关；不会因模块更多而提高证据。</dd></div>
+                <div><dt>典型产出</dt><dd>一份先说人话的有界判断，以及可追踪的模块运行、证据截止点、未知项和下一步。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>不是本体论、真理引擎、价值选择器或授权机关；不会因模块更多而提高证据。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-framing" data-module data-reveal>
-              <header>
-                <span class="module-index">01 · 问题定界</span>
-                <h3>Framing</h3>
-                <code>ariadne-framing</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>在判断之前说明究竟在分析什么：边界、变量、接口、时间、尺度和身份标准。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">01</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="10" y="10" width="20" height="20"></rect>
+                <path d="M4 13V4h9M27 4h9v9M36 27v9h-9M13 36H4v-9"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">问题定界</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-framing/SKILL.md">ariadne-framing ↗</a></p>
+              <p class="bom-lead">在判断之前说明究竟在分析什么：边界、变量、接口、时间、尺度和身份标准。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>分类请求，冻结候选对象，分开描述、诊断、前瞻、选择和现实行动。</dd></div>
                 <div><dt>适合任务</dt><dd>对象含糊、范围漂移、同词跨尺度，或用户把解释与行动混在一起的问题。</dd></div>
                 <div><dt>典型产出</dt><dd>候选对象陈述、未决边界选择，以及保留父记录的定界版 Method Record。</dd></div>
-                <div><dt>边界</dt><dd>完整定界不证明对象真实稳定；止于 <code>description_only</code>，不输出诊断、建议或许可。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>完整定界不证明对象真实稳定；止于 description_only，不输出诊断、建议或许可。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-evidence" data-module data-reveal>
-              <header>
-                <span class="module-index">02 · 证据审计</span>
-                <h3>Evidence</h3>
-                <code>ariadne-evidence</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>区分来源、材料、观察、证据、反证、判断与外部授权，检查主张被支持到哪里。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">02</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 7v26M10 33h20M8 12h24"></path>
+                <path d="M12 12l-5 9h10zM28 12l-5 9h10z"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">证据审计</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-evidence/SKILL.md">ariadne-evidence ↗</a></p>
+              <p class="bom-lead">区分来源、材料、观察、证据、反证、判断与外部授权，检查主张被支持到哪里。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>冻结证据窗口，拆分主张类型，审计因果、类比、基线、替代解释和零结果条件。</dd></div>
                 <div><dt>适合任务</dt><dd>需要核查引用、数据、观察、因果故事、类比或证据强度的工作。</dd></div>
                 <div><dt>典型产出</dt><dd>主张账本、支持与反证链、未决替代解释、证据强度判断和后续取证要求。</dd></div>
-                <div><dt>边界</dt><dd>相关性与顺序不自动成为因果；经验置信度不生成价值、责任、建议或授权。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>相关性与顺序不自动成为因果；经验置信度不生成价值、责任、建议或授权。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-scale" data-module data-reveal>
-              <header>
-                <span class="module-index">03 · 尺度转换</span>
-                <h3>Scale</h3>
-                <code>ariadne-scale</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>审计对象、观察或主张跨个体与群体、时空、圈层、表征和词汇时发生的变化。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">03</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="6" width="28" height="28"></rect>
+                <rect x="15" y="15" width="10" height="10"></rect>
+                <path d="M6 6l9 9M34 34l-9-9"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">尺度转换</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-scale/SKILL.md">ariadne-scale ↗</a></p>
+              <p class="bom-lead">审计对象、观察或主张跨个体与群体、时空、圈层、表征和词汇时发生的变化。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>冻结源端与目标端，逐轴比较，记录映射、保留项、损失、误差和不可迁移项。</dd></div>
                 <div><dt>适合任务</dt><dd>从个体推群体、短期推长期、局部推全局、摘要压缩或跨领域迁移。</dd></div>
                 <div><dt>典型产出</dt><dd>尺度剖面、原子转换记录、身份映射、损失审计与目标侧证据要求。</dd></div>
-                <div><dt>边界</dt><dd>共享名称不是桥；更大范围、更多观察、地位或网络中心性都不扩大管辖权。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>共享名称不是桥；更大范围、更多观察、地位或网络中心性都不扩大管辖权。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-mechanism" data-module data-reveal>
-              <header>
-                <span class="module-index">04 · 机制比较</span>
-                <h3>Mechanism</h3>
-                <code>ariadne-mechanism</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>以最简单充分基线为参照，比较通道、反馈、约束与竞争机制。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">04</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="14" cy="20" r="8"></circle>
+                <circle cx="26" cy="20" r="8"></circle>
+                <path d="M14 20h12"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">机制比较</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-mechanism/SKILL.md">ariadne-mechanism ↗</a></p>
+              <p class="bom-lead">以最简单充分基线为参照，比较通道、反馈、约束与竞争机制。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>为候选机制登记通道观察、区分性预测、反转条件、证伪标准和剩余误差。</dd></div>
                 <div><dt>适合任务</dt><dd>需要解释差异、负载、反馈、学习、阈值、选择或持续性的结构诊断。</dd></div>
                 <div><dt>典型产出</dt><dd>简单基线、至少两个完整候选机制、残差比较和可区分的下一项观察。</dd></div>
-                <div><dt>边界</dt><dd>机制标签不是证据；少于两个完整候选时止于描述，不分配价值、责任或许可。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>机制标签不是证据；少于两个完整候选时止于描述，不分配价值、责任或许可。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-human" data-module data-reveal>
-              <header>
-                <span class="module-index">05 · 人类领域</span>
-                <h3>Human</h3>
-                <code>ariadne-human</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>在分析人与组织时分开角色、权力、隐私、责任、意义、多重归属与物质条件。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">05</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="20" cy="20" r="13"></circle>
+                <circle cx="20" cy="15.5" r="4"></circle>
+                <path d="M12.5 28c2.5-5 12.5-5 15 0"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">人类领域约束</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-human/SKILL.md">ariadne-human ↗</a></p>
+              <p class="bom-lead">在分析人与组织时分开角色、权力、隐私、责任、意义、多重归属与物质条件。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>登记观察位置与允许用途，比较替代解释，审计受影响、低权力和无退出位置。</dd></div>
                 <div><dt>适合任务</dt><dd>关系、团队、组织、制度、公共互动，以及含敏感材料或权力不对称的问题。</dd></div>
                 <div><dt>典型产出</dt><dd>有隐私边界的角色与圈层记录、候选解释、受影响位置和负责的人类复核要求。</dd></div>
-                <div><dt>边界</dt><dd>不把行为、沉默或拒绝写成人格与临床诊断，不把集体当作一个人，也不推定同意。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>不把行为、沉默或拒绝写成人格与临床诊断，不把集体当作一个人，也不推定同意。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-dynamics" data-module data-reveal>
-              <header>
-                <span class="module-index">06 · 动态推演</span>
-                <h3>Dynamics</h3>
-                <code>ariadne-dynamics</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>从冻结状态推导事件如何沿通道、时钟、阈值与反馈形成条件路径。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">06</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 20h11l7-9h12M16 20l7 9h12"></path>
+                <circle cx="5" cy="20" r="2"></circle>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">动态推演</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-dynamics/SKILL.md">ariadne-dynamics ↗</a></p>
+              <p class="bom-lead">从冻结状态推导事件如何沿通道、时钟、阈值与反馈形成条件路径。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>区分事件事实状态，展开有向无环分支，登记信号、残差、停止条件与结果回写。</dd></div>
                 <div><dt>适合任务</dt><dd>事件传播、异步时钟、情景、反事实、递归模拟与低概率高后果分支。</dd></div>
                 <div><dt>典型产出</dt><dd>冻结快照、带条件的路径图、早期与反向信号、竞争分支和残差出口。</dd></div>
-                <div><dt>边界</dt><dd>模拟深度不生成证据；报告、计划、假设和模拟事件不冒充已观察事实或前瞻。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>模拟深度不生成证据；报告、计划、假设和模拟事件不冒充已观察事实或前瞻。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card" id="module-forecast" data-module data-reveal>
-              <header>
-                <span class="module-index">07 · 条件前瞻</span>
-                <h3>Forecast</h3>
-                <code>ariadne-forecast</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>在结果出现前登记有目标、有期限、可判断、可校准且能够失败的未来主张。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">07</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M7 31L28 13" stroke-dasharray="4 4"></path>
+                <path d="M22 10l9-1-1 9"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">条件前瞻</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-forecast/SKILL.md">ariadne-forecast ↗</a></p>
+              <p class="bom-lead">在结果出现前登记有目标、有期限、可判断、可校准且能够失败的未来主张。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>冻结输入与评价规则，设置公平简单基线，登记信号、失败状态与追加式回写。</dd></div>
                 <div><dt>适合任务</dt><dd>有明确目标和截止日期的条件判断、基线比较、校准和结果复盘。</dd></div>
                 <div><dt>典型产出</dt><dd>前瞻 ID、目标与期限、条件路径、最弱充分表达、评价规则和下次复核点。</dd></div>
-                <div><dt>边界</dt><dd>不回填式预注册，不从文字或模型信心捏造概率；前瞻准确也不产生行动权。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>不回填式预注册，不从文字或模型信心捏造概率；前瞻准确也不产生行动权。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card module-card-boundary" id="module-choice" data-module data-reveal>
-              <header>
-                <span class="module-index">08 · 有限选择</span>
-                <h3>Choice</h3>
-                <code>ariadne-choice</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>在有限选项中比较行动、等待、可逆实验、退出或转交，以及明确的不行动。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">08</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 34V20M20 20L10 9M20 20l10-11"></path>
+                <circle cx="10" cy="9" r="2.5"></circle>
+                <circle cx="30" cy="9" r="2.5"></circle>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">有限选择</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-choice/SKILL.md">ariadne-choice ↗</a></p>
+              <p class="bom-lead">在有限选项中比较行动、等待、可逆实验、退出或转交，以及明确的不行动。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>分开事实与价值，比较后果、分布、可逆性和锁定，检查管辖、停止、申诉与回滚。</dd></div>
                 <div><dt>适合任务</dt><dd>个人选择、治理程序、试点、退出与资源受限且需要保留保护底线的决定。</dd></div>
                 <div><dt>典型产出</dt><dd>同基线选项卡、价值冲突、受益与负担位置、外部授权缺口和保护性不行动。</dd></div>
-                <div><dt>边界</dt><dd>不替主体选择价值，不从沉默或未退出推定同意，不签署授权，也不执行选项。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>不替主体选择价值，不从沉默或未退出推定同意，不签署授权，也不执行选项。</dd></div>
               </dl>
-            </article>
-
-            <article class="module-card module-card-audit" id="module-audit" data-module data-reveal>
-              <header>
-                <span class="module-index">09 · 审计与治理</span>
-                <h3>Audit</h3>
-                <code>ariadne-audit</code>
-              </header>
-              <dl>
-                <div><dt>负责什么</dt><dd>检查高影响判断、自动化输出、公共主张和完整方法记录能否保留当前判断与用途上限。</dd></div>
+            </div>
+          </li>
+          <li class="bom-row">
+            <div class="bom-id">
+              <span class="bom-no">09</span>
+              <svg class="bom-glyph" viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="7" y="7" width="26" height="26"></rect>
+                <path d="M7 20h26M20 7v26"></path>
+                <path d="M11 13l3 3 5-6"></path>
+              </svg>
+            </div>
+            <div class="bom-body">
+              <p class="bom-title"><span class="bom-name">审计与治理</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-audit/SKILL.md">ariadne-audit ↗</a></p>
+              <p class="bom-lead">检查高影响判断、自动化输出、公共主张和完整方法记录能否保留当前判断与用途上限。</p>
+              <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>按序运行闸门，标记失败与未运行项，检查申诉、反报复、纠正、回滚、补救与退役。</dd></div>
                 <div><dt>适合任务</dt><dd>公开、组织、制度、自动化、难逆使用，以及多模块结果的合并与治理。</dd></div>
                 <div><dt>典型产出</dt><dd>闸门发现、受影响主张、降低后的输出上限和可到达的异议与纠正路径。</dd></div>
-                <div><dt>边界</dt><dd>表格完整、文字流畅、内部测试和自审都不证明现实有效、安全、同意或授权。</dd></div>
-              </dl>
-            </article>
-          </div>
-        </section>
-
-        <section class="editorial-section" id="modes" aria-labelledby="modes-title" data-reveal>
-          <header class="section-heading">
-            <p class="section-kicker"><span>04</span> 协作方式</p>
-            <h2 id="modes-title">五种运行方式，按任务而不是按仪式选择。</h2>
-          </header>
-          <div class="mode-list">
-            <article><span>01</span><h3>单独</h3><p>直接调用一个模块，完成一个边界清楚的定界、证据、尺度或其他专项任务。</p></article>
-            <article><span>02</span><h3>连续</h3><p>当前一环的输出是后一环的真实输入时顺序执行，并保留父记录、版本和改变原因。</p></article>
-            <article><span>03</span><h3>集群</h3><p>对象与证据截止点一致后，让尺度、机制或人类领域独立工作；合并时不投票、不平均冲突。</p></article>
-            <article><span>04</span><h3>持续</h3><p>通过追加式子记录接纳新证据、结果和反例；对象或用途改变时从最早受影响闸门重跑。</p></article>
-            <article><span>05</span><h3>完整运行</h3><p>复杂或高影响任务由总路由组织完整方法流程，但仍只运行最小充分模块集。</p></article>
-          </div>
-          <aside class="callout">
-            <strong>集群前置条件</strong>
-            <p>所有工作者必须接收同一份原始任务、冻结对象、证据截止点、责任边界和输出字段；不得预先给出偏好的结论。</p>
-          </aside>
-        </section>
-
-        <section class="editorial-section" id="record" aria-labelledby="record-title" data-reveal>
-          <header class="section-heading">
-            <p class="section-kicker"><span>05</span> Method Record</p>
-            <h2 id="record-title">让一次推理可以被继续、质疑和降级。</h2>
-            <p>Method Record 不是结论包装，而是对象、证据、主张、谱系、未知项、模块运行与输出边界的共享记录。</p>
-          </header>
-          <div class="record-grid">
-            <div class="record-example">
-              <p class="code-label">最小边界示意</p>
-              <pre><code>request_type: diagnosis
-object_status: candidate
-evidence_cutoff: 2026-08-05
-unknowns:
-  - channel_not_observed
-output_ceiling: diagnostic_only
-authorization_effect: none</code></pre>
-            </div>
-            <div>
-              <h3>四种缺失状态</h3>
-              <dl class="compact-definitions">
-                <div><dt><code>unknown</code></dt><dd>当前不知道，仍可能通过合适方式补充。</dd></div>
-                <div><dt><code>not_applicable</code></dt><dd>在这个对象或任务中不适用。</dd></div>
-                <div><dt><code>not_observable</code></dt><dd>在当前观察条件下不可见。</dd></div>
-                <div><dt><code>withheld_for_protection</code></dt><dd>为隐私或安全而不披露，不得被推断填满。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>表格完整、文字流畅、内部测试和自审都不证明现实有效、安全、同意或授权。</dd></div>
               </dl>
             </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sheet" id="modes" aria-labelledby="t-modes">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-04</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">协作工况</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">references/routing.md</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-modes">五种运行方式，按任务而不是按仪式选择。</h2>
+        <ol class="mode-list">
+          <li><span class="mode-no">M-01</span><h3 class="mode-name">单独</h3><p>直接调用一个模块，完成一个边界清楚的定界、证据、尺度或其他专项任务。</p></li>
+          <li><span class="mode-no">M-02</span><h3 class="mode-name">连续</h3><p>当前一环的输出是后一环的真实输入时顺序执行，并保留父记录、版本和改变原因。</p></li>
+          <li><span class="mode-no">M-03</span><h3 class="mode-name">集群</h3><p>对象与证据截止点一致后，让尺度、机制或人类领域独立工作；合并时不投票、不平均冲突。</p></li>
+          <li><span class="mode-no">M-04</span><h3 class="mode-name">持续</h3><p>通过追加式子记录接纳新证据、结果和反例；对象或用途改变时从最早受影响闸门重跑。</p></li>
+          <li><span class="mode-no">M-05</span><h3 class="mode-name">完整运行</h3><p>复杂或高影响任务由总路由组织完整方法流程，但仍只运行最小充分模块集。</p></li>
+        </ol>
+        <aside class="note-box">
+          <span class="note-hatch" aria-hidden="true"></span>
+          <div>
+            <strong>注 Note · 集群前置条件</strong>
+            <p>所有工作者必须接收同一份原始任务、冻结对象、证据截止点、责任边界和输出字段，不得预先给出偏好的结论。没有多智能体能力时，集群退化为相同模块的顺序执行；合同、输出上限和最终结果集合不应因此改变。</p>
           </div>
-          <div class="ceiling-table-wrap" tabindex="0" role="region" aria-label="输出上限表">
-            <table class="ceiling-table">
-              <thead><tr><th>输出上限</th><th>允许表达</th><th>仍然不允许</th></tr></thead>
-              <tbody>
-                <tr><th><code>description_only</code></th><td>描述候选对象、材料、未知项和需要补足的条件。</td><td>把对象存在、因果或行动写成已成立。</td></tr>
-                <tr><th><code>diagnostic_only</code></th><td>给出有边界的证据、机制、转换或缺陷判断。</td><td>把诊断自动升级为建议、处分或许可。</td></tr>
-                <tr><th><code>requirements_only</code></th><td>列出外部选择、复核、纠正或撤回仍须满足的要求。</td><td>替外部主体完成价值选择、授权或执行。</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="authorization-statement"><span>始终为零</span><code>authorization_effect: none</code>。无论完成多少模块、得到多高置信度或通过多少内部闸门，都不会产生现实授权。</p>
-        </section>
+        </aside>
+      </div>
+    </section>
 
-        <section class="editorial-section" id="install" aria-labelledby="install-title">
-          <header class="section-heading" data-reveal>
-            <p class="section-kicker"><span>06</span> 六宿主安装</p>
-            <h2 id="install-title">同一套权威 Skill，面向六种 Agent 宿主。</h2>
-            <p>默认安装完整十模块。当前没有稳定 tag，以下命令跟随 <code>main</code>，属于滚动安装；Windows 使用复制模式，不依赖符号链接。</p>
-          </header>
+    <section class="sheet" id="record" aria-labelledby="t-record">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-05</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">Method Record</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">method-record.md · SCHEMA 1.2</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-record">让一次推理可以被继续、质疑和降级。</h2>
+        <p class="sheet-lead">Method Record 不是结论包装，而是对象、证据、主张、谱系、未知项、模块运行与输出边界的共享记录。它是推理记录，不是现实数据库，也不是授权令牌。</p>
+        <div class="record-wrap">
+          <dl class="record-form">
+            <div><dt>request_type</dt><dd>diagnosis</dd></div>
+            <div><dt>object_status</dt><dd>candidate</dd></div>
+            <div><dt>evidence_cutoff</dt><dd>2026-08-05</dd></div>
+            <div><dt>output_ceiling</dt><dd>diagnostic_only</dd></div>
+            <div class="rf-wide"><dt>unknowns</dt><dd>channel_not_observed</dd></div>
+            <div class="rf-wide rf-none"><dt>authorization_effect</dt><dd>none</dd></div>
+          </dl>
+          <span class="stamp stamp-record" role="img" aria-label="authorization_effect: none — 方法记录不产生现实授权">
+            <span class="stamp-zh" aria-hidden="true">无授权</span>
+            <span class="stamp-en" aria-hidden="true">EFFECT: NONE</span>
+          </span>
+        </div>
+        <p class="block-label">缺失状态图例 Missing States · 不得用流畅补全代替</p>
+        <dl class="missing-legend">
+          <div><dt><span class="hatch hatch-unknown" aria-hidden="true"></span><code>unknown</code></dt><dd>当前不知道，仍可能通过合适方式补充。</dd></div>
+          <div><dt><span class="hatch hatch-na" aria-hidden="true"></span><code>not_applicable</code></dt><dd>在这个对象或任务中不适用。</dd></div>
+          <div><dt><span class="hatch hatch-no" aria-hidden="true"></span><code>not_observable</code></dt><dd>在当前观察条件下不可见。</dd></div>
+          <div><dt><span class="hatch hatch-withheld" aria-hidden="true"></span><code>withheld_for_protection</code></dt><dd>为隐私或安全而不披露，不得被推断填满。</dd></div>
+        </dl>
+        <p class="block-label">极限与配合 Output Ceilings · 三档上限</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="三档输出上限表">
+          <table class="ceiling-table">
+            <thead><tr><th scope="col">输出上限</th><th scope="col">允许表达</th><th scope="col">仍然不允许</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="gauge gauge-1" aria-hidden="true"></span><code>description_only</code></th><td>描述候选对象、材料、未知项和需要补足的条件。</td><td><span class="ban" aria-hidden="true">✕</span>把对象存在、因果或行动写成已成立。</td></tr>
+              <tr><th scope="row"><span class="gauge gauge-2" aria-hidden="true"></span><code>diagnostic_only</code></th><td>给出有边界的证据、机制、转换或缺陷判断。</td><td><span class="ban" aria-hidden="true">✕</span>把诊断自动升级为建议、处分或许可。</td></tr>
+              <tr><th scope="row"><span class="gauge gauge-3" aria-hidden="true"></span><code>requirements_only</code></th><td>列出外部选择、复核、纠正或撤回仍须满足的要求。</td><td><span class="ban" aria-hidden="true">✕</span>替外部主体完成价值选择、授权或执行。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="record-final">每条根记录从最低档起步，模块运行永不抬升上限，合并取有序最小值。无论完成多少模块，<code>authorization_effect</code> 恒为 <code>none</code>——方法不签发现实权限。</p>
+      </div>
+    </section>
 
-          <div class="host-table-wrap" tabindex="0" role="region" aria-label="六宿主兼容矩阵" data-reveal>
-            <table class="host-table">
-              <thead><tr><th>宿主</th><th>兼容等级</th><th>主要发现位置</th><th>说明</th></tr></thead>
-              <tbody>
-                <tr><th>Codex / OpenAI</th><td>原生 Agent Skills</td><td><code>.agents/skills</code>、用户 Skill 目录</td><td>保留 OpenAI metadata 与显式调用。</td></tr>
-                <tr><th>Claude Code</th><td>原生 Agent Skills</td><td><code>.claude/skills</code></td><td>支持目录发现、引用文件和斜杠调用。</td></tr>
-                <tr><th>Gemini CLI</th><td>原生 Agent Skills</td><td><code>.gemini/skills</code> 或 <code>.agents/skills</code></td><td>调用前仍由宿主决定激活授权。</td></tr>
-                <tr><th>Cursor</th><td>原生 Agent Skills</td><td><code>.cursor/skills</code>、<code>.agents/skills</code>、<code>.claude/skills</code> 或 <code>.codex/skills</code></td><td>支持自动发现与显式调用。</td></tr>
-                <tr><th>GitHub Copilot</th><td>原生 Agent Skills</td><td><code>.github/skills</code> 或 <code>.agents/skills</code></td><td>云端、CLI 与编辑器表面可能不同。</td></tr>
-                <tr><th>Reasonix</th><td>目录兼容子集</td><td><code>.reasonix/skills</code>、<code>.agents/skills</code> 等</td><td>不声明隐式路由等价，需专项冒烟验证。</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="install-grid">
-            <article class="command-card" data-reveal>
-              <header><div><span>项目级 · 推荐试用</span><h3>安装完整十模块</h3></div><button type="button" data-copy="npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix" aria-label="复制项目级完整安装命令" aria-live="polite">复制</button></header>
-              <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
-              <p>放入当前项目，便于审查、试用和随项目共享。</p>
-            </article>
-
-            <article class="command-card" data-reveal>
-              <header><div><span>用户级 · 跨项目使用</span><h3>全局安装完整十模块</h3></div><button type="button" data-copy="npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix" aria-label="复制用户级完整安装命令" aria-live="polite">复制</button></header>
-              <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
-              <p>由安装工具写入各宿主的用户级目录，适合跨项目持续使用。</p>
-            </article>
-
-            <article class="command-card degraded" data-reveal>
-              <header><div><span>显式降级</span><h3>仅安装主路由</h3></div><button type="button" data-copy="npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix" aria-label="复制仅安装主路由命令" aria-live="polite">复制</button></header>
-              <pre><code>npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
-              <p>只有明确接受降级时使用。缺失 peer 必须记录 <code>module_unavailable</code>，不得假装该模块已经运行。</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="editorial-section" id="sources" aria-labelledby="sources-title" data-reveal>
-          <header class="section-heading">
-            <p class="section-kicker"><span>07</span> 来源与边界</p>
-            <h2 id="sources-title">方法来自仓库合同，兼容结论回到宿主文档。</h2>
-          </header>
-          <div class="source-grid">
-            <div>
-              <h3>权威内容</h3>
-              <p>十个 <code>skills/ariadne-*/</code> 目录是唯一方法论权威源。本站负责解释与导航，不成为第二套合同。遇到差异，以对应 Skill 与其直接 reference 为准。</p>
-              <ul class="link-list">
-                <li><a href="https://github.com/xi-kari/ariadne-skill">GitHub 仓库 <span aria-hidden="true">↗</span></a></li>
-                <li><a href="https://github.com/xi-kari/ariadne-skill/tree/main/skills">十个 Skill 合同 <span aria-hidden="true">↗</span></a></li>
-                <li><a href="https://github.com/xi-kari/ariadne-skill/blob/main/LICENSE">MIT License <span aria-hidden="true">↗</span></a></li>
-              </ul>
+    <section class="sheet" id="install" aria-labelledby="t-install">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-06</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">安装</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">docs/agent-compatibility.md</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-install">同一套权威 Skill，面向六种 Agent 宿主。</h2>
+        <p class="sheet-lead">默认安装完整十模块。当前没有稳定 tag，以下命令跟随 main，属于滚动安装；Windows 使用复制模式，不依赖符号链接。兼容等级描述格式与发现位置，不代表已在每个宿主完成真实任务验证。</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="六宿主兼容矩阵">
+          <table class="host-table">
+            <thead><tr><th scope="col">宿主</th><th scope="col">兼容等级</th><th scope="col">项目级发现路径</th><th scope="col">调用入口</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Codex</th><td>原生 Agent Skills</td><td><code>.agents/skills</code></td><td>可用 <code>$ariadne-skill</code> 显式点名，也可按描述路由。</td></tr>
+              <tr><th scope="row">Claude Code</th><td>原生 Agent Skills</td><td><code>.claude/skills</code></td><td><code>/ariadne-skill</code> 斜杠调用，也支持按描述加载。</td></tr>
+              <tr><th scope="row">Gemini CLI</th><td>原生 Agent Skills</td><td><code>.gemini/skills</code>、<code>.agents/skills</code></td><td>自然语言点名；用 <code>/skills list</code> 核对发现。</td></tr>
+              <tr><th scope="row">Cursor</th><td>原生 Agent Skills</td><td><code>.cursor/skills</code>、<code>.agents/skills</code>、<code>.claude/skills</code>、<code>.codex/skills</code></td><td>斜杠菜单调用 <code>/ariadne-skill</code>，也可自动发现。</td></tr>
+              <tr><th scope="row">GitHub Copilot</th><td>原生 Agent Skills</td><td><code>.github/skills</code>、<code>.claude/skills</code>、<code>.agents/skills</code></td><td>云端、CLI 与编辑器表面不承诺统一斜杠入口，用自然语言点名。</td></tr>
+              <tr><th scope="row">Reasonix</th><td>目录兼容子集</td><td><code>.reasonix/skills</code>、<code>.agents/skills</code> 等</td><td>不声明隐式路由等价；真实任务前须完成三项专项冒烟。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="op-list">
+          <article class="op-card" data-copy-card>
+            <div class="op-head">
+              <div>
+                <span class="op-no">工序 OP-01 · 项目级 · 推荐试用</span>
+                <h3 class="op-name">安装完整十模块</h3>
+                <p class="op-scope">复制进当前项目的宿主发现目录，便于审查、试用和随项目共享。</p>
+              </div>
             </div>
-            <div>
-              <h3>开放格式与宿主依据</h3>
-              <ul class="link-list columns">
-                <li><a href="https://agentskills.io/specification">Agent Skills 规范</a></li>
-                <li><a href="https://developers.openai.com/codex/skills">Codex Skills</a></li>
-                <li><a href="https://code.claude.com/docs/en/slash-commands">Claude Code Skills</a></li>
-                <li><a href="https://geminicli.com/docs/cli/using-agent-skills/">Gemini CLI Skills</a></li>
-                <li><a href="https://cursor.com/docs/context/skills">Cursor Skills</a></li>
-                <li><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot Skills</a></li>
-                <li><a href="https://reasonix.io/docs/">Reasonix Docs</a></li>
-                <li><a href="https://github.com/vercel-labs/skills">npx skills 安装工具</a></li>
-                <li><a href="https://github.com/xi-kari/ariadne-skill/blob/main/docs/agent-compatibility.md">完整兼容矩阵</a></li>
-              </ul>
+            <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
+          </article>
+          <article class="op-card" data-copy-card>
+            <div class="op-head">
+              <div>
+                <span class="op-no">工序 OP-02 · 用户级 · 跨项目使用</span>
+                <h3 class="op-name">全局安装完整十模块</h3>
+                <p class="op-scope">由安装工具写入各宿主的用户级目录，适合跨项目持续使用。</p>
+              </div>
             </div>
+            <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
+          </article>
+          <article class="op-card op-degraded" data-copy-card>
+            <div class="op-head">
+              <div>
+                <span class="op-no">工序 OP-03 · 显式降级</span>
+                <h3 class="op-name">仅安装主路由</h3>
+                <p class="op-scope">只有宿主或任务明确限制安装数量时使用。</p>
+              </div>
+            </div>
+            <pre><code>npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
+            <p class="op-note"><span class="warn-tag">警告 Warning</span>这种安装不是完整 Ariadne：缺失的九个 peer 必须记录 <code>module_unavailable</code>，不得假装该模块已经运行，也不得提高输出上限。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="sources" aria-labelledby="t-sources">
+      <div class="title-block sheet-tb">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-07</span></div>
+        <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">引用与边界</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">skills/ariadne-*/ · LICENSE</span></div>
+      </div>
+      <div class="sheet-body">
+        <h2 class="sheet-title" id="t-sources">方法来自仓库合同，兼容结论回到宿主文档。</h2>
+        <div class="src-grid">
+          <div>
+            <h3>权威内容</h3>
+            <p>十个 <code>skills/ariadne-*/</code> 目录是唯一方法论权威源。本站负责解释与导航，不成为第二套合同。遇到差异，以对应 Skill 与其直接 reference 为准。</p>
+            <ul class="ref-list">
+              <li><span class="ref-no">REF-01</span><a href="https://github.com/xi-kari/ariadne-skill">GitHub 仓库</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-02</span><a href="https://github.com/xi-kari/ariadne-skill/tree/main/skills">十个 Skill 合同</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-03</span><a href="https://github.com/xi-kari/ariadne-skill/blob/main/LICENSE">MIT License</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+            </ul>
           </div>
-          <div class="final-boundary">
-            <span aria-hidden="true">A</span>
-            <p><strong>方法可以提高可检查性，不能替代现实中的证据、价值判断、管辖权与负责的人类程序。</strong><br>本站无分析脚本、Cookie、第三方字体或外部运行时资源。</p>
+          <div>
+            <h3>开放格式与宿主依据</h3>
+            <p>兼容等级与发现路径的完整依据见兼容矩阵；宿主行为以其官方文档和实际发现结果为准。</p>
+            <ul class="ref-list">
+              <li><span class="ref-no">REF-04</span><a href="https://github.com/xi-kari/ariadne-skill/blob/main/docs/agent-compatibility.md">六宿主完整兼容矩阵</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-05</span><a href="https://agentskills.io/specification">Agent Skills 规范</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-06</span><a href="https://github.com/vercel-labs/skills">npx skills 安装工具</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-07</span><a href="https://developers.openai.com/codex/skills">Codex Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-08</span><a href="https://code.claude.com/docs/en/slash-commands">Claude Code Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-09</span><a href="https://geminicli.com/docs/cli/using-agent-skills/">Gemini CLI Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-10</span><a href="https://cursor.com/docs/context/skills">Cursor Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-11</span><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-12</span><a href="https://reasonix.io/docs/">Reasonix Docs</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+            </ul>
           </div>
-        </section>
-      </article>
-    </div>
+        </div>
+        <div class="sign-strip">
+          <div><span class="sign-label">方法记录</span><span class="sign-value">METHOD RECORD · SCHEMA 1.2</span></div>
+          <div><span class="sign-label">证据上限</span><span class="sign-value">不因一致或重复上升</span></div>
+          <div><span class="sign-label">边界保留</span><span class="sign-value">冲突具名 · 未知累积</span></div>
+          <div><span class="sign-label">授权效力 authorization_effect</span><span class="sign-value"><span class="sign-seal">NONE</span></span></div>
+        </div>
+        <p class="final-line">方法可以提高可检查性，不能替代现实中的证据、价值判断、管辖权与负责的人类程序。</p>
+        <p class="final-meta">本站无分析脚本 · 无 Cookie · 无第三方字体 · 无外部运行时资源</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div><strong>Ariadne<span aria-hidden="true">。</span></strong><span>Lattice Kernel · 复杂问题的方法</span></div>
-    <p>MIT License · Copyright © 2026 xi-kari</p>
+    <span>ARIADNE · SHEET SET 00-07</span>
+    <span>LATTICE KERNEL · 复杂问题的方法</span>
+    <span>MIT LICENSE © 2026 XI-KARI</span>
   </footer>
 
   <script src="assets/site.js"></script>

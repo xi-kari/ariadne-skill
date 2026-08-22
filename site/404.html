@@ -4,19 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#173532">
-  <title>路径未找到 · Ariadne</title>
+  <meta name="theme-color" content="#F5F2E9">
+  <title>未归档 · Ariadne</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body class="error-page">
   <main class="error-main">
-    <span class="error-knot" aria-hidden="true"></span>
-    <p class="eyebrow">Ariadne · 路径中断</p>
-    <p class="error-code" aria-hidden="true">404</p>
-    <h1>这条线没有连接到页面。</h1>
-    <p>地址可能已经改变，或者这个分支从未存在。返回方法地图，重新选择一条可检查的路径。</p>
-    <a class="button button-primary" href="index.html">返回 Ariadne 首页</a>
+    <section class="sheet sheet-grid error-sheet" aria-labelledby="e-title">
+      <div class="title-block tb-head">
+        <div><span class="tb-label">图号 Sheet</span><span class="tb-value">404</span></div>
+        <div><span class="tb-label">状态 Status</span><span class="tb-value">未归档 · NOT FILED</span></div>
+        <div><span class="tb-label">页 Sheet</span><span class="tb-value">— / 07</span></div>
+      </div>
+      <div class="error-body">
+        <svg class="broken-line" viewBox="0 0 360 72" role="img" aria-labelledby="bl-title">
+          <title id="bl-title">一条红色走线在中途断开</title>
+          <polyline points="0,50 92,50 92,24 148,24" fill="none" stroke="#B03A2E" stroke-width="2"></polyline>
+          <circle cx="148" cy="24" r="5" fill="#F5F2E9" stroke="#B03A2E" stroke-width="1.5"></circle>
+          <polyline points="212,24 268,24 268,50 360,50" fill="none" stroke="#B03A2E" stroke-width="2" stroke-dasharray="3 9" opacity="0.6"></polyline>
+        </svg>
+        <p class="error-code" aria-hidden="true">404</p>
+        <h1 id="e-title">这张图纸不在图册里。</h1>
+        <p>地址可能已经改变，或者这条走线从未被归档。返回封面，沿着可检查的线重新出发。</p>
+        <p class="hero-actions"><a class="btn btn-primary" href="index.html">返回 ARIADNE-00 封面</a></p>
+      </div>
+    </section>
   </main>
 </body>
 </html>
