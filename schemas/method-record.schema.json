@@ -18,6 +18,7 @@
     "claim_ledger",
     "rule_registry",
     "unknowns_and_counterevidence",
+    "conflicts",
     "output_ceiling",
     "ceiling_transition",
     "module_runs",
@@ -27,7 +28,7 @@
   ],
   "properties": {
     "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
-    "schema_version": {"const": "1.1"},
+    "schema_version": {"const": "1.2"},
     "record_version": {"type": "integer", "minimum": 1},
     "lineage_kind": {"enum": ["root", "linear", "merge"]},
     "parent_record_id": {"type": ["string", "null"], "minLength": 1},
@@ -63,6 +64,10 @@
         "unknowns": {"$ref": "#/$defs/nonEmptyStringArray"},
         "counterevidence": {"$ref": "#/$defs/nonEmptyStringArray"}
       }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/conflictEntry"}
     },
     "output_ceiling": {"$ref": "#/$defs/outputCeiling"},
     "ceiling_transition": {"$ref": "#/$defs/ceilingTransition"},
@@ -165,6 +170,17 @@
         "record_version": {"type": "integer", "minimum": 1}
       }
     },
+    "conflictEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conflict_id", "kind", "record_refs", "description"],
+      "properties": {
+        "conflict_id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["object_contract", "scale_mapping", "causal_explanation", "value_premise"]},
+        "record_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/recordRef"}},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
     "ceilingInput": {
       "type": "object",
       "additionalProperties": false,
@@ -192,7 +208,8 @@
         "operation": {"enum": ["root", "preserve", "lower", "raise", "meet"]},
         "inputs": {"type": "array", "items": {"$ref": "#/$defs/ceilingInput"}},
         "basis": {"type": "array", "items": {"$ref": "#/$defs/ceilingBasis"}},
-        "result": {"$ref": "#/$defs/outputCeiling"}
+        "result": {"$ref": "#/$defs/outputCeiling"},
+        "reason": {"type": "string", "minLength": 1}
       },
       "allOf": [
         {
@@ -316,7 +333,8 @@
         "module": {"$ref": "#/$defs/moduleName"},
         "status": {"enum": ["not_run", "running", "completed", "failed", "not_applicable"]},
         "input_records": {"type": "array", "items": {"$ref": "#/$defs/recordRef"}},
-        "output_record": {"oneOf": [{"$ref": "#/$defs/recordRef"}, {"type": "null"}]}
+        "output_record": {"oneOf": [{"$ref": "#/$defs/recordRef"}, {"type": "null"}]},
+        "reason": {"type": "string", "minLength": 1}
       },
       "allOf": [
         {
@@ -325,7 +343,7 @@
         },
         {
           "if": {"properties": {"status": {"enum": ["not_run", "not_applicable"]}}, "required": ["status"]},
-          "then": {"properties": {"output_record": {"type": "null"}}}
+          "then": {"properties": {"output_record": {"type": "null"}}, "required": ["reason"]}
         }
       ]
     },
@@ -354,7 +372,7 @@
           "additionalProperties": false,
           "required": ["required", "reviewer", "status"],
           "properties": {
-            "required": {"const": true},
+            "required": {"type": "boolean"},
             "reviewer": {"type": "string", "minLength": 1},
             "status": {"enum": ["pending", "completed"]}
           }

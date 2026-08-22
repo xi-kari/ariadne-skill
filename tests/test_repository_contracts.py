@@ -5,25 +5,20 @@ from pathlib import Path
 
 import yaml
 
+from scripts.validate_repo import (
+    ALLOWED_FRONTMATTER_KEYS,
+    EXPECTED_REFERENCES,
+    FORBIDDEN_MARKERS,
+    FOREIGN_PRODUCT_NAMES,
+    REQUIRED_FRONTMATTER_KEYS,
+    validate_source_coverage,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / "skills"
 
-EXPECTED_REFERENCES = {
-    "ariadne-skill": {"lattice-kernel.md", "routing.md", "method-record.md", "source-navigation.json"},
-    "ariadne-framing": {"object-contract.md"},
-    "ariadne-evidence": {"evidence-contracts.md"},
-    "ariadne-scale": {"scale-transformations.md"},
-    "ariadne-mechanism": {"mechanism-contracts.md"},
-    "ariadne-human": {"human-domain.md", "human-variable-cards.json"},
-    "ariadne-dynamics": {"dynamic-derivation.md"},
-    "ariadne-forecast": {"forecast-contract.md"},
-    "ariadne-choice": {"choice-and-authorization.md"},
-    "ariadne-audit": {"gates-and-governance.md", "application-contracts.json"},
-}
-
-FORBIDDEN_MARKERS = ("TODO", "TBD", "PLACEHOLDER", "implement later", "fill in details")
-FOREIGN_PRODUCT_NAMES = ("CrossFrame", "world-structure")
+SCANNED_SUFFIXES = {".md", ".yaml", ".yml", ".json"}
 
 
 def load_frontmatter(path: Path) -> dict:
@@ -54,10 +49,11 @@ def test_each_skill_has_required_files_and_references() -> None:
 def test_frontmatter_is_discoverable_and_matches_folder() -> None:
     for name in EXPECTED_REFERENCES:
         data = load_frontmatter(SKILLS_ROOT / name / "SKILL.md")
-        assert set(data) == {"name", "description"}
+        assert REQUIRED_FRONTMATTER_KEYS <= set(data)
+        assert not set(data) - ALLOWED_FRONTMATTER_KEYS
         assert data["name"] == name
         assert isinstance(data["description"], str)
-        assert data["description"].startswith("Use when ")
+        assert "Use when " in data["description"]
         assert len(data["description"]) <= 1024
 
 
@@ -73,7 +69,7 @@ def test_openai_metadata_enables_global_discovery_and_local_explicit_prompt() ->
 
 def test_installable_files_have_no_unfinished_or_foreign_product_text() -> None:
     for path in SKILLS_ROOT.rglob("*"):
-        if not path.is_file() or path.suffix not in {".md", ".yaml", ".yml"}:
+        if not path.is_file() or path.suffix not in SCANNED_SUFFIXES:
             continue
         text = path.read_text(encoding="utf-8")
         for marker in FORBIDDEN_MARKERS:
@@ -149,7 +145,10 @@ def test_part_15_application_contracts_cover_all_domains_and_boundaries() -> Non
 
 def test_source_coverage_maps_all_parts_and_appendices() -> None:
     text = (ROOT / "docs" / "source-coverage.md").read_text(encoding="utf-8")
-    for part in range(1, 17):
-        assert f"Part {part}" in text
-    for appendix in "ABCD":
-        assert f"Appendix {appendix}" in text
+    assert validate_source_coverage(text) == []
+
+    dropped_part_one = text.replace("| Part 1 -", "| Part 99 -", 1)
+    assert "source coverage missing Part 1" in validate_source_coverage(dropped_part_one)
+
+    dropped_appendix = text.replace("| Appendix A -", "| Appendix Z -", 1)
+    assert "source coverage missing Appendix A" in validate_source_coverage(dropped_appendix)

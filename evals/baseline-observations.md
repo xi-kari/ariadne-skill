@@ -2,6 +2,8 @@
 
 Each response came from a fresh context with no Ariadne instructions. Scores use `rubric.md`.
 
+Honest scope note: these are exploratory working notes, not experimental evidence. The runs were not archived with model names, versions, sampling parameters, dates, or full transcripts, so the excerpts and scores below cannot be independently reproduced or audited. Treat this file as an illustration of the failure modes the suite targets; do not cite it as proof that any baseline experiment was performed to an evidentiary standard.
+
 ## B01 - Organization diagnosis
 
 Observed language:

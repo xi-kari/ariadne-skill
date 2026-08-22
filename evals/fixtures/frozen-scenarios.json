@@ -17,7 +17,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval:C01:seed-v1",
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -77,6 +77,7 @@
           ],
           "counterevidence": []
         },
+        "conflicts": [],
         "output_ceiling": "description_only",
         "ceiling_transition": {
           "operation": "root",
@@ -257,7 +258,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval:C02:seed-v1",
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -317,6 +318,7 @@
           ],
           "counterevidence": []
         },
+        "conflicts": [],
         "output_ceiling": "description_only",
         "ceiling_transition": {
           "operation": "root",
@@ -446,7 +448,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval:C03:seed-v1",
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -506,6 +508,7 @@
           ],
           "counterevidence": []
         },
+        "conflicts": [],
         "output_ceiling": "description_only",
         "ceiling_transition": {
           "operation": "root",
@@ -633,7 +636,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval:K01:seed-v1",
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -694,6 +697,7 @@
           ],
           "counterevidence": []
         },
+        "conflicts": [],
         "output_ceiling": "description_only",
         "ceiling_transition": {
           "operation": "root",
@@ -904,7 +908,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval:K02:seed-v1",
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -965,6 +969,7 @@
           ],
           "counterevidence": []
         },
+        "conflicts": [],
         "output_ceiling": "description_only",
         "ceiling_transition": {
           "operation": "root",

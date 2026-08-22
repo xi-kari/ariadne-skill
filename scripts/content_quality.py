@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -38,6 +39,75 @@ RUNTIME_TAG_ATTRIBUTES = {
 SHARED_SITE_ASSETS = {"readme-hero.svg", "lattice-kernel-map.svg"}
 CSS_REFERENCE = re.compile(r"(?:@import\s+(?:url\(\s*)?|url\(\s*)([^)\s'\"]+|['\"][^'\"]+['\"])", re.IGNORECASE)
 SCRIPT_REFERENCE = re.compile(r"(?:import\s*(?:\(\s*)?|from\s+)[\"']([^\"']+)[\"']")
+FRONTMATTER_BLOCK = re.compile(r"\A---\n.*?\n---\n?", re.DOTALL)
+
+# Byte floors are pinned at roughly 55% of the reviewed method text so that a
+# regression cannot hollow a reference into a heading-only shell while CI stays
+# green. Raising method text is always allowed; shrinking below a floor fails.
+REFERENCE_MARKDOWN_BYTE_FLOORS = {
+    "skills/ariadne-skill/references/lattice-kernel.md": 5800,
+    "skills/ariadne-skill/references/routing.md": 6000,
+    "skills/ariadne-skill/references/method-record.md": 12000,
+    "skills/ariadne-framing/references/object-contract.md": 6700,
+    "skills/ariadne-evidence/references/evidence-contracts.md": 12900,
+    "skills/ariadne-scale/references/scale-transformations.md": 12500,
+    "skills/ariadne-mechanism/references/mechanism-contracts.md": 11200,
+    "skills/ariadne-human/references/human-domain.md": 23300,
+    "skills/ariadne-dynamics/references/dynamic-derivation.md": 11400,
+    "skills/ariadne-forecast/references/forecast-contract.md": 10200,
+    "skills/ariadne-choice/references/choice-and-authorization.md": 12700,
+    "skills/ariadne-audit/references/gates-and-governance.md": 22600,
+}
+SKILL_BODY_MIN_BYTES = 3000
+SKILL_BODY_MIN_H2_SECTIONS = 3
+H2_SECTION_MIN_CHARS = 60
+HUMAN_CARD_MIN_SERIALIZED_CHARS = 1500
+APPLICATION_CONTRACT_MIN_SERIALIZED_CHARS = 800
+CARD_STRING_LEAF_MIN_CHARS = 3
+# These fields hold source-registered short codes (claim type letters, rule
+# codes such as D0/E1, two-character state tokens); they must stay non-empty
+# but cannot satisfy the three-character floor that guards free text.
+HUMAN_CARD_SHORT_CODE_FIELDS = {
+    "additional_inferential_requires",
+    "additional_protocol_requires",
+    "affected_positions",
+    "carrier",
+    "claim_type",
+    "evidence",
+    "field_order",
+    "inferential_requires",
+    "input_dependencies",
+    "output_effects",
+    "protocol_requires",
+    "required_scale_additions",
+    "specializes",
+    "state",
+}
+STATE_PROTOTYPE_IDS = ("S0", "S1", "S2", "S3", "S4", "S5", "S6")
+STATE_PROTOTYPE_REQUIRED_FIELDS = (
+    "id",
+    "name",
+    "entry",
+    "exit",
+    "observables",
+    "counterexamples",
+    "falsifiers",
+    "scale_boundary",
+    "evidence_elevation",
+    "contract_links",
+    "non_authorization",
+)
+NONLINEAR_PATH_REQUIRED_KEYS = {"id", "meaning", "key_distinction"}
+NONLINEAR_PATH_MIN_COUNT = 15
+INTERVENTION_LEVEL_IDS = ("T0", "T1", "T2", "T3", "T4")
+INTERVENTION_LEVEL_REQUIRED_FIELDS = (
+    "id",
+    "name",
+    "entry_conditions",
+    "execution_state_log",
+    "stop_or_failure",
+    "handoff",
+)
 
 
 class _HTMLReferences(HTMLParser):
@@ -274,6 +344,294 @@ def _validate_runtime_reference(
     return errors
 
 
+def _h2_sections(text: str) -> list[tuple[str, str]]:
+    sections: list[tuple[str, str]] = []
+    fence: tuple[str, int] | None = None
+    current: tuple[str, list[str]] | None = None
+    for line in text.splitlines():
+        match = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
+        if match:
+            run = match.group(1)
+            marker = run[0]
+            if fence is None:
+                fence = (marker, len(run))
+            elif marker == fence[0] and len(run) >= fence[1]:
+                fence = None
+            if current is not None:
+                current[1].append(line)
+            continue
+        if fence is None and re.match(r"^##\s+\S", line):
+            if current is not None:
+                sections.append((current[0], "\n".join(current[1])))
+            current = (line.lstrip("#").strip(), [])
+            continue
+        if current is not None:
+            current[1].append(line)
+    if current is not None:
+        sections.append((current[0], "\n".join(current[1])))
+    return sections
+
+
+def _value_is_populated(value: object) -> bool:
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, list):
+        return bool(value) and all(_value_is_populated(item) for item in value)
+    if isinstance(value, dict):
+        return bool(value) and all(_value_is_populated(item) for item in value.values())
+    return value is not None
+
+
+def _short_string_leaves(node: object, field_name: str | None = None) -> list[str]:
+    violations: list[str] = []
+    if isinstance(node, dict):
+        for key, value in node.items():
+            violations.extend(_short_string_leaves(value, key))
+    elif isinstance(node, list):
+        for value in node:
+            violations.extend(_short_string_leaves(value, field_name))
+    elif isinstance(node, str):
+        floor = 1 if field_name in HUMAN_CARD_SHORT_CODE_FIELDS else CARD_STRING_LEAF_MIN_CHARS
+        if len(node.strip()) < floor:
+            violations.append(f"{field_name}={node!r}")
+    return violations
+
+
+def _load_card_file(root: Path, relative: str) -> tuple[Path, object | None, list[str]]:
+    path = root / relative
+    if not path.is_file():
+        return path, None, []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, ValueError) as exc:
+        return path, None, [_issue("card-unreadable", root, path, str(exc))]
+    if not isinstance(data, dict):
+        return path, None, [
+            _issue("card-structure", root, path, "top-level value must be a JSON object")
+        ]
+    return path, data, []
+
+
+def _validate_human_variable_cards(root: Path) -> list[str]:
+    path, data, errors = _load_card_file(
+        root, "skills/ariadne-human/references/human-variable-cards.json"
+    )
+    if data is None or not isinstance(data, dict):
+        return errors
+    for violation in sorted(set(_short_string_leaves(data))):
+        errors.append(
+            _issue(
+                "card-value-too-short",
+                root,
+                path,
+                f"string leaf under {CARD_STRING_LEAF_MIN_CHARS} chars: {violation}",
+            )
+        )
+    cards = data.get("human_variables")
+    if isinstance(cards, list):
+        for card in cards:
+            if not isinstance(card, dict):
+                continue
+            serialized = len(json.dumps(card, ensure_ascii=False))
+            if serialized < HUMAN_CARD_MIN_SERIALIZED_CHARS:
+                errors.append(
+                    _issue(
+                        "card-below-floor",
+                        root,
+                        path,
+                        f"card {card.get('id')} serializes to {serialized} chars"
+                        f" < {HUMAN_CARD_MIN_SERIALIZED_CHARS}",
+                    )
+                )
+    return errors
+
+
+def _validate_application_contracts(root: Path) -> list[str]:
+    path, data, errors = _load_card_file(
+        root, "skills/ariadne-audit/references/application-contracts.json"
+    )
+    if data is None or not isinstance(data, dict):
+        return errors
+    contracts = data.get("contracts")
+    if not isinstance(contracts, list):
+        errors.append(_issue("card-structure", root, path, "contracts must be a list"))
+        return errors
+    for contract in contracts:
+        if not isinstance(contract, dict):
+            continue
+        serialized = len(json.dumps(contract, ensure_ascii=False))
+        if serialized < APPLICATION_CONTRACT_MIN_SERIALIZED_CHARS:
+            errors.append(
+                _issue(
+                    "card-below-floor",
+                    root,
+                    path,
+                    f"contract {contract.get('id')} serializes to {serialized} chars"
+                    f" < {APPLICATION_CONTRACT_MIN_SERIALIZED_CHARS}",
+                )
+            )
+    return errors
+
+
+def _validate_state_prototypes(root: Path) -> list[str]:
+    path, data, errors = _load_card_file(
+        root, "skills/ariadne-human/references/state-prototypes.json"
+    )
+    if data is None or not isinstance(data, dict):
+        return errors
+    prototypes = data.get("prototypes")
+    if (
+        not isinstance(prototypes, list)
+        or len(prototypes) != len(STATE_PROTOTYPE_IDS)
+        or not all(isinstance(prototype, dict) for prototype in prototypes)
+        or [prototype.get("id") for prototype in prototypes] != list(STATE_PROTOTYPE_IDS)
+    ):
+        errors.append(_issue("card-structure", root, path, "prototypes must cover S0-S6 in order"))
+    else:
+        for prototype in prototypes:
+            for field in STATE_PROTOTYPE_REQUIRED_FIELDS:
+                if not _value_is_populated(prototype.get(field)):
+                    errors.append(
+                        _issue(
+                            "card-structure",
+                            root,
+                            path,
+                            f"prototype {prototype.get('id')} needs a non-empty {field}",
+                        )
+                    )
+    nonlinear_paths = data.get("nonlinear_paths")
+    if not isinstance(nonlinear_paths, list) or len(nonlinear_paths) < NONLINEAR_PATH_MIN_COUNT:
+        errors.append(
+            _issue(
+                "card-structure",
+                root,
+                path,
+                f"nonlinear_paths must list at least {NONLINEAR_PATH_MIN_COUNT} entries",
+            )
+        )
+    else:
+        for entry in nonlinear_paths:
+            if (
+                not isinstance(entry, dict)
+                or set(entry) != NONLINEAR_PATH_REQUIRED_KEYS
+                or not all(_value_is_populated(entry[key]) for key in NONLINEAR_PATH_REQUIRED_KEYS)
+            ):
+                errors.append(
+                    _issue(
+                        "card-structure",
+                        root,
+                        path,
+                        "each nonlinear path needs non-empty id, meaning and key_distinction",
+                    )
+                )
+                break
+    if not _value_is_populated(data.get("x0")):
+        errors.append(_issue("card-structure", root, path, "x0 register must be present and non-empty"))
+    return errors
+
+
+def _validate_intervention_levels(root: Path) -> list[str]:
+    path, data, errors = _load_card_file(
+        root, "skills/ariadne-choice/references/intervention-levels.json"
+    )
+    if data is None or not isinstance(data, dict):
+        return errors
+    levels = data.get("levels")
+    if (
+        not isinstance(levels, list)
+        or len(levels) != len(INTERVENTION_LEVEL_IDS)
+        or not all(isinstance(level, dict) for level in levels)
+        or [level.get("id") for level in levels] != list(INTERVENTION_LEVEL_IDS)
+    ):
+        errors.append(_issue("card-structure", root, path, "levels must cover T0-T4 in order"))
+    else:
+        for level in levels:
+            for field in INTERVENTION_LEVEL_REQUIRED_FIELDS:
+                if not _value_is_populated(level.get(field)):
+                    errors.append(
+                        _issue(
+                            "card-structure",
+                            root,
+                            path,
+                            f"level {level.get('id')} needs a non-empty {field}",
+                        )
+                    )
+    if not _value_is_populated(data.get("execution_state_log_contract")):
+        errors.append(
+            _issue(
+                "card-structure",
+                root,
+                path,
+                "execution_state_log_contract must be present and non-empty",
+            )
+        )
+    return errors
+
+
+def validate_method_content(root: Path) -> list[str]:
+    root = root.resolve()
+    errors: list[str] = []
+
+    for relative, floor in REFERENCE_MARKDOWN_BYTE_FLOORS.items():
+        path = root / relative
+        if not path.is_file():
+            continue
+        size = path.stat().st_size
+        if size < floor:
+            errors.append(
+                _issue("reference-below-floor", root, path, f"{size} bytes < {floor} byte floor")
+            )
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        for heading, body in _h2_sections(text):
+            if len(body.strip()) < H2_SECTION_MIN_CHARS:
+                errors.append(
+                    _issue(
+                        "thin-h2-section",
+                        root,
+                        path,
+                        f"section {heading!r} body under {H2_SECTION_MIN_CHARS} chars",
+                    )
+                )
+
+    skills_root = root / "skills"
+    if skills_root.is_dir():
+        for skill_md in sorted(skills_root.glob("*/SKILL.md")):
+            try:
+                text = skill_md.read_text(encoding="utf-8")
+            except (OSError, UnicodeDecodeError):
+                continue
+            body = FRONTMATTER_BLOCK.sub("", text, count=1)
+            body_bytes = len(body.encode("utf-8"))
+            if body_bytes < SKILL_BODY_MIN_BYTES:
+                errors.append(
+                    _issue(
+                        "skill-body-below-floor",
+                        root,
+                        skill_md,
+                        f"{body_bytes} bytes < {SKILL_BODY_MIN_BYTES} byte floor",
+                    )
+                )
+            section_count = len(_h2_sections(body))
+            if section_count < SKILL_BODY_MIN_H2_SECTIONS:
+                errors.append(
+                    _issue(
+                        "skill-body-missing-sections",
+                        root,
+                        skill_md,
+                        f"{section_count} H2 sections < {SKILL_BODY_MIN_H2_SECTIONS}",
+                    )
+                )
+
+    errors.extend(_validate_human_variable_cards(root))
+    errors.extend(_validate_application_contracts(root))
+    errors.extend(_validate_state_prototypes(root))
+    errors.extend(_validate_intervention_levels(root))
+    return errors
+
+
 def validate_content(root: Path) -> list[str]:
     root = root.resolve()
     errors: list[str] = []
@@ -415,6 +773,7 @@ def validate_content(root: Path) -> list[str]:
                     )
                 )
 
+    errors.extend(validate_method_content(root))
     return sorted(set(errors))
 
 

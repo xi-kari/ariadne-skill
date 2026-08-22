@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import filecmp
 import json
 import re
 import sys
@@ -16,17 +17,25 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / "skills"
 
 EXPECTED_REFERENCES = {
-    "ariadne-skill": {"lattice-kernel.md", "routing.md", "method-record.md", "source-navigation.json"},
+    "ariadne-skill": {
+        "lattice-kernel.md",
+        "routing.md",
+        "method-record.md",
+        "method-record.schema.json",
+        "source-navigation.json",
+    },
     "ariadne-framing": {"object-contract.md"},
     "ariadne-evidence": {"evidence-contracts.md"},
     "ariadne-scale": {"scale-transformations.md"},
     "ariadne-mechanism": {"mechanism-contracts.md"},
-    "ariadne-human": {"human-domain.md", "human-variable-cards.json"},
+    "ariadne-human": {"human-domain.md", "human-variable-cards.json", "state-prototypes.json"},
     "ariadne-dynamics": {"dynamic-derivation.md"},
     "ariadne-forecast": {"forecast-contract.md"},
-    "ariadne-choice": {"choice-and-authorization.md"},
+    "ariadne-choice": {"choice-and-authorization.md", "intervention-levels.json"},
     "ariadne-audit": {"gates-and-governance.md", "application-contracts.json"},
 }
+REQUIRED_FRONTMATTER_KEYS = {"name", "description"}
+ALLOWED_FRONTMATTER_KEYS = {"name", "description", "license", "metadata"}
 
 FORBIDDEN_MARKERS = ("TODO", "TBD", "PLACEHOLDER", "implement later", "fill in details")
 FOREIGN_PRODUCT_NAMES = ("CrossFrame", "world-structure")
@@ -35,6 +44,12 @@ METHOD_RECORD_EXAMPLE = re.compile(
     r"<!--\s*method-record-example:start\s*-->\s*"
     r"```yaml\s*(.*?)```\s*"
     r"<!--\s*method-record-example:end\s*-->",
+    re.DOTALL,
+)
+METHOD_RECORD_LINEAGE_EXAMPLE = re.compile(
+    r"<!--\s*method-record-lineage-example:start\s*-->\s*"
+    r"```yaml\s*(.*?)```\s*"
+    r"<!--\s*method-record-lineage-example:end\s*-->",
     re.DOTALL,
 )
 CEILING_RANK = {
@@ -103,6 +118,11 @@ EXPECTED_PROHIBITED_SUBSTITUTIONS = {
         "non_transferable_elements",
         "source_authority",
         "recorded_differences",
+    },
+    "double_evidence_ban": {
+        "dual_text_agreement",
+        "independent_evidence_count",
+        "shared_lineage",
     },
 }
 EXPECTED_D5_APPLICABILITY = {
@@ -302,7 +322,7 @@ def validate_stage_status(status: dict[str, str]) -> list[str]:
     if status["PARENT_INDEPENDENT_VALIDATION"] == "complete" and status["WORKER_FINAL_VALIDATION"] != "complete":
         errors.append("parent validation cannot complete before worker validation")
     if status["RELEASE"] != "not_authorized":
-        errors.append("release must remain not_authorized in this worktree")
+        errors.append("release must remain not_authorized until explicitly authorized in a reviewed change")
     return errors
 
 
@@ -342,6 +362,31 @@ def extract_marked_method_records(text: str) -> list[dict]:
     return records
 
 
+def extract_marked_method_record_lineages(text: str) -> list[list[dict]]:
+    lineages: list[list[dict]] = []
+    for block in METHOD_RECORD_LINEAGE_EXAMPLE.findall(text):
+        records = yaml.safe_load(block)
+        if (
+            not isinstance(records, list)
+            or len(records) < 2
+            or not all(isinstance(record, dict) for record in records)
+        ):
+            raise ValueError("marked Method Record lineage example is not a list of record mappings")
+        lineages.append(records)
+    return lineages
+
+
+def validate_source_coverage(coverage: str) -> list[str]:
+    errors: list[str] = []
+    for part in range(1, 17):
+        if f"| Part {part} -" not in coverage:
+            errors.append(f"source coverage missing Part {part}")
+    for appendix in "ABCD":
+        if f"| Appendix {appendix} -" not in coverage:
+            errors.append(f"source coverage missing Appendix {appendix}")
+    return errors
+
+
 def _plain_ref(item: dict) -> dict:
     return {"record_id": item["record_id"], "record_version": item["record_version"]}
 
@@ -376,6 +421,8 @@ def validate_record_semantics(
             errors.append("root record must have no parents")
         if record["record_version"] != 1:
             errors.append("root record_version must equal one")
+        if record["output_ceiling"] != "description_only":
+            errors.append("root record output_ceiling must be description_only")
     elif lineage == "linear":
         if len(parents) != 1 or record["parent_record_id"] != parents[0]["record_id"]:
             errors.append("linear parent_record_id must identify the sole parent_records entry")
@@ -402,6 +449,10 @@ def validate_record_semantics(
     result = transition["result"]
     if result != record["output_ceiling"]:
         errors.append("ceiling transition result must equal output_ceiling")
+    if operation == "lower":
+        lower_reason = transition.get("reason")
+        if not isinstance(lower_reason, str) or not lower_reason.strip():
+            errors.append("lower ceiling transition requires a non-empty reason")
 
     if lineage == "root" and operation != "root":
         errors.append("root lineage requires root ceiling operation")
@@ -690,12 +741,13 @@ def collect_errors() -> list[str]:
 
         try:
             data = frontmatter(skill_md)
-            if set(data) != {"name", "description"}:
+            keys = set(data)
+            if not REQUIRED_FRONTMATTER_KEYS <= keys or keys - ALLOWED_FRONTMATTER_KEYS:
                 errors.append(f"frontmatter keys for {name}: {sorted(data)}")
             if data.get("name") != name:
                 errors.append(f"frontmatter name mismatch for {name}")
             description = data.get("description")
-            if not isinstance(description, str) or not description.startswith("Use when "):
+            if not isinstance(description, str) or "Use when " not in description:
                 errors.append(f"description trigger invalid for {name}")
         except (OSError, ValueError, yaml.YAMLError) as exc:
             errors.append(str(exc))
@@ -732,13 +784,7 @@ def collect_errors() -> list[str]:
     if not coverage_path.is_file():
         errors.append("missing docs/source-coverage.md")
     else:
-        coverage = coverage_path.read_text(encoding="utf-8")
-        for part in range(1, 17):
-            if f"Part {part}" not in coverage:
-                errors.append(f"source coverage missing Part {part}")
-        for appendix in "ABCD":
-            if f"Appendix {appendix}" not in coverage:
-                errors.append(f"source coverage missing Appendix {appendix}")
+        errors.extend(validate_source_coverage(coverage_path.read_text(encoding="utf-8")))
 
     navigation_path = SKILLS_ROOT / "ariadne-skill" / "references" / "source-navigation.json"
     try:
@@ -765,13 +811,24 @@ def collect_errors() -> list[str]:
     except (OSError, json.JSONDecodeError, jsonschema.SchemaError) as exc:
         errors.append(f"method record schema invalid: {exc}")
     else:
+        schema_copy_path = SKILLS_ROOT / "ariadne-skill" / "references" / "method-record.schema.json"
+        if not schema_copy_path.is_file():
+            errors.append(
+                "missing installable schema copy: skills/ariadne-skill/references/method-record.schema.json"
+            )
+        elif not filecmp.cmp(schema_path, schema_copy_path, shallow=False):
+            errors.append(
+                "installable schema copy must be byte-identical to schemas/method-record.schema.json"
+            )
         example_count = 0
+        merge_lineage_example_count = 0
         for path in SKILLS_ROOT.rglob("*.md"):
+            text = path.read_text(encoding="utf-8")
             try:
-                records = extract_marked_method_records(path.read_text(encoding="utf-8"))
+                records = extract_marked_method_records(text)
             except (OSError, ValueError, yaml.YAMLError) as exc:
                 errors.append(f"Method Record example parse failed in {path.relative_to(ROOT)}: {exc}")
-                continue
+                records = []
             for record in records:
                 example_count += 1
                 try:
@@ -783,8 +840,43 @@ def collect_errors() -> list[str]:
                     continue
                 for error in validate_record_semantics(record):
                     errors.append(f"Method Record semantics invalid in {path.relative_to(ROOT)}: {error}")
+            try:
+                lineages = extract_marked_method_record_lineages(text)
+            except (OSError, ValueError, yaml.YAMLError) as exc:
+                errors.append(
+                    f"Method Record lineage example parse failed in {path.relative_to(ROOT)}: {exc}"
+                )
+                lineages = []
+            for lineage_records in lineages:
+                if any(record.get("lineage_kind") == "merge" for record in lineage_records):
+                    merge_lineage_example_count += 1
+                for record in lineage_records:
+                    if record.get("lineage_kind") == "merge" and not record.get("conflicts"):
+                        errors.append(
+                            f"Method Record lineage example invalid in {path.relative_to(ROOT)}: "
+                            "merge record must preserve at least one named conflict"
+                        )
+                for index, record in enumerate(lineage_records):
+                    context = [
+                        other for position, other in enumerate(lineage_records) if position != index
+                    ]
+                    try:
+                        validate_method_record(record, schema)
+                    except jsonschema.ValidationError as exc:
+                        errors.append(
+                            f"Method Record lineage example invalid in {path.relative_to(ROOT)}: {exc.message}"
+                        )
+                        continue
+                    for error in validate_record_semantics(record, context):
+                        errors.append(
+                            f"Method Record lineage semantics invalid in {path.relative_to(ROOT)}: {error}"
+                        )
         if example_count < 4:
             errors.append(f"expected at least 4 marked Method Record examples, found {example_count}")
+        if merge_lineage_example_count < 1:
+            errors.append(
+                "expected at least 1 marked Method Record lineage example containing a merge record"
+            )
 
     cards_path = SKILLS_ROOT / "ariadne-human" / "references" / "human-variable-cards.json"
     try:
