@@ -33,7 +33,8 @@ Do not review, approve, reject, polish, or forward-test modules one by one while
 ## Local and publishing boundaries
 
 - Test local skills only by explicit name or direct repository path.
-- Do not copy, link, or install this repository into a global skills directory on this workstation.
+- Do not install this development clone into a global skills directory on the maintainer's workstation; end users installing via the README OP-01/OP-02 commands are out of scope for this rule.
+- Host smoke verification runs in a disposable container or VM, never against this workstation's global directories; record outcomes in the `verification` fields of adapters/compatibility.json.
 - Do not publish partial implementation branches or partial skill releases.
 - Keep skill files free of iteration narration, development diary text, and version-by-version explanations.
 
@@ -51,7 +52,7 @@ CONTRIBUTING.md holds the full workflow, including the site build and `git diff 
 These machine-checked invariants break most otherwise-reasonable edits:
 
 - **Stage-table sync.** The execution stage tables in `README.md` and `docs/superpowers/plans/2026-08-03-ariadne-skill-implementation.md` must stay identical, word for word.
-- **Release seal.** `RELEASE` must remain `not_authorized`. The only way to lift the seal is a reviewed change that updates the assertion in `scripts/validate_repo.py` itself; no edit to README, plan, or docs can authorize a release.
+- **Release seal.** `RELEASE` is `complete`: the seal was lifted in the reviewed change of 2026-08-26 that shipped the full external-review remediation and tag `v1.0.0`. The stage must stay `complete`; any further release-state change (re-sealing included) requires another reviewed change that updates the assertion in `scripts/validate_repo.py` itself, and no edit to README, plan, or docs alone can change release state.
 - **Pinned reference manifest.** The file set under each `skills/*/references/` directory must exactly match `EXPECTED_REFERENCES` in `scripts/validate_repo.py`; adding or removing a reference file requires updating the validator in the same reviewed change.
 - **File hygiene.** Every text file must be UTF-8 with LF line endings, no trailing whitespace, and a final newline.
 - **Banned markers.** Unfinished-work markers and foreign product names — pinned as `FORBIDDEN_MARKERS` and `FOREIGN_PRODUCT_NAMES` in `scripts/validate_repo.py` — fail validation in any installable file.

@@ -1,6 +1,6 @@
 ---
 name: ariadne-mechanism
-description: "Explain why and through which channel something happens by making at least two competing mechanisms beat a simple baseline, each with channel observations, falsifiers, and residual comparison. Use when a why or how question, root-cause diagnosis, causal route, or analogy needs competing explanations instead of one coherent story. Part of the Ariadne methodology suite. 适用于：机制比较、根因分析、竞争机制与证伪条件、残差分析。"
+description: "Explain why and through which channel something happens by making at least two competing mechanisms beat a simple baseline, each with channel observations, falsifiers, and residual comparison. Use when a root-cause review needs competing, falsifiable explanations on the record - post-incident, organizational, market, or operational diagnosis; not for routine interactive debugging of code the agent can directly inspect and fix. For people and team questions pair with ariadne-human; for a multi-module pass, start with ariadne-skill. 适用于：正式的根因复盘、为什么会发生、竞争解释与证伪条件、残差比较。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -14,7 +14,7 @@ Build bounded mechanism diagnoses. Compare the simplest adequate baseline with e
 
 ## Standalone Contract
 
-Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and put every mechanism candidate in the typed module payload.
+Create or extend a schema-valid Method Record (field list for standalone installs: [references/record-fields.md](references/record-fields.md); the full schema ships with the suite router). Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and put every mechanism candidate in the typed module payload.
 
 Set `authorization_effect` to `none`. A module run preserves or lowers its parent ceiling. Raise only in a child that newly admits named external evidence or a newly fulfilled protocol. Use `description_only` when the object or evidence is inadequate, `diagnostic_only` for a bounded mechanism comparison, and `requirements_only` only when that diagnosis is retained and explicit external process requirements are added.
 
@@ -28,11 +28,11 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 6. Apply G1-G4 (G1 candidate grouping, G2 specified channel, G3 historical increment, G4 scale closure or conversion) and C1-C12 (C1 object and boundary, C2 carrier and channel, C3 feedback and learning, C4 history and path, C5 load and recovery, C6 scale closure or conversion, C7 local change and spillover, C8 variation-selection-reproduction, C9 observation and reflexivity, C10 human carrying, C11 institutional writeback, C12 normative bridge) only through eligible instances and their allowed conclusions. Treat definitions, contract completion, internal labels, and examples as no empirical support.
 7. Select only applicable CM contracts (CM-FEEDBACK effective feedback, CM-LEARNING feedback-mediated learning, CM-MAINTENANCE maintenance and preservation-dissolution, CM-LOAD load/capacity/recovery, CM-PHASE phase and threshold transition, CM-SELECTION variation-retention-reproduction). Keep feedback separate from learning, instantaneous load separate from cumulative damage, phase patterns separate from causal or hysteretic transitions, and selection patterns separate from carriers and cross-round history.
 8. Compare candidates against the baseline. Retain ties, null or undecided results, unmeasured dimensions, competing causes, and zero-result requirements instead of choosing the smoothest story.
-9. Write the bounded finding into `claim_ledger`, preserve residuals and counterevidence, and put every complete candidate in the typed mechanism payload. If fewer than two complete candidates exist, stop at `description_only`. Record this module run and recommend only the next modules actually needed.
+9. Write the bounded finding into `claim_ledger`, preserve residuals and counterevidence, and put every complete candidate in the typed mechanism payload. If fewer than two complete candidates exist, stop at `description_only` with `status: completed`: record the bounded finding and the incomplete candidates as `candidate` entries in `claim_ledger`, omit the typed mechanism payload entirely, and list the missing candidate fields in `unknowns`. Use `status: failed`, with a reason, only when a required gate broke and no bounded product exists. Record this module run and recommend only the next modules actually needed.
 
 Stop before assigning value, responsibility, obligation, remedy, or permission. Route event propagation to `ariadne-dynamics`, human roles or privacy to `ariadne-human`, scale translation to `ariadne-scale`, evidence repair to `ariadne-evidence`, and any real-world choice or authorization question onward without answering it here.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Quick Reference
 

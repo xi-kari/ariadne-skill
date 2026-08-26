@@ -27,6 +27,6 @@
 ## 边界确认
 
 - [ ] authorization_effect 仍为 none
-- [ ] RELEASE: not_authorized 未改变
+- [ ] 发布状态（RELEASE 阶段、tag、包发布）未在本 PR 中变更
 - [ ] 本 PR 不创建或授权 tag、GitHub Release、软件包发布或全局安装
 - [ ] 本 PR 不含秘密、凭据、个人资料或未经授权披露的案例材料

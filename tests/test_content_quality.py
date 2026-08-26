@@ -53,6 +53,7 @@ def test_markdown_code_links_are_not_treated_as_navigation(tmp_path: Path) -> No
     (tmp_path / "README.md").write_text(
         "```markdown\n[example](missing.md)\n```\n`[inline](also-missing.md)`\n",
         encoding="utf-8",
+        newline="\n",
     )
     assert _validator()(tmp_path) == []
 
@@ -147,10 +148,12 @@ def test_generated_site_asset_resolves_to_shared_source(tmp_path: Path) -> None:
         '<img src="assets/lattice-kernel-map.svg" alt="方法图">'
         "</body></html>\n",
         encoding="utf-8",
+        newline="\n",
     )
     (tmp_path / "docs" / "assets" / "lattice-kernel-map.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg"><title>方法图</title></svg>\n',
         encoding="utf-8",
+        newline="\n",
     )
     assert _validator()(tmp_path) == []
 
@@ -174,6 +177,11 @@ def test_invalid_utf8_extensionless_contract_file_is_rejected(tmp_path: Path) ->
 def test_trailing_whitespace_is_rejected(tmp_path: Path) -> None:
     (tmp_path / "README.md").write_text("trailing  \n", encoding="utf-8")
     assert "trailing-whitespace" in _codes(tmp_path)
+
+
+def test_crlf_line_endings_are_rejected(tmp_path: Path) -> None:
+    (tmp_path / "README.md").write_bytes(b"# Title\r\n\r\nCRLF body line.\r\n")
+    assert "crlf-line-ending" in _codes(tmp_path)
 
 
 def test_missing_final_newline_is_rejected(tmp_path: Path) -> None:

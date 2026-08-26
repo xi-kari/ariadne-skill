@@ -1,6 +1,6 @@
 ---
 name: ariadne-audit
-description: "Gate high-impact use of completed Ariadne records: transformation and main gates, appeal, rollback, downgrade, pause, withdrawal, retirement, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or when clustered module records must be merged and their conflicts preserved. 适用于：高影响审查、申诉与回滚、降级与退役、集群合并终审。"
+description: "Gate high-impact use of completed Ariadne records: transformation and main gates, appeal, rollback, downgrade, pause, withdrawal, retirement, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or when clustered module records must be merged and their conflicts preserved. For a multi-module pass, start with ariadne-skill. 适用于：结论公开或上线前的审查、能不能这么用、申诉与回滚、降级与退役、集群合并终审。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -25,7 +25,7 @@ Audit whether a bounded methodology record may retain its current judgment and u
 2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark every later transformation `not_run`. An IT1 failure fixes `output_ceiling: description_only`; describe missing requirements or a protective pause without issuing requirements.
 3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Mark every gate after the first failure `not_run`. An IG1 failure fixes `output_ceiling: description_only`; do not let later paperwork repair or elevate it.
 4. Expand with FG1-FG5 (the five expansion gates: object, evidence, scale, responsibility, and observation) and DS01-DS13 (the thirteen diagnostic steps: problem entry, object and boundary, signal layers, observation participation, dominant constraint, state and window, core structure, protected variables, carrying and repayment, hazard and boundary type, competing mechanisms, branch outlook, and output and writeback) when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
-5. Require SJ1-SJ8 (the strong-judgment eight: reverse conditions, repair window, evidence requirements, appeal entry, anti-retaliation, evidence supplementation, external-review trigger, and rollback and writeback) for every L3 judgment (the highest of the L1-L3 responsibility levels) that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output.
+5. Require SJ1-SJ8 (the strong-judgment eight: reverse conditions, repair window, evidence requirements, appeal entry, anti-retaliation, evidence supplementation, external-review trigger, and rollback and writeback) for every L3 judgment (the highest of the L1-L3 responsibility levels) that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output. SJ4-SJ8 re-verify the choice-level PF bindings; SJ1-SJ3 are the audit-specific increment, as the gates reference maps them.
 6. Add DF1-DF9 (the nine dynamic gates: fact freeze, joint object, channels and clocks, mechanism propagation, path branching, forecast registration, normative choice, authorization and execution, and result writeback) when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
 7. Apply the AI boundary. Mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
 8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Require an externally verifiable approval for an applied governance change.
@@ -39,7 +39,7 @@ Use `intervention_review` for a proposed or active real-world intervention and `
 
 ## Mini Example
 
-Input question: "May this automated attrition score keep its staffing use?"
+Input question: "May this automated attrition score keep its staffing use?" Skeleton only, not a complete record:
 
 ```yaml
 request_type: governance_review
@@ -54,7 +54,7 @@ Stop at `description_only` when the object or evidence chain fails. Stop at `dia
 
 Block public strong judgment when any required publication gate fails. Pause high-impact use when appeal, anti-retaliation, independent review, rollback, or authoritative writeback is not real. Withdraw or retire a claim, module, or framework when repeated or high-harm counterexamples, capture, calibration failure, identity change, or a safer simpler replacement defeats its current scope.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Quick Reference
 
@@ -83,4 +83,4 @@ If a routed peer skill is unavailable in this installation, record the handoff i
 
 ## Load Detailed Guidance
 
-Read [gates-and-governance.md](references/gates-and-governance.md) for gate, AI, contestability, rollback, publication, governance, and lifecycle contracts. For any relationship, family, organization, platform, institution, public-opinion, space, emergency, or ultra-large application, also read the direct [Part 15 application contracts](references/application-contracts.json) and enforce the matching domain stop and handoff.
+Read [gates-core.md](references/gates-core.md) for the gate flow, AI boundary, publication, and intervention contracts (sections 1-9 plus the worked example with its schema-checked record). Read [governance-lifecycle.md](references/governance-lifecycle.md) for consensus and version authority, registries, challenge protection, capture detection, appeal and rollback testing, and retirement (sections 10-16). For any relationship, family, organization, platform, institution, public-opinion, space, emergency, or ultra-large application, also read the direct [Part 15 application contracts](references/application-contracts.json) and enforce the matching domain stop and handoff; read its `common_rule` first, then only the matched contract entry (search by ID, for example `"id": "APP-ORG"`) instead of the whole file.

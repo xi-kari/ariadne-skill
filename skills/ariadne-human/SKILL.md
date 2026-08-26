@@ -1,6 +1,6 @@
 ---
 name: ariadne-human
-description: "Constrain human-domain analysis so people are never reduced to fixed labels: roles, circles, power, privacy, responsibility, and meaning stay separate, evidence-bounded records. Use when analyzing people, relationships, teams, organizations, institutions, or multi-circle joint objects without personality or clinical diagnosis. Part of the Ariadne methodology suite. 适用于：人际与组织分析、角色与圈层、权力与隐私、责任与意义边界。"
+description: "Constrain human-domain analysis so people are never reduced to fixed labels: roles, circles, power, privacy, responsibility, and meaning stay separate, evidence-bounded records. Use when analyzing people, relationships, teams, organizations, institutions, or multi-circle joint objects without personality or clinical diagnosis; for the causal channel behind an outcome pair with ariadne-mechanism. For a multi-module pass, start with ariadne-skill. 适用于：团队与组织问题、角色圈层与权力、隐私与责任边界、不给人贴标签的分析。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -14,7 +14,7 @@ Apply human-domain clauses without turning people into fixed labels or collectiv
 
 ## Standalone Contract
 
-Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and use the typed human payload for observation position, privacy, purpose, affected positions, alternatives, and responsible human review. `affected_positions` is a closed object with all four keys: `direct`, `indirect`, `low_power`, and `no_exit`. Each key records status, positions, and reason; use explicit `unknown`, `not_applicable`, or `withheld_for_protection` rather than one free-text substitute.
+Create or extend a schema-valid Method Record (field list for standalone installs: [references/record-fields.md](references/record-fields.md); the full schema ships with the suite router). Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and use the typed human payload for observation position, privacy, purpose, affected positions, alternatives, and responsible human review. `affected_positions` is a closed object with all four keys: `direct`, `indirect`, `low_power`, and `no_exit`. Each key records status, positions, and reason; use explicit `unknown`, `not_applicable`, or `withheld_for_protection` rather than one free-text substitute.
 
 Set `authorization_effect` to `none`. A module run preserves or lowers its parent ceiling; only a child with newly admitted external evidence or a newly fulfilled protocol may raise it. Use `description_only` for observations and candidate classifications, `diagnostic_only` for bounded human-system explanations, and `requirements_only` only when a retained diagnosis is accompanied by explicit privacy, protection, appeal, evidence, or external authorization requirements.
 
@@ -33,7 +33,7 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 
 Stop before clinical inference, personality essence, value ranking, punishment, compelled disclosure, resource redistribution, responsibility assignment beyond available evidence, or real-world authorization. Route propagation to `ariadne-dynamics`, evidence repair to `ariadne-evidence`, and value or action questions onward without deciding them here.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Quick Reference
 
@@ -48,9 +48,11 @@ If a routed peer skill is unavailable in this installation, record the handoff i
 
 ## Mini Example
 
+Skeleton only, not a complete record; the schema-valid template ships with the suite router as `l1-record-template.md`.
+
 ```yaml
 # Input: "Is this five-person volunteer project one working collective, and in what state?"
-request_type: human_domain_analysis
+request_type: diagnosis
 object: {object_id: C-volunteers-01, kind: circle}
 state_classification: {mode: single_dominant, candidates: [S1]}
 affected_positions: {direct: identified, low_power: unknown}
@@ -67,4 +69,4 @@ output_ceiling: description_only
 - Averaging away low-power positions, role conflicts, disputed evidence, dual-channel differences, or asynchronous clocks.
 - Adding circles that do not explain a residual or improve on the simple baseline.
 
-Read [human-domain.md](references/human-domain.md) for H contracts, actor and collective boundaries, multi-circle contracts, and protection rules. In the [HV01-HV11 interface cards](references/human-variable-cards.json), read the file-header `toc` and the common field contract first, then read only the cards your route actually hit; do not reconstruct a card from summaries. Load the [S0-S6 and X0 state-prototype cards](references/state-prototypes.json) before any collective state classification.
+Read [human-domain.md](references/human-domain.md) for H contracts, actor and collective boundaries, multi-circle contracts, and protection rules. In the [HV01-HV11 interface cards](references/human-variable-cards.json), read the file-header `toc` and the common field contract first, then read only the cards your route actually hit, locating each card by searching the file for its ID anchor (for example `"id": "HV05"`); do not reconstruct a card from summaries. Load the [S0-S6 and X0 state-prototype cards](references/state-prototypes.json) before any collective state classification; its header `toc` lists the prototypes, and searching `"id": "S3"` jumps to a card.

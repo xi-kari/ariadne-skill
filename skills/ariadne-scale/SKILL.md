@@ -1,6 +1,6 @@
 ---
 name: ariadne-scale
-description: "Audit what survives a move between scales: what is preserved, changed, lost, or incomparable when an object, observation, claim, or action transfers across levels, time windows, circles, representations, or vocabularies. Use when reasoning crosses individual and collective levels, local and global scopes, short and long windows, or domains. Part of the Ariadne methodology suite. 适用于：跨尺度迁移审计、个体与群体、局部与整体、跨领域类比、转义损失。"
+description: "Audit what survives a move between scales: what is preserved, changed, lost, or incomparable when an object, observation, claim, or action transfers across levels, time windows, circles, representations, or vocabularies. Use when reasoning crosses individual and collective levels, local and global scopes, short and long windows, or domains. For a multi-module pass, start with ariadne-skill. 适用于：个体结论能否推到群体、试点能否推广、跨领域类比是否成立、换个说法丢了什么。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -27,7 +27,7 @@ Read [references/scale-transformations.md](references/scale-transformations.md) 
 
 ## Method Record Contract
 
-Produce every common field, summarize the endpoints and status in `scale_scope`, add an `ariadne-scale` module run, and put failed mappings, lost distinctions, residuals, and unknown axes in `unknowns_and_counterevidence`. Create a child version when an endpoint, operator, mapping, identity criterion, task, cutoff, or loss tolerance changes.
+Produce every common field (full schema: `ariadne-skill/references/method-record.schema.json`, shipped with the suite router; the standalone example in [references/scale-transformations.md](references/scale-transformations.md) is schema-checked in CI), summarize the endpoints and status in `scale_scope`, add an `ariadne-scale` module run, and put failed mappings, lost distinctions, residuals, and unknown axes in `unknowns_and_counterevidence`. Create a child version when an endpoint, operator, mapping, identity criterion, task, cutoff, or loss tolerance changes.
 
 Do not loosen an incoming output ceiling. Never change `authorization_effect` from `none`; a broader geographic, organizational, observational, causal, influence, or network scope does not expand J jurisdiction.
 
@@ -44,6 +44,8 @@ Do not loosen an incoming output ceiling. Never change `authorization_effect` fr
 
 ## Mini Example
 
+Skeleton only, not a complete record; the schema-valid template ships with the suite router as `l1-record-template.md`.
+
 ```yaml
 # Input: "Our one-city pilot worked, so the national rollout will work."
 scale_scope:
@@ -57,7 +59,7 @@ output_ceiling: description_only
 
 Stop at parallel descriptions when an endpoint, bridge, or identity mapping is missing. Mark the transformation `failed` when a prohibited mapping occurs. Return to the source scale when task-relevant loss exceeds tolerance. Route channel identification to `ariadne-evidence` or `ariadne-mechanism`, human protection to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact transfer review to `ariadne-audit`.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Common Mistakes
 

@@ -1,6 +1,6 @@
 ---
 name: ariadne-choice
-description: Compare action, delay, reversible experiment, exit, and inaction on one baseline, keeping facts, values, rights, jurisdiction, and authorization separate and issuing no permissions. Use when a real-world decision, pilot, exit, or act-or-not question needs a bounded option comparison with external requirements. Part of the Ariadne methodology suite. 适用于：有限选择、方案比较、试点与退出、不行动审查、授权边界。
+description: "Compare action, delay, reversible experiment, exit, and inaction on one baseline, keeping facts, values, rights, jurisdiction, and authorization separate and issuing no permissions. Use when a real-world decision, pilot, exit, or act-or-not question needs a bounded option comparison with external requirements; when the decision hinges on an unregistered future claim, run ariadne-forecast first. For a multi-module pass, start with ariadne-skill. 适用于：该不该做、方案比较、试点与退出、不行动也是选项、授权边界。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -34,13 +34,13 @@ Compare a finite option set without turning facts, forecasts, efficiency, surviv
 
 ## Method Record
 
-Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition. For every action request, write the typed choice payload with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan. Use `unknown` rather than omit any boundary.
+Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition (full schema: `ariadne-skill/references/method-record.schema.json`, shipped with the suite router; the standalone example in [references/choice-and-authorization.md](references/choice-and-authorization.md) is schema-checked in CI). For every action request, write the typed choice payload with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan. Use `unknown` rather than omit any boundary.
 
 Use `description_only` for incomplete facts, `diagnostic_only` for bounded consequence comparison, and `requirements_only` only when lower permissions remain satisfied and external process requirements are explicit. Keep `authorization_effect: none`.
 
 ## Mini Example
 
-Input question: "May we run a reversible workload pilot now, or must we not act?"
+Input question: "May we run a reversible workload pilot now, or must we not act?" Skeleton only, not a complete record:
 
 ```yaml
 selection_type: SEL-AGT
@@ -55,7 +55,7 @@ Stop at inaction, evidence collection, protective preservation, continued review
 
 Do not choose values for the subject, infer consent from silence or non-exit, sign authorization, execute an option, or guarantee success. Return plain-language comparison first, followed by the compact Method Record and, for high-impact cases, the detailed choice card.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Quick Reference
 
@@ -74,7 +74,7 @@ If a routed peer skill is unavailable in this installation, record the handoff i
 - **Deleting inaction:** Include exactly one `no_action` and price its continuing harms and responsibilities.
 - **Treating status quo as no action:** Record the resources and enforcement required to maintain the status quo.
 - **Aggregating away burden:** Preserve low-power, overlapping, bridge, cross-domain, and long-horizon positions.
-- **Patching authority:** Require one atomic J tuple to cover subject, object, action, territory, and full period.
+- **Patching authority:** Require one atomic J tuple to cover subject, object, action, territory, full period, and authority source, as section 8 of the reference enumerates.
 - **Calling formal participation consent:** Test safe refusal, exit, dissent effect, and anti-retaliation.
 - **Using a pilot as an ethics exemption:** Apply the same protection, stop, appeal, rollback, data-use, and remedy duties.
 - **Letting the module authorize:** Verify external records only and keep `authorization_effect: none`.

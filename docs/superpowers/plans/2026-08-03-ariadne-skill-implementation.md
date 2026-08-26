@@ -49,7 +49,7 @@ Before `WHOLE_SUITE_CONTENT_COMPLETE`, do not run module reviews, forward tests,
 | WHOLE_SUITE_REPAIR | complete |
 | WORKER_FINAL_VALIDATION | complete |
 | PARENT_INDEPENDENT_VALIDATION | complete |
-| RELEASE | not_authorized |
+| RELEASE | complete |
 <!-- ariadne-stage-status:end -->
 
 The complete suite passed the content gate before integrated review began. The consolidated repair and independent parent validation are complete. Repository commit, branch publication, and merge follow Task 6; global installation, release tags, and package publication remain outside the authorized scope.

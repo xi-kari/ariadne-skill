@@ -54,12 +54,14 @@ Separate every root instance into an immutable preregistration segment and an ap
 
 Use only four result states: `supported`, `unsupported_or_undecided`, `null_supported`, and `not_evaluated`. Require an eligible confirmatory or replication instance, a frozen-before-evidence contract, completion from that contract, a passed positive rule, resolvable evidence, and analysis artifacts for positive support. Use exploratory or post-result-deviated runs only to generate candidates. A failed positive rule does not support the null. Require the frozen equivalence or sufficiency test, power or sensitivity gate, and tolerance to all pass before `null_supported`.
 
-| Root | Ask | Finite supported output |
-|---|---|---|
-| G1 | Does a candidate grouping beat a complexity-matched no-group baseline out of sample and survive boundary perturbation plus independent time or place replication? | Object-recognition strength, boundary credibility, and applicability window within frozen `SP/T/K` and generalization unit. |
-| G2 | Does one preregistered perturbation, intervention, or identified natural variation change a specified transition through a specified channel beyond threshold? | Candidate causal carrier and only the separately measured channel dimensions. |
-| G3 | Does a predeclared historical term add out-of-sample information after controlling current registered state, environment, and measurement? Does a separately chosen history intervention change the result? | Predictive path difference for G3a; causal path difference for G3b. Never destiny or absolute irreversibility. |
-| G4 | Does an excluded-scale variable add conditional information, prediction, or intervention gain, or does a frozen mapping show exactly one preselected failure among object-dynamics non-commutation, intervention non-commutation, identity-criterion violation, effective-relation change, and intervention-response change? Never merge the five G4b criteria into one disjunctive fallback. | Criterion-bounded closure failure for G4a or one preregistered object/intervention conversion for G4b. |
+The frozen questions, pass rules, and non-inference boundaries for G1-G4 are owned by `ariadne-evidence` in evidence-contracts.md (Root Families); consume recorded G-instance results instead of re-deriving or re-wording them here. What a supported instance unlocks for mechanism work:
+
+| Root | A supported instance unlocks |
+|---|---|
+| G1 | Object-recognition strength, boundary credibility, and applicability window within frozen `SP/T/K` and generalization unit. |
+| G2 | Candidate causal carrier and only the separately measured channel dimensions. |
+| G3 | Predictive path difference for G3a; causal path difference for G3b. Never destiny or absolute irreversibility. |
+| G4 | Criterion-bounded closure failure for G4a or one preregistered object/intervention conversion for G4b. |
 
 Apply E1 before judgment by declaring object, scale, window, variables, zero model, and identity. Apply E2 by recording observation position and model limits. Apply E3 only when observation, naming, scoring, or publication reaches the object through an actual causal channel. Apply E4 by retaining a distinguishable competitor, counterexample, and residual. Apply E5 by auditing the D3 mapping, invariants, changes, losses, error, competitors, and residuals. Treat these as method gates, not empirical causes.
 
@@ -78,7 +80,7 @@ Apply E1 before judgment by declaring object, scale, window, variables, zero mod
 | C9 observation and reflexivity | G2 and an actual observation channel with timing and no-observation, alternative-observation, or blocked counterfactual; add G3 for persistence | Channel-bounded observational participation or reflexive response; persistence only with history support. |
 | C10 human carrying | G2 plus H2 separation of carrier, typed cost bearer, beneficiary, stop right, and responsible subject; add G3 for intertemporal reproduction and H5 for a historical carrier | Current carrying chain, intertemporal candidate, or bounded historical-carrier account. No sacrifice duty follows. |
 | C11 institutional writeback | D2 plus G2; use H3 to separate receipt, field change, execution, and duration | Receipt, record update, execution, effective writeback, and duration as distinct states. One writeback is not learning or legitimacy. |
-| C12 normative bridge | N1 and O1-O4, explicit runtime normative premises and conflicts, protection floor, atomic jurisdiction, no-action option, monitoring, stop, appeal, rollback, remedy, expiry, and reauthorization | Only a bounded recommendation after every gate. This module may report missing requirements but never supply authorization. |
+| C12 normative bridge | The ten C12 components enumerated canonically in choice-and-authorization.md (owned by `ariadne-choice`) | Only a bounded recommendation after every gate. This module may report missing requirements but never supply authorization. |
 
 ## Conditional Mechanism Contract
 

@@ -1,6 +1,6 @@
 ---
 name: ariadne-evidence
-description: "Grade how far existing materials can support each claim: freeze an evidence cutoff, then separate source, material, observation, evidence, counterevidence, judgment, and external authorization. Use when claims, citations, causal or analogy arguments need support grading, competing explanations, and counterevidence checks. Part of the Ariadne methodology suite. 适用于：证据链分级、来源核查、因果与类比检查、竞争解释与反证。"
+description: "Grade how far existing materials can support each claim: freeze an evidence cutoff, then separate source, material, observation, evidence, counterevidence, judgment, and external authorization. Use when claims, citations, causal or analogy arguments need support grading, competing explanations, and counterevidence checks. For a multi-module pass, start with ariadne-skill. 适用于：证据够不够、来源核查、这个结论站得住吗、因果与类比检查、反证清点。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -29,7 +29,7 @@ Read [references/evidence-contracts.md](references/evidence-contracts.md) for fi
 
 Produce every common field and add an `ariadne-evidence` entry to `module_runs`. Keep claim texts and support IDs in `claim_ledger`; a supported claim resolves every `support_id` to an admitted source or earlier in-record claim and every `support_rule_id` to the explicit `rule_registry`. Reject ghost sources and invented `RULE:*` labels. Put unresolved observations, missing bridges, alternative explanations, and counterevidence in `unknowns_and_counterevidence`. Recommend only modules justified by the audit.
 
-Do not overwrite an upstream record. Create a child version when the cutoff, source set, claim meaning, object, scale, success criterion, baseline, or threshold changes.
+Do not overwrite an upstream record. Create a child version when the cutoff, source set, claim meaning, object, scale, success criterion, baseline, or threshold changes. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in [references/evidence-contracts.md](references/evidence-contracts.md) is schema-checked in CI.
 
 ## Quick Reference
 
@@ -57,7 +57,7 @@ output_ceiling: description_only
 
 Stop at description when source provenance or observation context is missing. Stop at an unresolved candidate when alternatives or counterevidence are not distinguishable. Stop at evidentiary requirements when a concrete instance was not frozen before results. Stop immediately before value, responsibility, sacrifice, choice, or real-world disposition, and route those questions to `ariadne-choice` or `ariadne-audit`.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Common Mistakes
 

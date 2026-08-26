@@ -252,6 +252,17 @@
         "scale_profile": {
           "type": "object",
           "minProperties": 1,
+          "properties": {
+            "aggregation": {"type": "string", "minLength": 1},
+            "space": {"type": "string", "minLength": 1},
+            "time": {"type": "string", "minLength": 1},
+            "organization": {"type": "string", "minLength": 1},
+            "causal_level": {"type": "string", "minLength": 1},
+            "observation_resolution": {"type": "string", "minLength": 1},
+            "impact": {"type": "string", "minLength": 1},
+            "network": {"type": "string", "minLength": 1},
+            "jurisdiction": {"type": "string", "minLength": 1}
+          },
           "additionalProperties": {"type": "string", "minLength": 1}
         },
         "identity_criterion": {"type": "string", "minLength": 1},
@@ -297,7 +308,8 @@
         "status": {"enum": ["candidate", "observed", "supported", "contradicted", "unresolved", "withdrawn", "retired"]},
         "support_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "support_rule_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "counterevidence_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        "counterevidence_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "ceiling": {"$ref": "#/$defs/outputCeiling"}
       },
       "allOf": [
         {

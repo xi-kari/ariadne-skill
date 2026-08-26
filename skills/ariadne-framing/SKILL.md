@@ -1,6 +1,6 @@
 ---
 name: ariadne-framing
-description: "Freeze what an Ariadne run is actually about: the candidate object's boundary, state variables, relations, interfaces, time window, scale profile, and identity criterion, plus the requested output type. Use when the object, scope, or task type is ambiguous or contested, or when a named group, system, or phase is treated as real without being established. Part of the Ariadne methodology suite. 适用于：问题定界、候选对象冻结、任务类型分类、边界与同一性判据。"
+description: "Freeze what an analysis is actually about: the candidate object's boundary, state variables, relations, interfaces, time window, scale profile, and identity criterion, plus the requested output type. Use when the object, scope, or task type of a methodology-grade analysis is ambiguous or contested, or when a named group, system, or phase is treated as real without being established; not needed when the subject of a casual question is already clear. For a multi-module pass, start with ariadne-skill. 适用于：问题定界、到底在分析什么、对象与口径先说清楚、任务类型分类。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -15,8 +15,8 @@ Define what is being asked and what candidate object is being discussed before j
 ## Procedure
 
 1. **Consume or start the Method Record.** Preserve every supplied fact, unknown, counterexample, record ID, version, and ceiling. If reframing changes scope, create a child version and retain `parent_record_id`; never overwrite the prior record.
-2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, or `governance_review`. Split a mixed request into separate records or state which output comes first.
-3. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, nine-axis scale profile, and identity criterion. Keep `status` as `candidate` or `incomplete` until evidence work supports more.
+2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, or `governance_review`. Split a mixed request into separate records or state which output comes first. If the request is generative or build work with no judgment-type output, do not force a type: declare it out of Ariadne's scope and return it to the host's normal workflow.
+3. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion. For the scale profile, check the nine axes A/X/T/O/C/R/I/N/J owned by `ariadne-scale` and register only the axes that carry information (at least one). Keep `status` as `candidate` or `incomplete` until evidence work supports more.
 4. **Separate the task layers.** Distinguish description, structural diagnosis, future derivation, forecast, choice, and real-world intervention. Do not let an explanation silently become a prediction or a requested action.
 5. **Mark visibility and risk.** Encode every missing field as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`, with a reason. Escalate the next-module recommendation when evidence is thin, power is asymmetric, consequences are hard to reverse, or the setting is high pressure.
 6. **Apply the strong-judgment screen.** Surface unanswered questions about object validity, evidence, causal bridge, scale, alternatives, rights, authorization, stopping, remedy, and appeal. Do not answer them by completing the frame.
@@ -28,7 +28,7 @@ Read [references/object-contract.md](references/object-contract.md) when a field
 
 Produce every schema field, including `lineage_kind`, complete `parent_records`, `ceiling_transition`, traceable module input/output records, and `module_payloads`. Keep `parent_record_id` only as the sole-parent alias for a linear child.
 
-When no upstream record exists, create the minimum valid record and identify user-provided material as material, not empirical evidence. When an upstream record exists, add an `ariadne-framing` module run and preserve lineage.
+When no upstream record exists, create the minimum valid record and identify user-provided material as material, not empirical evidence. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in this module's [object contract](references/object-contract.md) is schema-checked in CI. When an upstream record exists, add an `ariadne-framing` module run and preserve lineage.
 
 ## Quick Reference
 
@@ -41,6 +41,8 @@ When no upstream record exists, create the minimum valid record and identify use
 | High-impact or irreversible use | Expose protection and strong-judgment gaps | No action or authorization |
 
 ## Mini Example
+
+Skeleton only, not a complete record; the schema-valid template ships with the suite router as `l1-record-template.md`.
 
 ```yaml
 # Input: "Is the new-hire onboarding process broken?"
@@ -55,7 +57,7 @@ output_ceiling: description_only
 
 Stop at an exploratory question list when boundary, time window, scale, or identity cannot be stated. Stop at a candidate frame when object validity, causality, or source support has not been audited. Route evidence questions to `ariadne-evidence`, scale changes to `ariadne-scale`, mechanisms to `ariadne-mechanism`, human-domain risks to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact gates to `ariadne-audit`.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Common Mistakes
 

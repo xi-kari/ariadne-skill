@@ -1,6 +1,6 @@
 ---
 name: ariadne-dynamics
-description: "Derive conditional event paths from a frozen state: propagation along declared channels, clocks, thresholds, feedback, branch graphs, counterfactual and recursive simulation, and stopping conditions. Use when events, cascades, or institutional transitions need bounded path derivation; for a dated, evaluable future claim use ariadne-forecast instead. Part of the Ariadne methodology suite. 适用于：事件传播推演、条件分支、级联与阈值、情景与反事实模拟。"
+description: "Derive conditional event paths from a frozen state: propagation along declared channels, clocks, thresholds, feedback, branch graphs, counterfactual and recursive simulation, and stopping conditions. Use when events, cascades, or institutional transitions need bounded path derivation; for a dated, evaluable future claim use ariadne-forecast instead. For a multi-module pass, start with ariadne-skill. 适用于：接下来会怎么发展、事件传播推演、条件分支与级联、情景与反事实模拟。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -14,7 +14,7 @@ Derive conditional event paths from a frozen state. Preserve event fact status, 
 
 ## Standalone Contract
 
-Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and use the typed dynamics payload for event fact status, sources, windows, observation position, and model version.
+Create or extend a schema-valid Method Record (field list for standalone installs: [references/record-fields.md](references/record-fields.md); the full schema ships with the suite router). Preserve complete parent ID/version lineage, trace this module's input and output records, record the ceiling transition, and use the typed dynamics payload for event fact status, sources, windows, observation position, and model version.
 
 Set `authorization_effect` to `none`. A module run preserves or lowers its parent ceiling; only a child with newly admitted external evidence or a newly fulfilled protocol may raise it. Use `description_only` when the starting state, event, or mechanism is inadequate, `diagnostic_only` for bounded conditional paths, and `requirements_only` only when a retained diagnosis is accompanied by explicit external process requirements.
 
@@ -32,7 +32,7 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 
 Stop when identity or scale fails, a key event or channel is unresolved, branches lack discriminating signals, sensitivity or residuals exceed the use threshold, a deeper order adds no value over a shallower run or simple baseline, privacy or safety costs dominate, or the request crosses prediction or authorization boundaries. Route preregistered future claims to `ariadne-forecast` and action questions onward without answering them here.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Quick Reference
 
@@ -46,6 +46,8 @@ If a routed peer skill is unavailable in this installation, record the handoff i
 | Re-enter a simulated future | Parent lineage, translation audit, inherited unknowns, and unchanged evidence ceiling |
 
 ## Mini Example
+
+Skeleton only, not a complete record; the schema-valid template ships with the suite router as `l1-record-template.md`.
 
 ```yaml
 # Input: "What could follow if the lead engineer resigns next week?"

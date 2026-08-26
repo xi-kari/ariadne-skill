@@ -17,7 +17,7 @@
 - skills/ 是十个 Ariadne Skills 的唯一方法论来源，不得创建宿主镜像或复制合同。
 - 保持 Ariadne、ariadne-skill 和 Lattice Kernel 的固定身份，不引入 CrossFrame 或其他仓库的合同。
 - authorization_effect 必须保持 none；工具输出不构成事实确认、价值选择或行动授权。
-- RELEASE: not_authorized 必须保持不变。贡献不得创建 tag、GitHub Release、软件包发布或隐式全局安装。
+- RELEASE 已于 2026-08-26 经评审解封为 complete（tag `v1.0.0`）。贡献不得再次变更发布状态、创建新 tag、GitHub Release、软件包发布或隐式全局安装；这些动作需要维护者的单独评审变更。
 - 文件中不要加入迭代过程、开发日志或版本逐项解说。
 
 若同一次工作横跨多个模块或整个扩展，应先完成计划范围内的全部正文、元数据、适配器、网站和验证器，再声明 ARIADNE_EXTENSION_CONTENT_COMPLETE。正式的内容、视觉、兼容性和治理审查只能在该门之后开始；实现期间的自动测试不等同于正式审查。
@@ -30,8 +30,11 @@
     python -X utf8 -B scripts/validate_repo.py
     python -X utf8 -B scripts/validate_evals.py
     python -X utf8 -B scripts/validate_adapters.py
+    python -X utf8 -B scripts/build_bundle.py --check
     python -X utf8 -B scripts/build_site.py --output build/site
     git diff --check
+
+Windows 本机需开启系统开发者模式（允许非特权创建符号链接）才能运行全部测试；未开启时两个符号链接安全用例会跳过，由 CI 兜底。改动任何 `skills/*/SKILL.md` 后运行 `python scripts/build_bundle.py` 重新生成单文件捆绑版。
 
 若某项无法运行，请在 Pull Request 中准确写明未运行原因，不要把未验证状态表述为通过。
 

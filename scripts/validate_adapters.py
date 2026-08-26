@@ -46,11 +46,12 @@ INSTALL_DOCUMENT_RULES = {
     "docs/agent-compatibility.md": "registered-skills",
 }
 
-REASONIX_SMOKE_CHECKS = {
+UNIVERSAL_SMOKE_CHECKS = {
     "json-references",
     "peer-routing",
     "context-growth",
 }
+VERIFICATION_STATUSES = {"unverified", "smoke-passed"}
 
 FRONTMATTER = re.compile(r"\A---\n(?P<body>.*?)\n---(?:\n|\Z)", re.DOTALL)
 BACKTICK_TOKEN = re.compile(r"`([^`]+)`")
@@ -109,7 +110,7 @@ def _validate_host(host: dict[str, object]) -> list[str]:
     host_id = host.get("id")
     errors: list[str] = []
 
-    unknown_fields = set(host) - set(HOST_REQUIRED_FIELDS) - {"required_smoke_checks"}
+    unknown_fields = set(host) - set(HOST_REQUIRED_FIELDS) - {"required_smoke_checks", "verification"}
     if unknown_fields:
         errors.append(f"host {host_id} declares unknown fields: {sorted(unknown_fields)}")
     for field in ("name", "invocation"):
@@ -135,10 +136,26 @@ def _validate_host(host: dict[str, object]) -> list[str]:
 
     if host.get("compatibility") == SUBSET_COMPATIBILITY:
         checks = host.get("required_smoke_checks")
-        if not _has_exact_unique_members(checks, REASONIX_SMOKE_CHECKS):
+        if not _has_exact_unique_members(checks, UNIVERSAL_SMOKE_CHECKS):
             errors.append(f"host {host_id} required_smoke_checks are incomplete")
-    elif "required_smoke_checks" in host:
-        errors.append(f"host {host_id} must not claim subset smoke checks")
+    elif "required_smoke_checks" in host and not _has_exact_unique_members(
+        host.get("required_smoke_checks"), UNIVERSAL_SMOKE_CHECKS
+    ):
+        errors.append(f"host {host_id} declares a nonstandard smoke-check set")
+
+    verification = host.get("verification")
+    if (
+        not isinstance(verification, dict)
+        or set(verification) != {"status", "last_verified"}
+        or verification.get("status") not in VERIFICATION_STATUSES
+    ):
+        errors.append(f"host {host_id} must declare verification status and last_verified")
+    elif verification["status"] == "smoke-passed" and not (
+        isinstance(verification.get("last_verified"), str) and verification["last_verified"].strip()
+    ):
+        errors.append(f"host {host_id} smoke-passed requires a last_verified date")
+    elif verification["status"] == "unverified" and verification.get("last_verified") is not None:
+        errors.append(f"host {host_id} unverified hosts keep last_verified null")
 
     return errors
 
@@ -166,7 +183,10 @@ def _extract_install_commands(text: str) -> list[dict[str, object]]:
 
 
 def _validate_install_documents(
-    repo_root: Path, manifest_skills: list[str], host_ids: list[str]
+    repo_root: Path,
+    manifest_skills: list[str],
+    host_ids: list[str],
+    native_host_ids: list[str],
 ) -> list[str]:
     errors: list[str] = []
     for relative, rule in INSTALL_DOCUMENT_RULES.items():
@@ -181,7 +201,9 @@ def _validate_install_documents(
             errors.append(f"{relative} documents no npx skills add command")
             continue
         for command in commands:
-            if command["repo"] != EXPECTED_REPO_SLUG:
+            repo = command["repo"]
+            repo_base = repo.split("@", 1)[0] if isinstance(repo, str) else repo
+            if repo_base != EXPECTED_REPO_SLUG:
                 errors.append(
                     f"{relative} install command targets {command['repo']!r}"
                     f" instead of {EXPECTED_REPO_SLUG}"
@@ -199,10 +221,16 @@ def _validate_install_documents(
                     errors.append(
                         f"{relative} install command names unregistered skill {skill!r}"
                     )
-            if not _has_exact_unique_members(command["adapters"], tuple(host_ids)):
+            adapters = command["adapters"]
+            if len(adapters) != len(set(adapters)) or not set(adapters) <= set(host_ids):
                 errors.append(
-                    f"{relative} install command adapters differ from manifest hosts:"
-                    f" {command['adapters']}"
+                    f"{relative} install command adapters are not registered manifest hosts:"
+                    f" {adapters}"
+                )
+            elif not set(native_host_ids) <= set(adapters):
+                errors.append(
+                    f"{relative} install command must include every native-agent-skills host:"
+                    f" {adapters}"
                 )
         if not any("*" in command["skills"] for command in commands):
             errors.append(f"{relative} must document the complete-bundle install command")
@@ -287,6 +315,18 @@ def validate_adapters(repo_root: Path) -> list[str]:
     if not _has_exact_unique_members(manifest_skills, EXPECTED_SKILLS):
         errors.append("adapter manifest Skill set is not exact")
 
+    bundle = manifest.get("single_file_bundle")
+    if (
+        not isinstance(bundle, dict)
+        or not isinstance(bundle.get("path"), str)
+        or not isinstance(bundle.get("generator"), str)
+    ):
+        errors.append("adapter manifest must register the single_file_bundle path and generator")
+    else:
+        for field in ("path", "generator"):
+            if not (repo_root / bundle[field]).is_file():
+                errors.append(f"single_file_bundle {field} does not exist: {bundle[field]}")
+
     skills_root = repo_root / "skills"
     try:
         actual_skills = {path.name for path in skills_root.iterdir() if path.is_dir()}
@@ -321,7 +361,15 @@ def validate_adapters(repo_root: Path) -> list[str]:
                 if _string_list(manifest_skills) is not None
                 else list(EXPECTED_SKILLS)
             )
-            errors.extend(_validate_install_documents(repo_root, known_skills, host_ids))
+            native_host_ids = [
+                host["id"]
+                for host in hosts
+                if host.get("compatibility") == "native-agent-skills"
+                and isinstance(host.get("id"), str)
+            ]
+            errors.extend(
+                _validate_install_documents(repo_root, known_skills, host_ids, native_host_ids)
+            )
             errors.extend(_validate_host_table(repo_root, hosts))
 
     if isinstance(hosts, list) and all(isinstance(host, dict) for host in hosts):

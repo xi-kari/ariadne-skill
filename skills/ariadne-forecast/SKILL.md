@@ -1,6 +1,6 @@
 ---
 name: ariadne-forecast
-description: "Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable and calibrated; for undated path exploration use ariadne-dynamics instead. Part of the Ariadne methodology suite. 适用于：可评估预测、前瞻预登记、基线与校准、失败判定与结果回写。"
+description: "Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable and calibrated; for undated path exploration use ariadne-dynamics instead, and when the forecast feeds a real decision, follow with ariadne-choice. For a multi-module pass, start with ariadne-skill. 适用于：立一个可验证的预测、这个预测靠不靠谱、基线与校准、失败判定与结果回写。"
 license: MIT
 metadata:
   record_schema: "1.2"
@@ -33,7 +33,7 @@ Register future-facing claims before outcomes appear, then evaluate them against
 
 ## Method Record
 
-Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace module inputs and output, and apply the ceiling algebra. The typed forecast payload always carries both closed branches and exactly one is non-null. For a live forecast, fill the complete `preregistration`, link its `record_id` and `record_version` to the current Method Record, and set `post_hoc_reconstruction: null`. For an outcome-aware reconstruction, set `preregistration: null`, fill every reconstruction field including `calibration` and `failure_classification`, and never disguise it as preregistration.
+Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace module inputs and output, and apply the ceiling algebra. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in [references/forecast-contract.md](references/forecast-contract.md) is schema-checked in CI. The typed forecast payload always carries both closed branches and exactly one is non-null. For a live forecast, fill the complete `preregistration`, link its `record_id` and `record_version` to the current Method Record, and set `post_hoc_reconstruction: null`. For an outcome-aware reconstruction, set `preregistration: null`, fill every reconstruction field including `calibration` and `failure_classification`, and never disguise it as preregistration.
 
 A normal module child preserves or lowers its parent ceiling. Raise only in a child that newly admits named external evidence or a newly fulfilled declared protocol. Keep `authorization_effect: none`.
 
@@ -43,7 +43,7 @@ Return plain-language reasoning first. Then expose the forecast ID, frozen targe
 
 Stop at `description_only` when the object, target, observation rule, horizon, or cutoff is not stable. Stop at `diagnostic_only` after publishing or evaluating a forecast. Never claim inevitability, empirical verification from simulation, value priority, consent, jurisdiction, or permission to act.
 
-If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ## Quick Reference
 
@@ -57,6 +57,8 @@ If a routed peer skill is unavailable in this installation, record the handoff i
 | Action question follows | Hand off conditions to `ariadne-choice`; keep authorization at `none`. |
 
 ## Mini Example
+
+Skeleton only, not a complete record; the schema-valid template ships with the suite router as `l1-record-template.md`.
 
 ```yaml
 # Input: "Will at least 3 of the 24 team members resign by 2026-11-30?"

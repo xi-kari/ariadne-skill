@@ -11,15 +11,17 @@
 7. Module handoff and typed payloads
 8. L1 compact profile
 9. Valid example
-10. Lineage example
+10. Raise example
 11. Human-facing presentation
 12. Common mistakes
+
+The three-record merge lineage example lives in [clustering.md](clustering.md).
 
 ## Purpose
 
 The Method Record makes Ariadne runs continuous, challengeable, and compatible across standalone, sequential, and clustered work. It is a reasoning record, not a reality database or authorization token.
 
-The machine-checkable schema ships with this skill at `references/method-record.schema.json`. That file is byte-identical to the repository-root `schemas/method-record.schema.json` copy, and CI guards the equality. This reference defines its operational meaning.
+The machine-checkable schema ships with this skill at `references/method-record.schema.json`. That file is byte-identical to the repository-root `schemas/method-record.schema.json` copy, and CI guards the equality. This reference defines its operational meaning. To validate an emitted record, run the shipped validator `python scripts/validate_record.py <record.yaml>` from this skill's directory instead of reading the schema into context; without code execution, use the manual checklist in [l1-record-template.md](l1-record-template.md).
 
 ## Required fields
 
@@ -57,8 +59,9 @@ Derivation is deterministic so that independent workers produce the same ID with
 - `<case>` is the stable case slug frozen at framing; every descendant record reuses it unchanged. A merge that joins separately framed cases declares one joint case slug in the merge record.
 - The middle segment is `root` for a lineage root, the producing module's short name (`framing`, `evidence`, `scale`, `mechanism`, `human`, `dynamics`, `forecast`, `choice`, `audit`) for an ordinary child, and `merge` for an audit merge.
 - `<N>` equals the record's `record_version`: 1 for a root, the parent version plus one for a linear child, the highest parent version plus one for a merge.
+- `<case>` must not contain a colon, so the final two segments are always the module keyword and `v<N>`.
 
-Example: the scale lane's child of `ariadne:churn-2026:root:v1` is `ariadne:churn-2026:scale:v2`, and the merge of the scale and mechanism siblings is `ariadne:churn-2026:merge:v3`. Old-style IDs that satisfy only the schema pattern `^ariadne:[A-Za-z0-9._:-]+$` (for example `ariadne:delivery-case:v1`) remain legal; do not rename historical records. Use the normative syntax for every new record.
+Example: the scale lane's child of `ariadne:churn-2026:root:v1` is `ariadne:churn-2026:scale:v2`, and the merge of the scale and mechanism siblings is `ariadne:churn-2026:merge:v3`. Old-style IDs that satisfy only the schema pattern `^ariadne:[A-Za-z0-9._:-]+$` (for example `ariadne:legacy-case:v3` from an earlier run) remain legal; do not rename historical records. Use the normative syntax for every new record.
 
 ## Carrier and lifecycle
 
@@ -94,7 +97,7 @@ The ceilings are nested and ordered:
 
 | Ceiling | Includes | Excludes |
 |---|---|---|
-| `description_only` | Bounded material and observation description, candidate objects, questions, unknowns | Mechanism ranking, diagnosis, forecast, process requirements, action |
+| `description_only` | Bounded material and observation description, candidate objects, questions, unknowns, unranked candidate mechanisms marked `candidate` | Mechanism ranking or endorsement, diagnosis, forecast, process requirements, action |
 | `diagnostic_only` | Everything below plus competing mechanisms, bounded diagnosis, conditional paths and registered forecast evaluation | Normative or procedural requirements, recommendation, permission, execution |
 | `requirements_only` | Everything below plus explicit facts/values/options/jurisdiction/authorization/protection/stop/rollback conditions for an external process | Selection by Ariadne, permission, execution, self-issued authorization |
 
@@ -147,11 +150,13 @@ An L1 run (low impact, reversible, limited material) stays schema-valid while st
 - `responsible_human_review.required` must be `true` only for L2/L3 human-domain work; an L1 lightweight observation may set it to `false`.
 - Compactness is a size profile, not a ceiling raise: the record keeps `description_only` unless a recorded transition with an admitted basis says otherwise.
 
+Copy the schema-valid template from [l1-record-template.md](l1-record-template.md) instead of rebuilding the field set from prose; it is the only L1 starting shape this suite maintains.
+
 ## Valid example
 
 <!-- method-record-example:start -->
 ```yaml
-record_id: ariadne:delivery-case:v1
+record_id: ariadne:delivery-case:root:v1
 schema_version: '1.2'
 record_version: 1
 lineage_kind: root
@@ -207,7 +212,7 @@ module_runs:
   status: completed
   input_records: []
   output_record:
-    record_id: ariadne:delivery-case:v1
+    record_id: ariadne:delivery-case:root:v1
     record_version: 1
 module_payloads: []
 recommended_next_modules:
@@ -216,225 +221,142 @@ authorization_effect: none
 ```
 <!-- method-record-example:end -->
 
-## Lineage example
+## Raise example
 
-Two regional lanes were framed independently as roots and then joined by an audit merge under a declared joint case slug. The parents come first. The merge preserves their scale-mapping disagreement as a named `conflicts` entry instead of averaging it, and the ceiling `meet` keeps `description_only`.
+A raise is legal only in a child that newly admits an external basis. The pair below is the complete minimal shape: the root stops at `description_only`; the evidence child admits one new source, registers it as the raise basis, and delivers a bounded diagnostic. Note what the raise is not: the evidence module completing, the story reading better, or the same sources being re-read.
 
 <!-- method-record-lineage-example:start -->
 ```yaml
-- record_id: ariadne:retention-east:root:v1
+- record_id: ariadne:onboarding-tickets:root:v1
   schema_version: '1.2'
   record_version: 1
   lineage_kind: root
   parent_record_id: null
   parent_records: []
-  request_type: diagnosis
+  request_type: explanation
   object_contract:
-    boundary: East-region customer accounts
+    boundary: Support tickets for the 2026 onboarding guide
     state_variables:
-    - monthly_churn_rate
+    - weekly_ticket_count
     relations_or_transitions:
-    - renewal_decision
+    - guide_publication
     interfaces:
-    - billing_system
-    time_window: 2026-H1
+    - support_desk
+    time_window: 2026-Q3
     scale_profile:
-      aggregation: account
-      time: month
-    identity_criterion: Same paying account ID
+      aggregation: team
+      time: week
+    identity_criterion: Same product area and ticket queue
     status: candidate
   evidence_cutoff:
-    as_of: '2026-08-01T00:00:00+08:00'
+    as_of: '2026-08-20T00:00:00+08:00'
     included_source_ids:
-    - east-billing-export
+    - ticket-dashboard-q3
     excluded_after_cutoff: true
   scale_scope:
-    source: Account-level billing events
-    target: East-region churn diagnosis
-    transform_status: candidate
-  claim_ledger: []
-  rule_registry: []
-  unknowns_and_counterevidence:
-    unknowns:
-    - Voluntary versus involuntary churn split
-    counterevidence: []
-  conflicts: []
-  output_ceiling: description_only
-  ceiling_transition:
-    operation: root
-    inputs: []
-    basis: []
-    result: description_only
-  module_runs:
-  - module: ariadne-framing
-    status: completed
-    input_records: []
-    output_record:
-      record_id: ariadne:retention-east:root:v1
-      record_version: 1
-  module_payloads: []
-  recommended_next_modules:
-  - ariadne-evidence
-  authorization_effect: none
-- record_id: ariadne:retention-west:root:v1
-  schema_version: '1.2'
-  record_version: 1
-  lineage_kind: root
-  parent_record_id: null
-  parent_records: []
-  request_type: diagnosis
-  object_contract:
-    boundary: West-region customer accounts
-    state_variables:
-    - monthly_churn_rate
-    relations_or_transitions:
-    - renewal_decision
-    interfaces:
-    - billing_system
-    time_window: 2026-H1
-    scale_profile:
-      aggregation: seat
-      time: month
-    identity_criterion: Same provisioned seat ID
-    status: candidate
-  evidence_cutoff:
-    as_of: '2026-08-01T00:00:00+08:00'
-    included_source_ids:
-    - west-billing-export
-    excluded_after_cutoff: true
-  scale_scope:
-    source: Seat-level provisioning events
-    target: West-region churn diagnosis
-    transform_status: candidate
-  claim_ledger: []
-  rule_registry: []
-  unknowns_and_counterevidence:
-    unknowns:
-    - Seat-to-account consolidation rule
-    counterevidence: []
-  conflicts: []
-  output_ceiling: description_only
-  ceiling_transition:
-    operation: root
-    inputs: []
-    basis: []
-    result: description_only
-  module_runs:
-  - module: ariadne-framing
-    status: completed
-    input_records: []
-    output_record:
-      record_id: ariadne:retention-west:root:v1
-      record_version: 1
-  module_payloads: []
-  recommended_next_modules:
-  - ariadne-evidence
-  authorization_effect: none
-- record_id: ariadne:retention-2026:merge:v2
-  schema_version: '1.2'
-  record_version: 2
-  lineage_kind: merge
-  parent_record_id: null
-  parent_records:
-  - record_id: ariadne:retention-east:root:v1
-    record_version: 1
-  - record_id: ariadne:retention-west:root:v1
-    record_version: 1
-  request_type: diagnosis
-  object_contract:
-    boundary: East and west region customer accounts
-    state_variables:
-    - monthly_churn_rate
-    relations_or_transitions:
-    - renewal_decision
-    interfaces:
-    - billing_system
-    time_window: 2026-H1
-    scale_profile:
-      aggregation: mixed
-      time: month
-    identity_criterion: Region-local account or seat ID with no shared unit yet
-    status: incomplete
-  evidence_cutoff:
-    as_of: '2026-08-01T00:00:00+08:00'
-    included_source_ids:
-    - east-billing-export
-    - west-billing-export
-    excluded_after_cutoff: true
-  scale_scope:
-    source: Region-level churn records
-    target: Company-wide churn diagnosis
+    source: Weekly dashboard counts
+    target: Onboarding-guide effect explanation
     transform_status: incomplete
   claim_ledger: []
   rule_registry: []
   unknowns_and_counterevidence:
     unknowns:
-    - Voluntary versus involuntary churn split
-    - Seat-to-account consolidation rule
+    - Per-ticket cause tags before the cutoff
     counterevidence: []
-  conflicts:
-  - conflict_id: conflict-unit-01
-    kind: scale_mapping
-    record_refs:
-    - record_id: ariadne:retention-east:root:v1
-      record_version: 1
-    - record_id: ariadne:retention-west:root:v1
-      record_version: 1
-    description: East measures churn per paying account while west measures churn per provisioned seat; the two monthly rates lack a registered unit mapping and cannot be compared or summed until a scale audit supplies one.
+  conflicts: []
   output_ceiling: description_only
   ceiling_transition:
-    operation: meet
-    inputs:
-    - record_id: ariadne:retention-east:root:v1
-      record_version: 1
-      ceiling: description_only
-    - record_id: ariadne:retention-west:root:v1
-      record_version: 1
-      ceiling: description_only
+    operation: root
+    inputs: []
     basis: []
     result: description_only
   module_runs:
-  - module: ariadne-audit
+  - module: ariadne-framing
+    status: completed
+    input_records: []
+    output_record:
+      record_id: ariadne:onboarding-tickets:root:v1
+      record_version: 1
+  module_payloads: []
+  recommended_next_modules:
+  - ariadne-evidence
+  authorization_effect: none
+- record_id: ariadne:onboarding-tickets:evidence:v2
+  schema_version: '1.2'
+  record_version: 2
+  lineage_kind: linear
+  parent_record_id: ariadne:onboarding-tickets:root:v1
+  parent_records:
+  - record_id: ariadne:onboarding-tickets:root:v1
+    record_version: 1
+  request_type: explanation
+  object_contract:
+    boundary: Support tickets for the 2026 onboarding guide
+    state_variables:
+    - weekly_ticket_count
+    relations_or_transitions:
+    - guide_publication
+    interfaces:
+    - support_desk
+    time_window: 2026-Q3
+    scale_profile:
+      aggregation: team
+      time: week
+    identity_criterion: Same product area and ticket queue
+    status: candidate
+  evidence_cutoff:
+    as_of: '2026-08-24T00:00:00+08:00'
+    included_source_ids:
+    - ticket-dashboard-q3
+    - ticket-export-2026w34
+    excluded_after_cutoff: true
+  scale_scope:
+    source: Weekly dashboard counts and the per-ticket export
+    target: Onboarding-guide effect explanation
+    transform_status: candidate
+  claim_ledger:
+  - claim_id: claim-01
+    claim_type: G
+    text: Ticket volume fell after the guide within the frozen queue.
+    status: supported
+    support_ids:
+    - ticket-export-2026w34
+    support_rule_ids: []
+    counterevidence_ids: []
+  rule_registry: []
+  unknowns_and_counterevidence:
+    unknowns:
+    - Seasonal baseline for the same weeks
+    counterevidence: []
+  conflicts: []
+  output_ceiling: diagnostic_only
+  ceiling_transition:
+    operation: raise
+    inputs:
+    - record_id: ariadne:onboarding-tickets:root:v1
+      record_version: 1
+      ceiling: description_only
+    basis:
+    - basis_kind: external_evidence
+      basis_id: ticket-export-2026w34
+    result: diagnostic_only
+  module_runs:
+  - module: ariadne-evidence
     status: completed
     input_records:
-    - record_id: ariadne:retention-east:root:v1
-      record_version: 1
-    - record_id: ariadne:retention-west:root:v1
+    - record_id: ariadne:onboarding-tickets:root:v1
       record_version: 1
     output_record:
-      record_id: ariadne:retention-2026:merge:v2
+      record_id: ariadne:onboarding-tickets:evidence:v2
       record_version: 2
-  module_payloads:
-  - module: ariadne-audit
-    payload:
-      gate_register:
-        transformations:
-          IT1: {status: passed, finding: Both parents freeze their object contracts and billing-event observables.}
-          IT2: {status: passed, finding: Each regional rate is traced to its own admitted export.}
-          IT3: {status: passed, finding: No claim is promoted; both ledgers stay empty at merge.}
-          IT4: {status: passed, finding: The meet keeps description_only and issues no requirements.}
-        main_gates:
-          IG1: {status: passed, finding: Region-local identity criteria are kept separate and declared.}
-          IG2: {status: passed, finding: Both evidence cutoffs match and admit only regional exports.}
-          IG3: {status: passed, finding: No affected position is judged; the merge only describes.}
-          IG4: {status: passed, finding: No power asymmetry is engaged by a descriptive merge.}
-          IG5: {status: passed, finding: 'The unit-mapping conflict is preserved, not reconciled.'}
-          IG6: {status: passed, finding: No strong judgment is issued at description_only.}
-          IG7: {status: passed, finding: Action ceiling stays description_only by meet of both parents.}
-      contestability:
-        owner:
-          contact: retention-review@example.invalid
-          status: reachable
-        deadline: '2026-09-01T00:00:00+08:00'
-        original_record_retention: true
-        downstream_correction_target: any churn summary derived from this merge record
-        rollback_recovery_target: the two parent root records as the last verified state
-        remedy: correct derived summaries and re-register the unit mapping before reuse
+  module_payloads: []
   recommended_next_modules:
-  - ariadne-scale
+  - ariadne-mechanism
   authorization_effect: none
 ```
 <!-- method-record-lineage-example:end -->
+
+When the lineage was previously lowered, the raise must additionally state how this basis resolves the recorded `lower` reason; an unrelated new source does not qualify.
 
 ## Human-facing presentation
 

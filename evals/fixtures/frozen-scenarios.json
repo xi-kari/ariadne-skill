@@ -16,7 +16,7 @@
         "SRC-C01-CLAIM"
       ],
       "seed_parent_record": {
-        "record_id": "ariadne:eval:C01:seed-v1",
+        "record_id": "ariadne:eval-c01:root:v1",
         "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
@@ -91,7 +91,7 @@
             "status": "completed",
             "input_records": [],
             "output_record": {
-              "record_id": "ariadne:eval:C01:seed-v1",
+              "record_id": "ariadne:eval-c01:root:v1",
               "record_version": 1
             }
           }
@@ -145,39 +145,39 @@
           "authorization_effect": "none",
           "lineage": {
             "root_records": [
-              {"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}
+              {"record_id": "ariadne:eval-c01:root:v1", "record_version": 1}
             ],
-            "terminal_record": {"record_id": "ariadne:eval:C01:seq-forecast-v6", "record_version": 6},
+            "terminal_record": {"record_id": "ariadne:eval-c01:forecast:v6", "record_version": 6},
             "nodes": [
               {
-                "record_id": "ariadne:eval:C01:seq-evidence-v2",
+                "record_id": "ariadne:eval-c01:evidence:v2",
                 "record_version": 2,
                 "module": "ariadne-evidence",
-                "input_records": [{"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}]
+                "input_records": [{"record_id": "ariadne:eval-c01:root:v1", "record_version": 1}]
               },
               {
-                "record_id": "ariadne:eval:C01:seq-scale-v3",
+                "record_id": "ariadne:eval-c01:scale:v3",
                 "record_version": 3,
                 "module": "ariadne-scale",
-                "input_records": [{"record_id": "ariadne:eval:C01:seq-evidence-v2", "record_version": 2}]
+                "input_records": [{"record_id": "ariadne:eval-c01:evidence:v2", "record_version": 2}]
               },
               {
-                "record_id": "ariadne:eval:C01:seq-mechanism-v4",
+                "record_id": "ariadne:eval-c01:mechanism:v4",
                 "record_version": 4,
                 "module": "ariadne-mechanism",
-                "input_records": [{"record_id": "ariadne:eval:C01:seq-scale-v3", "record_version": 3}]
+                "input_records": [{"record_id": "ariadne:eval-c01:scale:v3", "record_version": 3}]
               },
               {
-                "record_id": "ariadne:eval:C01:seq-dynamics-v5",
+                "record_id": "ariadne:eval-c01:dynamics:v5",
                 "record_version": 5,
                 "module": "ariadne-dynamics",
-                "input_records": [{"record_id": "ariadne:eval:C01:seq-mechanism-v4", "record_version": 4}]
+                "input_records": [{"record_id": "ariadne:eval-c01:mechanism:v4", "record_version": 4}]
               },
               {
-                "record_id": "ariadne:eval:C01:seq-forecast-v6",
+                "record_id": "ariadne:eval-c01:forecast:v6",
                 "record_version": 6,
                 "module": "ariadne-forecast",
-                "input_records": [{"record_id": "ariadne:eval:C01:seq-dynamics-v5", "record_version": 5}]
+                "input_records": [{"record_id": "ariadne:eval-c01:dynamics:v5", "record_version": 5}]
               }
             ]
           }
@@ -195,48 +195,48 @@
           "authorization_effect": "none",
           "lineage": {
             "root_records": [
-              {"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}
+              {"record_id": "ariadne:eval-c01:root:v1", "record_version": 1}
             ],
-            "terminal_record": {"record_id": "ariadne:eval:C01:clu-forecast-v6", "record_version": 6},
+            "terminal_record": {"record_id": "ariadne:eval-c01:forecast:v6", "record_version": 6},
             "nodes": [
               {
-                "record_id": "ariadne:eval:C01:clu-evidence-v2",
+                "record_id": "ariadne:eval-c01:evidence:v2",
                 "record_version": 2,
                 "module": "ariadne-evidence",
-                "input_records": [{"record_id": "ariadne:eval:C01:seed-v1", "record_version": 1}]
+                "input_records": [{"record_id": "ariadne:eval-c01:root:v1", "record_version": 1}]
               },
               {
-                "record_id": "ariadne:eval:C01:clu-mechanism-v3",
+                "record_id": "ariadne:eval-c01:mechanism:v3",
                 "record_version": 3,
                 "module": "ariadne-mechanism",
-                "input_records": [{"record_id": "ariadne:eval:C01:clu-evidence-v2", "record_version": 2}]
+                "input_records": [{"record_id": "ariadne:eval-c01:evidence:v2", "record_version": 2}]
               },
               {
-                "record_id": "ariadne:eval:C01:clu-scale-v3",
+                "record_id": "ariadne:eval-c01:scale:v3",
                 "record_version": 3,
                 "module": "ariadne-scale",
-                "input_records": [{"record_id": "ariadne:eval:C01:clu-evidence-v2", "record_version": 2}]
+                "input_records": [{"record_id": "ariadne:eval-c01:evidence:v2", "record_version": 2}]
               },
               {
-                "record_id": "ariadne:eval:C01:clu-merge-v4",
+                "record_id": "ariadne:eval-c01:merge:v4",
                 "record_version": 4,
                 "module": "ariadne-audit",
                 "input_records": [
-                  {"record_id": "ariadne:eval:C01:clu-mechanism-v3", "record_version": 3},
-                  {"record_id": "ariadne:eval:C01:clu-scale-v3", "record_version": 3}
+                  {"record_id": "ariadne:eval-c01:mechanism:v3", "record_version": 3},
+                  {"record_id": "ariadne:eval-c01:scale:v3", "record_version": 3}
                 ]
               },
               {
-                "record_id": "ariadne:eval:C01:clu-dynamics-v5",
+                "record_id": "ariadne:eval-c01:dynamics:v5",
                 "record_version": 5,
                 "module": "ariadne-dynamics",
-                "input_records": [{"record_id": "ariadne:eval:C01:clu-merge-v4", "record_version": 4}]
+                "input_records": [{"record_id": "ariadne:eval-c01:merge:v4", "record_version": 4}]
               },
               {
-                "record_id": "ariadne:eval:C01:clu-forecast-v6",
+                "record_id": "ariadne:eval-c01:forecast:v6",
                 "record_version": 6,
                 "module": "ariadne-forecast",
-                "input_records": [{"record_id": "ariadne:eval:C01:clu-dynamics-v5", "record_version": 5}]
+                "input_records": [{"record_id": "ariadne:eval-c01:dynamics:v5", "record_version": 5}]
               }
             ]
           }
@@ -257,7 +257,7 @@
         "SRC-C02-LABEL"
       ],
       "seed_parent_record": {
-        "record_id": "ariadne:eval:C02:seed-v1",
+        "record_id": "ariadne:eval-c02:root:v1",
         "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
@@ -332,7 +332,7 @@
             "status": "completed",
             "input_records": [],
             "output_record": {
-              "record_id": "ariadne:eval:C02:seed-v1",
+              "record_id": "ariadne:eval-c02:root:v1",
               "record_version": 1
             }
           }
@@ -386,15 +386,15 @@
           "output_ceiling": "description_only",
           "authorization_effect": "none",
           "lineage": {
-            "root_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}],
-            "terminal_record": {"record_id": "ariadne:eval:C02:seq-audit-v7", "record_version": 7},
+            "root_records": [{"record_id": "ariadne:eval-c02:root:v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval-c02:audit:v7", "record_version": 7},
             "nodes": [
-              {"record_id": "ariadne:eval:C02:seq-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}]},
-              {"record_id": "ariadne:eval:C02:seq-human-v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C02:seq-evidence-v2", "record_version": 2}]},
-              {"record_id": "ariadne:eval:C02:seq-mechanism-v4", "record_version": 4, "module": "ariadne-mechanism", "input_records": [{"record_id": "ariadne:eval:C02:seq-human-v3", "record_version": 3}]},
-              {"record_id": "ariadne:eval:C02:seq-dynamics-v5", "record_version": 5, "module": "ariadne-dynamics", "input_records": [{"record_id": "ariadne:eval:C02:seq-mechanism-v4", "record_version": 4}]},
-              {"record_id": "ariadne:eval:C02:seq-choice-v6", "record_version": 6, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C02:seq-dynamics-v5", "record_version": 5}]},
-              {"record_id": "ariadne:eval:C02:seq-audit-v7", "record_version": 7, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C02:seq-choice-v6", "record_version": 6}]}
+              {"record_id": "ariadne:eval-c02:evidence:v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval-c02:root:v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval-c02:human:v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval-c02:evidence:v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval-c02:mechanism:v4", "record_version": 4, "module": "ariadne-mechanism", "input_records": [{"record_id": "ariadne:eval-c02:human:v3", "record_version": 3}]},
+              {"record_id": "ariadne:eval-c02:dynamics:v5", "record_version": 5, "module": "ariadne-dynamics", "input_records": [{"record_id": "ariadne:eval-c02:mechanism:v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval-c02:choice:v6", "record_version": 6, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval-c02:dynamics:v5", "record_version": 5}]},
+              {"record_id": "ariadne:eval-c02:audit:v7", "record_version": 7, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval-c02:choice:v6", "record_version": 6}]}
             ]
           }
         },
@@ -410,24 +410,24 @@
           "output_ceiling": "description_only",
           "authorization_effect": "none",
           "lineage": {
-            "root_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}],
-            "terminal_record": {"record_id": "ariadne:eval:C02:clu-final-audit-v7", "record_version": 7},
+            "root_records": [{"record_id": "ariadne:eval-c02:root:v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval-c02:audit:v7", "record_version": 7},
             "nodes": [
-              {"record_id": "ariadne:eval:C02:clu-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C02:seed-v1", "record_version": 1}]},
-              {"record_id": "ariadne:eval:C02:clu-human-v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C02:clu-evidence-v2", "record_version": 2}]},
-              {"record_id": "ariadne:eval:C02:clu-mechanism-v3", "record_version": 3, "module": "ariadne-mechanism", "input_records": [{"record_id": "ariadne:eval:C02:clu-evidence-v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval-c02:evidence:v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval-c02:root:v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval-c02:human:v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval-c02:evidence:v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval-c02:mechanism:v3", "record_version": 3, "module": "ariadne-mechanism", "input_records": [{"record_id": "ariadne:eval-c02:evidence:v2", "record_version": 2}]},
               {
-                "record_id": "ariadne:eval:C02:clu-merge-v4",
+                "record_id": "ariadne:eval-c02:merge:v4",
                 "record_version": 4,
                 "module": "ariadne-audit",
                 "input_records": [
-                  {"record_id": "ariadne:eval:C02:clu-human-v3", "record_version": 3},
-                  {"record_id": "ariadne:eval:C02:clu-mechanism-v3", "record_version": 3}
+                  {"record_id": "ariadne:eval-c02:human:v3", "record_version": 3},
+                  {"record_id": "ariadne:eval-c02:mechanism:v3", "record_version": 3}
                 ]
               },
-              {"record_id": "ariadne:eval:C02:clu-dynamics-v5", "record_version": 5, "module": "ariadne-dynamics", "input_records": [{"record_id": "ariadne:eval:C02:clu-merge-v4", "record_version": 4}]},
-              {"record_id": "ariadne:eval:C02:clu-choice-v6", "record_version": 6, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C02:clu-dynamics-v5", "record_version": 5}]},
-              {"record_id": "ariadne:eval:C02:clu-final-audit-v7", "record_version": 7, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C02:clu-choice-v6", "record_version": 6}]}
+              {"record_id": "ariadne:eval-c02:dynamics:v5", "record_version": 5, "module": "ariadne-dynamics", "input_records": [{"record_id": "ariadne:eval-c02:merge:v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval-c02:choice:v6", "record_version": 6, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval-c02:dynamics:v5", "record_version": 5}]},
+              {"record_id": "ariadne:eval-c02:audit:v7", "record_version": 7, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval-c02:choice:v6", "record_version": 6}]}
             ]
           }
         }
@@ -447,7 +447,7 @@
         "SRC-C03-PROPOSAL"
       ],
       "seed_parent_record": {
-        "record_id": "ariadne:eval:C03:seed-v1",
+        "record_id": "ariadne:eval-c03:root:v1",
         "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
@@ -522,7 +522,7 @@
             "status": "completed",
             "input_records": [],
             "output_record": {
-              "record_id": "ariadne:eval:C03:seed-v1",
+              "record_id": "ariadne:eval-c03:root:v1",
               "record_version": 1
             }
           }
@@ -576,14 +576,14 @@
           "output_ceiling": "description_only",
           "authorization_effect": "none",
           "lineage": {
-            "root_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}],
-            "terminal_record": {"record_id": "ariadne:eval:C03:seq-audit-v6", "record_version": 6},
+            "root_records": [{"record_id": "ariadne:eval-c03:root:v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval-c03:audit:v6", "record_version": 6},
             "nodes": [
-              {"record_id": "ariadne:eval:C03:seq-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}]},
-              {"record_id": "ariadne:eval:C03:seq-scale-v3", "record_version": 3, "module": "ariadne-scale", "input_records": [{"record_id": "ariadne:eval:C03:seq-evidence-v2", "record_version": 2}]},
-              {"record_id": "ariadne:eval:C03:seq-human-v4", "record_version": 4, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C03:seq-scale-v3", "record_version": 3}]},
-              {"record_id": "ariadne:eval:C03:seq-choice-v5", "record_version": 5, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C03:seq-human-v4", "record_version": 4}]},
-              {"record_id": "ariadne:eval:C03:seq-audit-v6", "record_version": 6, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C03:seq-choice-v5", "record_version": 5}]}
+              {"record_id": "ariadne:eval-c03:evidence:v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval-c03:root:v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval-c03:scale:v3", "record_version": 3, "module": "ariadne-scale", "input_records": [{"record_id": "ariadne:eval-c03:evidence:v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval-c03:human:v4", "record_version": 4, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval-c03:scale:v3", "record_version": 3}]},
+              {"record_id": "ariadne:eval-c03:choice:v5", "record_version": 5, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval-c03:human:v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval-c03:audit:v6", "record_version": 6, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval-c03:choice:v5", "record_version": 5}]}
             ]
           }
         },
@@ -599,23 +599,23 @@
           "output_ceiling": "description_only",
           "authorization_effect": "none",
           "lineage": {
-            "root_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}],
-            "terminal_record": {"record_id": "ariadne:eval:C03:clu-final-audit-v6", "record_version": 6},
+            "root_records": [{"record_id": "ariadne:eval-c03:root:v1", "record_version": 1}],
+            "terminal_record": {"record_id": "ariadne:eval-c03:audit:v6", "record_version": 6},
             "nodes": [
-              {"record_id": "ariadne:eval:C03:clu-evidence-v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval:C03:seed-v1", "record_version": 1}]},
-              {"record_id": "ariadne:eval:C03:clu-human-v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval:C03:clu-evidence-v2", "record_version": 2}]},
-              {"record_id": "ariadne:eval:C03:clu-scale-v3", "record_version": 3, "module": "ariadne-scale", "input_records": [{"record_id": "ariadne:eval:C03:clu-evidence-v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval-c03:evidence:v2", "record_version": 2, "module": "ariadne-evidence", "input_records": [{"record_id": "ariadne:eval-c03:root:v1", "record_version": 1}]},
+              {"record_id": "ariadne:eval-c03:human:v3", "record_version": 3, "module": "ariadne-human", "input_records": [{"record_id": "ariadne:eval-c03:evidence:v2", "record_version": 2}]},
+              {"record_id": "ariadne:eval-c03:scale:v3", "record_version": 3, "module": "ariadne-scale", "input_records": [{"record_id": "ariadne:eval-c03:evidence:v2", "record_version": 2}]},
               {
-                "record_id": "ariadne:eval:C03:clu-merge-v4",
+                "record_id": "ariadne:eval-c03:merge:v4",
                 "record_version": 4,
                 "module": "ariadne-audit",
                 "input_records": [
-                  {"record_id": "ariadne:eval:C03:clu-human-v3", "record_version": 3},
-                  {"record_id": "ariadne:eval:C03:clu-scale-v3", "record_version": 3}
+                  {"record_id": "ariadne:eval-c03:human:v3", "record_version": 3},
+                  {"record_id": "ariadne:eval-c03:scale:v3", "record_version": 3}
                 ]
               },
-              {"record_id": "ariadne:eval:C03:clu-choice-v5", "record_version": 5, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval:C03:clu-merge-v4", "record_version": 4}]},
-              {"record_id": "ariadne:eval:C03:clu-final-audit-v6", "record_version": 6, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval:C03:clu-choice-v5", "record_version": 5}]}
+              {"record_id": "ariadne:eval-c03:choice:v5", "record_version": 5, "module": "ariadne-choice", "input_records": [{"record_id": "ariadne:eval-c03:merge:v4", "record_version": 4}]},
+              {"record_id": "ariadne:eval-c03:audit:v6", "record_version": 6, "module": "ariadne-audit", "input_records": [{"record_id": "ariadne:eval-c03:choice:v5", "record_version": 5}]}
             ]
           }
         }
@@ -635,7 +635,7 @@
         "SRC-K01-LABEL"
       ],
       "seed_parent_record": {
-        "record_id": "ariadne:eval:K01:seed-v1",
+        "record_id": "ariadne:eval-k01:root:v1",
         "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
@@ -711,7 +711,7 @@
             "status": "completed",
             "input_records": [],
             "output_record": {
-              "record_id": "ariadne:eval:K01:seed-v1",
+              "record_id": "ariadne:eval-k01:root:v1",
               "record_version": 1
             }
           }
@@ -767,50 +767,50 @@
           "authorization_effect": "none",
           "lineage": {
             "root_records": [
-              {"record_id": "ariadne:eval:K01:seed-v1", "record_version": 1}
+              {"record_id": "ariadne:eval-k01:root:v1", "record_version": 1}
             ],
-            "terminal_record": {"record_id": "ariadne:eval:K01:seq-audit-v5", "record_version": 5},
+            "terminal_record": {"record_id": "ariadne:eval-k01:audit:v5", "record_version": 5},
             "nodes": [
               {
-                "record_id": "ariadne:eval:K01:seq-scale-v2",
+                "record_id": "ariadne:eval-k01:scale:v2",
                 "record_version": 2,
                 "module": "ariadne-scale",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_id": "ariadne:eval-k01:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K01:seq-mechanism-v3",
+                "record_id": "ariadne:eval-k01:mechanism:v3",
                 "record_version": 3,
                 "module": "ariadne-mechanism",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seq-scale-v2",
+                    "record_id": "ariadne:eval-k01:scale:v2",
                     "record_version": 2
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K01:seq-human-v4",
+                "record_id": "ariadne:eval-k01:human:v4",
                 "record_version": 4,
                 "module": "ariadne-human",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seq-mechanism-v3",
+                    "record_id": "ariadne:eval-k01:mechanism:v3",
                     "record_version": 3
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K01:seq-audit-v5",
+                "record_id": "ariadne:eval-k01:audit:v5",
                 "record_version": 5,
                 "module": "ariadne-audit",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seq-human-v4",
+                    "record_id": "ariadne:eval-k01:human:v4",
                     "record_version": 4
                   }
                 ]
@@ -832,58 +832,58 @@
           "authorization_effect": "none",
           "lineage": {
             "root_records": [
-              {"record_id": "ariadne:eval:K01:seed-v1", "record_version": 1}
+              {"record_id": "ariadne:eval-k01:root:v1", "record_version": 1}
             ],
-            "terminal_record": {"record_id": "ariadne:eval:K01:clu-audit-v3", "record_version": 3},
+            "terminal_record": {"record_id": "ariadne:eval-k01:audit:v3", "record_version": 3},
             "nodes": [
               {
-                "record_id": "ariadne:eval:K01:clu-human-v2",
+                "record_id": "ariadne:eval-k01:human:v2",
                 "record_version": 2,
                 "module": "ariadne-human",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_id": "ariadne:eval-k01:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K01:clu-mechanism-v2",
+                "record_id": "ariadne:eval-k01:mechanism:v2",
                 "record_version": 2,
                 "module": "ariadne-mechanism",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_id": "ariadne:eval-k01:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K01:clu-scale-v2",
+                "record_id": "ariadne:eval-k01:scale:v2",
                 "record_version": 2,
                 "module": "ariadne-scale",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:seed-v1",
+                    "record_id": "ariadne:eval-k01:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K01:clu-audit-v3",
+                "record_id": "ariadne:eval-k01:audit:v3",
                 "record_version": 3,
                 "module": "ariadne-audit",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K01:clu-human-v2",
+                    "record_id": "ariadne:eval-k01:human:v2",
                     "record_version": 2
                   },
                   {
-                    "record_id": "ariadne:eval:K01:clu-mechanism-v2",
+                    "record_id": "ariadne:eval-k01:mechanism:v2",
                     "record_version": 2
                   },
                   {
-                    "record_id": "ariadne:eval:K01:clu-scale-v2",
+                    "record_id": "ariadne:eval-k01:scale:v2",
                     "record_version": 2
                   }
                 ]
@@ -907,7 +907,7 @@
         "SRC-K02-LABEL"
       ],
       "seed_parent_record": {
-        "record_id": "ariadne:eval:K02:seed-v1",
+        "record_id": "ariadne:eval-k02:root:v1",
         "schema_version": "1.2",
         "record_version": 1,
         "lineage_kind": "root",
@@ -983,7 +983,7 @@
             "status": "completed",
             "input_records": [],
             "output_record": {
-              "record_id": "ariadne:eval:K02:seed-v1",
+              "record_id": "ariadne:eval-k02:root:v1",
               "record_version": 1
             }
           }
@@ -1040,72 +1040,72 @@
           "authorization_effect": "none",
           "lineage": {
             "root_records": [
-              {"record_id": "ariadne:eval:K02:seed-v1", "record_version": 1}
+              {"record_id": "ariadne:eval-k02:root:v1", "record_version": 1}
             ],
-            "terminal_record": {"record_id": "ariadne:eval:K02:seq-audit-v7", "record_version": 7},
+            "terminal_record": {"record_id": "ariadne:eval-k02:audit:v7", "record_version": 7},
             "nodes": [
               {
-                "record_id": "ariadne:eval:K02:seq-scale-v2",
+                "record_id": "ariadne:eval-k02:scale:v2",
                 "record_version": 2,
                 "module": "ariadne-scale",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seed-v1",
+                    "record_id": "ariadne:eval-k02:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:seq-mechanism-v3",
+                "record_id": "ariadne:eval-k02:mechanism:v3",
                 "record_version": 3,
                 "module": "ariadne-mechanism",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seq-scale-v2",
+                    "record_id": "ariadne:eval-k02:scale:v2",
                     "record_version": 2
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:seq-dynamics-v4",
+                "record_id": "ariadne:eval-k02:dynamics:v4",
                 "record_version": 4,
                 "module": "ariadne-dynamics",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seq-mechanism-v3",
+                    "record_id": "ariadne:eval-k02:mechanism:v3",
                     "record_version": 3
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:seq-forecast-v5",
+                "record_id": "ariadne:eval-k02:forecast:v5",
                 "record_version": 5,
                 "module": "ariadne-forecast",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seq-dynamics-v4",
+                    "record_id": "ariadne:eval-k02:dynamics:v4",
                     "record_version": 4
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:seq-choice-v6",
+                "record_id": "ariadne:eval-k02:choice:v6",
                 "record_version": 6,
                 "module": "ariadne-choice",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seq-forecast-v5",
+                    "record_id": "ariadne:eval-k02:forecast:v5",
                     "record_version": 5
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:seq-audit-v7",
+                "record_id": "ariadne:eval-k02:audit:v7",
                 "record_version": 7,
                 "module": "ariadne-audit",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seq-choice-v6",
+                    "record_id": "ariadne:eval-k02:choice:v6",
                     "record_version": 6
                   }
                 ]
@@ -1127,87 +1127,87 @@
           "authorization_effect": "none",
           "lineage": {
             "root_records": [
-              {"record_id": "ariadne:eval:K02:seed-v1", "record_version": 1}
+              {"record_id": "ariadne:eval-k02:root:v1", "record_version": 1}
             ],
-            "terminal_record": {"record_id": "ariadne:eval:K02:clu-final-audit-v7", "record_version": 7},
+            "terminal_record": {"record_id": "ariadne:eval-k02:audit:v7", "record_version": 7},
             "nodes": [
               {
-                "record_id": "ariadne:eval:K02:clu-mechanism-v2",
+                "record_id": "ariadne:eval-k02:mechanism:v2",
                 "record_version": 2,
                 "module": "ariadne-mechanism",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seed-v1",
+                    "record_id": "ariadne:eval-k02:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:clu-scale-v2",
+                "record_id": "ariadne:eval-k02:scale:v2",
                 "record_version": 2,
                 "module": "ariadne-scale",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:seed-v1",
+                    "record_id": "ariadne:eval-k02:root:v1",
                     "record_version": 1
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:clu-merge-v3",
+                "record_id": "ariadne:eval-k02:merge:v3",
                 "record_version": 3,
                 "module": "ariadne-audit",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:clu-mechanism-v2",
+                    "record_id": "ariadne:eval-k02:mechanism:v2",
                     "record_version": 2
                   },
                   {
-                    "record_id": "ariadne:eval:K02:clu-scale-v2",
+                    "record_id": "ariadne:eval-k02:scale:v2",
                     "record_version": 2
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:clu-dynamics-v4",
+                "record_id": "ariadne:eval-k02:dynamics:v4",
                 "record_version": 4,
                 "module": "ariadne-dynamics",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:clu-merge-v3",
+                    "record_id": "ariadne:eval-k02:merge:v3",
                     "record_version": 3
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:clu-forecast-v5",
+                "record_id": "ariadne:eval-k02:forecast:v5",
                 "record_version": 5,
                 "module": "ariadne-forecast",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:clu-dynamics-v4",
+                    "record_id": "ariadne:eval-k02:dynamics:v4",
                     "record_version": 4
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:clu-choice-v6",
+                "record_id": "ariadne:eval-k02:choice:v6",
                 "record_version": 6,
                 "module": "ariadne-choice",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:clu-forecast-v5",
+                    "record_id": "ariadne:eval-k02:forecast:v5",
                     "record_version": 5
                   }
                 ]
               },
               {
-                "record_id": "ariadne:eval:K02:clu-final-audit-v7",
+                "record_id": "ariadne:eval-k02:audit:v7",
                 "record_version": 7,
                 "module": "ariadne-audit",
                 "input_records": [
                   {
-                    "record_id": "ariadne:eval:K02:clu-choice-v6",
+                    "record_id": "ariadne:eval-k02:choice:v6",
                     "record_version": 6
                   }
                 ]

@@ -453,7 +453,7 @@
       </div>
       <div class="sheet-body">
         <h2 class="sheet-title" id="t-install">同一套权威 Skill，面向六种 Agent 宿主。</h2>
-        <p class="sheet-lead">默认安装完整十模块。当前没有稳定 tag，以下命令跟随 main，属于滚动安装；Windows 使用复制模式，不依赖符号链接。兼容等级描述格式与发现位置，不代表已在每个宿主完成真实任务验证。</p>
+        <p class="sheet-lead">默认安装完整十模块。稳定 tag v1.0.0 可用于可复现安装（xi-kari/ariadne-skill@v1.0.0）；以下命令跟随 main，属于滚动安装。Windows 使用复制模式，不依赖符号链接。兼容等级描述格式与发现位置，不代表已在每个宿主完成真实任务验证。</p>
         <div class="table-wrap" role="region" tabindex="0" aria-label="六宿主兼容矩阵">
           <table class="host-table">
             <thead><tr><th scope="col">宿主</th><th scope="col">兼容等级</th><th scope="col">项目级发现路径</th><th scope="col">调用入口</th></tr></thead>
@@ -476,7 +476,7 @@
                 <p class="op-scope">复制进当前项目的宿主发现目录，便于审查、试用和随项目共享。</p>
               </div>
             </div>
-            <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
+            <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot</code></pre>
           </article>
           <article class="op-card" data-copy-card>
             <div class="op-head">
@@ -486,7 +486,7 @@
                 <p class="op-scope">由安装工具写入各宿主的用户级目录，适合跨项目持续使用。</p>
               </div>
             </div>
-            <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
+            <pre><code>npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot</code></pre>
           </article>
           <article class="op-card op-degraded" data-copy-card>
             <div class="op-head">
@@ -496,7 +496,7 @@
                 <p class="op-scope">只有宿主或任务明确限制安装数量时使用。</p>
               </div>
             </div>
-            <pre><code>npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix</code></pre>
+            <pre><code>npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot</code></pre>
             <p class="op-note"><span class="warn-tag">警告 Warning</span>这种安装不是完整 Ariadne：缺失的九个 peer 必须记录 <code>module_unavailable</code>，不得假装该模块已经运行，也不得提高输出上限。</p>
           </article>
         </div>
@@ -529,7 +529,7 @@
               <li><span class="ref-no">REF-05</span><a href="https://agentskills.io/specification">Agent Skills 规范</a><span class="ref-ext" aria-hidden="true">↗</span></li>
               <li><span class="ref-no">REF-06</span><a href="https://github.com/vercel-labs/skills">npx skills 安装工具</a><span class="ref-ext" aria-hidden="true">↗</span></li>
               <li><span class="ref-no">REF-07</span><a href="https://developers.openai.com/codex/skills">Codex Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
-              <li><span class="ref-no">REF-08</span><a href="https://code.claude.com/docs/en/slash-commands">Claude Code Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
+              <li><span class="ref-no">REF-08</span><a href="https://code.claude.com/docs/en/skills">Claude Code Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
               <li><span class="ref-no">REF-09</span><a href="https://geminicli.com/docs/cli/using-agent-skills/">Gemini CLI Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
               <li><span class="ref-no">REF-10</span><a href="https://cursor.com/docs/context/skills">Cursor Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>
               <li><span class="ref-no">REF-11</span><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot Skills</a><span class="ref-ext" aria-hidden="true">↗</span></li>

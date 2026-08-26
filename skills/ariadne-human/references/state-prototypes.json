@@ -1,5 +1,39 @@
 {
   "source_part": "Part 8",
+  "toc": [
+    {
+      "id": "S0",
+      "name": "anchor condensation"
+    },
+    {
+      "id": "S1",
+      "name": "generative-core foundation"
+    },
+    {
+      "id": "S2",
+      "name": "first expansion and carrying differentiation"
+    },
+    {
+      "id": "S3",
+      "name": "development under connected constraints"
+    },
+    {
+      "id": "S4",
+      "name": "structural-reconfiguration window"
+    },
+    {
+      "id": "S5",
+      "name": "efficient coordination and elastic expansion"
+    },
+    {
+      "id": "S6",
+      "name": "adaptive dynamic balance"
+    },
+    {
+      "id": "X0",
+      "name": "orderly exit path (see x0 register)"
+    }
+  ],
   "prototypes": [
     {
       "id": "S0",
@@ -249,7 +283,13 @@
       }
     ],
     "outcome_states": {
-      "states": ["candidate", "in_progress", "partially_complete", "complete", "unknown"],
+      "states": [
+        "candidate",
+        "in_progress",
+        "partially_complete",
+        "complete",
+        "unknown"
+      ],
       "rule": "While affected groups, residual obligations, receiving capacity, appeal, or memory safety remain unknown, benign completion may not be recorded."
     },
     "misclassification_map": [

@@ -46,17 +46,23 @@ FRONTMATTER_BLOCK = re.compile(r"\A---\n.*?\n---\n?", re.DOTALL)
 # green. Raising method text is always allowed; shrinking below a floor fails.
 REFERENCE_MARKDOWN_BYTE_FLOORS = {
     "skills/ariadne-skill/references/lattice-kernel.md": 5800,
-    "skills/ariadne-skill/references/routing.md": 6000,
-    "skills/ariadne-skill/references/method-record.md": 12000,
+    "skills/ariadne-skill/references/routing.md": 4100,
+    "skills/ariadne-skill/references/clustering.md": 7300,
+    "skills/ariadne-skill/references/method-record.md": 10400,
+    "skills/ariadne-skill/references/l1-record-template.md": 1900,
     "skills/ariadne-framing/references/object-contract.md": 6700,
     "skills/ariadne-evidence/references/evidence-contracts.md": 12900,
     "skills/ariadne-scale/references/scale-transformations.md": 12500,
     "skills/ariadne-mechanism/references/mechanism-contracts.md": 11200,
+    "skills/ariadne-mechanism/references/record-fields.md": 1400,
+    "skills/ariadne-dynamics/references/record-fields.md": 1400,
+    "skills/ariadne-human/references/record-fields.md": 1400,
     "skills/ariadne-human/references/human-domain.md": 23300,
     "skills/ariadne-dynamics/references/dynamic-derivation.md": 11400,
     "skills/ariadne-forecast/references/forecast-contract.md": 10200,
     "skills/ariadne-choice/references/choice-and-authorization.md": 12700,
-    "skills/ariadne-audit/references/gates-and-governance.md": 22600,
+    "skills/ariadne-audit/references/gates-core.md": 13300,
+    "skills/ariadne-audit/references/governance-lifecycle.md": 10000,
 }
 SKILL_BODY_MIN_BYTES = 3000
 SKILL_BODY_MIN_H2_SECTIONS = 3
@@ -664,6 +670,8 @@ def validate_content(root: Path) -> list[str]:
             errors.append(_issue("invalid-utf8", root, path, "file is not UTF-8"))
             continue
         decoded[path.resolve()] = text
+        if b"\r" in raw:
+            errors.append(_issue("crlf-line-ending", root, path, "file must use LF line endings"))
         if raw and not raw.endswith(b"\n"):
             errors.append(_issue("missing-final-newline", root, path, "file must end with LF"))
         for line_number, line in enumerate(text.splitlines(), start=1):

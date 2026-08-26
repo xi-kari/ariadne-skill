@@ -20,21 +20,68 @@ EXPECTED_REFERENCES = {
     "ariadne-skill": {
         "lattice-kernel.md",
         "routing.md",
+        "clustering.md",
         "method-record.md",
         "method-record.schema.json",
         "source-navigation.json",
+        "l1-record-template.md",
     },
     "ariadne-framing": {"object-contract.md"},
     "ariadne-evidence": {"evidence-contracts.md"},
     "ariadne-scale": {"scale-transformations.md"},
-    "ariadne-mechanism": {"mechanism-contracts.md"},
-    "ariadne-human": {"human-domain.md", "human-variable-cards.json", "state-prototypes.json"},
-    "ariadne-dynamics": {"dynamic-derivation.md"},
+    "ariadne-mechanism": {"mechanism-contracts.md", "record-fields.md"},
+    "ariadne-human": {"human-domain.md", "human-variable-cards.json", "state-prototypes.json", "record-fields.md"},
+    "ariadne-dynamics": {"dynamic-derivation.md", "record-fields.md"},
     "ariadne-forecast": {"forecast-contract.md"},
     "ariadne-choice": {"choice-and-authorization.md", "intervention-levels.json"},
-    "ariadne-audit": {"gates-and-governance.md", "application-contracts.json"},
+    "ariadne-audit": {"gates-core.md", "governance-lifecycle.md", "application-contracts.json"},
 }
 REQUIRED_FRONTMATTER_KEYS = {"name", "description"}
+EXPECTED_RECORD_SCHEMA_VERSION = "1.2"
+SKILL_NAME_PATTERN = re.compile(r"[a-z][a-z0-9-]{0,63}")
+DESCRIPTION_MAX_CHARS = 1024
+DESCRIPTION_TOTAL_BUDGET = 5000
+CLAUSE_DECLARATION = (
+    "Peer unavailable -> not_run/module_unavailable, outputs unknown, "
+    "ceiling preserve-or-lower, never inline "
+    "(full clause: lattice-kernel.md, Peer unavailability clause)."
+)
+CLAUSE_FULL = (
+    "If a routed peer skill is unavailable in this installation, record the handoff in "
+    "module_runs as not_run with reason module_unavailable, keep that responsibility's "
+    "outputs unknown, preserve or lower the output ceiling, and do not execute the peer's "
+    "responsibility inline or claim it ran."
+)
+CLAUSE_CANONICAL_FILE = "ariadne-skill/references/lattice-kernel.md"
+RECORD_FIELDS_COPIES = (
+    "ariadne-mechanism/references/record-fields.md",
+    "ariadne-dynamics/references/record-fields.md",
+    "ariadne-human/references/record-fields.md",
+)
+NUMBERING_PROBES = {
+    "D0-D3": ("D0",),
+    "U01-U11": ("U01",),
+    "G1-G4": ("G1",),
+    "E1-E5": ("E1",),
+    "C1-C12": ("C12",),
+    "A/X/T/O/C/R/I/N/J": ("A,X,T,O,C,R,I,N,J", "A aggregation"),
+    "M01-M09": ("M01",),
+    "CM-*": ("CM-",),
+    "H1-H6": ("H1",),
+    "GC/GS/GE/CV/RS/IS/IM/IB": ("GC",),
+    "HV01-HV11": ("HV01",),
+    "S0-S6/X0": ("S0",),
+    "IG1-IG7": ("IG1",),
+    "SJ1-SJ8": ("SJ1",),
+    "L1-L3": ("L1",),
+    "TOOL-*": ("TOOL-*",),
+    "N1-N5": ("N1",),
+    "O1-O4": ("O1",),
+    "PF-1-PF-10": ("PF-1",),
+    "T0-T4": ("T0",),
+    "APP-*": ("APP-",),
+    "GOV-01-GOV-24": ("GOV-0",),
+}
 ALLOWED_FRONTMATTER_KEYS = {"name", "description", "license", "metadata"}
 
 FORBIDDEN_MARKERS = ("TODO", "TBD", "PLACEHOLDER", "implement later", "fill in details")
@@ -203,6 +250,22 @@ def validate_method_record(record: dict, schema: dict | None = None) -> None:
     method_record_validator(schema).validate(record)
 
 
+def _numbering_probe_resolves(code: str, owner: str) -> bool:
+    probes = NUMBERING_PROBES.get(code)
+    if probes is None:
+        return False
+    owner_dir = SKILLS_ROOT / owner
+    if not owner_dir.is_dir():
+        return False
+    for path in sorted(owner_dir.rglob("*")):
+        if not path.is_file() or path.suffix not in {".md", ".json"}:
+            continue
+        text = path.read_text(encoding="utf-8")
+        if any(probe in text for probe in probes):
+            return True
+    return False
+
+
 def validate_source_navigation(data: dict) -> list[str]:
     errors: list[str] = []
     numbering = data.get("appendix_b_numbering")
@@ -218,6 +281,12 @@ def validate_source_navigation(data: dict) -> list[str]:
                 continue
             if not all(isinstance(entry[field], str) and entry[field] for field in entry):
                 errors.append(f"source navigation numbering entry is empty: {entry.get('code')}")
+                continue
+            if not _numbering_probe_resolves(entry["code"], entry["owner"]):
+                errors.append(
+                    "source navigation code does not resolve in its owner's files: "
+                    f"{entry['code']} -> {entry['owner']}"
+                )
 
     notation = data.get("shared_notation")
     if not isinstance(notation, list):
@@ -321,8 +390,11 @@ def validate_stage_status(status: dict[str, str]) -> list[str]:
         errors.append("at most one execution phase may be in_progress")
     if status["PARENT_INDEPENDENT_VALIDATION"] == "complete" and status["WORKER_FINAL_VALIDATION"] != "complete":
         errors.append("parent validation cannot complete before worker validation")
-    if status["RELEASE"] != "not_authorized":
-        errors.append("release must remain not_authorized until explicitly authorized in a reviewed change")
+    if status["RELEASE"] != "complete":
+        errors.append(
+            "release stage must remain complete; it was authorized in the reviewed change of "
+            "2026-08-26 (tag v1.0.0), and any further release-state change needs another reviewed change here"
+        )
     return errors
 
 
@@ -719,6 +791,7 @@ def validate_extension_contracts() -> list[str]:
 
 def collect_errors() -> list[str]:
     errors: list[str] = []
+    description_lengths: dict[str, int] = {}
     actual = {path.name for path in SKILLS_ROOT.iterdir() if path.is_dir()}
     if actual != set(EXPECTED_REFERENCES):
         errors.append(f"skill namespace mismatch: {sorted(actual)}")
@@ -749,6 +822,20 @@ def collect_errors() -> list[str]:
             description = data.get("description")
             if not isinstance(description, str) or "Use when " not in description:
                 errors.append(f"description trigger invalid for {name}")
+            elif len(description) > DESCRIPTION_MAX_CHARS:
+                errors.append(f"description exceeds {DESCRIPTION_MAX_CHARS} chars for {name}: {len(description)}")
+            else:
+                description_lengths[name] = len(description)
+            if not SKILL_NAME_PATTERN.fullmatch(name):
+                errors.append(f"skill name is not lowercase-kebab within 64 chars: {name}")
+            metadata_block = data.get("metadata")
+            if metadata_block != {"record_schema": EXPECTED_RECORD_SCHEMA_VERSION}:
+                errors.append(f"frontmatter metadata must pin record_schema {EXPECTED_RECORD_SCHEMA_VERSION}: {name}")
+            body_text = skill_md.read_text(encoding="utf-8")
+            if body_text.count(CLAUSE_DECLARATION) != 1:
+                errors.append(f"peer-unavailability declaration line missing or duplicated in {name}")
+            if CLAUSE_FULL in body_text:
+                errors.append(f"full peer-unavailability clause may live only in the Lattice Kernel, found in {name}")
         except (OSError, ValueError, yaml.YAMLError) as exc:
             errors.append(str(exc))
 
@@ -770,15 +857,38 @@ def collect_errors() -> list[str]:
                     errors.append(f"foreign product name {product!r}: {path.relative_to(ROOT)}")
 
         for target in MARKDOWN_LINK.findall(skill_md.read_text(encoding="utf-8")):
+            if target.startswith(("../", "/")) or "/../" in target:
+                errors.append(f"deep reference from {name}: {target}")
+                continue
             if not target.startswith("references/"):
                 continue
-            if target.startswith("../"):
-                errors.append(f"deep reference from {name}: {target}")
-            elif not (skill_dir / target).is_file():
+            if not (skill_dir / target).is_file():
                 errors.append(f"missing reference from {name}: {target}")
         errors.extend(
             validate_reference_routes(name, skill_md.read_text(encoding="utf-8"), expected_refs)
         )
+
+    if description_lengths and sum(description_lengths.values()) > DESCRIPTION_TOTAL_BUDGET:
+        errors.append(
+            "combined skill descriptions exceed the resident-context budget of "
+            f"{DESCRIPTION_TOTAL_BUDGET} chars: {sum(description_lengths.values())}"
+        )
+    clause_canonical = SKILLS_ROOT / "ariadne-skill" / "references" / "lattice-kernel.md"
+    if clause_canonical.is_file():
+        for path in sorted(SKILLS_ROOT.rglob("*.md")):
+            text = path.read_text(encoding="utf-8")
+            relative = path.relative_to(SKILLS_ROOT).as_posix()
+            if CLAUSE_FULL in text and relative != CLAUSE_CANONICAL_FILE:
+                errors.append(f"second copy of the peer-unavailability clause: {relative}")
+    record_fields = [SKILLS_ROOT / relative for relative in RECORD_FIELDS_COPIES]
+    if all(path.is_file() for path in record_fields):
+        first = record_fields[0].read_bytes()
+        for path in record_fields[1:]:
+            if path.read_bytes() != first:
+                errors.append(
+                    "record-fields.md copies must stay byte-identical: "
+                    f"{path.relative_to(ROOT).as_posix()}"
+                )
 
     coverage_path = ROOT / "docs" / "source-coverage.md"
     if not coverage_path.is_file():
@@ -811,6 +921,13 @@ def collect_errors() -> list[str]:
     except (OSError, json.JSONDecodeError, jsonschema.SchemaError) as exc:
         errors.append(f"method record schema invalid: {exc}")
     else:
+        declared = schema.get("properties", {}).get("schema_version", {})
+        declared_version = declared.get("const") or next(iter(declared.get("enum", [])), None)
+        if declared_version != EXPECTED_RECORD_SCHEMA_VERSION:
+            errors.append(
+                "schema_version pinned by the schema differs from the frontmatter contract: "
+                f"{declared_version!r}"
+            )
         schema_copy_path = SKILLS_ROOT / "ariadne-skill" / "references" / "method-record.schema.json"
         if not schema_copy_path.is_file():
             errors.append(
