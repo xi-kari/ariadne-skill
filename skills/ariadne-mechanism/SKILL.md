@@ -3,7 +3,7 @@ name: ariadne-mechanism
 description: "Explain why and through which channel something happens by making at least two competing mechanisms beat a simple baseline, each with channel observations, falsifiers, and residual comparison. Use when a root-cause review needs competing, falsifiable explanations on the record - post-incident, organizational, market, or operational diagnosis; not for routine interactive debugging of code the agent can directly inspect and fix. For people and team questions pair with ariadne-human; for a multi-module pass, start with ariadne-skill. 适用于：正式的根因复盘、为什么会发生、竞争解释与证伪条件、残差比较。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Mechanism

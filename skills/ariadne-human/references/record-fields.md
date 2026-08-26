@@ -7,12 +7,12 @@ This module can be installed alone. The full machine-checkable schema ships with
 | Field | Constraint |
 |---|---|
 | `record_id` | `ariadne:<case>:<module\|merge\|root>:v<N>`; case slug without colons. |
-| `schema_version` | The string `'1.2'`. |
+| `schema_version` | The string `'1.3'`. |
 | `record_version` | Integer: 1 for a root, parent + 1 for a linear child, highest parent + 1 for a merge. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for `linear`; null for `root` and `merge`. |
 | `parent_records` | Empty for a root; one `{record_id, record_version}` for linear; two or more, sorted by ID then version, for merge. |
-| `request_type` | One of `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`. |
+| `request_type` | One of `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, `synthesis_design`. |
 | `object_contract` | `boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `status`. |
 | `evidence_cutoff` | `as_of` (RFC 3339), `included_source_ids`, `excluded_after_cutoff`. |
 | `scale_scope` | `source`, `target`, `transform_status`. |

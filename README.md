@@ -381,7 +381,7 @@ python -X utf8 -B scripts/validate_adapters.py
 python -X utf8 -B scripts/build_bundle.py --check
 ```
 
-这些命令验证仓库一致性与格式（清单、schema、示例记录、链接、适配器同步），不验证 skill 在宿主中的行为效果；行为场景与评分标准见 `evals/`，目前为人工执行。
+这些命令验证仓库一致性与格式（清单、schema、示例记录、链接、适配器同步），不验证 skill 在宿主中的行为效果；行为场景由 `scripts/run_evals.py` 经宿主 CLI 执行并落盘转录（`--list` 查看场景，评分按 `evals/rubric.md` 由人工或评审模型完成），不作为 CI 门禁。
 
 <p align="right"><sub><a href="#s00">↥ 返回图纸目录</a></sub></p>
 

@@ -21,7 +21,7 @@ def load_schema() -> dict:
 def valid_record() -> dict:
     return {
         "record_id": "ariadne:case-001:v1",
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": None,

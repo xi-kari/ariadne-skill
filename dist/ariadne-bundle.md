@@ -24,7 +24,7 @@ Reading rules for this form:
 
 Turn a complex request into a bounded, inspectable method run. Classify the requested output, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, and stop every conclusion at its supported output ceiling.
 
-Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, and governance review. A generative or build request (write, design, implement, create) is out of scope as a whole: declare that, hand the construction work back to the host's normal workflow, and apply single modules only to the judgment-type claims or decisions inside it. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority.
+Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis. For a generative or build request (write, design, implement, create), run only its judgment core as `synthesis_design` - frozen constraints, compared candidate designs, a bounded proposal - and hand the construction itself back to the host's normal workflow; a request with no judgment core is out of scope entirely. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority.
 
 ### Required references
 
@@ -42,7 +42,7 @@ Validate every emitted record by running the shipped validator, `python scripts/
 ### Full-pass workflow
 
 1. Restate the user's real-world question without Ariadne vocabulary.
-2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review. Keep the outputs separate. If none fits, declare out of scope as promised above.
+2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, synthesis design. Keep the outputs separate. If none fits, declare out of scope as promised above.
 3. Select depth. L0: answer directly with a one-line boundary declaration; no module run, no record. L1: run framing plus the one relevant module and emit a compact record from the template. Only L2 and above continue with the full workflow below. When in doubt between L0 and L1, use L1.
 4. Run `ariadne-framing`. Freeze the candidate object, boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
 5. Run `ariadne-evidence`. Freeze the evidence cutoff and separate source, material, observation, evidence, counterevidence, judgment, and external authorization.
@@ -157,7 +157,7 @@ Define what is being asked and what candidate object is being discussed before j
 ### Procedure
 
 1. **Consume or start the Method Record.** Preserve every supplied fact, unknown, counterexample, record ID, version, and ceiling. If reframing changes scope, create a child version and retain `parent_record_id`; never overwrite the prior record.
-2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, or `governance_review`. Split a mixed request into separate records or state which output comes first. If the request is generative or build work with no judgment-type output, do not force a type: declare it out of Ariadne's scope and return it to the host's normal workflow.
+2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, or `synthesis_design`. Split a mixed request into separate records or state which output comes first. For a generative or build request, classify its judgment core as `synthesis_design` - freeze the design constraints, compare candidate designs, hand over a bounded proposal - and return the construction itself to the host's normal workflow; when there is no judgment core at all, declare the request out of Ariadne's scope instead of forcing a type.
 3. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion. For the scale profile, check the nine axes A/X/T/O/C/R/I/N/J owned by `ariadne-scale` and register only the axes that carry information (at least one). Keep `status` as `candidate` or `incomplete` until evidence work supports more.
 4. **Separate the task layers.** Distinguish description, structural diagnosis, future derivation, forecast, choice, and real-world intervention. Do not let an explanation silently become a prediction or a requested action.
 5. **Mark visibility and risk.** Encode every missing field as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`, with a reason. Escalate the next-module recommendation when evidence is thin, power is asymmetric, consequences are hard to reverse, or the setting is high pressure.
@@ -786,12 +786,12 @@ This module can be installed alone. The full machine-checkable schema ships with
 | Field | Constraint |
 |---|---|
 | `record_id` | `ariadne:<case>:<module\|merge\|root>:v<N>`; case slug without colons. |
-| `schema_version` | The string `'1.2'`. |
+| `schema_version` | The string `'1.3'`. |
 | `record_version` | Integer: 1 for a root, parent + 1 for a linear child, highest parent + 1 for a merge. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for `linear`; null for `root` and `merge`. |
 | `parent_records` | Empty for a root; one `{record_id, record_version}` for linear; two or more, sorted by ID then version, for merge. |
-| `request_type` | One of `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`. |
+| `request_type` | One of `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, `synthesis_design`. |
 | `object_contract` | `boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `status`. |
 | `evidence_cutoff` | `as_of` (RFC 3339), `included_source_ids`, `excluded_after_cutoff`. |
 | `scale_scope` | `source`, `target`, `transform_status`. |

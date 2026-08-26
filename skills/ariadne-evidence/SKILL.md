@@ -3,7 +3,7 @@ name: ariadne-evidence
 description: "Grade how far existing materials can support each claim: freeze an evidence cutoff, then separate source, material, observation, evidence, counterevidence, judgment, and external authorization. Use when claims, citations, causal or analogy arguments need support grading, competing explanations, and counterevidence checks. For a multi-module pass, start with ariadne-skill. 适用于：证据够不够、来源核查、这个结论站得住吗、因果与类比检查、反证清点。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Evidence

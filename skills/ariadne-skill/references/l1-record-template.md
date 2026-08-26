@@ -7,7 +7,7 @@ The single copy-ready template for the L1 compact profile defined in [method-rec
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:quick-check:root:v1
-schema_version: '1.2'
+schema_version: '1.3'
 record_version: 1
 lineage_kind: root
 parent_record_id: null

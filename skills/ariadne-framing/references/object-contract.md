@@ -121,7 +121,7 @@ Frame the reporting question before the intervention question. Do not equate rep
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:school-reporting-frame-001
-schema_version: '1.2'
+schema_version: '1.3'
 record_version: 1
 lineage_kind: root
 parent_record_id: null

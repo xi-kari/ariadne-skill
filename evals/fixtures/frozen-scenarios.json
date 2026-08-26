@@ -17,7 +17,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-c01:root:v1",
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -258,7 +258,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-c02:root:v1",
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -448,7 +448,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-c03:root:v1",
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -636,7 +636,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-k01:root:v1",
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -908,7 +908,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-k02:root:v1",
-        "schema_version": "1.2",
+        "schema_version": "1.3",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,

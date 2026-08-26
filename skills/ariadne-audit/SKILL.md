@@ -3,7 +3,7 @@ name: ariadne-audit
 description: "Gate high-impact use of completed Ariadne records: transformation and main gates, appeal, rollback, downgrade, pause, withdrawal, retirement, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or when clustered module records must be merged and their conflicts preserved. For a multi-module pass, start with ariadne-skill. 适用于：结论公开或上线前的审查、能不能这么用、申诉与回滚、降级与退役、集群合并终审。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Audit

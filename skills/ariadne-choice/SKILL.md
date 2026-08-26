@@ -3,7 +3,7 @@ name: ariadne-choice
 description: "Compare action, delay, reversible experiment, exit, and inaction on one baseline, keeping facts, values, rights, jurisdiction, and authorization separate and issuing no permissions. Use when a real-world decision, pilot, exit, or act-or-not question needs a bounded option comparison with external requirements; when the decision hinges on an unregistered future claim, run ariadne-forecast first. For a multi-module pass, start with ariadne-skill. 适用于：该不该做、方案比较、试点与退出、不行动也是选项、授权边界。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Choice

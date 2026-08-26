@@ -3,7 +3,7 @@ name: ariadne-dynamics
 description: "Derive conditional event paths from a frozen state: propagation along declared channels, clocks, thresholds, feedback, branch graphs, counterfactual and recursive simulation, and stopping conditions. Use when events, cascades, or institutional transitions need bounded path derivation; for a dated, evaluable future claim use ariadne-forecast instead. For a multi-module pass, start with ariadne-skill. 适用于：接下来会怎么发展、事件传播推演、条件分支与级联、情景与反事实模拟。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Dynamics

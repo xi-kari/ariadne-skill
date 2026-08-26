@@ -28,7 +28,7 @@
   ],
   "properties": {
     "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
-    "schema_version": {"const": "1.2"},
+    "schema_version": {"const": "1.3"},
     "record_version": {"type": "integer", "minimum": 1},
     "lineage_kind": {"enum": ["root", "linear", "merge"]},
     "parent_record_id": {"type": ["string", "null"], "minLength": 1},
@@ -45,7 +45,8 @@
         "conditional_forecast",
         "finite_choice",
         "intervention_review",
-        "governance_review"
+        "governance_review",
+        "synthesis_design"
       ]
     },
     "object_contract": {"$ref": "#/$defs/objectContract"},
