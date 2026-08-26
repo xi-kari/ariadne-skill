@@ -34,7 +34,7 @@
     python -X utf8 -B scripts/build_site.py --output build/site
     git diff --check
 
-Windows 本机需开启系统开发者模式（允许非特权创建符号链接）才能运行全部测试；未开启时两个符号链接安全用例会跳过，由 CI 兜底。改动任何 `skills/*/SKILL.md` 后运行 `python scripts/build_bundle.py` 重新生成单文件捆绑版。
+Windows 本机需开启系统开发者模式（允许非特权创建符号链接）才能运行全部测试；未开启时两个符号链接安全用例会跳过，由 CI 兜底。改动任何 `skills/*/SKILL.md` 后运行 `python scripts/build_bundle.py` 重新生成单文件捆绑版。行为评测用 `python scripts/run_evals.py`（转录落盘 `evals/runs/`，已在 .gitignore 中；评分不自动化）。
 
 若某项无法运行，请在 Pull Request 中准确写明未运行原因，不要把未验证状态表述为通过。
 

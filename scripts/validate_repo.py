@@ -37,7 +37,7 @@ EXPECTED_REFERENCES = {
     "ariadne-audit": {"gates-core.md", "governance-lifecycle.md", "application-contracts.json"},
 }
 REQUIRED_FRONTMATTER_KEYS = {"name", "description"}
-EXPECTED_RECORD_SCHEMA_VERSION = "1.2"
+EXPECTED_RECORD_SCHEMA_VERSION = "1.3"
 SKILL_NAME_PATTERN = re.compile(r"[a-z][a-z0-9-]{0,63}")
 DESCRIPTION_MAX_CHARS = 1024
 DESCRIPTION_TOTAL_BUDGET = 5000

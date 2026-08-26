@@ -28,12 +28,12 @@ The machine-checkable schema ships with this skill at `references/method-record.
 | Field | Meaning |
 |---|---|
 | `record_id` | Stable Ariadne case/version identifier. |
-| `schema_version` | Record schema version; use `1.2`. |
+| `schema_version` | Record schema version; use `1.3`. |
 | `record_version` | Monotonic integer within a lineage. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for a linear child; null for a root or merge. |
 | `parent_records` | Complete canonical list of parent IDs and versions. |
-| `request_type` | One of the seven Lattice Kernel output classes. |
+| `request_type` | One of the eight Lattice Kernel output classes. |
 | `object_contract` | Boundary, state variables, relations/transitions, interfaces, time window, scale profile, identity criterion, status. |
 | `evidence_cutoff` | Time and source IDs admitted to this version. |
 | `scale_scope` | Source, target, and scale/translation audit status. |
@@ -157,7 +157,7 @@ Copy the schema-valid template from [l1-record-template.md](l1-record-template.m
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:delivery-case:root:v1
-schema_version: '1.2'
+schema_version: '1.3'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -228,7 +228,7 @@ A raise is legal only in a child that newly admits an external basis. The pair b
 <!-- method-record-lineage-example:start -->
 ```yaml
 - record_id: ariadne:onboarding-tickets:root:v1
-  schema_version: '1.2'
+  schema_version: '1.3'
   record_version: 1
   lineage_kind: root
   parent_record_id: null
@@ -282,7 +282,7 @@ A raise is legal only in a child that newly admits an external basis. The pair b
   - ariadne-evidence
   authorization_effect: none
 - record_id: ariadne:onboarding-tickets:evidence:v2
-  schema_version: '1.2'
+  schema_version: '1.3'
   record_version: 2
   lineage_kind: linear
   parent_record_id: ariadne:onboarding-tickets:root:v1

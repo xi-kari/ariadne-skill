@@ -26,7 +26,7 @@ Each arrow is a gate, not an automatic implication.
 
 ### 1. Classify output before answering
 
-Keep explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, and governance review distinct. A request may need several, but each keeps its own evidence and stopping rule.
+Keep explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis distinct. A request may need several, but each keeps its own evidence and stopping rule.
 
 Never silently transform:
 
@@ -135,6 +135,7 @@ Internal consistency, validation, reports, and stress tests do not prove real-wo
 | Finite choice | How do action, delay, experiment, exit, and inaction compare? | Explicit norms and external decision handoff. |
 | Intervention review | Is a proposed action within its authority and safety ceiling? | Requirements, prohibition, stopping, rollback. |
 | Governance review | Should a claim, process, model, or framework be challenged or retired? | Contestability, writeback, downgrade, replacement. |
+| Design synthesis | Which bounded design or plan best fits the frozen constraints? | Frozen constraints, compared candidate designs, and an external build/decide handoff; Ariadne never constructs or executes the artifact. |
 
 Request-type adjudication: auditing how well existing evidence supports an already stated claim is explanation work with a ceiling of at most `diagnostic_only`, even when the claim is public. Governance review is reserved for the withdrawal, downgrade, or retirement decision about an already published claim, process, or model. Contrast pair: "Do these two papers support this causal conclusion?" routes to explanation and stops at a bounded diagnostic comparison; "Should we retract our published causal conclusion after this counterevidence?" routes to governance review and stops at contestability, downgrade, or retirement conditions.
 

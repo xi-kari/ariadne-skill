@@ -3,7 +3,7 @@ name: ariadne-framing
 description: "Freeze what an analysis is actually about: the candidate object's boundary, state variables, relations, interfaces, time window, scale profile, and identity criterion, plus the requested output type. Use when the object, scope, or task type of a methodology-grade analysis is ambiguous or contested, or when a named group, system, or phase is treated as real without being established; not needed when the subject of a casual question is already clear. For a multi-module pass, start with ariadne-skill. 适用于：问题定界、到底在分析什么、对象与口径先说清楚、任务类型分类。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Framing
@@ -15,7 +15,7 @@ Define what is being asked and what candidate object is being discussed before j
 ## Procedure
 
 1. **Consume or start the Method Record.** Preserve every supplied fact, unknown, counterexample, record ID, version, and ceiling. If reframing changes scope, create a child version and retain `parent_record_id`; never overwrite the prior record.
-2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, or `governance_review`. Split a mixed request into separate records or state which output comes first. If the request is generative or build work with no judgment-type output, do not force a type: declare it out of Ariadne's scope and return it to the host's normal workflow.
+2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, or `synthesis_design`. Split a mixed request into separate records or state which output comes first. For a generative or build request, classify its judgment core as `synthesis_design` - freeze the design constraints, compare candidate designs, hand over a bounded proposal - and return the construction itself to the host's normal workflow; when there is no judgment core at all, declare the request out of Ariadne's scope instead of forcing a type.
 3. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion. For the scale profile, check the nine axes A/X/T/O/C/R/I/N/J owned by `ariadne-scale` and register only the axes that carry information (at least one). Keep `status` as `candidate` or `incomplete` until evidence work supports more.
 4. **Separate the task layers.** Distinguish description, structural diagnosis, future derivation, forecast, choice, and real-world intervention. Do not let an explanation silently become a prediction or a requested action.
 5. **Mark visibility and risk.** Encode every missing field as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`, with a reason. Escalate the next-module recommendation when evidence is thin, power is asymmetric, consequences are hard to reverse, or the setting is high pressure.

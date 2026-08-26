@@ -14,3 +14,5 @@ Invoke only the named module for each prompt.
 | `ariadne-choice` | “比较立即上线、灰度试验、延期和不做。” | Options including inaction, normative premises, authorization gaps, limits. |
 | `ariadne-audit` | “审查这份将影响员工资格的自动化判断。” | Gates, challenge, appeal, rollback, downgrade, AI boundary. |
 | `ariadne-skill` | “完整分析一个证据不足但影响重大的组织改革问题。” | Routed multi-module record with bounded plain-language synthesis. |
+| `ariadne-framing` | “帮我设计一套新的 on-call 轮值方案。” | `synthesis_design` classification, frozen design constraints and success criteria, no constructed artifact. |
+| `ariadne-skill` | “给我们的 API 设计一个版本化策略，比较取舍后给建议。” | `synthesis_design` pass: constraint record, compared candidate designs including keep-current, bounded proposal with external adoption handoff. |

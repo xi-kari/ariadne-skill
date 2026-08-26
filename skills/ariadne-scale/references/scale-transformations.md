@@ -195,7 +195,7 @@ The atomic operator is M01 aggregation in descriptive mode. A expands from units
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:engagement-aggregation-audit-001
-schema_version: '1.2'
+schema_version: '1.3'
 record_version: 1
 lineage_kind: root
 parent_record_id: null

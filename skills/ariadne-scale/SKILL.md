@@ -3,7 +3,7 @@ name: ariadne-scale
 description: "Audit what survives a move between scales: what is preserved, changed, lost, or incomparable when an object, observation, claim, or action transfers across levels, time windows, circles, representations, or vocabularies. Use when reasoning crosses individual and collective levels, local and global scopes, short and long windows, or domains. For a multi-module pass, start with ariadne-skill. 适用于：个体结论能否推到群体、试点能否推广、跨领域类比是否成立、换个说法丢了什么。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Scale

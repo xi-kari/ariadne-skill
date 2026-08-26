@@ -3,7 +3,7 @@ name: ariadne-skill
 description: "Coordinate a structured multi-angle analysis of a complex real-world question: frame the object, freeze evidence, route only the needed peer modules (framing, evidence, scale, mechanism, human, dynamics, forecast, choice, audit), and merge results into one bounded, inspectable record. Use when a question mixes explanation, prediction, and action, spans people, evidence, and decisions at once, or the user asks for a systematic, thorough, multi-angle, or auditable analysis. 适用于：系统分析、全面评估、多角度复盘、这个复杂问题怎么看/该不该做、需要可检查可续接的结论。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne
@@ -12,7 +12,7 @@ metadata:
 
 Turn a complex request into a bounded, inspectable method run. Classify the requested output, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, and stop every conclusion at its supported output ceiling.
 
-Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, and governance review. A generative or build request (write, design, implement, create) is out of scope as a whole: declare that, hand the construction work back to the host's normal workflow, and apply single modules only to the judgment-type claims or decisions inside it. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority.
+Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis. For a generative or build request (write, design, implement, create), run only its judgment core as `synthesis_design` - frozen constraints, compared candidate designs, a bounded proposal - and hand the construction itself back to the host's normal workflow; a request with no judgment core is out of scope entirely. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority.
 
 ## Required references
 
@@ -30,7 +30,7 @@ Validate every emitted record by running the shipped validator, `python scripts/
 ## Full-pass workflow
 
 1. Restate the user's real-world question without Ariadne vocabulary.
-2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review. Keep the outputs separate. If none fits, declare out of scope as promised above.
+2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, synthesis design. Keep the outputs separate. If none fits, declare out of scope as promised above.
 3. Select depth. L0: answer directly with a one-line boundary declaration; no module run, no record. L1: run framing plus the one relevant module and emit a compact record from the template. Only L2 and above continue with the full workflow below. When in doubt between L0 and L1, use L1.
 4. Run `ariadne-framing`. Freeze the candidate object, boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
 5. Run `ariadne-evidence`. Freeze the evidence cutoff and separate source, material, observation, evidence, counterevidence, judgment, and external authorization.

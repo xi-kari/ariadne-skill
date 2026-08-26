@@ -97,7 +97,7 @@ python -X utf8 -B scripts/validate_adapters.py
 
 ## 验证状态与通用冒烟合同
 
-兼容等级描述的是格式与入口，不是已完成的宿主实测。`adapters/compatibility.json` 为每个宿主维护 `verification` 字段：`unverified`（默认，六宿主当前状态）或 `smoke-passed`（附 `last_verified` 日期）。把任何宿主升级为 `smoke-passed` 前，在一次性容器或虚拟机中完成三项通用冒烟——`json-references`（JSON 引用可读取）、`peer-routing`（路由能点名 peer 并拿到降级记录）、`context-growth`（渐进加载不整包注入）——并把命令输出存入 `evals/` 的宿主冒烟记录。
+兼容等级描述的是格式与入口，不是已完成的宿主实测。`adapters/compatibility.json` 为每个宿主维护 `verification` 字段：`unverified`（默认，六宿主当前状态）或 `smoke-passed`（附 `last_verified` 日期）。把任何宿主升级为 `smoke-passed` 前，在一次性容器或虚拟机中完成三项通用冒烟——`json-references`（JSON 引用可读取）、`peer-routing`（路由能点名 peer 并拿到降级记录）、`context-growth`（渐进加载不整包注入）——并把命令输出存入 `evals/` 的宿主冒烟记录（模板：`evals/host-smoke-template.md`）。行为场景可用 `python scripts/run_evals.py --host-command "claude -p {prompt}"` 一类命令批量执行并生成评分底稿。
 
 ## 宿主扩展文件
 

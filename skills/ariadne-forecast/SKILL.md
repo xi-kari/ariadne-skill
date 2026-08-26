@@ -3,7 +3,7 @@ name: ariadne-forecast
 description: "Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable and calibrated; for undated path exploration use ariadne-dynamics instead, and when the forecast feeds a real decision, follow with ariadne-choice. For a multi-module pass, start with ariadne-skill. 适用于：立一个可验证的预测、这个预测靠不靠谱、基线与校准、失败判定与结果回写。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Forecast

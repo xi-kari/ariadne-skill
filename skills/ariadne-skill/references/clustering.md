@@ -97,7 +97,7 @@ Two regional lanes were framed independently as roots and then joined by an audi
 <!-- method-record-lineage-example:start -->
 ```yaml
 - record_id: ariadne:retention-east:root:v1
-  schema_version: '1.2'
+  schema_version: '1.3'
   record_version: 1
   lineage_kind: root
   parent_record_id: null
@@ -151,7 +151,7 @@ Two regional lanes were framed independently as roots and then joined by an audi
   - ariadne-evidence
   authorization_effect: none
 - record_id: ariadne:retention-west:root:v1
-  schema_version: '1.2'
+  schema_version: '1.3'
   record_version: 1
   lineage_kind: root
   parent_record_id: null
@@ -205,7 +205,7 @@ Two regional lanes were framed independently as roots and then joined by an audi
   - ariadne-evidence
   authorization_effect: none
 - record_id: ariadne:retention-2026:merge:v2
-  schema_version: '1.2'
+  schema_version: '1.3'
   record_version: 2
   lineage_kind: merge
   parent_record_id: null

@@ -239,7 +239,7 @@ IT1 is the first failed transformation, so IT2-IT4 are `not_run`. IG1 is the fir
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:audit:AUD-AI-HR-009
-schema_version: '1.2'
+schema_version: '1.3'
 record_version: 1
 lineage_kind: root
 parent_record_id: null

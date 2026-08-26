@@ -224,7 +224,7 @@ failure_semantics: Keep supported, not_supported, unresolved, target_invalid, an
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:forecast:F-TEAM-017
-schema_version: '1.2'
+schema_version: '1.3'
 record_version: 1
 lineage_kind: root
 parent_record_id: null

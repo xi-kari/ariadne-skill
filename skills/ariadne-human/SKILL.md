@@ -3,7 +3,7 @@ name: ariadne-human
 description: "Constrain human-domain analysis so people are never reduced to fixed labels: roles, circles, power, privacy, responsibility, and meaning stay separate, evidence-bounded records. Use when analyzing people, relationships, teams, organizations, institutions, or multi-circle joint objects without personality or clinical diagnosis; for the causal channel behind an outcome pair with ariadne-mechanism. For a multi-module pass, start with ariadne-skill. 适用于：团队与组织问题、角色圈层与权力、隐私与责任边界、不给人贴标签的分析。"
 license: MIT
 metadata:
-  record_schema: "1.2"
+  record_schema: "1.3"
 ---
 
 # Ariadne Human

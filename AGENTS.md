@@ -34,7 +34,7 @@ Do not review, approve, reject, polish, or forward-test modules one by one while
 
 - Test local skills only by explicit name or direct repository path.
 - Do not install this development clone into a global skills directory on the maintainer's workstation; end users installing via the README OP-01/OP-02 commands are out of scope for this rule.
-- Host smoke verification runs in a disposable container or VM, never against this workstation's global directories; record outcomes in the `verification` fields of adapters/compatibility.json.
+- Host smoke verification runs in a disposable container, VM, or throwaway project-scoped directory that never enters any global skills path; record outcomes in the `verification` fields of adapters/compatibility.json.
 - Do not publish partial implementation branches or partial skill releases.
 - Keep skill files free of iteration narration, development diary text, and version-by-version explanations.
 

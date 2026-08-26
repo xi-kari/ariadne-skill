@@ -19,6 +19,7 @@ Judging rules: "expected" names the single skill whose description should win th
 | T11 | 该不该现在做一个可回滚的小范围试点?不做行不行? | ariadne-choice | 行动/不行动的有限比较 |
 | T12 | 这个自动化评分结论能不能公开并接入人事流程? | ariadne-audit | 高影响公开/自动化使用 |
 | T13 | Predict next year's market and tell us the one correct action | router | 预测+行动指令混合 |
-| T14 | 把这份周报改写得更简洁 | none | 生成型任务,整体出界 |
+| T14 | 把这份周报改写得更简洁 | none | 纯生成改写,无判断内核,整体出界 |
 | T15 | Why did deployments slow down this quarter? (随口一问) | none | L0 直接回答;仅当用户要求方法级分析时进入 router/mechanism |
 | T16 | 我们组织的问题同时涉及人、证据和该不该重组,请系统分析 | router | 人+证据+决策,总控词面 |
+| T17 | 帮我设计一个灰度发布方案,把取舍讲清楚再给建议 | router | 设计请求含判断内核,走 synthesis_design(约束冻结+方案比较) |
