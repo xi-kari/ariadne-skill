@@ -77,7 +77,7 @@ Use analogy to generate questions. Do not transfer causal effects, normative eva
 
 ## Root Instance Contract
 
-Treat G1-G4 as question templates. Give empirical status only to a concrete instance.
+Treat G1-G4 as question templates. Give empirical status only to a concrete instance. This file owns the G1-G4, E1-E5, and C1-C12 definitions for the whole suite; other modules consume recorded instance results and cite this file instead of restating the rules.
 
 ### Freeze Before Results
 
@@ -167,7 +167,7 @@ E1, E4, EVIDENCE, CAUSAL, ANALOGY, and SOURCE can be protocol gates without beco
 | C9 observation response | G2 channel and no-observation, alternate-observation, or blockage counterfactual; G3 for persistence | One bounded response; no inherent trait or suppression authority |
 | C10 human carrying chain | G2 + H2 classification; G3 for intertemporal reproduction; H5 for a historical carrier | Separate carrier, cost bearer, beneficiary, stop holder, and responsible subject |
 | C11 institutional writeback | D2 + G2 return channel + H3 classification of receipt, field change, and execution | Receipt is not writeback; one writeback is not learning or legitimacy |
-| C12 normative bridge | N1 + O1-O4, explicit positive norms, protection, J authorization, options including no action, stopping, rollback, and remedy | A procedural gate, not empirical evidence; missing any component blocks real-world disposition |
+| C12 normative bridge | The ten C12 components enumerated canonically in choice-and-authorization.md (owned by `ariadne-choice`) | A procedural gate, not empirical evidence; missing any component blocks real-world disposition |
 
 Root templates in combination are never sufficient by themselves. Definitions, examples, and internal explanations cannot satisfy the empirical parts of these conclusions.
 

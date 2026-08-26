@@ -323,19 +323,31 @@ authorization_effect
 - [Ariadne 官网](https://xi-kari.github.io/ariadne-skill/)
 - [六宿主兼容矩阵与安装说明](docs/agent-compatibility.md)
 
+命名说明：`ariadne-skill` 同时是仓库名、安装包名和总路由 Skill 名——`--skill ariadne-skill` 只安装总路由，`--skill '*'` 才是完整十件套。
+
 默认安装完整十 Skill。Windows 使用复制模式，避免依赖符号链接权限。项目级安装（工序 `OP-01`，推荐试用）：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
 用户级全局安装（工序 `OP-02`，跨项目使用）：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
-当前没有稳定 tag；以上命令跟随 `main`，属于滚动安装。Router-only 与单 peer 是两种有记录的降级模式：缺失的模块必须记录为 `module_unavailable`，不能冒充完整方法运行；对应命令、各宿主路径、调用差异、Reasonix 兼容上限和专项冒烟合同见[兼容说明](docs/agent-compatibility.md)。
+可复现安装（固定到发布 tag，也可换成任意提交号）：
+
+```powershell
+npx skills add xi-kari/ariadne-skill@v1.0.0 --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
+```
+
+稳定 tag `v1.0.0` 已发布，可复现安装建议固定到它；不带 `@` 后缀的命令跟随 `main`，属于滚动安装。`RELEASE` 会签已于 2026-08-26 经评审解封为 `complete`（对应 tag `v1.0.0`）；软件包发布与维护者开发机的全局安装仍需单独授权。Reasonix 属受限子集，已不在默认命令中，其手动安装与专项冒烟见兼容说明。Router-only 与单 peer 是两种有记录的降级模式：缺失的模块必须记录为 `module_unavailable`，不能冒充完整方法运行；对应命令、各宿主路径、调用差异和冒烟合同见[兼容说明](docs/agent-compatibility.md)。
+
+没有 Agent Skills 目录的宿主（网页版对话、自定义系统提示）使用单文件捆绑版 [dist/ariadne-bundle.md](dist/ariadne-bundle.md)，由 `scripts/build_bundle.py` 从 skills/ 生成并经 CI 校验同步。
+
+常驻成本提示：全局安装完整十件套后，10 条 `description`（合计约 4.8K 字符，约 1200-1500 token）会常驻每次会话的技能索引；若只需要部分能力，建议项目级安装或只装 `ariadne-skill`、`ariadne-framing`、`ariadne-evidence` 子集。
 
 克隆仓库：
 
@@ -344,7 +356,7 @@ git clone https://github.com/xi-kari/ariadne-skill.git
 cd ariadne-skill
 ```
 
-Ariadne 的分发目标是让支持 Agent Skills 的宿主依据每个模块的职责描述进行语义路由。当前电脑不把开发仓库写入全局 Skill 目录，因此本地开发和评测只使用显式 Skill 名或直接仓库路径。
+Ariadne 的分发目标是让支持 Agent Skills 的宿主依据每个模块的职责描述进行语义路由。维护者的开发机不把这份开发克隆写入全局 Skill 目录，本地开发和评测只使用显式 Skill 名或直接仓库路径；终端用户按 `OP-01`/`OP-02` 安装不受此限。
 
 调用示例：
 
@@ -362,11 +374,14 @@ $ariadne-audit 审查这份高影响结论能否公开或自动化使用
 仓库验证（与 CI 相同）：
 
 ```powershell
-python -X utf8 -B -m pytest -q
+python -X utf8 -B -m pytest -q -p no:cacheprovider
 python -X utf8 -B scripts/validate_repo.py
 python -X utf8 -B scripts/validate_evals.py
 python -X utf8 -B scripts/validate_adapters.py
+python -X utf8 -B scripts/build_bundle.py --check
 ```
+
+这些命令验证仓库一致性与格式（清单、schema、示例记录、链接、适配器同步），不验证 skill 在宿主中的行为效果；行为场景与评分标准见 `evals/`，目前为人工执行。
 
 <p align="right"><sub><a href="#s00">↥ 返回图纸目录</a></sub></p>
 
@@ -374,7 +389,7 @@ python -X utf8 -B scripts/validate_adapters.py
 
 ## 07 · 边界与仓库状态
 
-<sub>图号 `ARIADNE-07` · 会签栏 · 内容已完成，发布仍受边界约束</sub>
+<sub>图号 `ARIADNE-07` · 会签栏 · 内容已完成，v1.0.0 已按评审解封发布</sub>
 
 <!-- ariadne-stage-status:start -->
 | Phase | Status |
@@ -386,10 +401,10 @@ python -X utf8 -B scripts/validate_adapters.py
 | WHOLE_SUITE_REPAIR | complete |
 | WORKER_FINAL_VALIDATION | complete |
 | PARENT_INDEPENDENT_VALIDATION | complete |
-| RELEASE | not_authorized |
+| RELEASE | complete |
 <!-- ariadne-stage-status:end -->
 
-十个 Skill 的完整内容、统一审查、集中修复和独立验证已经完成。公开仓库不等于已经授权 Release tag、包发布或当前电脑的全局安装；这些动作仍需单独授权。
+十个 Skill 的完整内容、统一审查、集中修复和独立验证已经完成。Release tag `v1.0.0` 已于 2026-08-26 按评审变更授权发布；软件包发布与维护者开发机的全局安装仍需单独授权。
 
 Ariadne 不能替代法律、医疗、财务、心理危机处置、正式调查、机构审查、专业评估或当事人决定。尤其不能：
 

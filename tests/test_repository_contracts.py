@@ -79,12 +79,16 @@ def test_installable_files_have_no_unfinished_or_foreign_product_text() -> None:
 
 
 def test_skill_reference_links_are_one_level_and_resolve() -> None:
-    link_pattern = re.compile(r"\[[^\]]+\]\((references/[^)]+)\)")
+    link_pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
     for name in EXPECTED_REFERENCES:
         skill_md = SKILLS_ROOT / name / "SKILL.md"
         for target in link_pattern.findall(skill_md.read_text(encoding="utf-8")):
-            assert not target.startswith("../"), f"deep reference in {skill_md}: {target}"
-            assert (skill_md.parent / target).is_file(), f"missing link target: {target}"
+            if "://" in target:
+                continue
+            assert not target.startswith(("../", "/")), f"escaping link in {skill_md}: {target}"
+            assert "/../" not in target, f"escaping link in {skill_md}: {target}"
+            if target.startswith("references/"):
+                assert (skill_md.parent / target).is_file(), f"missing link target: {target}"
 
 
 def test_appendix_a_cards_are_complete_one_to_one_maps() -> None:

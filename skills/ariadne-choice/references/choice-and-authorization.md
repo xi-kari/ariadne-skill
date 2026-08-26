@@ -126,7 +126,7 @@ Give each dissent a stable ID, position, claim, status, response deadline, safe 
 
 ## 7. Pass the C12 Bridge
 
-Require all ten components:
+This section owns the C12 component enumeration for the whole suite, and section 8 owns the J tuple; other references cite these instead of restating them. Require all ten components:
 
 1. `descriptive_or_explanatory_claim_ids`
 2. `current_evidence_and_epistemic_constraints`

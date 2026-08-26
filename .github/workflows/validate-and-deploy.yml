@@ -33,6 +33,8 @@ jobs:
         run: python -X utf8 -B scripts/validate_evals.py
       - name: Validate agent adapters
         run: python -X utf8 -B scripts/validate_adapters.py
+      - name: Verify single-file bundle
+        run: python -X utf8 -B scripts/build_bundle.py --check
       - name: Build static site
         run: python -X utf8 -B scripts/build_site.py --output build/site
       - name: Upload Pages artifact

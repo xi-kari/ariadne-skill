@@ -1,6 +1,7 @@
 {
   "source": "Appendix A of Cross-scale Multi-circle Structural Reasoning Framework v8.2",
   "source_sha256": "608A4E4099B18C96C18ED3C92A2AB5CDACBD737DACA4214C77DEBDD795DA3A20",
+  "language": "zh-Hans card bodies with English field names",
   "toc": [
     {"id": "HV01", "name": "结构域"},
     {"id": "HV02", "name": "边界与接口"},

@@ -10,7 +10,9 @@
 6. Missing states
 7. Output ceilings
 8. AI and self-governance boundary
-9. Quick reference
+9. Peer unavailability clause
+10. Coding family index
+11. Quick reference
 
 ## Purpose
 
@@ -94,7 +96,7 @@ If the bridge is incomplete, retain a candidate relation and lower the ceiling.
 
 ### 7. Register scale loss
 
-Track aggregation, space, time, organization, causal layer, observation resolution, impact scope, network scope, and jurisdiction separately. Compare each axis as equal, expands, contracts, incomparable, unknown, or not applicable.
+Track aggregation, space, time, organization, causal layer, observation resolution, impact scope, network scope, and jurisdiction separately. Compare each axis as exactly one of `equal`, `expands`, `contracts`, `incomparable`, or `unknown`. When an axis has no legitimate counterpart on one side, record the missing state on that endpoint and fold the relation to `incomparable` or `unknown` under the scale module's endpoint rules; inapplicability is not a sixth relation value.
 
 Expansion on any axis never expands jurisdiction automatically. A shared word across scales does not prove the object stayed the same.
 
@@ -153,11 +155,11 @@ The ceilings form the total order `description_only < diagnostic_only < requirem
 
 | Ceiling | May produce | May not produce |
 |---|---|---|
-| `description_only` | Facts/materials as bounded, questions, missing fields, candidate objects | Mechanism ranking, forecast, action requirement |
+| `description_only` | Facts/materials as bounded, questions, missing fields, candidate objects, and an unranked list of candidate mechanisms or hypotheses, each marked `candidate` | Mechanism ranking or endorsement, forecast, action requirement |
 | `diagnostic_only` | Description plus candidate or comparative mechanisms, bounded diagnosis, conditional paths, and eligible forecast evaluation | Normative/process requirements, recommendation, instruction, authorization |
 | `requirements_only` | Description and diagnosis plus conditions an external choice/authorization process would need | Ariadne selecting an action, permission, execution, or self-reported authorization |
 
-Every root record starts at `description_only`; a higher ceiling is never an initial value. For an ordinary child, take the minimum of the inherited ceiling and the module's locally supported ceiling. A module run never raises the ceiling. A `lower` records its downgrade reason in the ceiling transition. A child may raise only after newly admitting external evidence or recording fulfillment of a declared protocol; register the basis ID in the Method Record, and when the lineage was previously lowered, state how the basis resolves that recorded reason. A merge takes the minimum ranked parent ceiling. More modules, votes, simulations, or confident prose never raise it.
+Listing clearly labeled, unranked candidate mechanisms is description work: it answers a why-question with the space of possibilities and what would discriminate them. Ranking, selecting, or arguing for one candidate is diagnosis and needs `diagnostic_only`. Every root record starts at `description_only`; a higher ceiling is never an initial value. For an ordinary child, take the minimum of the inherited ceiling and the module's locally supported ceiling. A module run never raises the ceiling. A `lower` records its downgrade reason in the ceiling transition. A child may raise only after newly admitting external evidence or recording fulfillment of a declared protocol; register the basis ID in the Method Record, and when the lineage was previously lowered, state how the basis resolves that recorded reason. A merge takes the minimum ranked parent ceiling. More modules, votes, simulations, or confident prose never raise it.
 
 ## AI and self-governance boundary
 
@@ -172,6 +174,30 @@ Apply the same discipline to Ariadne:
 - narrow claims after counterexamples;
 - pause high-harm use;
 - replace or retire modules that do not add value.
+
+## Peer unavailability clause
+
+This is the single canonical text of the suite's downgrade clause; every SKILL.md states it as a one-line declaration and defers here:
+
+> If a routed peer skill is unavailable in this installation, record the handoff in module_runs as not_run with reason module_unavailable, keep that responsibility's outputs unknown, preserve or lower the output ceiling, and do not execute the peer's responsibility inline or claim it ran.
+
+The declaration form used by the modules is: `Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).`
+
+## Coding family index
+
+Resolve a code family to its owner before interpreting an instance; do not guess a definition from the code shape.
+
+| Family | Owner module | Defined in |
+|---|---|---|
+| D0-D3, U01-U11, CM-*, N0 baseline | `ariadne-mechanism` | mechanism-contracts.md |
+| G1-G4, E1-E5, C1-C12 ceilings, G/H-instances | `ariadne-evidence` | evidence-contracts.md |
+| C12 bridge components, J tuple, N1-N5, O1-O4, PF-1-PF-10, T0-T4, SEL-* | `ariadne-choice` | choice-and-authorization.md, intervention-levels.json |
+| A/X/T/O/C/R/I/N/J axes, M01-M09 | `ariadne-scale` | scale-transformations.md |
+| H1-H6, GC/GS/GE/CV/RS/IS/IM/IB, HV01-HV11, S0-S6/X0 | `ariadne-human` | human-domain.md, human-variable-cards.json, state-prototypes.json |
+| IT1-IT4, IG1-IG7, FG1-FG5, DS01-DS13, SJ1-SJ8, DF1-DF9, TOOL-*, APP-*, GOV-* | `ariadne-audit` | gates-core.md, governance-lifecycle.md, application-contracts.json |
+| L0-L3 depth, output ceilings, claim classes, missing states | `ariadne-skill` | routing.md, lattice-kernel.md |
+
+Two result-state vocabularies exist by design and must not be mapped onto each other: instance evaluation (G-, H-, and M-family instances) uses `supported`, `unsupported_or_undecided`, `null_supported`, and `not_evaluated`; forecast outcomes use `supported`, `not_supported`, `unresolved`, `target_invalid`, and `not_evaluable`. A forecast outcome is never an instance evaluation.
 
 ## Quick reference
 

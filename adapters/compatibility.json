@@ -38,7 +38,11 @@
         "~/.codex/skills"
       ],
       "invocation": "$ariadne-skill",
-      "evidence_url": "https://developers.openai.com/codex/skills"
+      "evidence_url": "https://developers.openai.com/codex/skills",
+      "verification": {
+        "status": "unverified",
+        "last_verified": null
+      }
     },
     {
       "id": "claude-code",
@@ -51,7 +55,11 @@
         "~/.claude/skills"
       ],
       "invocation": "/ariadne-skill",
-      "evidence_url": "https://code.claude.com/docs/en/slash-commands"
+      "evidence_url": "https://code.claude.com/docs/en/skills",
+      "verification": {
+        "status": "unverified",
+        "last_verified": null
+      }
     },
     {
       "id": "gemini-cli",
@@ -66,7 +74,11 @@
         "~/.agents/skills"
       ],
       "invocation": "natural-language: ariadne-skill",
-      "evidence_url": "https://geminicli.com/docs/cli/using-agent-skills/"
+      "evidence_url": "https://geminicli.com/docs/cli/using-agent-skills/",
+      "verification": {
+        "status": "unverified",
+        "last_verified": null
+      }
     },
     {
       "id": "cursor",
@@ -85,7 +97,11 @@
         "~/.codex/skills"
       ],
       "invocation": "/ariadne-skill",
-      "evidence_url": "https://cursor.com/docs/context/skills"
+      "evidence_url": "https://cursor.com/docs/context/skills",
+      "verification": {
+        "status": "unverified",
+        "last_verified": null
+      }
     },
     {
       "id": "github-copilot",
@@ -101,7 +117,11 @@
         "~/.agents/skills"
       ],
       "invocation": "natural-language: ariadne-skill",
-      "evidence_url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills"
+      "evidence_url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills",
+      "verification": {
+        "status": "unverified",
+        "last_verified": null
+      }
     },
     {
       "id": "reasonix",
@@ -124,7 +144,17 @@
         "json-references",
         "peer-routing",
         "context-growth"
-      ]
+      ],
+      "verification": {
+        "status": "unverified",
+        "last_verified": null
+      }
     }
-  ]
+  ],
+  "single_file_bundle": {
+    "path": "dist/ariadne-bundle.md",
+    "generator": "scripts/build_bundle.py",
+    "audience": "hosts without an Agent Skills directory (web chat, custom system prompts)",
+    "source_of_truth": "skills"
+  }
 }

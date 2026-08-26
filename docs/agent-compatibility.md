@@ -22,13 +22,13 @@ Ariadne 以仓库中的十个 `skills/ariadne-*/` 目录为唯一方法论权威
 项目级安装把 Skill 复制到当前项目的宿主发现目录，适合审查和试用：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
 全局安装让同一用户在多个项目中发现 Skill：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
 Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装命令前应检查来源；运行后应使用目标宿主的 Skill 列表或发现界面确认十个名称全部出现。
@@ -40,7 +40,7 @@ Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装
 | 宿主 | 兼容等级 | 项目级发现路径 | 全局发现路径 | 调用差异 | 官方依据 |
 |---|---|---|---|---|---|
 | Codex | `native-agent-skills` | `.agents/skills` | `~/.agents/skills`；安装工具也可写入 `~/.codex/skills` | 可用 `$ariadne-skill` 显式点名，也可按 `description` 路由 | [Codex Skills](https://developers.openai.com/codex/skills) |
-| Claude Code | `native-agent-skills` | `.claude/skills` | `~/.claude/skills` | `/ariadne-skill` 是显式斜杠调用，也支持按描述加载 | [Claude Code Skills](https://code.claude.com/docs/en/slash-commands) |
+| Claude Code | `native-agent-skills` | `.claude/skills` | `~/.claude/skills` | `/ariadne-skill` 是显式斜杠调用，也支持按描述加载 | [Claude Code Skills](https://code.claude.com/docs/en/skills) |
 | Gemini CLI | `native-agent-skills` | `.gemini/skills`、`.agents/skills` | `~/.gemini/skills`、`~/.agents/skills` | 用自然语言点名；用 `/skills list` 核对发现，激活时遵循宿主授权提示 | [Gemini CLI Skills](https://geminicli.com/docs/cli/using-agent-skills/) |
 | Cursor | `native-agent-skills` | `.cursor/skills`、`.agents/skills`、`.claude/skills`、`.codex/skills` | `~/.cursor/skills`、`~/.agents/skills`、`~/.claude/skills`、`~/.codex/skills` | 可从斜杠菜单调用 `/ariadne-skill`，也可自动发现 | [Cursor Skills](https://cursor.com/docs/context/skills) |
 | GitHub Copilot | `native-agent-skills` | `.github/skills`、`.claude/skills`、`.agents/skills` | `~/.copilot/skills`、`~/.agents/skills` | 云端、CLI 与编辑器表面不承诺统一斜杠入口；用自然语言点名并核对所在表面的发现结果 | [GitHub Copilot Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills) |
@@ -50,7 +50,7 @@ Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装
 
 ## Reasonix 兼容上限
 
-Reasonix 只标记为 `directory-compatible-subset`。`npx skills` 能复制到 `.reasonix/skills`，以及目录中出现 `SKILL.md`，都不能证明 Reasonix 与原生 Agent Skills 在渐进加载、引用解析、peer 路由或上下文控制上语义等价。
+Reasonix 只标记为 `directory-compatible-subset`，且不出现在默认安装命令中：手动把 `skills/ariadne-*` 目录复制进 `.reasonix/skills`（或其全局对应目录），用 `/skills` 核对发现，然后完成本节的专项冒烟。`npx skills` 能复制到 `.reasonix/skills`，以及目录中出现 `SKILL.md`，都不能证明 Reasonix 与原生 Agent Skills 在渐进加载、引用解析、peer 路由或上下文控制上语义等价。
 
 用于真实任务前至少完成三项专项冒烟：
 
@@ -65,7 +65,7 @@ Reasonix 只标记为 `directory-compatible-subset`。`npx skills` 能复制到 
 只有在宿主或任务明确限制安装数量时，才只安装总路由：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
 这种安装不是完整 Ariadne。总路由仍可做边界化分流，但九个 peer 均可能不可用；每个未运行模块必须记录 `module_unavailable`，输出不能假装来自完整方法运行，也不能提高 `output_ceiling` 或改变 `authorization_effect: none`。
@@ -75,7 +75,7 @@ npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a cl
 安装器同样允许只装某一个执行模块，例如：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill ariadne-evidence --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot -a reasonix
+npx skills add xi-kari/ariadne-skill --skill ariadne-evidence --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
 这是与 Router-only 方向相反的降级模式：当前模块在场，但它正文里点名的转交目标（总路由或其他 peer）可能不在本机。此模式的降级语义固定如下：
@@ -94,3 +94,19 @@ python -X utf8 -B scripts/validate_adapters.py
 ```
 
 该命令不启动六个外部宿主，也不产生 Release、发布或现实授权。
+
+## 验证状态与通用冒烟合同
+
+兼容等级描述的是格式与入口，不是已完成的宿主实测。`adapters/compatibility.json` 为每个宿主维护 `verification` 字段：`unverified`（默认，六宿主当前状态）或 `smoke-passed`（附 `last_verified` 日期）。把任何宿主升级为 `smoke-passed` 前，在一次性容器或虚拟机中完成三项通用冒烟——`json-references`（JSON 引用可读取）、`peer-routing`（路由能点名 peer 并拿到降级记录）、`context-growth`（渐进加载不整包注入）——并把命令输出存入 `evals/` 的宿主冒烟记录。
+
+## 宿主扩展文件
+
+仅 Codex 使用宿主扩展文件 `agents/openai.yaml`（控制展示名、短描述与隐式调用开关）；其余宿主按 Agent Skills 规范零配置发现 `SKILL.md`，不需要任何扩展文件。本套 Skill 是纯方法论，不声明工具依赖，因此也不需要 Claude Code 的 `allowed-tools` 一类字段。
+
+## 单文件捆绑版
+
+没有 Agent Skills 目录的宿主（网页版 ChatGPT/Gemini/Claude、自定义 GPT、纯系统提示场景）使用 `dist/ariadne-bundle.md`：由 `scripts/build_bundle.py` 按依赖序拼接十个 SKILL.md 正文生成，附方法记录字段清单与人工校验清单；CI 以 `--check` 校验它与 skills/ 永不漂移。该形态没有渐进加载与 peer 派发，整份文本一次性进入上下文（约 78KB），适合长上下文模型或手工节选。
+
+## Router-only 交付物
+
+Router-only 安装下的交付物是固定的：请求分类、候选对象与边界初判、证据截止点、模块缺席清单与安装指引，加上一份 peer 职责全部 `not_run`/`module_unavailable`、上限保持 `description_only` 的降级根记录。主 SKILL.md 的 Stop and downgrade 一节是该形态的权威定义。

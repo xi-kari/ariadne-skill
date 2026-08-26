@@ -6,9 +6,9 @@
 2. Depth selection
 3. Module map
 4. Routing algorithm
-5. Sequential, clustered, and continuous execution
-6. Merge and stop rules
-7. Worked route
+5. Order, restarts, and stop-loss
+
+Clustered execution, continuation, merge and stop rules, and the worked route live in [clustering.md](clustering.md).
 
 ## Intake
 
@@ -27,9 +27,12 @@ Ask a question only when the missing answer would select a materially different 
 
 | Level | Conditions | Minimum route | Maximum result |
 |---|---|---|---|
+| L0 | Low impact, reversible, single judgment-type output, and the user asked a question rather than for a method run | Direct bounded answer; no module run and no record | Bounded answer plus a one-line boundary declaration |
 | L1 | Low impact, reversible, limited material | Framing plus one relevant module | Description, questions, next observation |
 | L2 | Comparative diagnosis or derivation with reviewable impact | Framing, evidence, relevant modules, audit | Bounded diagnostic comparison |
 | L3 | Public, automated, institutional, high-power, or hard-to-reverse use | Framing, evidence, all affected lanes, choice when applicable, full audit | Strong-judgment candidate or requirements-only handoff |
+
+L0 is a routing outcome, not a record profile: answer directly, name the main gap or assumption in one line, and offer the full method only when the user asks for a record, the impact rises, or the answer would otherwise cross an output ceiling. When in doubt between L0 and L1, use L1.
 
 A higher level means more record responsibility, not greater truth.
 
@@ -60,79 +63,10 @@ A higher level means more record responsibility, not greater truth.
 9. Add audit for L2 merging and every L3 use. Audit is mandatory for public, automated, institutional, eligibility, allocation, safety, or difficult-to-reverse output.
 
 A triggered module carries one of two strengths. A trigger is required when the module's responsibility carries the conclusion: leaving it out would leave a load-bearing object, claim, bridge, or affected position unaudited. A trigger is optional when the dimension is present but bounded and its variation cannot overturn the conclusion. At L1 and L2, an optional module may be discharged with a single-line declaration instead of a full module run: state the bounded finding and its explicit gap in the record (claim ledger or unknowns), mark the module run `not_run` with a reason naming this declaration, and keep or lower the ceiling. At L3 every triggered module is required.
+## Order, restarts, and stop-loss
 
-## Sequential execution
+Run lanes in the dependency order `framing -> evidence -> [scale, mechanism, human] -> dynamics -> forecast -> choice -> audit`, skipping non-applicable lanes. If a module changes the object, evidence cutoff, scale, or purpose, restart at the earliest affected dependency. The restart budget is binding: the same dependency may be restarted at most twice in one run. When a third restart would be needed, do not restart; close the run at the current ceiling as a downgrade and record the oscillation cause in `unknowns_and_counterevidence.unknowns`.
 
-Use this dependency order, skipping only non-applicable lanes:
+Apply a stop-loss to the run as a whole: when the projected record work is clearly disproportionate to the question's stakes, or two consecutive module runs have left the bounded conclusion unchanged, close the run at the current ceiling, state the remaining gaps, and hand the next evidence step back instead of adding module runs.
 
-`framing -> evidence -> [scale, mechanism, human] -> dynamics -> forecast -> choice -> audit`
-
-Each module creates a linear child with one parent reference. Its module run copies that reference into `input_records` and names the child in `output_record`. If a module changes the object, evidence cutoff, scale, or purpose, restart at the earliest affected dependency. The restart has a budget: the same dependency may be restarted at most twice in one run. When a third restart would be needed, do not restart; close the run at the current ceiling as a downgrade and record the oscillation cause in `unknowns_and_counterevidence.unknowns`.
-
-## Clustered execution
-
-After framing and evidence are frozen, scale, mechanism, and human lanes may run independently. Parallel admission is machine-checkable: two lanes may run in parallel only when their parent references carry the same `{record_id, record_version}` and the parent's `evidence_cutoff` fields (`as_of`, `included_source_ids`, `excluded_after_cutoff`) are equal item by item. Give every worker:
-
-- the same parent record;
-- the same raw materials and cutoff;
-- only its assigned responsibility;
-- no preferred answer;
-- the required Method Record fields.
-
-Each sibling creates a child of the same frozen parent. Derive its record ID deterministically with the normative syntax `ariadne:<case>:<module>:v<N>` defined in the Method Record reference. Do not let one sibling consume another sibling's output.
-
-Do not parallelize:
-
-- forecast before eligible dynamic paths exist;
-- choice before bounded conclusions and explicit normative premises exist;
-- audit as a peer whose vote can be averaged with the analyzed modules.
-
-Audit merges after the lanes complete. Create `lineage_kind: merge`, set `parent_record_id: null`, list every sibling ID and version in `parent_records` sorted by ID then version, copy that list into the audit run's `input_records`, and name the merge record in `output_record`. Never select one sibling as a surrogate parent.
-
-## Continuous execution
-
-Treat a follow-up as one of four events:
-
-| Event | Record action |
-|---|---|
-| New evidence within same object and purpose | Create child version from evidence onward. |
-| Changed object, boundary, scale, identity, or purpose | Restart framing with a new lineage or explicit fork. |
-| Outcome arrives for a forecast | Preserve forecast; append result and calibration writeback. |
-| External choice or authorization arrives | Link its external identifier; keep Ariadne's authorization effect as none. |
-
-Never rewrite the parent record to make a later result appear expected.
-
-## Merge rules
-
-1. Union compatible source IDs, unknowns, counterevidence, and module runs while retaining each run's exact input and output record references.
-2. Preserve incompatible object contracts, scale mappings, causal explanations, and value premises as named entries in the record's `conflicts` field, each with a `conflict_id`, a `kind` (`object_contract`, `scale_mapping`, `causal_explanation`, or `value_premise`), the involved `record_refs`, and a description; never average them.
-3. Prefer no conclusion over a false synthesis.
-4. Apply the ceiling `meet`: `description_only < diagnostic_only < requirements_only`, so the result is the minimum ranked parent ceiling. A merge never raises.
-5. Mark a missing required lane `not_run`, not `passed`.
-6. Keep external authorization references outside empirical claim support.
-
-## Stop rules
-
-| Broken dependency | Stop at |
-|---|---|
-| Candidate object incomplete | Questions or `description_only` |
-| Evidence chain cannot be traced | Material organization or candidate claim |
-| Scale bridge fails | Source-scale statement only |
-| Mechanisms not distinguishable | Parallel candidates |
-| Dynamic inputs not frozen | Qualitative scenario outline |
-| Forecast not pre-registered | Scenario, not forecast |
-| Norms or affected positions missing | Options and requirements, not recommendation |
-| Jurisdiction or authorization missing | External handoff, no execution |
-| Appeal/rollback missing in L3 | Pause or downgrade |
-
-## Worked route
-
-Request: “Use three employee interviews to prove the whole company is culturally broken and replace managers.”
-
-- Framing declares the interviews' team, time window, and intended organization-wide use; the company-wide object remains incomplete.
-- Evidence separates interview sources, statements, observations, interpretations, and counterevidence.
-- Scale audits the move from three individuals to team and company claims.
-- Human identifies power, retaliation risk, privacy, missing positions, and role/responsibility distinctions.
-- Mechanism compares manager behavior, workload, incentives, selection effects, and reporting-channel trust.
-- Choice can compare investigation, reversible pilot, delay, protection, or inaction only after explicit values and jurisdiction.
-- Audit blocks organization-wide personnel action while preserving a requirements-only path for independent review.
+Child-record mechanics, clustered execution, continuation events, merge and stop rules, and the worked route are specified in [clustering.md](clustering.md); read it when running parallel lanes, merging sibling records, or continuing an earlier run.
