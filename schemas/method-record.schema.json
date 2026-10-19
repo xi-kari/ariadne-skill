@@ -546,13 +546,13 @@
     "analyticRecommendation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["option_id", "normative_premise_ids", "reasons", "costs", "strongest_counterargument", "change_conditions", "adoption_status"],
+      "required": ["option_id", "normative_premise_ids", "reasons", "costs", "objections", "change_conditions", "adoption_status"],
       "properties": {
         "option_id": {"type": "string", "minLength": 1},
         "normative_premise_ids": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1, "uniqueItems": true},
         "reasons": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
         "costs": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
-        "strongest_counterargument": {"type": "string", "minLength": 1},
+        "objections": {"type": "string", "minLength": 1},
         "change_conditions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
         "adoption_status": {"const": "deliberation_only"}
       }

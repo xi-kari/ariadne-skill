@@ -228,7 +228,7 @@ Pause or lower the ceiling when the key object lacks finite support, event fact 
 
 Downgrade only the affected propositions and the paths that depend on them; stop everything only when a shared premise fails (§11.10). Treat stopping as an output. Record where the run stopped, what it established, which unknown prevented continuation, the next highest-information observation, and the risk of continuing.
 
-Append real outcomes without rewriting prior paths. Record path support, timing deviations, baseline performance, calibration effects, and model changes. A dynamic run without preregistered future target, deadline, simple baseline, calibration, and continuing writeback does not establish forecasting ability. A dynamic run without normative and authorization records does not justify an action. An analytic first choice, veto, or deferral stated under explicit normative premises is not a claim that the option may be executed, and its grounds, costs, strongest counterargument, and change conditions are stated in full (§11.12).
+Append real outcomes without rewriting prior paths. Record path support, timing deviations, baseline performance, calibration effects, and model changes. A dynamic run without preregistered future target, deadline, simple baseline, calibration, and continuing writeback does not establish forecasting ability. A dynamic run without normative and authorization records does not justify an action. An analytic first choice, veto, or deferral stated under explicit normative premises is not a claim that the option may be executed, and its grounds, costs, objections, and change conditions are stated in full (§11.12).
 
 ## Worked Example: Public Resignation Across Circles
 

@@ -34,12 +34,12 @@ The source separates two outputs that older practice merged (§12.1, §12.8, §1
 
 | Identity | What it is | What it needs | What it never does |
 |---|---|---|---|
-| Analytic recommendation | A refutable preference for deliberation: the current choice, why, at what cost, the strongest counterargument, and what would change it | Explicit normative premises, current evidence, affected positions, the option set including no action, costs and distribution | Grant execution, bind anyone, or pose as an executable decision |
+| Analytic recommendation | A refutable preference for deliberation: the current choice, why, at what cost, the objections to it, and what would change it | Explicit normative premises, current evidence, affected positions, the option set including no action, costs and distribution | Grant execution, bind anyone, or pose as an executable decision |
 | Authorized choice record | A qualified subject's selection of one option within its authority | Everything above plus C12, PF-1 to PF-10, one atomic J tuple, O1-O4, stopping, appeal, rollback, remedy, expiry | Arise from the model, from urgency, or from forecast accuracy |
 
 **Form the analytic recommendation whenever its premises are in hand.** It does not require that a not-yet-taken execution already be authorized. Withhold it only for the specific missing norm, protection, or option that blocks it, and say which; an analysis already supported by evidence is never sent back to a question list merely because nobody has authority to execute. When norms are only N1, or no positive norm is stated, the recommendation is limited to no action, more evidence, or continued deliberation, and independent evaluations and conditional advice under stated premises remain.
 
-In the Method Record, a non-null `analytic_recommendation` carries `option_id` (a registered option), `normative_premise_ids` (each resolving to an N claim in the ledger or a normative rule in the registry), `reasons`, `costs`, `strongest_counterargument`, `change_conditions`, and `adoption_status: deliberation_only`, and the record ceiling is `requirements_only`. In prose, open with the current analytic recommendation, then give the reasons for accepting and rejecting each option, costs, objections, and change conditions, and state plainly that real execution is not yet authorized. Never use imperative mood to dress a recommendation as an executable decision. An analyst's recommendation is not the actor's adoption.
+In the Method Record, a non-null `analytic_recommendation` carries `option_id` (a registered option), `normative_premise_ids` (each resolving to an N claim in the ledger or a normative rule in the registry), `reasons`, `costs`, `objections`, `change_conditions`, and `adoption_status: deliberation_only`, and the record ceiling is `requirements_only`. In prose, open with the current analytic recommendation, then give the reasons for accepting and rejecting each option, costs, objections, and change conditions, and state plainly that real execution is not yet authorized. Never use imperative mood to dress a recommendation as an executable decision. An analyst's recommendation is not the actor's adoption.
 
 ## 3. Classify the Selection Process
 
@@ -256,14 +256,14 @@ analytic_recommendation:
   status: deliberation_only
   reasons: Narrowest reversible step that tests the workload mechanism behind P1 while keeping appeal independent.
   costs: Eight weeks of coordination load on the two most burdened members; delayed structural relief.
-  strongest_counterargument: Immediate reorganization would relieve overload sooner if the forecast is right.
+  objections: Immediate reorganization would relieve overload sooner if the forecast is right.
   change_conditions: Switch to OPT-ACT if verified weekly hours keep rising for three weeks; to OPT-NONE if the independent appeal owner cannot be confirmed.
 C12_status: incomplete
 missing_for_execution: [verified protection floor, atomic J tuple, affected-position review, independent appeal owner]
 authorization_effect: none
 ```
 
-The card keeps the urgent reorganization option visible but does not treat urgency as authority. It distinguishes maintaining current rules from no action, prices the harms of delay and of not acting, and gives a current analytic recommendation with its premises, costs, strongest objection, and change conditions. Real adoption still waits for protected participation and a matching external authorization.
+The card keeps the urgent reorganization option visible but does not treat urgency as authority. It distinguishes maintaining current rules from no action, prices the harms of delay and of not acting, and gives a current analytic recommendation with its premises, costs, objections, and change conditions. Real adoption still waits for protected participation and a matching external authorization.
 
 ### Linked Method Record lineage
 
@@ -524,7 +524,7 @@ The card keeps the urgent reorganization option visible but does not treat urgen
         costs:
         - Eight weeks of extra coordination load on the two most burdened members
         - Structural relief is delayed compared with immediate reorganization
-        strongest_counterargument: Immediate reorganization would relieve overload sooner if the forecast is right.
+        objections: Immediate reorganization would relieve overload sooner if the forecast is right.
         change_conditions:
         - Switch to OPT-ACT if verified weekly hours keep rising for three weeks
         - Switch to OPT-NONE if the independent appeal owner cannot be confirmed
@@ -535,4 +535,4 @@ The card keeps the urgent reorganization option visible but does not treat urgen
 ```
 <!-- method-record-lineage-example:end -->
 
-Present the result as "the current analytic recommendation, for the team's deliberation, is the eight-week reversible pilot", followed by the reasons for and against every option, costs, the strongest objection, and change conditions, and then the external conditions (protection floor, independent appeal owner, atomic J tuple) that must be met before a qualified subject may select and authorize any option. Never phrase it as "Ariadne has decided" or in imperative mood.
+Present the result as "the current analytic recommendation, for the team's deliberation, is the eight-week reversible pilot", followed by the reasons for and against every option, costs, objections, and change conditions, and then the external conditions (protection floor, independent appeal owner, atomic J tuple) that must be met before a qualified subject may select and authorize any option. Never phrase it as "Ariadne has decided" or in imperative mood.

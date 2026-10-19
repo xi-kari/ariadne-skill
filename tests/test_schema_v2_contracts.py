@@ -217,7 +217,7 @@ def recommendation(option_id: str = "OPT-TRIAL", premise: str = "N-protect") -> 
         "normative_premise_ids": [premise],
         "reasons": ["narrowest reversible step"],
         "costs": ["coordination load on two members"],
-        "strongest_counterargument": "immediate change would relieve overload sooner",
+        "objections": "immediate change would relieve overload sooner",
         "change_conditions": ["switch if verified hours keep rising"],
         "adoption_status": "deliberation_only",
     }

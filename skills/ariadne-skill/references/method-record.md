@@ -155,7 +155,7 @@ Typed payloads:
 - **`ariadne-dynamics`:** model version, observation position, and the complete event contract, with fact status `observed`, `externally_reported`, `planned`, `hypothetical`, `simulated`, or `unknown`; an actual unauthorized act is still an observed or reported event with its permission status stated in the text fields.
 - **`ariadne-mechanism`:** at least two distinguishable candidates, each with a `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), channel observation, discriminating prediction, reverse or falsifying condition, and residual comparison rule.
 - **`ariadne-forecast`:** exactly one complete branch: a preregistration linked to this record ID/version (with `recursion_stage` 0-3 and the `response_regime` under which the target is defined) or a post-hoc reconstruction with calibration and failure classification.
-- **`ariadne-choice`:** facts, explicit values, structured options with exactly one `no_action`, jurisdiction, authorization, stop conditions, rollback plan, and `analytic_recommendation` (null, or an option ID with normative premise IDs, reasons, costs, the strongest counterargument, change conditions, and `adoption_status: deliberation_only`). A non-null recommendation requires `requirements_only`.
+- **`ariadne-choice`:** facts, explicit values, structured options with exactly one `no_action`, jurisdiction, authorization, stop conditions, rollback plan, and `analytic_recommendation` (null, or an option ID with normative premise IDs, reasons, costs, objections, change conditions, and `adoption_status: deliberation_only`). A non-null recommendation requires `requirements_only`.
 - **`ariadne-audit`:** ordered IT1-IT4 and IG1-IG7 statuses, the strong-judgment register (`triggered` or `not_triggered`, reason, SJ1-SJ8), and contestability. IG6 `passed` binds SJ1-SJ8 all `passed`; IG6 `not_applicable` binds `not_triggered` with a reason.
 
 Do not overload the closed `evidence_cutoff` object.
@@ -419,7 +419,7 @@ Deliver the complete analysis in plain language by default (source §12.16):
 2. the evidence and the strongest supporting observations;
 3. every substantive competing explanation or path that was actually compared, with its conditions;
 4. important unknowns, reverse conditions, and what new material would change the judgment;
-5. the output and action ceiling, and for choices the analytic recommendation, its premises, costs, strongest objection, and change conditions;
+5. the output and action ceiling, and for choices the analytic recommendation, its premises, costs, objections, and change conditions;
 6. the best next evidence or external decision step.
 
 Compress the visible answer only when the user asks for brevity, and keep the full analysis available. The raw record is a separate artifact: expose it when another worker must continue it, a forecast will be scored, a high-impact judgment can be challenged, or a decision needs an audit trail.

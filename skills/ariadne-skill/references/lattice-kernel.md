@@ -74,7 +74,7 @@ Freeze target, deadline, object and circle scope, input cutoff, simple baseline,
 
 ### 12. Keep facts, values, and action qualification apart
 
-Facts, predictions, formal feasibility, and technical capability never produce values, responsibility, or permission. An analytic recommendation is allowed when its normative premises, evidence, costs, affected positions, strongest objection, and change conditions are explicit; real adoption still needs protection, review, and valid authorization. The minimum action bridge is `descriptive or explanatory conclusion + explicit normative premises + current evidence + valid authorization + action ceiling + stop or withdrawal conditions` (common method constraint 3, source §2.2, §4.17.3, §12.8).
+Facts, predictions, formal feasibility, and technical capability never produce values, responsibility, or permission. An analytic recommendation is allowed when its normative premises, evidence, costs, affected positions, objections, and change conditions are explicit; real adoption still needs protection, review, and valid authorization. The minimum action bridge is `descriptive or explanatory conclusion + explicit normative premises + current evidence + valid authorization + action ceiling + stop or withdrawal conditions` (common method constraint 3, source §2.2, §4.17.3, §12.8).
 
 ### 13. Downgrade proposition by proposition
 
@@ -206,7 +206,7 @@ The ceilings form the closed total order `description_only < diagnostic_only < r
 |---|---|---|
 | `description_only` | Bounded facts and materials, questions, missing fields, candidate objects, and an unranked list of candidate mechanisms or hypotheses, each marked `candidate` | Mechanism ranking or endorsement, forecast, recommendation, action requirement |
 | `diagnostic_only` | Description plus comparative mechanisms, bounded diagnosis, conditional paths, and eligible forecast evaluation | Normative requirements, recommendation, instruction, authorization |
-| `requirements_only` | Description and diagnosis plus the conditions an external choice or authorization process would need and, when explicit normative premises, the protection floor, affected positions, and a no-action option are registered, an analytic recommendation for deliberation with reasons, costs, the strongest counterargument, and change conditions | Adoption, permission, instruction in imperative voice, execution, or any self-reported authorization |
+| `requirements_only` | Description and diagnosis plus the conditions an external choice or authorization process would need and, when explicit normative premises, the protection floor, affected positions, and a no-action option are registered, an analytic recommendation for deliberation with reasons, costs, objections, and change conditions | Adoption, permission, instruction in imperative voice, execution, or any self-reported authorization |
 
 Every root record starts at `description_only`; a higher ceiling is never an initial value. A child takes the minimum of the inherited ceiling and the module's local ceiling. A module run never raises the ceiling. A `lower` records its reason. A child may raise only after admitting new external evidence or recording fulfillment of a declared protocol, registered as a basis ID new relative to every parent; when the lineage was lowered before, state how the basis resolves that reason. A merge takes the minimum parent ceiling. More modules, votes, simulations, or confident prose never raise it.
 

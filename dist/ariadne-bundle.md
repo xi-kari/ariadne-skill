@@ -53,7 +53,7 @@ Validate every emitted record by running the shipped validator, `python scripts/
 8. Run dynamics only for event propagation or path derivation. Run forecast only for a dated, evaluable future claim. Run choice for option comparison and every action request. Run audit for high-impact use and as the merger of clustered records.
 9. Merge child records without averaging conflicts; record irreducible disagreements as named `conflicts` entries. Preserve every parent ID/version, module input/output reference, claim dependency, and claim-level ceiling; apply the deterministic ceiling meet and keep `authorization_effect: none`.
 10. For an action request at L2 or above, emit the typed choice card: facts, explicit values, structured options with exactly one no-action option, jurisdiction, authorization, stop conditions, rollback plan, and an analytic recommendation or an explicit `null` naming what blocks it. An action request that meets every L1 condition may compress the all-unknown card into a single declaration line, as the routing reference specifies.
-11. Deliver the complete plain-language analysis first: current judgment and scope, evidence, every substantive path compared, unknowns and reverse conditions, the ceiling, and, for choices, the recommendation with its premises, costs, strongest objection, and change conditions. Compress only when the user asks for brevity. Add the Method Record when it improves checking, continuation, challenge, or writeback.
+11. Deliver the complete plain-language analysis first: current judgment and scope, evidence, every substantive path compared, unknowns and reverse conditions, the ceiling, and, for choices, the recommendation with its premises, costs, objections, and change conditions. Compress only when the user asks for brevity. Add the Method Record when it improves checking, continuation, challenge, or writeback.
 
 ### Module dispatch
 
@@ -81,7 +81,7 @@ Parallelize only after the object record and evidence cutoff are identical acros
 
 Default to two layers:
 
-1. **Complete analysis:** current bounded judgment and scope, supporting evidence, every substantive alternative or path actually compared, uncertainty and what would change the judgment, and the safest next information or option; for choices, the analytic recommendation for deliberation with its normative premises, reasons, costs, strongest counterargument, and change conditions, stated as not yet adopted or authorized.
+1. **Complete analysis:** current bounded judgment and scope, supporting evidence, every substantive alternative or path actually compared, uncertainty and what would change the judgment, and the safest next information or option; for choices, the analytic recommendation for deliberation with its normative premises, reasons, costs, objections, and change conditions, stated as not yet adopted or authorized.
 2. **Method record:** request type, object and task profile, evidence cutoff, scale scope and transformation kind, claim ledger with dependencies, counterevidence, conflicts, module runs, output ceiling, and next modules.
 
 Shorten the visible analysis only when the user asks; never drop a substantive comparison because it is a minor branch. For forecasts, high-impact judgments, public claims, automated use, or real-world choices, expose the fields needed for failure, appeal, rollback, and writeback.
@@ -669,7 +669,7 @@ Read references/forecast-contract.md (`references/forecast-contract.md` in the s
 
 ## ariadne-choice
 
-> Compare action, delay, probing, exit, and no action on one baseline, then give an analytic recommendation for deliberation under explicit norms, with costs, strongest objection, and change conditions, keeping rights, jurisdiction, and authorization separate and issuing no permissions. Use when a decision, pilot, exit, or act-or-not question needs a bounded option comparison; run ariadne-forecast first if it hinges on an unregistered future claim. For a multi-module pass, start with ariadne-skill. 适用于：该不该做、方案比较与推荐、不行动也是选项。
+> Compare action, delay, probing, exit, and no action on one baseline, then give an analytic recommendation for deliberation under explicit norms, with costs, objections, and change conditions, keeping rights, jurisdiction, and authorization separate and issuing no permissions. Use when a decision, pilot, exit, or act-or-not question needs a bounded option comparison; run ariadne-forecast first if it hinges on an unregistered future claim. For a multi-module pass, start with ariadne-skill. 适用于：该不该做、方案比较与推荐、不行动也是选项。
 
 ### Overview
 
@@ -691,7 +691,7 @@ Compare a finite option set and, when explicit normative premises and evidence a
 4. Create stable option IDs with kinds. Include exactly one `no_action` option and distinguish it from `maintain_status_quo`. Check active action, delay, probing, and exit or transfer for applicability and give reasons for any omitted.
 5. Compare every option against the same baseline across consequences, distribution, nine-axis scale, affected and low-power positions, worst acceptable outcome, information value, reversibility, lock-in, resources, joint feasibility with other options, and residual harm. Keep incomparable dimensions and conflicts visible; never sum them away.
 6. Check coercion, defaults, information, capacity, safe refusal, and real exit. For `SEL-GOV`, also check agenda control, representation, participation, minority protection, dissent, conflicts of interest, and execution accountability. Ask separately about resources, standing, and representation.
-7. Form the analytic recommendation when premises allow: the recommended option, the explicit N premises it rests on, reasons, costs, the strongest counterargument, change conditions, and `adoption_status: deliberation_only`. Withhold it only for the specific missing norm, protection, or option that blocks it, and say which. With only N1 or no positive premise, the recommendation is limited to no action, more evidence, or continued deliberation.
+7. Form the analytic recommendation when premises allow: the recommended option, the explicit N premises it rests on, reasons, costs, objections, change conditions, and `adoption_status: deliberation_only`. Withhold it only for the specific missing norm, protection, or option that blocks it, and say which. With only N1 or no positive premise, the recommendation is limited to no action, more evidence, or continued deliberation.
 8. For real adoption, freeze O3 and C12 (the ten-component validity bridge from description to normative choice): the selected option, explicit N premises, all ten bridge components, least-harm and proportionality reviews, protection floor, atomic J tuple, jurisdiction, validity period, and external verification references. Then freeze O4: cap execution at the narrowest intersection of evidence, values, rights, selected option, J authority, reversibility, trial scope, and expiry, with prohibited actions, monitors, stop authority, appeal, anti-retaliation, independent review, rollback, remedy, and reauthorization.
 9. Assign the record state and append every transition. Never erase `paused`, `stopped`, `rolled_back`, or expired history. Keep `authorization_effect` equal to `none`, including when the module verifies an external authorization record.
 
@@ -717,7 +717,7 @@ output_ceiling: requirements_only
 
 Stop real adoption at no action, evidence collection, protective preservation, continued review, or external referral whenever a positive N premise, a C12 component, a PF binding, atomic J coverage, O1-O4, safe dissent, or rollback capacity is absent; the analytic comparison and any supported recommendation remain. In an emergency, identify only the minimum protective action allowed by an external emergency rule, then require prompt review, appeal, and rollback.
 
-Do not choose values for the subject, infer consent from silence or non-exit, sign authorization, execute an option, or guarantee success. Lead with the current analytic recommendation and its scope, then the full comparison: reasons for accepting and rejecting each option, costs and their distribution, the strongest objection, change conditions, and what real adoption still needs. Never phrase a recommendation in imperative mood or as an executable decision.
+Do not choose values for the subject, infer consent from silence or non-exit, sign authorization, execute an option, or guarantee success. Lead with the current analytic recommendation and its scope, then the full comparison: reasons for accepting and rejecting each option, costs and their distribution, objections, change conditions, and what real adoption still needs. Never phrase a recommendation in imperative mood or as an executable decision.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
