@@ -1,4 +1,12 @@
 {
+  "source": "Part 15 of Xikari, Conditions, Structures, and Transformations (Xikari-条件结构与转化论), 2026-10",
+  "source_sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
+  "classification_kind": "intervention_task_type",
+  "maturity_rank": false,
+  "mandatory_sequence": false,
+  "common_semantics": "T0-T4 are intervention task types, not maturity ranks, development ladders, rankings of objects, or identity labels. Numbers fix reading order, not a required sequence: a failed safety condition can go straight to T4 assessment, and reliable existing safety, order, or structural evidence need not be performed level by level. 'Direct' only means a T route does not require earlier levels; it never means authorization comes straight from diagnosis. The four-task chain and C12, J, and O1-O4 are never skipped. Re-select the task when the object, scale, identity criterion, window, jurisdiction, affected positions, or action materially changes. No level produces authorization by itself. Weak signals, low power, inability to exit, and anti-retaliation are hard gates on whether to act.",
+  "success_scope": "Fix the function asked about and its support conditions before judging success: being able to express oneself with continuing assistance, a service available on temporary power, or a substitute continuing one task can each be an accurately bounded result. Never cancel an achieved narrow goal because a wider one is unfinished, and never extrapolate a narrow goal into full recovery.",
+  "exit_continuity": "Separate who executes tasks, who arranges and checks them, who stands by, and who pays. When tasks are handed over but the original bearer still arranges and checks, acknowledge the reduced execution labor while keeping the untransferred coordination burden visible. Safe exit is never conditional on the affected person first supplying a perfect replacement; bounded responsibility is stated by the subject with authority and resources, giving scope, term, and gaps, and 'continuity is necessary' is never rewritten as indefinite duty for the original bearer. Exit is not deletion from the table: wages, care, debts, compensation, knowledge handover, and record custody remain.",
   "levels": [
     {
       "id": "T0",
@@ -48,6 +56,7 @@
     "per_event_reference_retention": "Every event retains the full choice as of that moment together with the selected_action, C12, unique J, and O1-O4 references.",
     "terminal_states": "rolled_back, completed, expired, and withdrawn are terminal for the record; stop, rollback, completion, expiry, and withdrawal never delete the historical authorization chain.",
     "no_recompute_revival": "A terminal record never re-enters active by recomputing hashes over the same bundle; continuation requires new selection, authorization, and execution records.",
-    "seventeen_field_consistency": "The current execution state must equal the state of the complete 17-field choice record."
+    "seventeen_field_consistency": "The current execution state must equal the state of the complete 17-field choice record.",
+    "hash_chain_limits": "A hash chain only checks the linkage and byte changes of saved content; it cannot prove that the log was not rewritten as a whole, that events actually happened, or that the anchor is independent. Records serve tracing, correction, and protection, and a cryptographic format never replaces fact-finding."
   }
 }

@@ -8,36 +8,38 @@
 4. Carrier and lifecycle
 5. Lossless lineage
 6. Output-ceiling algebra
-7. Module handoff and typed payloads
-8. L1 compact profile
-9. Valid example
-10. Raise example
-11. Human-facing presentation
-12. Common mistakes
+7. Proposition-level dependencies
+8. Module handoff and typed payloads
+9. L1 compact profile
+10. Valid example
+11. Raise example
+12. Human-facing presentation
+13. Common mistakes
 
 The three-record merge lineage example lives in [clustering.md](clustering.md).
 
 ## Purpose
 
-The Method Record makes Ariadne runs continuous, challengeable, and compatible across standalone, sequential, and clustered work. It is a reasoning record, not a reality database or authorization token.
+The Method Record makes Ariadne runs continuous, challengeable, and compatible across standalone, sequential, and clustered work. It is a reasoning record, not a reality database or authorization token. Its fields keep material identity, claim role, artifact status, and missing state as orthogonal dimensions that are never merged (source Appendix C.3, invariant 4).
 
-The machine-checkable schema ships with this skill at `references/method-record.schema.json`. That file is byte-identical to the repository-root `schemas/method-record.schema.json` copy, and CI guards the equality. This reference defines its operational meaning. To validate an emitted record, run the shipped validator `python scripts/validate_record.py <record.yaml>` from this skill's directory instead of reading the schema into context; without code execution, use the manual checklist in [l1-record-template.md](l1-record-template.md).
+The machine-checkable schema ships with this skill at `references/method-record.schema.json`. That file is byte-identical to the repository-root `schemas/method-record.schema.json` copy, and CI guards the equality. This reference defines its operational meaning. To validate an emitted record, run the shipped validator `python scripts/validate_record.py <record.yaml>` from this skill's directory instead of reading the schema into context; without code execution, use the manual checklist in [l1-record-template.md](l1-record-template.md). A validator pass checks closed fields, references, versions, and recomputable arithmetic; it never certifies the material, the causal identification, or the value choice (source §13.7, §16.9).
 
 ## Required fields
 
 | Field | Meaning |
 |---|---|
 | `record_id` | Stable Ariadne case/version identifier. |
-| `schema_version` | Record schema version; use `1.3`. |
+| `schema_version` | Record schema version; use `2.0`. |
 | `record_version` | Monotonic integer within a lineage. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for a linear child; null for a root or merge. |
 | `parent_records` | Complete canonical list of parent IDs and versions. |
-| `request_type` | One of the eight Lattice Kernel output classes. |
-| `object_contract` | Boundary, state variables, relations/transitions, interfaces, time window, scale profile, identity criterion, status. |
+| `request_type` | One of the eight Lattice Kernel request types. |
+| `object_contract` | Boundary, state variables, relations/transitions, interfaces, time window, scale profile, identity criterion, task profile, status. |
+| `object_contract.task_profile` | Target query, horizon, environment, allowed operations, and error tolerance; the representation is sufficient only relative to this task. |
 | `evidence_cutoff` | Time and source IDs admitted to this version. |
-| `scale_scope` | Source, target, and scale/translation audit status. |
-| `claim_ledger` | Typed claims with source support, declared rule support, and counterevidence IDs. |
+| `scale_scope` | Source, target, transformation kind (`none`, `scale`, `circle_relation`, `representation_translation`, `composite`), and audit status; `none` pairs only with `not_needed`. |
+| `claim_ledger` | Role-typed claims (D, G, E, H, N, O, F) with source support, declared rule support, counterevidence, optional `depends_on`, and optional claim-level ceiling. |
 | `rule_registry` | Explicit in-record inferential, protocol, normative, or operating rules addressable by `RULE:*` IDs. |
 | `unknowns_and_counterevidence` | Explicit gaps and evidence against current candidates. |
 | `conflicts` | Named irreducible conflicts (`object_contract`, `scale_mapping`, `causal_explanation`, or `value_premise`) with the involved record references; an empty array is valid and usual for root and linear records. |
@@ -61,17 +63,18 @@ Derivation is deterministic so that independent workers produce the same ID with
 - `<N>` equals the record's `record_version`: 1 for a root, the parent version plus one for a linear child, the highest parent version plus one for a merge.
 - `<case>` must not contain a colon, so the final two segments are always the module keyword and `v<N>`.
 
-Example: the scale lane's child of `ariadne:churn-2026:root:v1` is `ariadne:churn-2026:scale:v2`, and the merge of the scale and mechanism siblings is `ariadne:churn-2026:merge:v3`. Old-style IDs that satisfy only the schema pattern `^ariadne:[A-Za-z0-9._:-]+$` (for example `ariadne:legacy-case:v3` from an earlier run) remain legal; do not rename historical records. Use the normative syntax for every new record.
+Example: the scale lane's child of `ariadne:churn-2026:root:v1` is `ariadne:churn-2026:scale:v2`, and the merge of the scale and mechanism siblings is `ariadne:churn-2026:merge:v3`. Older IDs that satisfy only the schema pattern `^ariadne:[A-Za-z0-9._:-]+$` remain legal; do not rename historical records.
 
 ## Carrier and lifecycle
 
 A record that exists only in conversation scrollback cannot be located, continued, challenged, or written back. Give every record a carrier:
 
 - **Standard directory.** In a project with a filesystem, write one file per record version at `.ariadne/records/<case>/<record_id>@v<version>.yaml`. Where the host filesystem forbids `:` in file names, substitute `+` for each `:` in the file name only; the `record_id` inside the file keeps its colons.
-- **Parent references.** A handoff names a parent by record ID and carrier path together. The path is derivable from the ID (the case segment selects the directory; the ID plus version form the file name), and the consumer must check that the file's `record_id` and `record_version` match the reference before building on it.
-- **Merge reads.** An audit merge reads every sibling record file for the frozen parent from the case directory, not a summary of them. `parent_records` and the audit run's `input_records` list exactly the sibling files read.
-- **Correction lifecycle.** Correction never edits or deletes an existing record file. Supersede by writing the child version as a new file. Withdraw, downgrade, or retire by appending a child version that records the transition while the earlier files stay in place. Retain every version file while the case is open and for as long as any downstream record, registered forecast writeback, or open contest window references it; retire a case by archiving its directory as a whole, never by partial deletion.
-- **No filesystem.** When the host offers no filesystem, embed the complete record as a fenced YAML block in the conversation every time it changes, and carry the latest embedded record forward verbatim into any continuing session. The parent reference then rests on `record_id` plus `record_version` alone, and a continuation must first re-quote the frozen parent record before extending it.
+- **Parent references.** A handoff names a parent by record ID and carrier path together, and the consumer checks that the file's `record_id` and `record_version` match the reference before building on it.
+- **Merge reads.** An audit merge reads every sibling record file for the frozen parent, not a summary of them. `parent_records` and the audit run's `input_records` list exactly the sibling files read.
+- **Correction lifecycle.** Correction never edits or deletes an existing record file. Supersede by writing the child version as a new file. Withdraw, downgrade, or retire by appending a child version that records the transition while earlier files stay in place. Terminal states (withdrawn, replaced, retired) never return to active use by rollback; a successor opens a new case identity and keeps the old trail (source §16.3).
+- **No filesystem.** When the host offers no filesystem, embed the complete record as a fenced YAML block in the conversation every time it changes, and carry the latest embedded record forward verbatim into any continuing session.
+- **Version identities.** Text identity, source theory version, record-schema version, software version, and the version an actual run consumed are registered separately; one does not imply the others (source §16.19).
 
 ## Lossless lineage
 
@@ -83,11 +86,11 @@ Use these three forms only:
 | `linear` | the sole parent's ID | one `{record_id, record_version}` | The child version is exactly the parent version plus one. |
 | `merge` | null | two or more complete parent references | The merge version is exactly the highest parent version plus one. |
 
-For a merge, sort parents by `record_id` and then `record_version`. Put the same ordered list in the audit module run's `input_records`. For a linear child, use the sole parent reference in every current-output module input. Every completed module run identifies the current `output_record`; a missing or non-applicable run uses null. Reject an unresolved parent ID/version, self or future parent, extra input, dropped merge parent, broken edge, or unconnected record. This makes input and output records reconstructable without guessing from module order.
+For a merge, sort parents by `record_id` and then `record_version`. Put the same ordered list in the audit module run's `input_records`. For a linear child, use the sole parent reference in every current-output module input. Every completed module run identifies the current `output_record`; a missing or non-applicable run uses null. Reject an unresolved parent ID/version, self or future parent, extra input, dropped merge parent, broken edge, or unconnected record.
 
-Create a new child whenever evidence, module results, purpose, object, identity, scale, or ceiling changes. Fork on a materially changed object or purpose. Correct by superseding, withdrawing, downgrading, or retiring; never erase. An outcome arriving after a forecast appends a child and cannot alter the frozen forecast.
+Create a new child whenever evidence, module results, purpose, task, object, identity, scale, affected positions, or ceiling changes. Fork on a materially changed object or purpose. Correct by superseding, withdrawing, downgrading, or retiring; never erase. An outcome arriving after a forecast appends a child and cannot alter the frozen forecast. Late material may change what is now known about the past; it never rewrites what was available at the earlier cutoff (source §11.3.2).
 
-Cluster workers consume the same frozen parent. Parallelism has a testable admission rule: two lanes may run in parallel only when their parent references carry the identical `{record_id, record_version}` pair and the parent's `evidence_cutoff` fields (`as_of`, `included_source_ids`, `excluded_after_cutoff`) are equal item by item. Audit retains all siblings as merge parents in canonical order. Sequential workers retain one parent at every step. The shapes differ, but each mode must resolve to the same frozen root sources, module-output responsibilities, facts, unknowns, ceiling, and `authorization_effect`.
+Cluster workers consume the same frozen parent. Two lanes may run in parallel only when their parent references carry the identical `{record_id, record_version}` pair and the parent's `evidence_cutoff` fields are equal item by item. Audit retains all siblings as merge parents in canonical order. Sequential workers retain one parent at every step. Each mode must resolve to the same frozen root sources, module-output responsibilities, facts, unknowns, ceiling, and `authorization_effect`.
 
 ## Output-ceiling algebra
 
@@ -97,19 +100,30 @@ The ceilings are nested and ordered:
 
 | Ceiling | Includes | Excludes |
 |---|---|---|
-| `description_only` | Bounded material and observation description, candidate objects, questions, unknowns, unranked candidate mechanisms marked `candidate` | Mechanism ranking or endorsement, diagnosis, forecast, process requirements, action |
-| `diagnostic_only` | Everything below plus competing mechanisms, bounded diagnosis, conditional paths and registered forecast evaluation | Normative or procedural requirements, recommendation, permission, execution |
-| `requirements_only` | Everything below plus explicit facts/values/options/jurisdiction/authorization/protection/stop/rollback conditions for an external process | Selection by Ariadne, permission, execution, self-issued authorization |
+| `description_only` | Bounded material and observation description, candidate objects, questions, unknowns, unranked candidate mechanisms marked `candidate` | Mechanism ranking or endorsement, diagnosis, forecast, recommendation, action requirement |
+| `diagnostic_only` | Everything below plus competing mechanisms, bounded diagnosis, conditional paths, and registered forecast evaluation | Normative or procedural requirements, recommendation, permission, execution |
+| `requirements_only` | Everything below plus explicit facts/values/options/jurisdiction/authorization/protection/stop/rollback conditions for an external process, and an analytic recommendation for deliberation when its premises are registered | Adoption, permission, imperative instruction, execution, self-issued authorization |
 
 Use these operations:
 
-- `root`: start the lineage. A root record's `output_ceiling` and `ceiling_transition.result` are always `description_only`, and the operation has no inputs or basis. Admitted material never sets a higher initial value; a higher ceiling must be earned later through `raise`.
+- `root`: start the lineage. A root record's `output_ceiling` and `ceiling_transition.result` are always `description_only`, and the operation has no inputs or basis.
 - `preserve`: return the input ceiling unchanged.
-- `lower`: return a strictly lower ceiling when this child exposes a broken dependency, and record the downgrade reason in `ceiling_transition.reason`. A `lower` without a non-empty reason fails the semantic check.
-- `raise`: return a strictly higher ceiling only in a child that newly admits external evidence or records a newly fulfilled protocol. List every new source or declared rule ID in `basis`. When the lineage was previously lowered, the raise must also state how its basis resolves the recorded `lower` reason; a basis that is new but unrelated to that reason does not qualify. A module's completion, agreement, simulation, or fuller prose is never a basis.
+- `lower`: return a strictly lower ceiling when this child exposes a broken dependency, and record the reason in `ceiling_transition.reason`.
+- `raise`: return a strictly higher ceiling only in a child that newly admits external evidence or records a newly fulfilled protocol. List every new source or declared rule ID in `basis`. When the lineage was previously lowered, state how the basis resolves the recorded `lower` reason. A module's completion, agreement, simulation, or fuller prose is never a basis.
 - `meet`: merge records by taking the minimum ranked input. It is valid only for a merge and never has a raise basis.
 
-For an ordinary module child with requested local ceiling `c`, use `min(parent_ceiling, c)`. A module run alone never raises a ceiling. If new external evidence or protocol fulfillment arrives, create a child, register that new basis in `evidence_cutoff.included_source_ids` or `rule_registry`, and use `raise` only when the semantic validator can resolve the exact parent record and prove the basis absent from it. A clustered merge applies `meet` to every parent ceiling; repetition and votes have no effect.
+For an ordinary module child with requested local ceiling `c`, use `min(parent_ceiling, c)`. A module run alone never raises a ceiling. A clustered merge applies `meet` to every parent ceiling; repetition and votes have no effect.
+
+## Proposition-level dependencies
+
+The record ceiling is the maximum any claim in the record may reach; individual claims may stop lower. Use `depends_on` to name the earlier claims a claim rests on, and an optional claim `ceiling` to register its own limit (source §2.9, §13.1):
+
+- `depends_on` names only claims that appear earlier in the same record;
+- a claim cannot stay `supported` when any dependency is `contradicted`, `withdrawn`, or `retired`;
+- a claim's ceiling never exceeds the ceiling of any dependency that registers one, nor the record's `output_ceiling`;
+- a claim with independent support is not lowered because a sibling claim failed;
+- a failure of a shared source, a common premise, the object boundary, or the task's lawful use lowers the record ceiling and therefore every claim;
+- splitting, renaming, or re-registering a claim under a new ID does not restore a ceiling its dependency removed.
 
 ## Module handoff
 
@@ -133,11 +147,18 @@ Use these run states:
 - `failed`: the module ran but a required gate failed;
 - `not_applicable`: responsibility has no legitimate counterpart; give the cause in `reason`.
 
-The schema requires a non-empty `reason` whenever the state is `not_run` or `not_applicable`, and a null `output_record` for both.
-
 `completed` means the procedure completed. It does not mean its empirical claim is true.
 
-Put human observation position, privacy, purpose, all four structured affected-position classes (`direct`, `indirect`, `low_power`, `no_exit`), at least two alternatives, and responsible review in the `ariadne-human` payload. Put the complete event contract, including `planned` fact status, in the `ariadne-dynamics` payload. A forecast payload contains exactly one complete branch: preregistration linked to this record ID/version, or post-hoc reconstruction with calibration and failure classification. Put ordered IT/IG statuses and contestability in the audit payload. Do not overload the closed `evidence_cutoff` object.
+Typed payloads:
+
+- **`ariadne-human`:** observation position, privacy state, permitted purpose, all four structured affected-position classes (`direct`, `indirect`, `low_power`, `no_exit`), at least two distinct alternative explanations, and responsible human review.
+- **`ariadne-dynamics`:** model version, observation position, and the complete event contract, with fact status `observed`, `externally_reported`, `planned`, `hypothetical`, `simulated`, or `unknown`; an actual unauthorized act is still an observed or reported event with its permission status stated in the text fields.
+- **`ariadne-mechanism`:** at least two distinguishable candidates, each with a `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), channel observation, discriminating prediction, reverse or falsifying condition, and residual comparison rule.
+- **`ariadne-forecast`:** exactly one complete branch: a preregistration linked to this record ID/version (with `recursion_stage` 0-3 and the `response_regime` under which the target is defined) or a post-hoc reconstruction with calibration and failure classification.
+- **`ariadne-choice`:** facts, explicit values, structured options with exactly one `no_action`, jurisdiction, authorization, stop conditions, rollback plan, and `analytic_recommendation` (null, or an option ID with normative premise IDs, reasons, costs, the strongest counterargument, change conditions, and `adoption_status: deliberation_only`). A non-null recommendation requires `requirements_only`.
+- **`ariadne-audit`:** ordered IT1-IT4 and IG1-IG7 statuses, the strong-judgment register (`triggered` or `not_triggered`, reason, SJ1-SJ8), and contestability. IG6 `passed` binds SJ1-SJ8 all `passed`; IG6 `not_applicable` binds `not_triggered` with a reason.
+
+Do not overload the closed `evidence_cutoff` object.
 
 A claim with `status: supported` must resolve each `support_id` to an admitted source or an earlier claim in this record and each `support_rule_id` to the explicit `rule_registry`. Module completion, an empty list, a heading, a ghost source, or an undeclared `RULE:*` label is not support.
 
@@ -148,16 +169,16 @@ An L1 run (low impact, reversible, limited material) stays schema-valid while st
 - Keep all twenty required top-level fields. `claim_ledger`, `rule_registry`, `conflicts`, and `module_payloads` may remain empty arrays.
 - Discharge a bounded module finding as a single-line declaration plus an explicit gap list: put the declaration in the claim ledger (or in `unknowns` when it is a gap), list what a full run would still check in `unknowns`, and do not fabricate a typed payload around it.
 - `responsible_human_review.required` must be `true` only for L2/L3 human-domain work; an L1 lightweight observation may set it to `false`.
-- Compactness is a size profile, not a ceiling raise: the record keeps `description_only` unless a recorded transition with an admitted basis says otherwise.
+- Compactness is a size profile, not a ceiling raise.
 
-Copy the schema-valid template from [l1-record-template.md](l1-record-template.md) instead of rebuilding the field set from prose; it is the only L1 starting shape this suite maintains.
+Copy the schema-valid template from [l1-record-template.md](l1-record-template.md) instead of rebuilding the field set from prose.
 
 ## Valid example
 
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:delivery-case:root:v1
-schema_version: '1.3'
+schema_version: '2.0'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -176,6 +197,12 @@ object_contract:
     aggregation: team
     time: quarter
   identity_criterion: Same mandate and membership rule
+  task_profile:
+    target_query: Where in the handoff chain does delivery delay originate this quarter
+    horizon: 2026-Q2 only
+    environment: Current staffing and release process
+    allowed_operations: Observation and interview only; no process change
+    error_tolerance: Location at the level of one handoff step
   status: candidate
 evidence_cutoff:
   as_of: '2026-08-04T00:00:00+08:00'
@@ -185,6 +212,7 @@ evidence_cutoff:
 scale_scope:
   source: Individual interview
   target: Team diagnosis
+  transform_kind: scale
   transform_status: incomplete
 claim_ledger:
 - claim_id: claim-01
@@ -195,6 +223,17 @@ claim_ledger:
   - interview-01
   counterevidence_ids: []
   support_rule_ids: []
+  ceiling: description_only
+- claim_id: claim-02
+  claim_type: G
+  text: If handoff delay contributes, it should precede the release slip in each affected sprint.
+  status: candidate
+  support_ids: []
+  counterevidence_ids: []
+  support_rule_ids: []
+  depends_on:
+  - claim-01
+  ceiling: description_only
 rule_registry: []
 unknowns_and_counterevidence:
   unknowns:
@@ -223,12 +262,12 @@ authorization_effect: none
 
 ## Raise example
 
-A raise is legal only in a child that newly admits an external basis. The pair below is the complete minimal shape: the root stops at `description_only`; the evidence child admits one new source, registers it as the raise basis, and delivers a bounded diagnostic. Note what the raise is not: the evidence module completing, the story reading better, or the same sources being re-read.
+A raise is legal only in a child that newly admits an external basis. The pair below is the complete minimal shape: the root stops at `description_only`; the evidence child admits one new source, registers it as the raise basis, and delivers a bounded diagnostic. The raise is not the evidence module completing, the story reading better, or the same sources being re-read.
 
 <!-- method-record-lineage-example:start -->
 ```yaml
 - record_id: ariadne:onboarding-tickets:root:v1
-  schema_version: '1.3'
+  schema_version: '2.0'
   record_version: 1
   lineage_kind: root
   parent_record_id: null
@@ -247,6 +286,12 @@ A raise is legal only in a child that newly admits an external basis. The pair b
       aggregation: team
       time: week
     identity_criterion: Same product area and ticket queue
+    task_profile:
+      target_query: Did weekly onboarding tickets change after the guide was published
+      horizon: 2026-Q3
+      environment: Same queue, same tagging rules
+      allowed_operations: Observation only
+      error_tolerance: Direction and order of magnitude of the weekly change
     status: candidate
   evidence_cutoff:
     as_of: '2026-08-20T00:00:00+08:00'
@@ -256,7 +301,8 @@ A raise is legal only in a child that newly admits an external basis. The pair b
   scale_scope:
     source: Weekly dashboard counts
     target: Onboarding-guide effect explanation
-    transform_status: incomplete
+    transform_kind: none
+    transform_status: not_needed
   claim_ledger: []
   rule_registry: []
   unknowns_and_counterevidence:
@@ -282,7 +328,7 @@ A raise is legal only in a child that newly admits an external basis. The pair b
   - ariadne-evidence
   authorization_effect: none
 - record_id: ariadne:onboarding-tickets:evidence:v2
-  schema_version: '1.3'
+  schema_version: '2.0'
   record_version: 2
   lineage_kind: linear
   parent_record_id: ariadne:onboarding-tickets:root:v1
@@ -303,6 +349,12 @@ A raise is legal only in a child that newly admits an external basis. The pair b
       aggregation: team
       time: week
     identity_criterion: Same product area and ticket queue
+    task_profile:
+      target_query: Did weekly onboarding tickets change after the guide was published
+      horizon: 2026-Q3
+      environment: Same queue, same tagging rules
+      allowed_operations: Observation only
+      error_tolerance: Direction and order of magnitude of the weekly change
     status: candidate
   evidence_cutoff:
     as_of: '2026-08-24T00:00:00+08:00'
@@ -313,7 +365,8 @@ A raise is legal only in a child that newly admits an external basis. The pair b
   scale_scope:
     source: Weekly dashboard counts and the per-ticket export
     target: Onboarding-guide effect explanation
-    transform_status: candidate
+    transform_kind: none
+    transform_status: not_needed
   claim_ledger:
   - claim_id: claim-01
     claim_type: G
@@ -360,28 +413,32 @@ When the lineage was previously lowered, the raise must additionally state how t
 
 ## Human-facing presentation
 
-Do not dump the entire record by default. Present:
+Deliver the complete analysis in plain language by default (source §12.16):
 
-1. current bounded judgment;
-2. strongest supporting observations;
-3. competing explanations or paths;
-4. important unknowns and reverse conditions;
-5. output/action ceiling;
-6. best next evidence or external decision step.
+1. the current judgment and its scope, first;
+2. the evidence and the strongest supporting observations;
+3. every substantive competing explanation or path that was actually compared, with its conditions;
+4. important unknowns, reverse conditions, and what new material would change the judgment;
+5. the output and action ceiling, and for choices the analytic recommendation, its premises, costs, strongest objection, and change conditions;
+6. the best next evidence or external decision step.
 
-Expose the full record when another worker must continue it, a forecast will be scored, a high-impact judgment can be challenged, or a decision needs an audit trail.
+Compress the visible answer only when the user asks for brevity, and keep the full analysis available. The raw record is a separate artifact: expose it when another worker must continue it, a forecast will be scored, a high-impact judgment can be challenged, or a decision needs an audit trail.
 
 ## Common mistakes
 
 | Mistake | Correction |
 |---|---|
 | Overwrite a record after new evidence | Create a child version and preserve the parent. |
-| Store only conclusions | Store sources, counterevidence, unknowns, and module state. |
+| Store only conclusions | Store sources, counterevidence, unknowns, dependencies, and module state. |
 | Mark a procedural completion as claim support | Keep module state and claim status separate. |
 | Put authorization in a claim support field | Link an external record; keep authorization effect none. |
 | Drop sibling parents during a merge | Store every ID and version in canonical `parent_records` and audit inputs. |
 | Average away sibling disagreements | Record them as named `conflicts` entries with kind, involved records, and description. |
 | Raise a ceiling because more modules agreed | Preserve the parent ceiling; only a child with a newly admitted basis may use `raise`. |
+| Lower every claim when one bridge fails | Lower only the claims that `depends_on` the failed one; keep independent support. |
+| Restore a lowered claim by re-registering it under a new ID | Keep the dependency and its limit; a new ID changes nothing. |
+| Leave the task implicit | Fill `task_profile`; sufficiency is always relative to a declared query, horizon, environment, operation set, and error. |
+| Withhold a supported recommendation only because execution is unauthorized | Register the premises and give the analytic recommendation with `deliberation_only`. |
 | Keep the record only in chat scrollback | Write each version to `.ariadne/records/<case>/` and reference parents by ID and path. |
 | Put privacy, purpose, event state, or model version in `evidence_cutoff` | Use the typed module payload. |
-| Treat a protected omission as absent data | Use `withheld_for_protection` in the explanatory record and lower confidence. |
+| Treat a protected omission as absent data | Use `withheld_for_protection` and lower confidence accordingly. |

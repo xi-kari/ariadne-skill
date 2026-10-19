@@ -1,52 +1,361 @@
 {
-  "purpose": "Stable Appendix B numbering and Appendix D shared-kernel navigation. Definitions, contracts, and use boundaries remain authoritative only in their owning references.",
+  "purpose": "Source identity, stable Appendix B numbering, body-only code families, the Appendix C shared method kernel, and the Appendix D domain-atlas route. Definitions, contracts, and use boundaries remain authoritative only in the source text and the owning Ariadne references.",
+  "source_identity": {
+    "title": "Xikari-条件结构与转化论",
+    "author": "Xikari",
+    "date": "2026-10",
+    "source_identity": "manuscript-20261017-18a7cc167faa",
+    "sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
+    "anchor_rule": "Ariadne cites the source by part and section number (for example §4.5 or Appendix C.12); an anchor names where to re-read the governing text, never a replacement for it.",
+    "derived_status": "derived_candidate_not_author_confirmed",
+    "derived_status_rule": "Ariadne's modules are method and retrieval entries organized from the source. They keep candidate status, add no second theory beside the source, and do not claim item-by-item author confirmation; when an entry and the source disagree, the source governs and the entry is corrected (source §16.20.1)."
+  },
   "appendix_b_numbering": [
-    {"code": "D0-D3", "meaning": "candidate object, state vocabulary, effective feedback, and scale transformation definitions", "authority": "Part 3", "owner": "ariadne-mechanism"},
-    {"code": "U01-U11", "meaning": "general structural primitives", "authority": "Part 3", "owner": "ariadne-mechanism"},
-    {"code": "G1-G4", "meaning": "empirical root-hypothesis templates instantiated through G-instance records", "authority": "Part 4", "owner": "ariadne-evidence"},
-    {"code": "E1-E5", "meaning": "epistemic constraints", "authority": "Part 4", "owner": "ariadne-evidence"},
-    {"code": "C1-C12", "meaning": "conditional conclusion contracts", "authority": "Part 4", "owner": "ariadne-evidence"},
-    {"code": "A/X/T/O/C/R/I/N/J", "meaning": "nine axes of the SP scale profile", "authority": "Part 5", "owner": "ariadne-scale"},
-    {"code": "M01-M09", "meaning": "scale-transformation operators", "authority": "Part 5", "owner": "ariadne-scale"},
-    {"code": "CM-*", "meaning": "conditional feedback, learning, maintenance, load, phase, and selection mechanisms", "authority": "Part 6", "owner": "ariadne-mechanism"},
-    {"code": "H1-H6", "meaning": "human-domain clauses", "authority": "Part 7", "owner": "ariadne-human"},
-    {"code": "GC/GS/GE/CV/RS/IS/IM/IB", "meaning": "non-interchangeable generation, carrier, responsibility, and instability types", "authority": "Part 7", "owner": "ariadne-human"},
-    {"code": "HV01-HV11", "meaning": "human-variable unified interfaces", "authority": "Part 7 and Appendix A", "owner": "ariadne-human"},
-    {"code": "S0-S6/X0", "meaning": "human collective state prototypes and the separate orderly-exit path", "authority": "Part 8", "owner": "ariadne-human"},
-    {"code": "IG1-IG7", "meaning": "seven-gate main audit flow", "authority": "Part 13", "owner": "ariadne-audit"},
-    {"code": "SJ1-SJ8", "meaning": "strong-judgment eight-item contract", "authority": "Part 13", "owner": "ariadne-audit"},
-    {"code": "L1-L3", "meaning": "method depth and responsibility levels", "authority": "Part 13", "owner": "ariadne-skill"},
-    {"code": "TOOL-*", "meaning": "evidence, assertion, claim, forecast, stress-test, and AI-boundary tools", "authority": "Part 13", "owner": "ariadne-audit"},
-    {"code": "N1-N5", "meaning": "runtime premises for normative choice", "authority": "Part 14", "owner": "ariadne-choice"},
-    {"code": "O1-O4", "meaning": "finite external authorization procedure", "authority": "Part 14", "owner": "ariadne-choice"},
-    {"code": "PF-1-PF-10", "meaning": "normative-choice and choice-record interfaces", "authority": "Part 14", "owner": "ariadne-choice"},
-    {"code": "T0-T4", "meaning": "intervention levels", "authority": "Part 15", "owner": "ariadne-choice"},
-    {"code": "APP-*", "meaning": "nine application contracts", "authority": "Part 15", "owner": "ariadne-audit"},
-    {"code": "GOV-01-GOV-24", "meaning": "framework governance clauses", "authority": "Part 16", "owner": "ariadne-audit"}
+    {
+      "code": "D0-D3",
+      "meaning": "definition layer: candidate object, basic state words, effective feedback, scale transformation",
+      "authority": "Part 3",
+      "owner": "ariadne-mechanism"
+    },
+    {
+      "code": "U01-U11",
+      "meaning": "general structural primitives",
+      "authority": "Part 3",
+      "owner": "ariadne-mechanism"
+    },
+    {
+      "code": "G1-G4",
+      "meaning": "empirical question families instantiated only through G-instance records",
+      "authority": "Part 4",
+      "owner": "ariadne-evidence"
+    },
+    {
+      "code": "法1-法3",
+      "meaning": "common method constraints: task and representation, material identity and support range, fact/value/action qualification",
+      "authority": "Part 4 §4.17 and Appendix C",
+      "owner": "ariadne-evidence"
+    },
+    {
+      "code": "F1-F6",
+      "meaning": "conditional formal propositions: task recovery, closure, common feasible action, composition preservation, error propagation, coarsest sufficient partition",
+      "authority": "Part 4 §4.18-4.19 and Appendix C",
+      "owner": "ariadne-scale"
+    },
+    {
+      "code": "E1-E5",
+      "meaning": "epistemic constraints",
+      "authority": "Part 4",
+      "owner": "ariadne-evidence"
+    },
+    {
+      "code": "C1-C12",
+      "meaning": "result contracts, mechanism-condition combinations, and the normative procedure bridge",
+      "authority": "Part 4",
+      "owner": "ariadne-evidence"
+    },
+    {
+      "code": "A/X/T/O/C/R/I/N/J",
+      "meaning": "nine axes of the SP scale profile",
+      "authority": "Part 5",
+      "owner": "ariadne-scale"
+    },
+    {
+      "code": "M01-M09",
+      "meaning": "scale-transformation operators",
+      "authority": "Part 5",
+      "owner": "ariadne-scale"
+    },
+    {
+      "code": "CM-*",
+      "meaning": "conditional mechanisms: feedback, learning, maintenance, load, phase, selection, with current, carried, and history-increment branches",
+      "authority": "Part 6",
+      "owner": "ariadne-mechanism"
+    },
+    {
+      "code": "H1-H6",
+      "meaning": "human-domain clauses",
+      "authority": "Part 7",
+      "owner": "ariadne-human"
+    },
+    {
+      "code": "GC/GS/GE/CV/RS/IS/IM/IB",
+      "meaning": "non-interchangeable generation, carrier, responsibility, and instability types",
+      "authority": "Part 7",
+      "owner": "ariadne-human"
+    },
+    {
+      "code": "HV01-HV11",
+      "meaning": "human-variable unified interfaces with conditional support routes",
+      "authority": "Part 7 and Appendix A",
+      "owner": "ariadne-human"
+    },
+    {
+      "code": "S0-S6/X0",
+      "meaning": "human intentional-collective state prototypes and the separate orderly-exit path",
+      "authority": "Part 8",
+      "owner": "ariadne-human"
+    },
+    {
+      "code": "IG1-IG7",
+      "meaning": "seven-gate main flow",
+      "authority": "Part 13",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "SJ1-SJ8",
+      "meaning": "strong-judgment eight components",
+      "authority": "Part 13",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "L1-L3",
+      "meaning": "diagnostic tiers (Ariadne adds L0 as a routing outcome)",
+      "authority": "Part 13",
+      "owner": "ariadne-skill"
+    },
+    {
+      "code": "TOOL-*",
+      "meaning": "evidence ledger, open assertion, claim validation, forecast registry, stress test, and AI-boundary tools",
+      "authority": "Part 13",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "N1-N5",
+      "meaning": "runtime premises for normative choice",
+      "authority": "Part 14",
+      "owner": "ariadne-choice"
+    },
+    {
+      "code": "O1-O4",
+      "meaning": "finite authorization procedure",
+      "authority": "Part 14",
+      "owner": "ariadne-choice"
+    },
+    {
+      "code": "PF-1-PF-10",
+      "meaning": "protection-floor bindings of the choice record",
+      "authority": "Part 14",
+      "owner": "ariadne-choice"
+    },
+    {
+      "code": "T0-T4",
+      "meaning": "intervention task types, not maturity levels",
+      "authority": "Part 15",
+      "owner": "ariadne-choice"
+    },
+    {
+      "code": "APP-*",
+      "meaning": "nine application module contracts",
+      "authority": "Part 15",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "GOV-01-GOV-24",
+      "meaning": "framework governance clauses",
+      "authority": "Part 16",
+      "owner": "ariadne-audit"
+    }
+  ],
+  "body_only_codes": [
+    {
+      "code": "IT1-IT4",
+      "meaning": "four interface transformations from structure to action requirement",
+      "authority": "§13.1",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "FG1-FG5",
+      "meaning": "five expansion gates of the diagnostic layer",
+      "authority": "§13.4",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "DS01-DS13",
+      "meaning": "thirteen diagnostic steps from problem entry to writeback",
+      "authority": "§13.4",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "DF1-DF9",
+      "meaning": "nine multi-circle derivation gates",
+      "authority": "§13.10",
+      "owner": "ariadne-dynamics"
+    },
+    {
+      "code": "SEL-SYS/SEL-AGT/SEL-GOV",
+      "meaning": "system screening, agent decision, and governed collective choice",
+      "authority": "§14.2",
+      "owner": "ariadne-choice"
+    },
+    {
+      "code": "NSP-LEAST-HARM/NSP-PROPORTIONALITY",
+      "meaning": "explicit least-harm and proportionality selection principles",
+      "authority": "§14.4",
+      "owner": "ariadne-choice"
+    },
+    {
+      "code": "WS1-WS6",
+      "meaning": "weak-signal protection kit",
+      "authority": "§16.10",
+      "owner": "ariadne-audit"
+    },
+    {
+      "code": "HVnn-R0..R5",
+      "meaning": "conditional support routes inside each human-variable card",
+      "authority": "§7.3 and Appendix A",
+      "owner": "ariadne-human"
+    },
+    {
+      "code": "SHOU-1..SHOU-9",
+      "meaning": "shared governance invariants 守一 to 守九",
+      "authority": "Appendix C.3",
+      "owner": "ariadne-skill"
+    }
   ],
   "shared_notation": [
-    {"notation": "S*=<B,X,R,I,T,SP,K>", "meaning": "candidate-object fields: boundary, variables, relations or transitions, interfaces, time window, scale profile, and identity criterion", "owner": "ariadne-framing"},
-    {"notation": "N0", "meaning": "simple or zero model used as a comparison responsibility", "owner": "ariadne-mechanism"},
-    {"notation": "K*/F*", "meaning": "target identity and function criteria for repair", "owner": "ariadne-choice"},
-    {"notation": "G-instance/H-instance", "meaning": "preregistered root-hypothesis and human-clause instances", "owner": "ariadne-evidence"}
+    {
+      "notation": "S*=<B,X,R,I,T,SP,K>",
+      "meaning": "candidate-object fields: boundary, state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion",
+      "owner": "ariadne-framing"
+    },
+    {
+      "notation": "N0",
+      "meaning": "zero or simple model frozen inside a specific comparison instance",
+      "owner": "ariadne-mechanism"
+    },
+    {
+      "notation": "K*/F*",
+      "meaning": "target identity and function criteria for repair, published before results",
+      "owner": "ariadne-choice"
+    },
+    {
+      "notation": "G-instance/H-instance",
+      "meaning": "preregistered instances of the empirical question families and of H1, H4, H5",
+      "owner": "ariadne-evidence"
+    }
   ],
   "part1_layers": {
-    "rule": "layers denote responsibility division, not value rank or a developmental ladder",
+    "rule": "layers denote division of responsibility, not value rank or a developmental ladder",
     "layers": [
-      {"layer": "U", "meaning": "general structural core", "owner": "ariadne-framing and ariadne-mechanism"},
-      {"layer": "S", "meaning": "cross-scale and cross-circle transformation", "owner": "ariadne-scale"},
-      {"layer": "H", "meaning": "human structured world", "owner": "ariadne-human"},
-      {"layer": "A", "meaning": "actor state", "owner": "ariadne-human"},
-      {"layer": "MC", "meaning": "multi-circle joint state", "owner": "ariadne-human"},
-      {"layer": "P", "meaning": "path derivation and conditional forecast", "owner": "ariadne-dynamics and ariadne-forecast"},
-      {"layer": "I", "meaning": "inference and reality interface", "owner": "ariadne-skill and ariadne-audit"},
-      {"layer": "N", "meaning": "normative choice and authorization", "owner": "ariadne-choice"}
+      {
+        "layer": "U",
+        "meaning": "general structural core",
+        "owner": "ariadne-framing and ariadne-mechanism"
+      },
+      {
+        "layer": "S",
+        "meaning": "cross-scale and cross-circle transformation",
+        "owner": "ariadne-scale"
+      },
+      {
+        "layer": "H",
+        "meaning": "human structured world",
+        "owner": "ariadne-human"
+      },
+      {
+        "layer": "A",
+        "meaning": "actor state",
+        "owner": "ariadne-human"
+      },
+      {
+        "layer": "MC",
+        "meaning": "multi-circle joint state",
+        "owner": "ariadne-human and ariadne-dynamics"
+      },
+      {
+        "layer": "P",
+        "meaning": "path derivation and conditional forecast",
+        "owner": "ariadne-dynamics and ariadne-forecast"
+      },
+      {
+        "layer": "I",
+        "meaning": "inference and reality interface",
+        "owner": "ariadne-skill and ariadne-audit"
+      },
+      {
+        "layer": "N",
+        "meaning": "normative choice and authorization",
+        "owner": "ariadne-choice"
+      }
     ]
   },
-  "appendix_d": {
+  "shared_kernel_layers": {
+    "rule": "the six layers state argumentative responsibility, not value rank; Chinese and code labels serve cross-text alignment only and never replace the full contract in the body text",
+    "layers": [
+      {
+        "layer": "definition",
+        "answers": "what objects and terms refer to",
+        "authority_boundary": "fixes decidable semantics; does not prove real-world validity"
+      },
+      {
+        "layer": "common_method_constraint",
+        "answers": "how to manage representation, material identity, and inference (rules 1-3)",
+        "authority_boundary": "constrains records and use; not a law of the world"
+      },
+      {
+        "layer": "conditional_formal_proposition",
+        "answers": "what follows necessarily under explicit mathematical premises (F1-F6)",
+        "authority_boundary": "holds by proof; the real-world mapping needs separate evidence"
+      },
+      {
+        "layer": "empirical_question_family",
+        "answers": "whether a specific empirical relation holds (G1-G4)",
+        "authority_boundary": "instances supply object, comparison, failure mode, and evidence; the family itself has no independent truth value"
+      },
+      {
+        "layer": "result_and_mechanism_contract",
+        "answers": "what existing support may register and use (C1-C12)",
+        "authority_boundary": "valid only inside its dependencies, extra conditions, and applicability window"
+      },
+      {
+        "layer": "governance_invariant",
+        "answers": "how to publish, evaluate, pause, and act",
+        "authority_boundary": "limits power; never serves as an empirical cause"
+      }
+    ]
+  },
+  "governance_invariants": [
+    {
+      "id": "SHOU-1",
+      "rule": "Freeze before results; after results only append."
+    },
+    {
+      "id": "SHOU-2",
+      "rule": "A positive claim without support is not support for the zero model."
+    },
+    {
+      "id": "SHOU-3",
+      "rule": "Definitions, contracts, internal teaching examples, and internal simulations never serve as external empirical support."
+    },
+    {
+      "id": "SHOU-4",
+      "rule": "Material identity, claim role, artifact status, and missing state are orthogonal dimensions and are never merged."
+    },
+    {
+      "id": "SHOU-5",
+      "rule": "Source, modeling, forecasting, evaluation, authorization, and execution responsibilities are never crossed automatically by one artifact."
+    },
+    {
+      "id": "SHOU-6",
+      "rule": "Model complexity faces proportionate simplification, deletion, and necessity review; predictive or empirical capability claims are compared with simple baselines and independent evaluation material, while proofs, text interpretation, and normative argument are checked by their own standards."
+    },
+    {
+      "id": "SHOU-7",
+      "rule": "Residuals generate competing candidates only; they never generate real variables automatically."
+    },
+    {
+      "id": "SHOU-8",
+      "rule": "Capability has a domain, validity period, drift, pause, rollback, and retirement."
+    },
+    {
+      "id": "SHOU-9",
+      "rule": "Low-power positions, privacy, protective non-disclosure, appeal, and exit are never flattened by aggregate results."
+    }
+  ],
+  "appendix_c": {
     "dual_text_difference": {
-      "code": "D.4",
-      "mapping_rule": "A shared kernel aligns reasoning responsibilities and boundaries while each source retains its own authoritative definitions, operating form, chapter order, artifact count, and numbering.",
+      "code": "C.4",
+      "mapping_rule": "A shared method kernel aligns reasoning responsibilities and boundaries while each text keeps its own authoritative definitions, objects, arguments, operating form, chapter order, artifact count, and numbering; neither text is an authority source or double empirical evidence for the other.",
       "applicability": {
         "applies_when": "the user provides both source contract texts for the same run",
         "otherwise": "mark dual-text difference work not_applicable in the Method Record and state the reason"
@@ -55,12 +364,20 @@
         {
           "id": "operator_alignment",
           "rule": "Do not force the nine registered scale operators to align one-to-one with another text's common operator steps.",
-          "semantic_elements": ["nine_scale_operators", "common_operator_steps", "no_forced_one_to_one_alignment"]
+          "semantic_elements": [
+            "nine_scale_operators",
+            "common_operator_steps",
+            "no_forced_one_to_one_alignment"
+          ]
         },
         {
           "id": "record_system_separation",
-          "rule": "Do not merge the fourteen-section scale-transformation record with a closed artifact system.",
-          "semantic_elements": ["fourteen_section_scale_record", "closed_artifact_system", "no_merge"]
+          "rule": "Do not merge the fourteen-section scale-transformation record with another text's closed artifact system.",
+          "semantic_elements": [
+            "fourteen_section_scale_record",
+            "closed_artifact_system",
+            "no_merge"
+          ]
         }
       ],
       "minimum_shared_semantics": [
@@ -77,28 +394,50 @@
       "prohibited_substitutions": [
         {
           "id": "contract_substitution",
-          "rule": "A name, analogy, example, or familiar step sequence cannot replace the other source's complete contract.",
-          "guards": ["names", "analogies", "examples", "shared_steps", "complete_contract"]
+          "rule": "A name, analogy, example, or familiar step sequence cannot replace the other text's complete contract; until a correspondence is completed, keep the difference explicit.",
+          "guards": [
+            "names",
+            "analogies",
+            "examples",
+            "shared_steps",
+            "complete_contract"
+          ]
         },
         {
           "id": "difference_erasure",
-          "rule": "Shared vocabulary cannot erase non-transferable elements, source authority, or a recorded difference.",
-          "guards": ["shared_vocabulary", "non_transferable_elements", "source_authority", "recorded_differences"]
+          "rule": "Shared vocabulary cannot erase non-transferable elements, source authority, or a recorded difference between the two texts.",
+          "guards": [
+            "shared_vocabulary",
+            "non_transferable_elements",
+            "source_authority",
+            "recorded_differences"
+          ]
         },
         {
           "id": "double_evidence_ban",
-          "rule": "Citing both source texts in agreement never counts as two independent pieces of empirical evidence for the same claim; dual-text agreement is one shared lineage, not replication.",
-          "guards": ["dual_text_agreement", "independent_evidence_count", "shared_lineage"]
+          "rule": "Citing both texts in agreement never counts as two independent pieces of empirical evidence for the same claim; dual-text agreement is one shared lineage, not replication.",
+          "guards": [
+            "dual_text_agreement",
+            "independent_evidence_count",
+            "shared_lineage"
+          ]
         }
       ]
     },
     "cross_scale_proof_heuristic": {
-      "code": "D.5",
+      "code": "C.5",
       "execution_owner": "ariadne-scale",
+      "rule": "Approximate commutation of a coarse-graining with micro and macro dynamics may be discussed only within stated initial conditions, parameter domain, error norm, and time interval; agreement on one statistic is not equivalence of the whole state, and long-run conclusions do not follow from short-run approximation alone.",
       "applicability": {
         "kind": "conditional_proof_discipline",
-        "admissible_output": ["testable_bridge_requirements", "bounded_candidate"],
-        "prohibited_output": ["cross_domain_theorem", "empirical_transfer_without_conditions"]
+        "admissible_output": [
+          "testable_bridge_requirements",
+          "bounded_candidate"
+        ],
+        "prohibited_output": [
+          "cross_domain_theorem",
+          "empirical_transfer_without_conditions"
+        ]
       },
       "required_fields": [
         "source_object",
@@ -116,25 +455,174 @@
         "task_loss_not_physical_entropy"
       ]
     },
-    "shared_kernel_layers": {
-      "rule": "the five layers state argumentative responsibility, not value rank",
-      "layers": [
-        {"layer": "definition", "answers": "what objects and terms refer to", "authority_boundary": "fixes decidable semantics; does not prove real-world validity"},
-        {"layer": "method_axiom", "answers": "which silent substitutions a model must never make", "authority_boundary": "constrains records and inference; not a law of the world"},
-        {"layer": "testable_root_hypothesis", "answers": "which empirical relationships may hold", "authority_boundary": "must be preregistered, compared, and allowed to fail"},
-        {"layer": "conditional_conclusion", "answers": "what may be inferred after named root instances pass", "authority_boundary": "valid only within its dependencies, conditions, and applicability window"},
-        {"layer": "governance_invariant", "answers": "how to publish, evaluate, pause, and act", "authority_boundary": "limits power; never serves as an empirical cause"}
-      ]
-    },
     "chinese_stable_references": {
-      "rule": "these Chinese aliases are retrieval keys only; definitions remain authoritative in the owning source text",
+      "rule": "these Chinese labels are retrieval keys for cross-text alignment only; definitions remain authoritative in the owning source text",
       "entries": [
-        {"chinese_reference": "定义层", "content": "objects, states, feedback, scale, circles, information identity, and representation translation", "compatible_position": "the framework's own definitions and the paired source text's authoritative definitions"},
-        {"chinese_reference": "方法公理层", "content": "six shared construction constraints", "compatible_position": "first consolidated registration in this version; no earlier numbering to map to"},
-        {"chinese_reference": "根一至根四", "content": "grouping, channel, history, and scale closure", "compatible_position": "compatible with framework G1 to G4"},
-        {"chinese_reference": "论一至论十二", "content": "restricted conditional conclusions", "compatible_position": "compatible with framework C1 to C12"},
-        {"chinese_reference": "治理不变量", "content": "freezing, evidence, baselines, authorization, protection, and lifecycle", "compatible_position": "both texts' existing governance clauses"}
+        {
+          "chinese_reference": "定义层",
+          "content": "objects, states, feedback, scale, circles, information identity, and representation translation",
+          "compatible_position": "the framework's own definitions and the paired text's authoritative definitions"
+        },
+        {
+          "chinese_reference": "方法约束法1—法3",
+          "content": "task and representation, material identity, fact and action qualification",
+          "compatible_position": "§4.17"
+        },
+        {
+          "chinese_reference": "条件形式命题F",
+          "content": "task recovery, closure, common action, transformation composition, error, dynamic refinement",
+          "compatible_position": "§4.18-4.19 and Appendix C.6-C.12"
+        },
+        {
+          "chinese_reference": "经验问题族G1—G4",
+          "content": "grouping, channel, historical increment, representation closure",
+          "compatible_position": "Part 4 instance contracts"
+        },
+        {
+          "chinese_reference": "结果与机制合同C1—C12",
+          "content": "result registration, mechanism combination, and the normative procedure bridge",
+          "compatible_position": "Part 4 contracts"
+        },
+        {
+          "chinese_reference": "治理不变量",
+          "content": "freezing, evidence, baselines, authorization, protection, and lifecycle",
+          "compatible_position": "Appendix C.3 and both texts' governance clauses"
+        }
       ]
     }
+  },
+  "appendix_d": {
+    "owner": "ariadne-framing",
+    "rule": "The domain atlas keeps each field's own problem, terms, measurement, argument, and professional boundary; domains do not verify one another, and several studies citing the same original, data, or case remain one linked evidence chain.",
+    "domains": [
+      {
+        "code": "D.01",
+        "topic": "the framework itself, explanatory tasks, and theory borrowing"
+      },
+      {
+        "code": "D.02",
+        "topic": "knowledge, concepts, context, and epistemic position"
+      },
+      {
+        "code": "D.03",
+        "topic": "research design, measurement, causality, and material formation"
+      },
+      {
+        "code": "D.04",
+        "topic": "systems, control, feedback, resilience, and delay"
+      },
+      {
+        "code": "D.05",
+        "topic": "information, representation, mathematics, and physics borrowing"
+      },
+      {
+        "code": "D.06",
+        "topic": "human nature, evolution, habit, and capacity to act"
+      },
+      {
+        "code": "D.07",
+        "topic": "bounded rationality, emotion, group decision, and probing"
+      },
+      {
+        "code": "D.08",
+        "topic": "development, psychological experience, therapy theory, and professional boundaries"
+      },
+      {
+        "code": "D.09",
+        "topic": "love, care, recognition, meaning, and quality of life"
+      },
+      {
+        "code": "D.10",
+        "topic": "ethical disagreement, capability, and finite responsibility"
+      },
+      {
+        "code": "D.11",
+        "topic": "modern translation of Chinese thought and practice traditions"
+      },
+      {
+        "code": "D.12",
+        "topic": "religion, civilizational comparison, and relational knowledge"
+      },
+      {
+        "code": "D.13",
+        "topic": "kinship, exchange, ritual, ethnography, and cultural change"
+      },
+      {
+        "code": "D.14",
+        "topic": "social theory, power, communication, and institutional reproduction"
+      },
+      {
+        "code": "D.15",
+        "topic": "games, cooperation, signals, commitment, and implementation"
+      },
+      {
+        "code": "D.16",
+        "topic": "organizations, work, leadership, and labor protection"
+      },
+      {
+        "code": "D.17",
+        "topic": "production, exchange, property, institutions, and development"
+      },
+      {
+        "code": "D.18",
+        "topic": "money, credit, finance, and crises"
+      },
+      {
+        "code": "D.19",
+        "topic": "political thought, institutional visions, and normative disagreement"
+      },
+      {
+        "code": "D.20",
+        "topic": "state capacity, policy implementation, and governance"
+      },
+      {
+        "code": "D.21",
+        "topic": "law, authorization, procedure, and responsibility"
+      },
+      {
+        "code": "D.22",
+        "topic": "class, identity, inequality, and social exclusion"
+      },
+      {
+        "code": "D.23",
+        "topic": "family, gender, body, dependency, and care"
+      },
+      {
+        "code": "D.24",
+        "topic": "population, generations, life course, and translocal life"
+      },
+      {
+        "code": "D.25",
+        "topic": "education, knowledge production, professions, and lifelong learning"
+      },
+      {
+        "code": "D.26",
+        "topic": "networks, media, language, narrative, and identity"
+      },
+      {
+        "code": "D.27",
+        "topic": "aesthetics, art, literature, games, and everyday culture"
+      },
+      {
+        "code": "D.28",
+        "topic": "technology, infrastructure, platforms, and artificial intelligence"
+      },
+      {
+        "code": "D.29",
+        "topic": "cities, space, housing, rural life, and public access"
+      },
+      {
+        "code": "D.30",
+        "topic": "ecology, resources, commons, and sustainable life"
+      },
+      {
+        "code": "D.31",
+        "topic": "risk, disaster, public health, command, and recovery"
+      },
+      {
+        "code": "D.32",
+        "topic": "war, revolution, empire, development, and historical paths"
+      }
+    ]
   }
 }

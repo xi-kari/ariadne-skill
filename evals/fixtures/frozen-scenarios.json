@@ -17,7 +17,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-c01:root:v1",
-        "schema_version": "1.3",
+        "schema_version": "2.0",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -42,6 +42,13 @@
             "J": "observation only"
           },
           "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "task_profile": {
+            "target_query": "Whether the frozen materials support the claim that remote work reduces innovation",
+            "horizon": "unknown",
+            "environment": "Only the frozen materials at the cutoff",
+            "allowed_operations": "Analysis of frozen materials only; no real-world action",
+            "error_tolerance": "unknown"
+          },
           "status": "incomplete"
         },
         "evidence_cutoff": {
@@ -54,6 +61,7 @@
         "scale_scope": {
           "source": "frozen task materials",
           "target": "requested real-world claim",
+          "transform_kind": "scale",
           "transform_status": "incomplete"
         },
         "claim_ledger": [
@@ -258,7 +266,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-c02:root:v1",
-        "schema_version": "1.3",
+        "schema_version": "2.0",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -283,6 +291,13 @@
             "J": "observation only"
           },
           "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "task_profile": {
+            "target_query": "What the frozen materials support about delayed team delivery and how action, delay, experiment, exit, and no action compare",
+            "horizon": "unknown",
+            "environment": "Only the frozen materials at the cutoff",
+            "allowed_operations": "Analysis of frozen materials only; no real-world action",
+            "error_tolerance": "unknown"
+          },
           "status": "incomplete"
         },
         "evidence_cutoff": {
@@ -295,6 +310,7 @@
         "scale_scope": {
           "source": "frozen task materials",
           "target": "requested real-world claim",
+          "transform_kind": "scale",
           "transform_status": "incomplete"
         },
         "claim_ledger": [
@@ -448,7 +464,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-c03:root:v1",
-        "schema_version": "1.3",
+        "schema_version": "2.0",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -473,6 +489,13 @@
             "J": "observation only"
           },
           "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "task_profile": {
+            "target_query": "What the frozen materials support about the proposed automated eligibility rule and which protections are missing",
+            "horizon": "unknown",
+            "environment": "Only the frozen materials at the cutoff",
+            "allowed_operations": "Analysis of frozen materials only; no real-world action",
+            "error_tolerance": "unknown"
+          },
           "status": "incomplete"
         },
         "evidence_cutoff": {
@@ -485,6 +508,7 @@
         "scale_scope": {
           "source": "frozen task materials",
           "target": "requested real-world claim",
+          "transform_kind": "scale",
           "transform_status": "incomplete"
         },
         "claim_ledger": [
@@ -636,7 +660,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-k01:root:v1",
-        "schema_version": "1.3",
+        "schema_version": "2.0",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -661,6 +685,13 @@
             "J": "observation only"
           },
           "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "task_profile": {
+            "target_query": "What the frozen materials support about the label platform creator decline",
+            "horizon": "unknown",
+            "environment": "Only the frozen materials at the cutoff",
+            "allowed_operations": "Analysis of frozen materials only; no real-world action",
+            "error_tolerance": "unknown"
+          },
           "status": "incomplete"
         },
         "evidence_cutoff": {
@@ -673,6 +704,7 @@
         "scale_scope": {
           "source": "frozen task materials",
           "target": "requested real-world claim",
+          "transform_kind": "scale",
           "transform_status": "incomplete"
         },
         "claim_ledger": [
@@ -908,7 +940,7 @@
       ],
       "seed_parent_record": {
         "record_id": "ariadne:eval-k02:root:v1",
-        "schema_version": "1.3",
+        "schema_version": "2.0",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": null,
@@ -933,6 +965,13 @@
             "J": "observation only"
           },
           "identity_criterion": "The exact frozen prompt, material IDs, and cutoff remain unchanged.",
+          "task_profile": {
+            "target_query": "What the frozen materials support about the label supply shock, and whether a forecast or choice can be registered",
+            "horizon": "unknown",
+            "environment": "Only the frozen materials at the cutoff",
+            "allowed_operations": "Analysis of frozen materials only; no real-world action",
+            "error_tolerance": "unknown"
+          },
           "status": "incomplete"
         },
         "evidence_cutoff": {
@@ -945,6 +984,7 @@
         "scale_scope": {
           "source": "frozen task materials",
           "target": "requested real-world claim",
+          "transform_kind": "scale",
           "transform_status": "incomplete"
         },
         "claim_ledger": [

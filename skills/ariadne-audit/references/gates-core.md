@@ -2,7 +2,9 @@
 
 Sections 1-9 of the audit contract: subject freeze, transformations, main gates, expansions, strong-judgment items, formal tools, dynamic gates, the AI boundary, and intervention applications, plus the worked example. Governance, lifecycle, registries, challenge protection, capture detection, appeal and rollback testing, and retirement live in [governance-lifecycle.md](governance-lifecycle.md).
 
-Use this reference to produce a gate register, governance decision record, or intervention audit beside the common Method Record. Link all artifacts through stable record, claim, gate, version, actor, evidence, dissent, and change IDs.
+Use this reference to produce a gate register, governance decision record, or intervention audit beside the common Method Record. Link all artifacts through stable record, claim, gate, version, actor, evidence, dissent, and change IDs. Section anchors (§) point to the source text named in `ariadne-skill/references/source-navigation.json`.
+
+The tool layer turns the earlier contracts into observable, challengeable, reviewable, withdrawable bounded judgments; it adds no world facts, and form completeness never makes a fact hold (§13 opening). The seven main gates are the only main flow; the five expansion gates and thirteen steps are a diagnostic expansion that issues no competing pass state. **The tool layer never authorizes**: completed flows, evidence, and the strong-judgment eight yield only descriptions, candidate mechanisms, comparative judgments, strong-judgment candidates, or action requirements. Reading, checking original wording, and clarifying low-impact questions may use a proportionate short record, and not running the whole flow is never grounds for declaring existing domain facts nonexistent; formal diagnosis, forecasting, or high-impact use meets the full contract, and **renaming an output never lowers its responsibility**.
 
 ## 1. Freeze the Audit Subject
 
@@ -15,7 +17,7 @@ Separate four governance objects before judging framework health:
 | Actual practice | How do people and systems use the method in diagnosis, management, teaching, publication, and automation? |
 | Governing community | Who controls naming, merging, interpretation, publication, review, and the costs of misuse? |
 
-Record the subject type, exact version, owner, right holders, intended and prohibited uses, affected positions, observed harms, counterexample channel, falsifier, current lifecycle state, and current output ceiling. Reopen the audit when the subject identity, evidence, scale, affected positions, use, or authority changes.
+Record the subject type, exact version, owner, right holders, intended and prohibited uses, affected positions, observed harms, counterexample channel, falsifier, current lifecycle state, and current output ceiling. Every audited judgment already has a D0 candidate object record and a nine-axis scale record; when the object, boundary, scale, window, K, or **use** changes, existing judgments are never carried over unchanged. Reopen the audit when the subject identity, evidence, scale, affected positions, use, or authority changes.
 
 Never let a framework prove its own safety. Internal consistency, completed forms, validators, simulations, pressure tests, fluent reports, and community activity prove only that process artifacts exist.
 
@@ -30,11 +32,11 @@ Run IT1-IT4 in order. On failure, mark every later transformation `not_run`, pre
 | IT3 | Evidence strength -> judgment level | Claim contract, applicability boundary, reverse condition, falsifier, and withdrawal condition. | Candidate explanation or observation. |
 | IT4 | Judgment level -> action requirements and ceiling | Affected positions, protection, prohibited acts, stop, appeal, rollback, and missing N/J/O/C12 conditions. | Description, evidence requirement, or inaction requirement. |
 
-Do not use a complete SJ package to bridge a failed transformation. Passing all four transformations still produces no authorization.
+Failure semantics (§13.1): later steps that depend on the failed transformation are `not_run`, and the propositions, comparative judgments, strong-judgment candidates, or action requirements they supported stop or step down. **Downstream items sharing the same gap never recover their ceiling by renaming, splitting, or opening another branch.** Judgments with independent grounds whose use meets their own requirements are kept. A failure touching global source identity, a shared factual premise, the object boundary, or the lawful-use condition of the task stops or downgrades everything. **When a high-impact adoption gate fails, the same judgment is not kept for its original use by relabeling it ordinary opinion.** Do not use a complete SJ package to bridge a failed transformation. Passing all four transformations still produces no authorization.
 
 ## 3. Run the Seven Main Gates
 
-Treat IG1-IG7 as the only main flow. Use `passed`, `failed`, `not_run`, or a reasoned `not_applicable` only where permitted. After the first `failed`, every later gate is exactly `not_run`. IG1 failure is a hard `description_only` ceiling with the same missing-requirement/protective-pause distinction.
+Treat IG1-IG7 as the only main flow, run in the order of the specific proposition and its dependencies (§13.3). Use `passed`, `failed`, `not_run`, or a reasoned `not_applicable` only where permitted. Never admit that an object or evidence failed a gate while letting later gates self-report a pass; a material change in object, evidence version, affected positions, or use reruns from the earliest affected gate. After the first `failed`, every later gate is exactly `not_run`. IG1 failure is a hard `description_only` ceiling with the same missing-requirement/protective-pause distinction.
 
 | ID | Gate | Pass question | Failure response |
 |---|---|---|---|
@@ -43,12 +45,12 @@ Treat IG1-IG7 as the only main flow. Use `passed`, `failed`, `not_run`, or a rea
 | IG3 | Affected positions | Are direct, indirect, second-order, cross-domain, and cross-time positions recorded? | Complete impact accounting; pause strong judgment and high-impact use. |
 | IG4 | Power and anti-retaliation | Can low-power positions safely add evidence, rebut, refuse, stop, appeal, and exit? | Make no adverse inference from silence; lower publication and judgment levels. |
 | IG5 | Mediation and reflexivity | Do metrics, platforms, AI, publicity, or diagnosis change the evidence or object? | Represent a conditional state transition and stop uncontrolled recursive observation for every audited object, including the Stage-6 operation and observation-recursion cap in section 13 for confirmed S6 collectives. |
-| IG6 | Strong-judgment procedure | Does every triggered high-impact judgment pass SJ1-SJ8? | Keep an internal hypothesis, open assertion, or candidate mechanism; do not retain a comparative judgment. |
+| IG6 | Strong-judgment procedure | Does every proposition that its use and foreseeable impact make a strong judgment submit SJ1-SJ8 in full? Public dissemination raises scrutiny but does not alone make every output strong. | The strong judgment and its high-impact use stop; keep an internal hypothesis, open assertion, or candidate mechanism; independently grounded comparative judgments whose use complies are reviewed separately. |
 | IG7 | Action ceiling | What is the narrowest requirement, which acts are prohibited, and how do stop, appeal, and rollback work? | Description, gap list, inaction, or continued external deliberation. |
 
-After a failed gate, mark later gates `not_run`; do not self-report them as passed. A normal L1 or L2 record may mark IG6 `not_applicable` only with a concrete reason and may continue to IG7. If IG6 is `passed`, bind all eight SJ items as individually `passed` in the same run.
+After a failed gate, mark later gates `not_run`; do not self-report them as passed. **IG6 applicability rule:** a normal L1 or L2 record may mark IG6 `not_applicable` only with a concrete reason why the strong-judgment condition is not triggered, and this does not block IG7; IG6 `passed` binds all eight SJ items as individually `passed` in the same run. A "checked" string or empty reason never substitutes. In the Method Record this is the typed audit payload's `strong_judgment` register: `not_triggered` with a reason and all SJ items `not_applicable` when IG6 is `not_applicable`; `triggered` with every SJ item `passed` when IG6 is `passed`; and a triggered register with any failed SJ item never accompanies a passed IG6.
 
-Passing all seven gates means only that the record doors are complete. It does not prove a claim, select a value, or authorize action.
+Passing all seven gates means only that the record doors are complete. It does not prove a claim, select a value, or authorize action; IG7 records whether external normative and authorization layers exist and is never written as "authorized".
 
 ## 4. Expand With Five Gates and Thirteen Steps
 
@@ -71,20 +73,20 @@ Run DS01-DS13 in order:
 | DS03 | Signal layers | Separate facts, behavior, resources, feedback, narratives, feelings, conjecture, and noise. |
 | DS04 | Observation participation | Awareness, observer power, publication effects, and candidate reactions. |
 | DS05 | Dominant constraint | Candidate constraints, selected constraint, evidence, and competitors. |
-| DS06 | State and window | Applicable state prototype reference, within-state positions, parallel subsystems, and reverse conditions. |
+| DS06 | State and window | Applicable state prototype reference, within-state positions, parallel subsystems, and reverse conditions; when S0-S6 do not apply, state why and keep the domain's own states and windows. |
 | DS07 | Core structure | Anchors, carrying layers, transmission, boundaries, and feedback writeback. |
 | DS08 | Protected variables | Protected states, damage path, resources, redundancy, repair, and return path. |
 | DS09 | Carrying and repayment | Cost bearers, return recipients, stop rights, long-term depletion, and burden transfer. |
 | DS10 | Hazard and boundary type | Maintenance debt, clock mismatch, proxy substitution, summary loss, and object-conversion candidate. |
-| DS11 | Competing mechanisms | At least two mechanisms, required evidence, weakening evidence, and elimination rules. |
+| DS11 | Competing mechanisms | Competing mechanisms the material allows and that could change the judgment, required evidence, weakening evidence, and elimination rules; with no reasonable competitor, the search range and failure conditions instead of an invented mechanism. |
 | DS12 | Branch outlook | Triggers, early signals, reverse conditions, repair windows, and minimum requirements. |
 | DS13 | Output and writeback | Plain language, revision triggers, record scope, review, withdrawal, and rollback. |
 
-Do not treat a human state prototype as maturity or fate. Let DS08 create protection requirements, not sacrifice duties. Let DS09 locate carrying and depletion without assigning complete responsibility. Keep DS11 within causal contracts, DS12 conditional, and DS13 out of high-impact records until review and withdrawal are real.
+Do not treat a human state prototype as maturity or fate. Let DS08 create protection requirements, not sacrifice duties. Let DS09 locate carrying and depletion without assigning complete responsibility. Keep DS11 within causal contracts, DS12 conditional, and DS13 out of organizational records, eligibility, allocation, and public memory until review and withdrawal are real.
 
 ## 5. Require the Strong-Judgment Eight
 
-Trigger L3 - public, automated, institutional, high-power, or hard-to-reverse use, as the routing depth table defines it - when a judgment can affect disposition, qualification, reputation, resources, rights, or public memory.
+**A strong judgment is defined by use and foreseeable impact, not by tone, length, or confidence** (§13.5): a judgment intended, or reasonably foreseeable, to be used for handling, eligibility, rights, or resource allocation, or to materially affect a specific subject's reputation or public memory, and any judgment embedded in automated, organizational, or institutional decisions. Intermediate scores, recommendations, and material screening that feed those decisions are checked by their actual use. Public dissemination raises the scrutiny required, weighed with the evaluated subject, factual allegations, identifiability, reach, and consequences, but is not by itself sufficient to upgrade every output. Ordinary argument evaluation, mechanism explanation, and normative opinion that touch none of these uses may state clear conclusions with proportionate evidence and review. Calling an output commentary, research, or a draft never exempts it when it actually meets the condition. Only an L3 record that passes all seven gates and every SJ item registers a strong-judgment candidate, which still authorizes nothing.
 
 | ID | Component | Pass requirement |
 |---|---|---|
@@ -97,7 +99,7 @@ Trigger L3 - public, automated, institutional, high-power, or hard-to-reverse us
 | SJ7 | External-review trigger | Define trigger, independent reviewer, material access, and stop power. |
 | SJ8 | Rollback and writeback | Name target state, repair owner, authoritative version, and synchronization path. |
 
-SJ4-SJ8 verify at judgment level the same protections that PF-4 timed appeal, PF-5 anti-retaliation, PF-6 evidence correction, PF-7 external review, and PF-8 operational rollback bind at choice level; audit them as one list against the choice record's PF status instead of building a second registry, and treat SJ1-SJ3 - reverse conditions, repair window, and evidence requirements - as the audit-specific increment. If any item is absent or ineffective, fail IG6. A nominal appeal that cannot change a record or action is not an appeal. A reviewer under the same funding, evaluation, identity, promotion, control, or commercial chain is not independent merely because the label says so. A statement, apology, or new version is not rollback.
+If any item is missing, IG6 fails: the judgment does not enter the strong-judgment candidate set or keep its original high-impact use, and only an internal hypothesis, open assertion, or candidate mechanism remains; L2 comparative judgments that do not depend on the missing item, have independent grounds, and do not trigger strong-judgment use may be kept. SJ4-SJ8 verify at judgment level the same protections that PF-4 timed appeal, PF-5 anti-retaliation, PF-6 evidence correction, PF-7 external review, and PF-8 operational rollback bind at choice level; audit them as one list against the choice record's PF status instead of building a second registry, and treat SJ1-SJ3 - reverse conditions, repair window, and evidence requirements - as the audit-specific increment. If any item is absent or ineffective, fail IG6. A nominal appeal that cannot change a record or action is not an appeal. A reviewer under the same funding, evaluation, identity, promotion, control, or commercial chain is not independent merely because the label says so. A statement, apology, or new version is not rollback.
 
 Use levels only as responsibility levels:
 
@@ -105,7 +107,7 @@ Use levels only as responsibility levels:
 - Let L2 produce a bounded comparison or mechanism candidate when no high-responsibility use follows.
 - Let L3 produce only a strong-judgment candidate after the seven gates and SJ1-SJ8 pass.
 
-Downgrade whenever evidence coverage, object identity, reflexivity control, appeal, or anti-retaliation deteriorates.
+A higher level is more record responsibility, not closeness to truth (§13.6). Downgrade whenever evidence coverage, object identity, reflexivity control, appeal, or anti-retaliation deteriorates. Urgency never deletes the object, protection, or stop conditions; when waiting is costly, offer only the narrowest, revocable, monitorable action requirement outside any authorization.
 
 ## 6. Use Formal Tools Without Circular Proof
 
@@ -122,7 +124,7 @@ Use these tools as bounded records:
 | Stress test | Find boundary, scale, and adversarial failure modes. | Internal wind-tunnel results are not external evidence. |
 | AI boundary record | Disclose sources, gaps, responsibility, uncertainty, prohibited uses, review, and withdrawal. | AI cannot verify the world or itself. |
 
-Allow tools to reference stable record IDs. Reject circular references that make the tools support one another without external evidence.
+Allow tools to reference stable record IDs. Reject circular references that make the tools support one another without external evidence. Automatic checking suits closed fields, resolvable references, consistent version states, and reproducible calculations; it never replaces judging materials, affected people's testimony, causal identification, or value choice. Let programs carry the mechanically completable work so readers can examine the real reasons, and keep complete logs and clear prose separately but mutually locatable (§13.7).
 
 In every execution record, keep `passed`, `failed`, and `not_run` distinct. Put the complete IT1-IT4 and IG1-IG7 status maps in the typed audit `gate_register`; semantic validation enforces the first-failure stop. Keep `unknown`, `not_applicable`, `not_observable`, and `withheld_for_protection` distinct. Use only `description_only`, `diagnostic_only`, or `requirements_only`; set `can_authorize=false`, `can_execute=false`, and `authorization_effect=none` in any companion register.
 
@@ -138,27 +140,31 @@ Run DF1-DF9 after the seven main gates for dynamics, forecast, finite choice, or
 | DF4 | Register channels, thresholds, delays, feedback, and cascades. | Candidate mechanisms and differentiating observations. |
 | DF5 | Register conditions, parent-child paths, early and reverse signals. | Parallel paths without forced ranking. |
 | DF6 | Register target, horizon, simple baseline, calibration, and writeback. | Scenario only, not forecast. |
-| DF7 | Register N, PF, affected positions, options, and inaction. | Requirements only, not recommendation. |
+| DF7 | Register N, PF, affected positions, options, and inaction. | Pause only the recommendation the gap blocks; keep independent evaluations, conditional advice under explicit premises, and evidence needs; no execution permission. |
 | DF8 | Verify J, O, responsibility, stop, rollback, and remedy. | External handoff, no execution. |
 | DF9 | Append result, baseline comparison, error, downgrade, and retirement. | Preserve failure and open a new version. |
 
-Keep every proposed circle or variable `candidate`. Do not use forecast language when DF6 fails or executable language when DF7 or DF8 fails. Never overwrite a DF9 failure.
+Keep every proposed circle or variable `candidate`. Do not use forecast language ("will", "expected hit") when DF6 fails or executable language when DF7 or DF8 fails. DF3 marks unrelated items not applicable with reasons and pauses only propagation that depends on a missing condition, reviewing independent paths separately. Never overwrite a DF9 failure.
 
 ## 8. Enforce the AI Boundary
 
-Allow AI to organize supplied material, align sources, compare versions, generate candidate questions and competing paths, identify missing fields, calculate registered metrics, and flag internal contradictions.
+AI may organize supplied material, align and check locatable sources, compare versions, find field gaps, generate and compare candidate questions and competing paths, check contract consistency, calculate registered metrics, and flag internal contradictions; **where evidence and explicit normative premises allow, it should also compare mechanisms, form refutable judgments, recommend options, and draft complete rules, plans, and commentary** (§13.8, §13.11).
 
 Forbid AI from:
 
 - inventing sources or treating training memory as current evidence;
-- verifying real events, repair, safety, consent, anti-retaliation, or reviewer independence;
+- certifying real events, repair, safety, consent, anti-retaliation, or reviewer independence through its own generation, self-report, or internal flow;
 - diagnosing personality or clinical conditions;
 - disclosing for an affected person or treating silence as evidence or consent;
-- choosing value premises, circle boundaries, decision subjects, or jurisdiction;
-- converting a simulation into an observation or a forecast into authorization;
-- independently making a high-risk decision.
+- deciding contested value premises, binding circle boundaries, decision subjects, or jurisdiction for others;
+- converting a simulation into an observation or a forecast into authorization, or signing authorization;
+- hiding uncertainty or independently making a high-risk real-world decision.
 
-Require source and gap disclosure, observation/inference/analogy labels, an accountable human, allowed and prohibited uses, uncertainty, review time, appeal, withdrawal, and correction. Distinguish protective withholding from absence of evidence.
+Every AI output states which materials it used, what is missing, which parts are observation, inference, or analogy, who bears final responsibility, how it may be used, and when it is reviewed or withdrawn; protective omission is distinguishable from "no evidence". Responsibility follows the actual division of labor among material providers, those who set goals and permissions, system maintainers, executors, and reviewers; facilities and programs do not become responsible subjects by outputting advice or executing instructions; more automation never pushes all responsibility onto the person who clicked last; reviewers need enough material, time, competence, and an effective power to stop. Fidelity to an original never proves that what the original says about the world is true. Variables AI proposes are recorded as model candidates with minimum tests and prohibited uses.
+
+**Material checking** (§13.11.1). Check separately whether a source exists, whether cited information is correct, whether the original passage supports the sentence, and whether the world fact the sentence states has enough grounds. A given source not mentioning something does not make the sentence wrong; faithfully relaying a wrong source does not establish the fact. Local knowledge, oral accounts, and protected material without public web pages keep a verification path and disclosure scope. Retrieval augmentation and consistency checks are limited by retrieval coverage, shared sources, and error types: **stable repeated errors can look consistent, and several models repeating one false source are not several independent pieces of evidence**. A formal checker confirms a derivation, not its premises.
+
+**Tool action chains and task endpoints** (§13.11.2). Record suggestion, tool request, application execution, external state, and consequence separately: a model writing "stopped" does not mean the executor received it, an interface saying "deleted" does not mean downstream copies vanished, and a human edit to a suggestion does not mean it took effect before an irreversible step. The verification endpoint comes from the user's request or the institutional task: a draft is delivered when correctly saved, openable, and meeting the requirements; changing an external record needs the external object's state, not just a tool's success return; actual remedy needs resources, rights, or services to arrive. **A narrower endpoint truly completed is acknowledged without waiting for every life consequence, and a wider endpoint is never replaced by a front-end success receipt.** Distinguish independently readable, independently modifiable, and jointly written objects; modifications to shared state keep order, version preconditions, and conflict handling; re-verify authority and stop conditions before any irreversible action. **A timed-out request means the result is unknown, not that it did not execute**: check by request ID or object state before retrying. Stopping is complete only when the stop was issued, the executor confirmed it, in-flight actions ended, and consequences already caused were remedied, each registered separately. A failed repair keeps the failed object and its real consequences and is never overwritten by a new normal output.
 
 When auditing an AI-assisted governance artifact, check for original fact records, affected-position testimony, counterexamples, low-power feedback, external review, appeals that changed outcomes, evidence-control relations, and disclosure of model filtering or rewriting. If more than three of these categories are missing, cap the artifact at a lightweight observation or question list. Treat that rule as a conservative ceiling, not an empirically calibrated risk score.
 
@@ -181,7 +187,7 @@ Before a relationship, family, organization, platform, institution, public-opini
 - a D0 object, `SP=<A,X,T,O,C,R,I,N,J>`, identity criterion, time, and sources;
 - all affected, low-power, weak-signal, and unable-to-exit positions;
 - the seven main gates and full protection floor;
-- domain evidence coverage, source gaps, and the exact downgrade effect of each gap;
+- domain evidence coverage, source gaps, and the exact downgrade effect of each gap, chosen from the closed list in the application contracts' `common_rule` (never `none` or `ignore`), propagated claim by claim; partial coverage only lowers the ceiling and never voids independently grounded argument evaluation, procedural criticism, or conditional recommendations under explicit premises;
 - a bounded diagnosis and action ceiling;
 - a choice or explicit inaction;
 - a candidate T type only;
@@ -232,14 +238,14 @@ contestability:
 authorization_effect: none
 ```
 
-IT1 is the first failed transformation, so IT2-IT4 are `not_run`. IG1 is the first failed main gate, so IG2-IG7 are `not_run`; the unavailable evidence and protection facts remain findings outside those unrun gate results. A polished later template cannot repair either break. Five malicious-compliance signals justify high-risk classification. The result may describe missing requirements and the protective pause, but the first-gate failures cap the Method Record at `description_only`; it does not issue requirements, personnel decisions, or authorization.
+IT1 is the first failed transformation, so IT2-IT4 are `not_run`. IG1 is the first failed main gate, so IG2-IG7 are `not_run`; the unavailable evidence and protection facts remain findings outside those unrun gate results. Because the intended use is eligibility and allocation, the strong-judgment register is `triggered`, and its SJ items are `not_run` behind the IG1 failure. A polished later template cannot repair either break. Five malicious-compliance signals justify high-risk classification. The result may describe missing requirements and the protective pause, but the first-gate failures cap the Method Record at `description_only`; it does not issue requirements, personnel decisions, or authorization.
 
 ### Linked common Method Record
 
 <!-- method-record-example:start -->
 ```yaml
-record_id: ariadne:audit:AUD-AI-HR-009
-schema_version: '1.3'
+record_id: ariadne:hr-risk-score:root:v1
+schema_version: '2.0'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -271,10 +277,16 @@ object_contract:
   - authoritative record
   time_window: Audit current use and all score-derived records since deployment.
   scale_profile:
-    A: individual scores within one employer
-    I: employment and household spillover
-    J: no verified authority for automated disposition
+    aggregation: individual scores within one employer
+    impact: employment and household spillover
+    jurisdiction: no verified authority for automated disposition
   identity_criterion: A model, input, use, population, or authority change requires a new audit.
+  task_profile:
+    target_query: Whether the risk score may keep its proposed staffing and promotion use
+    horizon: Current use and all score-derived records since deployment
+    environment: The named model version, input pipeline, and employer process
+    allowed_operations: Audit and protective-pause description only
+    error_tolerance: Gate-level pass, fail, or not-run findings
   status: candidate
 evidence_cutoff:
   as_of: '2026-08-04T12:00:00+08:00'
@@ -286,6 +298,7 @@ evidence_cutoff:
 scale_scope:
   source: model and proposed employer use
   target: high-impact employee disposition
+  transform_kind: composite
   transform_status: failed
 claim_ledger:
 - claim_id: AUD-CLAIM-TRACE
@@ -305,13 +318,15 @@ claim_ledger:
   - SRC-APPEAL-PROCESS
   counterevidence_ids: []
   support_rule_ids: []
+  depends_on:
+  - AUD-CLAIM-TRACE
 rule_registry: []
 unknowns_and_counterevidence:
   unknowns:
-  - Training provenance
-  - group error
-  - protected-position testimony
-  - and independent review are unavailable.
+  - 'unknown: training provenance'
+  - 'unknown: error by group'
+  - 'withheld_for_protection: protected-position testimony'
+  - 'unknown: independent review'
   counterevidence:
   - A future externally verified study could support a narrower research-only use under a new record.
 conflicts: []
@@ -326,7 +341,7 @@ module_runs:
   status: completed
   input_records: []
   output_record:
-    record_id: ariadne:audit:AUD-AI-HR-009
+    record_id: ariadne:hr-risk-score:root:v1
     record_version: 1
 module_payloads:
 - module: ariadne-audit
@@ -345,6 +360,18 @@ module_payloads:
         IG5: {status: not_run, finding: Stopped after IG1.}
         IG6: {status: not_run, finding: Stopped after IG1.}
         IG7: {status: not_run, finding: Stopped after IG1.}
+    strong_judgment:
+      status: triggered
+      reason: The score is intended for staffing and promotion decisions, an eligibility and allocation use.
+      components:
+        SJ1: {status: not_run, finding: Stopped after IG1.}
+        SJ2: {status: not_run, finding: Stopped after IG1.}
+        SJ3: {status: not_run, finding: Stopped after IG1.}
+        SJ4: {status: not_run, finding: Stopped after IG1.}
+        SJ5: {status: not_run, finding: Stopped after IG1.}
+        SJ6: {status: not_run, finding: Stopped after IG1.}
+        SJ7: {status: not_run, finding: Stopped after IG1.}
+        SJ8: {status: not_run, finding: Stopped after IG1.}
     contestability:
       owner:
         contact: independent-review@example.invalid

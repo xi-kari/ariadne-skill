@@ -28,7 +28,7 @@
   ],
   "properties": {
     "record_id": {"type": "string", "pattern": "^ariadne:[A-Za-z0-9._:-]+$"},
-    "schema_version": {"const": "1.3"},
+    "schema_version": {"const": "2.0"},
     "record_version": {"type": "integer", "minimum": 1},
     "lineage_kind": {"enum": ["root", "linear", "merge"]},
     "parent_record_id": {"type": ["string", "null"], "minLength": 1},
@@ -242,6 +242,7 @@
         "time_window",
         "scale_profile",
         "identity_criterion",
+        "task_profile",
         "status"
       ],
       "properties": {
@@ -267,6 +268,18 @@
           "additionalProperties": {"type": "string", "minLength": 1}
         },
         "identity_criterion": {"type": "string", "minLength": 1},
+        "task_profile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target_query", "horizon", "environment", "allowed_operations", "error_tolerance"],
+          "properties": {
+            "target_query": {"type": "string", "minLength": 1},
+            "horizon": {"type": "string", "minLength": 1},
+            "environment": {"type": "string", "minLength": 1},
+            "allowed_operations": {"type": "string", "minLength": 1},
+            "error_tolerance": {"type": "string", "minLength": 1}
+          }
+        },
         "status": {"enum": ["candidate", "incomplete", "supported", "converted", "dissolved"]}
       }
     },
@@ -283,10 +296,13 @@
     "scaleScope": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["source", "target", "transform_status"],
+      "required": ["source", "target", "transform_kind", "transform_status"],
       "properties": {
         "source": {"type": "string", "minLength": 1},
         "target": {"type": "string", "minLength": 1},
+        "transform_kind": {
+          "enum": ["none", "scale", "circle_relation", "representation_translation", "composite"]
+        },
         "transform_status": {"enum": ["not_needed", "candidate", "incomplete", "audited", "failed"]}
       }
     },
@@ -304,12 +320,13 @@
       ],
       "properties": {
         "claim_id": {"type": "string", "minLength": 1},
-        "claim_type": {"enum": ["D", "G", "E", "H", "N", "O"]},
+        "claim_type": {"enum": ["D", "G", "E", "H", "N", "O", "F"]},
         "text": {"type": "string", "minLength": 1},
         "status": {"enum": ["candidate", "observed", "supported", "contradicted", "unresolved", "withdrawn", "retired"]},
         "support_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "support_rule_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "counterevidence_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "depends_on": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
         "ceiling": {"$ref": "#/$defs/outputCeiling"}
       },
       "allOf": [
@@ -478,9 +495,10 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["mechanism_id", "channel_observation", "discriminating_prediction", "reverse_or_falsifier", "residual_comparison_rule"],
+            "required": ["mechanism_id", "temporal_route", "channel_observation", "discriminating_prediction", "reverse_or_falsifier", "residual_comparison_rule"],
             "properties": {
               "mechanism_id": {"type": "string", "minLength": 1},
+              "temporal_route": {"enum": ["current_state", "carried_history", "historical_increment", "not_applicable"]},
               "channel_observation": {"type": "string", "minLength": 1},
               "discriminating_prediction": {"type": "string", "minLength": 1},
               "reverse_or_falsifier": {"type": "string", "minLength": 1},
@@ -493,21 +511,56 @@
     "choicePayload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["facts", "values", "options", "jurisdiction", "authorization", "stop_conditions", "rollback_plan"],
+      "required": ["facts", "values", "options", "jurisdiction", "authorization", "stop_conditions", "rollback_plan", "analytic_recommendation"],
       "properties": {
         "facts": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
         "values": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
-        "options": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["option_id", "kind", "description"],
+            "properties": {
+              "option_id": {"type": "string", "minLength": 1},
+              "kind": {
+                "enum": ["maintain_status_quo", "active_action", "delayed_action", "probing_action", "exit_or_transfer", "no_action"]
+              },
+              "description": {"type": "string", "minLength": 1}
+            }
+          }
+        },
         "jurisdiction": {"type": "string", "minLength": 1},
         "authorization": {"type": "string", "minLength": 1},
         "stop_conditions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
-        "rollback_plan": {"type": "string", "minLength": 1}
+        "rollback_plan": {"type": "string", "minLength": 1},
+        "analytic_recommendation": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/analyticRecommendation"}
+          ]
+        }
+      }
+    },
+    "analyticRecommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["option_id", "normative_premise_ids", "reasons", "costs", "strongest_counterargument", "change_conditions", "adoption_status"],
+      "properties": {
+        "option_id": {"type": "string", "minLength": 1},
+        "normative_premise_ids": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1, "uniqueItems": true},
+        "reasons": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "costs": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "strongest_counterargument": {"type": "string", "minLength": 1},
+        "change_conditions": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 1},
+        "adoption_status": {"const": "deliberation_only"}
       }
     },
     "auditPayload": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["gate_register", "contestability"],
+      "required": ["gate_register", "strong_judgment", "contestability"],
       "properties": {
         "gate_register": {
           "type": "object",
@@ -537,6 +590,30 @@
                 "IG5": {"$ref": "#/$defs/gateResult"},
                 "IG6": {"$ref": "#/$defs/gateResult"},
                 "IG7": {"$ref": "#/$defs/gateResult"}
+              }
+            }
+          }
+        },
+        "strong_judgment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reason", "components"],
+          "properties": {
+            "status": {"enum": ["triggered", "not_triggered"]},
+            "reason": {"type": "string", "minLength": 1},
+            "components": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["SJ1", "SJ2", "SJ3", "SJ4", "SJ5", "SJ6", "SJ7", "SJ8"],
+              "properties": {
+                "SJ1": {"$ref": "#/$defs/gateResult"},
+                "SJ2": {"$ref": "#/$defs/gateResult"},
+                "SJ3": {"$ref": "#/$defs/gateResult"},
+                "SJ4": {"$ref": "#/$defs/gateResult"},
+                "SJ5": {"$ref": "#/$defs/gateResult"},
+                "SJ6": {"$ref": "#/$defs/gateResult"},
+                "SJ7": {"$ref": "#/$defs/gateResult"},
+                "SJ8": {"$ref": "#/$defs/gateResult"}
               }
             }
           }
@@ -623,8 +700,10 @@
         "simple_baseline",
         "candidate_mechanisms",
         "paths",
+        "recursion_stage",
         "expression",
         "evaluation_rule",
+        "response_regime",
         "calibration_plan",
         "early_signals",
         "reverse_signals",
@@ -656,8 +735,10 @@
         "simple_baseline": {"type": "string", "minLength": 1},
         "candidate_mechanisms": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 2, "uniqueItems": true},
         "paths": {"$ref": "#/$defs/nonEmptyStringArray", "minItems": 2, "uniqueItems": true},
+        "recursion_stage": {"type": "integer", "minimum": 0, "maximum": 3},
         "expression": {"type": "string", "minLength": 1},
         "evaluation_rule": {"type": "string", "minLength": 1},
+        "response_regime": {"type": "string", "minLength": 1},
         "calibration_plan": {
           "type": "object",
           "additionalProperties": false,

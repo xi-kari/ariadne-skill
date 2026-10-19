@@ -1,5 +1,34 @@
 {
+  "source": "Part 8 of Xikari, Conditions, Structures, and Transformations (Xikari-条件结构与转化论), 2026-10",
+  "source_sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
   "source_part": "Part 8",
+  "applicability": "S0-S6 apply only to intentional human collectives formed around an expressible shared problem, commitment, goal, or meaning arrangement and kept running through roles, resources, rules, relations, and feedback. They are not universal laws, not individual personality, physical systems, species evolution, or the cosmos, and within their domain they are not a maturity ladder, a required historical sequence, or a value ranking. Numbers only index prototypes. Classification is descriptive and revocable and authorizes nothing.",
+  "minimum_contract": {
+    "freeze": "object_id, K, the nine-axis SP, time window, and subsystem scope before classifying; K freezes the criterion for tracking the object and does not require membership, actual boundary, roles, commitments, or self-identification to be stable already; a changed K opens a new version and records under different K are not joined into one object path before identity is rechecked.",
+    "classification_modes": [
+      "single_dominant",
+      "mixed",
+      "parallel",
+      "unknown"
+    ],
+    "missing_states": {
+      "not_collected": "obtainable but not collected",
+      "not_observable": "not observable under current permission, safety, or measurement conditions; a weak position is never required to expose itself to fill the record",
+      "not_applicable": "established only after an applicability check",
+      "conflicted": "qualified sources conflict",
+      "unknown": "attempted and still indistinguishable"
+    },
+    "rules": [
+      "Missing key entry, falsifier, or scale material supports only unknown or a pause.",
+      "mixed and parallel each need positive evidence for several prototypes at their own positions; ignorance is never renamed as mixed.",
+      "single_dominant names exactly one candidate; mixed and parallel name at least two and register paths; unknown names no supported prototype and states which key material is missing.",
+      "Every candidate has object evidence for at least one entry item and one observable item; once a falsifier item is supported, that candidate is blocked and cannot be kept by softer wording.",
+      "Evidence references resolve to an external evidence registry; the reviewer is independent of the classified object and its aliases; appeal and rollback bind procedure IDs and states rather than self-declarations.",
+      "normative_status stays descriptive_only and action_authorization stays none; withdrawal or rewriting keeps original evidence, dissent, and the version chain.",
+      "A prototype configuration does not presuppose CM-PHASE multi-region evidence; sustained fit to one prototype supports a bounded classification without proving a phase transition, and a two-region pattern does not by itself prove fit to a prototype.",
+      "When the task only needs a direct description of members, channels, and load, skip the prototypes."
+    ]
+  },
   "toc": [
     {
       "id": "S0",
@@ -39,12 +68,12 @@
       "id": "S0",
       "name": "anchor condensation",
       "entry": [
-        "S0-E1: A shared problem or meaning arrangement produces visible local gathering, while the boundary and K are not yet stable.",
+        "S0-E1: Under the K frozen for tracking this object, a shared problem or meaning arrangement produces visible local gathering, while membership, actual boundary, or modes of commitment are not yet stable.",
         "S0-E2: Candidate generative actions recur, while carrying is still thin."
       ],
       "exit": [
-        "S0-X1: The anchor, boundary, and generative roles are stable across windows and traceable commitment with initial carrying appears; S1 may be tested.",
-        "S0-X2: The gathering disperses, splits, is absorbed, or enters dormancy, without having to pass through S1."
+        "S0-X1: Within windows where the same K still applies and object identity is traceable, the anchor, actual boundary, and generative roles are stable across windows and traceable commitment with initial carrying appears; S1 may be tested.",
+        "S0-X2: The gathering disperses, splits, is absorbed, or enters dormancy, without having to pass through S1; when the original K no longer applies, judge object conversion or termination separately."
       ],
       "observables": [
         "S0-O1: Competing formulations are still under negotiation.",
@@ -61,7 +90,7 @@
         "If stable roles, carrying, and repeated operation already exist, S0 is not the dominant state."
       ],
       "scale_boundary": "Distinguish generators, early participants, potential exiters, and external namers; do not aggregate individual personalities into a collective state.",
-      "evidence_elevation": "A meaning arrangement causing resource, action, or coordination differences requires an H1-instance; a specified channel causing formation requires a G2-instance; trauma or failure changing the future requires an H5-instance first, then a G3-instance check.",
+      "evidence_elevation": "A meaning arrangement causing resource, action, or coordination differences requires an H1-instance; a specified channel causing formation requires a G2-instance; historical traces follow H5, future effects through a current carrier follow the carried route (source §4.5), and only a historical increment beyond the current representation adds G3.",
       "contract_links": "U01/U02/U03/U08/U09/U11; H1/H2/H5; G1/G2/G3; C1/C2/C4/C5/C10/C12",
       "non_authorization": "The only conclusion S0 permits is compatibility with the anchor-condensation prototype within the stated object, scale, and window. It cannot prove that participants lack capacity, value, or will, and it does not authorize support, dissolution, screening, or exclusion."
     },
@@ -88,10 +117,10 @@
       ],
       "falsifiers": [
         "If multi-center carrying still runs stably while the generative core has low involvement, core dependence is refuted.",
-        "If the anchor and K cannot be maintained across windows, return to S0, split, merge, or unknown."
+        "If the anchor is unstable while the same K still applies and the object is traceable, S0 may be retested; if the original K no longer applies or object identity is unclear, first check conversion or termination, or keep unknown, before classifying an identifiable object."
       ],
       "scale_boundary": "Freeze generative roles, early carriers, higher-level namers, and external supporters; when the organization chart conflicts with actual channels, record conflicted.",
-      "evidence_elevation": "Outcome effects of the anchor or of the generative core require H1 and G2 respectively; future effects of early institutions or trauma require H5 and G3.",
+      "evidence_elevation": "Outcome effects of the anchor or of the generative core require H1 and G2 respectively; carried effects of early institutions or trauma follow the carried route, traces are checked under H5, and a historical conditional residual is checked separately under G3.",
       "contract_links": "U01/U02/U03/U04/U06/U07/U09/U11; H1/H2/H3/H4; G1/G2/G3; C1/C2/C3/C5/C9/C10/C11/C12",
       "non_authorization": "S1 may not be read as immature, backward, or due for integration. It grants generators no qualification for permanent leadership, expanded power, forced institutionalization, or replacing others."
     },
@@ -120,7 +149,7 @@
         "If the alleged differentiation comes only from the center's unilateral labels, withdraw it as well."
       ],
       "scale_boundary": "The whole, the center, new carriers, exiters, and externalized costs must enter together; widening the observation scope adds no J authority over new members.",
-      "evidence_elevation": "Expansion or channels causing outcome differences require G2 or G4; anchor coordination requires H1; observation effects on expression, publicity, and power require H4; historical effects require H5 and G3.",
+      "evidence_elevation": "Expansion or channels causing outcome differences require G2 with CAUSAL; cross-scale claims add D3/E5, and closure or conversion claims add G4; anchor coordination requires H1; observation effects on expression, publicity, and power require H4; historical traces require H5, carried transmission follows the carried route, and a historical conditional residual adds G3.",
       "contract_links": "U01/U02/U03/U04/U06/U07/U08/U09/U11; H1/H2/H3/H4/H5; G1/G2/G3/G4; C1/C2/C3/C4/C5/C6/C7/C9/C10/C11/C12",
       "non_authorization": "S2 does not allow naming non-identifying, exiting, or ambiguously participating members as negative subjects, and it does not allow expansion needs to authorize unifying thought, restricting exit, or purging dissent."
     },
@@ -149,7 +178,7 @@
         "If, after removing common inputs, measurement bias, and short-term peaks, the constraints show no connected relation, or alternative channels, writeback, and recovery at the carrying end remain effective, S3 is not dominant."
       ],
       "scale_boundary": "Split the center, the edge, functional units, carrying ends, and externally affected positions; allow parallel. The disappearance of weak signals may not be treated as the disappearance of problems.",
-      "evidence_elevation": "Power or mediation masking requires H4; specified channels and mutual reinforcement require G2; historical lock-in requires G3; cross-scale closure failure requires G4.",
+      "evidence_elevation": "Power or mediation masking requires H4; specified channels and mutual reinforcement require G2; historically formed current constraints follow the carried route and an extra historical residual is checked under G3; cross-scale closure failure requires G4.",
       "contract_links": "U02/U03/U05/U06/U07/U08/U09/U10/U11; H1/H2/H3/H4/H5; G2/G3/G4; C2/C3/C4/C5/C6/C7/C9/C10/C11/C12",
       "non_authorization": "An S3 classification does not authorize breaking barriers, purging, takeover, forced reform, or handing transition costs to weak positions. It only says the constraint network must keep being distinguished from competing explanations."
     },
@@ -178,7 +207,7 @@
         "When no usable new structure exists and functions keep rupturing, the process may not be packaged as improving reconfiguration."
       ],
       "scale_boundary": "Cover the pre-change baseline, transition, cooling, rollback, and recovery windows; separate reform initiators, executors, carriers, and cost bearers.",
-      "evidence_elevation": "Reconfiguration causing improvement or harm requires G2 and the CAUSAL gate; object or intervention conversion requires G4; whether failed attempts affect the future requires G3, and a tunneling analogy is no substitute.",
+      "evidence_elevation": "Reconfiguration causing improvement or harm requires G2 and the CAUSAL gate; object or intervention conversion requires G4; whether failed attempts affect the future through current carriers follows the carried route, an extra historical residual adds G3, and a tunneling analogy is no substitute.",
       "contract_links": "U03/U05/U06/U07/U09/U10/U11; H1/H2/H3/H4/H5; G2/G3/G4; C2/C3/C4/C5/C6/C7/C9/C10/C11/C12",
       "non_authorization": "A transition valley is at most a description awaiting testing; it cannot justify unlimited cost, irreversible harm, cancelled appeal, or sacrificing low-power positions. S4 produces no action authorization for demolition, purging, or forced migration."
     },
@@ -206,7 +235,7 @@
         "If the efficiency advantage disappears once maintenance, recovery, exit, and external costs are included, or local failures cascade rapidly while the center's involvement is low, withdraw S5."
       ],
       "scale_boundary": "Management-level totals must be split down to maintainers, low-power carriers, exiters, and externally affected positions; cover high-load, low-load, disturbance, recovery, and maintenance windows.",
-      "evidence_elevation": "Causes of efficient coordination and loophole effects require G2 or H4; historical inertia requires H5 and G3; cross-scale replication requires G4.",
+      "evidence_elevation": "Causes of efficient coordination and loophole effects require G2 or H4; historical traces, sustained carrier effects, and extra residuals follow H5, the carried route, and G3 respectively; cross-scale replication requires a D3/E5 mapping and independent target evidence, and closure or conversion claims add G4.",
       "contract_links": "U01-U11; H1/H2/H3/H4/H5; G1/G2/G3/G4; C1-C12",
       "non_authorization": "S5 is not a label of goodness, maturity, or an exportable model. Persistence, growth, and selection do not equal legitimacy, and they do not authorize expansion, replication, takeover, or demanding that members bear more."
     },
@@ -234,12 +263,16 @@
         "If, under comparable disturbances, recovery keeps slowing, local failures cascade, error correction depends on a single point, or successors cannot obtain knowledge, permissions, and protection, withdraw S6."
       ],
       "scale_boundary": "Require long windows across disturbances, recovery, succession, and slow variables; overall averages may not mask harm at the edges. Freeze autonomy, lateral coordination, higher-level backstop, and actual authorization.",
-      "evidence_elevation": "Effects of regulation, feedback, and multi-center arrangements require G2 and the CAUSAL gate; future increments from learning, institutional memory, and intergenerational succession require H5 and G3; cross-scale extrapolation requires G4.",
+      "evidence_elevation": "Effects of regulation, feedback, and multi-center arrangements require G2 and the CAUSAL gate; learning, institutional memory, and intergenerational succession first check carrier retention and actual continuation, traces are checked under H5, and an extra historical increment under G3; cross-scale extrapolation requires D3/E5 and independent target evidence, and closure or conversion claims add G4.",
       "contract_links": "U01-U11; H1/H2/H3/H4/H5; G1/G2/G3/G4; C1-C12",
       "non_authorization": "S6 is not an absolute end state, a conflict-free society, or the end of history. It can regress, split, be taken over, transfer functions, enter X0, or collapse, and it gains no decision power over any other object."
     }
   ],
   "x0": {
+    "origin_policy": "any_registered_origin",
+    "required_state_ids": "empty set: no S0-S6 prototype is a required origin",
+    "s5_or_s6_prerequisite": false,
+    "status_rule": "X0 is not an eighth state or S7; it is an independent lifecycle path that may start from any registered origin without first matching any S0-S6 prototype or CM-PHASE pattern.",
     "candidate_entries": [
       "First: the anchor is completed, has lost applicability, has been carried by a safer object, or continued maintenance now mainly serves the organization's own survival. This judgment must be independently reviewable; the center may not rewrite the goal and then certify completion itself.",
       "Second: people, functions, resources, relations, records, debts, and irreplaceable values have been inventoried, and a verifiable receiver or protection arrangement exists."

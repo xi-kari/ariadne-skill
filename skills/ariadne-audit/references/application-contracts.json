@@ -1,8 +1,8 @@
 {
-  "source": "Part 15.3 of Cross-scale Multi-circle Structural Reasoning Framework v8.2",
-  "source_sha256": "608A4E4099B18C96C18ED3C92A2AB5CDACBD737DACA4214C77DEBDD795DA3A20",
+  "source": "Part 15.3 of Xikari, Conditions, Structures, and Transformations (Xikari-条件结构与转化论), 2026-10",
+  "source_sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
   "common_rule": {
-    "text": "Every application freezes D0, SP, K, time window, sources, affected and low-power positions, applies PF-1 through PF-10, records source gaps, and keeps authorization_effect none.",
+    "text": "Every application freezes D0, SP, K, time window, sources, and affected and low-power positions before the seven main gates, applies PF-1 through PF-10, records source gaps, and keeps authorization_effect none. A domain name is not an object contract; a module only changes the questions, risk checks, and action ceiling and never replaces domain fact-finding, professional judgment, legal procedure, or authorization.",
     "dynamic_entry": {
       "when": "Whenever one of the nine application modules needs dynamic analysis, it must additionally declare all nine items below.",
       "required_declarations": [
@@ -18,106 +18,319 @@
       ],
       "model_output_rule": "Model-generated scenarios stay hypothetical or simulated and are never written back as observed.",
       "downgrade_exits": [
+        "When only explanation is needed, do not force a multi-circle forecast.",
         "When a simple baseline is sufficient, keep the simpler module record.",
+        "An unregistered or uncalibrated forecast stays a path hint.",
+        "When authorization is incomplete, real execution stops while action requirements and non-executing analytic recommendations, institutional drafts, and plans remain.",
         "The existence of the complex flow never becomes pressure toward real-world disposition."
       ]
     },
     "dynamic_focus": [
-      {"modules": ["APP-REL", "APP-FAM"], "focus": "role activation, inability to exit, and slow, medium, and fast states"},
-      {"modules": ["APP-ORG", "APP-PLT"], "focus": "metrics, bridging, propagation, and institutional writeback"},
-      {"modules": ["APP-INS", "APP-OPI", "APP-ULS"], "focus": "representation, low-visibility positions, cross-layer aggregation loss, and calibration drift"},
-      {"modules": ["APP-SPC", "APP-EMG"], "focus": "material channels, capacity, thresholds, delays, and emergency authorization"}
-    ]
+      {
+        "modules": [
+          "APP-REL",
+          "APP-FAM"
+        ],
+        "focus": "role activation, inability to exit, and slow, medium, and fast states"
+      },
+      {
+        "modules": [
+          "APP-ORG",
+          "APP-PLT"
+        ],
+        "focus": "metrics, bridging, propagation, and institutional writeback"
+      },
+      {
+        "modules": [
+          "APP-INS",
+          "APP-OPI",
+          "APP-ULS"
+        ],
+        "focus": "representation, low-visibility positions, cross-layer aggregation loss, and calibration drift"
+      },
+      {
+        "modules": [
+          "APP-SPC",
+          "APP-EMG"
+        ],
+        "focus": "material channels, capacity, thresholds, delays, and emergency authorization"
+      }
+    ],
+    "source_gap_effects": {
+      "rule": "Each supporting claim registers claim_id, source_refs, and a closed max_inference; each gap selects from the closed effect list, never 'none' or 'ignore'. Gap effects propagate claim by claim along dependencies; one uncovered item never voids everything.",
+      "allowed_effects": [
+        "lower_confidence",
+        "defer_claim",
+        "require_external_verification",
+        "register_catalog_gap_only",
+        "no_external_action",
+        "require_domain_protocol",
+        "narrow_authorization",
+        "defer_intervention"
+      ],
+      "partial_coverage": "Partial coverage is not uselessness; it only means the ceiling falls with the gap. Independently grounded argument evaluation, procedural criticism, and conditional recommendations under explicit premises are kept separately."
+    }
   },
   "contracts": [
     {
       "id": "APP-REL",
       "object_and_method": "Treat the bounded interaction, commitments, boundaries, responsibility sharing and return flow as the object, never either person's personality; separate relationship, individual psychology, family institution and coercion or violence events, and re-register SP and K after conversion.",
-      "protected_positions": ["both direct participants", "people dependent on shared housing, resources or care", "positions with lower exit, identity, safety or reputation power", "children, family members or supporters exposed to spillover"],
-      "evidence_scope": "Partial coverage supports lightweight questions about safety, one-way responsibility, return flow, repair willingness and respected boundaries. It does not establish personality, causal responsibility or intervention effectiveness; violence, coercion, property, housing or guardianship consequences require external domain procedures.",
-      "allowed_output": ["bounded natural-language observations", "risk escalation and protection needs", "independent support requirements", "candidate T0-T4 task, favoring T0 or T4 when safety is threatened"],
-      "prohibited_leap_or_action": ["do not diagnose personality or illness", "do not infer consent from silence, delay, anonymous or proxy submission", "do not authorize mediation, compelled disclosure, separation or property disposition", "do not require continued exposure in the name of love, duty or maturity"],
-      "stop_or_failure_boundary": ["stop joint diagnosis or dialogue for violence, coercion, chronic humiliation, resource control, isolation, sustained deception or inability to exit freely", "stop when refusal or withdrawal is ignored, retaliation follows feedback, or material is used to locate or shame a person", "lower exposure, preserve only necessary evidence and move to independent safety, professional or legal support"],
+      "protected_positions": [
+        "both direct participants",
+        "people dependent on shared housing, resources or care",
+        "positions with lower exit, identity, safety or reputation power",
+        "children, family members or supporters exposed to spillover"
+      ],
+      "evidence_scope": "Partial coverage supports lightweight questions about safety, one-way responsibility, return flow, repair willingness and respected boundaries. It does not establish personality, causal responsibility or intervention effectiveness; violence, coercion, property, housing or guardianship consequences require external domain procedures. Weak signals (hesitation, silence, avoidance, informal help-seeking, repeatedly crossed boundaries) are kept; low power is registered by housing, resource, care, identity, and reputational dependence.",
+      "allowed_output": [
+        "bounded natural-language observations",
+        "risk escalation and protection needs",
+        "independent support requirements",
+        "candidate T0-T4 task, favoring T0 or T4 when safety is threatened"
+      ],
+      "prohibited_leap_or_action": [
+        "do not diagnose personality or illness",
+        "do not infer consent from silence, delay, anonymous or proxy submission",
+        "do not authorize mediation, compelled disclosure, separation or property disposition",
+        "do not require continued exposure in the name of love, duty or maturity"
+      ],
+      "stop_or_failure_boundary": [
+        "stop joint diagnosis or dialogue for violence, coercion, chronic humiliation, resource control, isolation, sustained deception or inability to exit freely, and move to safety and outside support",
+        "stop when refusal or withdrawal is ignored, retaliation follows feedback, or material is used to locate or shame a person",
+        "lower exposure, preserve only necessary evidence and move to independent safety, professional or legal support"
+      ],
       "next_handoff": "Send evidence gaps to ariadne-evidence, bounded domain risk to ariadne-audit, and safety, psychological, medical, property or legal questions to an independent qualified human service; Ariadne supplies no action authority."
     },
     {
       "id": "APP-FAM",
-      "object_and_method": "Separate household co-residence, care, resources, intergenerational carrying and member rights from relationship pairs, individual safety events and outside institutions; renew K when birth, death, illness, migration, guardianship or economic dependence changes the object.",
-      "protected_positions": ["children and minors", "older, ill or disabled people", "economically dependent members", "primary caregivers", "members unable to leave or speak safely"],
+      "object_and_method": "Check co-residence, kinship recognition, affection, property, care, labor, and legal standing separately, with no preset member boundary that distributes rights and duties wholesale; the nuclear family is neither the only real form nor the normative standard. Separate the household as a whole, relationship pairs, care chains, individual safety events, and outside institutions; renew K when birth, death, illness, migration, guardianship or economic dependence changes the object.",
+      "protected_positions": [
+        "children and minors",
+        "older, ill or disabled people",
+        "economically dependent members",
+        "primary caregivers",
+        "members unable to leave or speak safely"
+      ],
       "evidence_scope": "Partial coverage identifies care and resource gaps, private transfer of life-event costs and no-exit risks. It cannot determine consent, guardianship, care allocation, property or medical facts without child-protection, medical, guardianship or domestic-violence protocols.",
-      "allowed_output": ["care and resource gap inventory", "member-specific safety boundary", "risk and unknown-fact register", "candidate T0-T4 task and external protocol requirements"],
-      "prohibited_leap_or_action": ["do not treat family-level interest as cancellation of member rights", "do not presume consent from dependence or inability to leave", "do not assign care duties or authorize contact with children or dependent people", "do not decide guardianship, property, medical care or forced family meetings"],
-      "stop_or_failure_boundary": ["stop a shared family process when dependent-person safety worsens, help-seeking returns to the challenged power chain, resources are withdrawn in retaliation, or disclosure raises risk", "protect minimum resources and evidence, enable proxy or temporary buffer, and transfer to independent professional procedure"],
+      "allowed_output": [
+        "care and resource gap inventory",
+        "member-specific safety boundary",
+        "risk and unknown-fact register",
+        "candidate T0-T4 task and external protocol requirements"
+      ],
+      "prohibited_leap_or_action": [
+        "do not treat family-level interest as cancellation of member rights",
+        "do not presume consent from dependence or inability to leave",
+        "do not assign care duties or authorize contact with children or dependent people",
+        "do not decide guardianship, property, medical care or forced family meetings"
+      ],
+      "stop_or_failure_boundary": [
+        "stop a shared family process when dependent-person safety worsens, help-seeking returns to the challenged power chain, resources are withdrawn in retaliation, or disclosure raises risk",
+        "protect minimum resources and evidence, enable proxy or temporary buffer, and transfer to independent professional procedure"
+      ],
       "next_handoff": "Handoff to the applicable child-protection, medical, guardianship, domestic-violence or legal process and to ariadne-audit for record protection and contestability."
     },
     {
       "id": "APP-ORG",
       "object_and_method": "Map a frozen organization's or project's goal-resource-role-execution-feedback-responsibility chain; keep organization, project, department, role, process and person distinct, and rebuild K when moving among them.",
-      "protected_positions": ["front-line and low-authority workers", "middle carrying roles", "temporary, contractor, maintenance and care work", "people locked in by income, visa, résumé or care duties", "feedback providers and external affected parties"],
-      "evidence_scope": "Partial coverage supports return-flow, transmission, middle-carrier and responsibility-chain questions. Industry, role, labor relation and project-cycle claims need site records, grouped data and independent review; their absence limits output to audit questions and reversible test requirements.",
-      "allowed_output": ["bounded risk and carrying or return-flow breakpoints", "competing organizational explanations", "evidence and reversible pilot requirements", "candidate T0-T4 task"],
-      "prohibited_leap_or_action": ["do not turn framework labels into personnel judgments", "do not infer organization-level facts from a few individuals without a scale bridge", "do not authorize scoring, hiring, discipline, dismissal, contract or financial change"],
-      "stop_or_failure_boundary": ["freeze downstream personnel use if a diagnosis is used for employment action", "stop when dissent produces performance, scheduling, promotion, contract or resource retaliation", "protect reporters, preserve the original record and require independent appeal and rollback"],
+      "protected_positions": [
+        "front-line and low-authority workers",
+        "middle carrying roles",
+        "temporary, contractor, maintenance and care work",
+        "people locked in by income, visa, résumé or care duties",
+        "feedback providers and external affected parties"
+      ],
+      "evidence_scope": "Partial coverage supports return-flow, transmission, middle-carrier and responsibility-chain questions. Frontline workarounds, near misses, maintenance debt, informal complaints, and pre-exit signals are never silenced by central summaries. Industry, role, labor relation and project-cycle claims need site records, grouped data and independent review; without them, fact-finding, causal attribution, and adoption standing do not hold.",
+      "allowed_output": [
+        "bounded risk and carrying or return-flow breakpoints",
+        "competing organizational explanations",
+        "audit questions and reversible pilot proposals",
+        "independently grounded text evaluation, process criticism, and conditional plans under explicit premises",
+        "candidate T0-T4 task"
+      ],
+      "prohibited_leap_or_action": [
+        "do not turn framework labels into personnel judgments",
+        "do not infer organization-level facts from a few individuals without a scale bridge",
+        "do not authorize scoring, hiring, discipline, dismissal, contract or financial change",
+        "when a diagnosis is used for personnel action, freeze the action, protect those who gave feedback, and allow independent appeal and rollback"
+      ],
+      "stop_or_failure_boundary": [
+        "freeze downstream personnel use if a diagnosis is used for employment action",
+        "stop when dissent produces performance, scheduling, promotion, contract or resource retaliation",
+        "protect reporters, preserve the original record and require independent appeal and rollback"
+      ],
       "next_handoff": "Handoff site verification to qualified organizational, labor and domain reviewers; send any contemplated option to ariadne-choice and every high-impact use to ariadne-audit."
     },
     {
       "id": "APP-PLT",
       "object_and_method": "Freeze the text-rule, parameter-rule, interface-rule, model, distribution, behavior-response and data-writeback chain; register platform, model, interface, content network, user group and social impact separately, and renew K after any objective, parameter, entry point or model-version change.",
-      "protected_positions": ["low-traffic and minority groups", "false-positive subjects", "platform workers and small creators", "people without an alternative platform", "people subject to automated eligibility or visibility decisions"],
-      "evidence_scope": "Substantial framework coverage supports network, diffusion, parameter, recommendation-loop and automated-governance questions, but every concrete platform, dataset, model version, measurement protocol and result is external evidence. Unfrozen versions or parameters block causal attribution and extrapolation.",
-      "allowed_output": ["versioned parameter and interface audit questions", "grouped impact and missing-data register", "human-review and rollback requirements", "candidate T0-T4 task"],
-      "prohibited_leap_or_action": ["do not treat published text as the effective rule without parameter and interface evidence", "do not infer consensus or merit from popularity", "do not authorize data access, deletion, throttling, banning, model or parameter change, or labor eligibility action"],
-      "stop_or_failure_boundary": ["stop expansion when object version changes, group harm crosses a threshold, human review is unreachable or rollback capacity disappears", "roll back the frozen version and preserve affected records", "treat post-appeal throttling, banning or income change as retaliation"],
+      "protected_positions": [
+        "low-traffic and minority groups",
+        "false-positive subjects",
+        "platform workers and small creators",
+        "people without an alternative platform",
+        "people subject to automated eligibility or visibility decisions"
+      ],
+      "evidence_scope": "Substantial framework coverage supports network, diffusion, parameter, recommendation-loop and automated-governance questions, but every concrete platform, dataset, model version, measurement protocol and result is external evidence. Unfrozen versions or parameters block causal attribution and extrapolation. Evaluating a bounded total effect supported by a qualified comparison does not require every internal parameter; training writeback is checked only when retraining actually happens, and fixed distribution rules can also form feedback. Recommendation research separates behavior records, in-system preference representations, independently measured preferences, and actual consequences; simulated representation drift alone proves no change in inner preference or real harm; feedback existing, bias amplification, and hard-to-correct lock-in are evidenced separately; a whole-configuration effect is not split into independent per-parameter contributions or extrapolated to other versions. Low-traffic, minority, wrongly removed, and exited material is never down-weighted by count.",
+      "allowed_output": [
+        "versioned parameter and interface audit questions",
+        "grouped impact and missing-data register",
+        "human-review and rollback requirements",
+        "candidate T0-T4 task"
+      ],
+      "prohibited_leap_or_action": [
+        "do not treat published text as the effective rule without parameter and interface evidence",
+        "do not infer consensus or merit from popularity",
+        "do not authorize data access, deletion, throttling, banning, model or parameter change, or labor eligibility action"
+      ],
+      "stop_or_failure_boundary": [
+        "stop expansion when object version changes, group harm crosses a threshold, human review is unreachable or rollback capacity disappears",
+        "roll back the frozen version and preserve affected records",
+        "treat post-appeal throttling, banning or income change as retaliation"
+      ],
       "next_handoff": "Handoff platform facts to authorized platform and independent technical reviewers, rights questions to the applicable external process, and the versioned audit record to ariadne-audit."
     },
     {
       "id": "APP-INS",
       "object_and_method": "Freeze jurisdiction and time window for the institution's rule-execution-resource-eligibility-feedback-responsibility-public-commitment structure; distinguish legal text, policy, executor, budget, informal rule, public object and affected groups.",
-      "protected_positions": ["rights and resource claimants", "minority and edge-region groups", "people dependent on basic public services", "whistleblowers, challengers and appellants", "future and cross-generational cost positions"],
-      "evidence_scope": "Substantial rule-level coverage supports high-power, distribution, public-commitment, polycentric and capture checks. Concrete legality, execution, budget, affected-group evidence and causal evaluation remain external; missing them permits risk questions, not legitimacy or policy-effect claims.",
-      "allowed_output": ["institutional risk and distributional-impact questions", "procedure and representation gaps", "pressure-test and independent-review requirements", "candidate T0-T4 task"],
-      "prohibited_leap_or_action": ["do not equate legal validity with normative legitimacy", "do not use majority, stability or aggregate benefit to erase rights", "do not infer execution from paperwork", "do not authorize legislation, enforcement, budget, eligibility, regulation or public-resource disposition"],
-      "stop_or_failure_boundary": ["stop when appeal and review are controlled by the same power chain, a rights floor is crossed, emergency rules become permanent, or the framework is used as legitimacy decoration", "restore ordinary rights and procedure and roll back propagated records"],
+      "protected_positions": [
+        "rights and resource claimants",
+        "minority and edge-region groups",
+        "people dependent on basic public services",
+        "whistleblowers, challengers and appellants",
+        "future and cross-generational cost positions"
+      ],
+      "evidence_scope": "Substantial rule-level coverage supports high-power, distribution, public-commitment, polycentric and capture checks. Concrete legality, execution, budget, affected-group evidence and causal evaluation remain external; missing them permits risk questions, not legitimacy or policy-effect claims. Legal validity and normative legitimacy are separated; public benefit is grouped by population, region, generation, and exit capacity; the framework is never used to prove a political position.",
+      "allowed_output": [
+        "institutional risk and distributional-impact questions",
+        "procedure and representation gaps",
+        "pressure-test and independent-review requirements",
+        "independently grounded text criticism, institutional evaluation under explicit normative premises, and complete draft charters or plans for review, each stating conditions, costs, and items still to be reviewed",
+        "candidate T0-T4 task"
+      ],
+      "prohibited_leap_or_action": [
+        "do not equate legal validity with normative legitimacy",
+        "do not use majority, stability or aggregate benefit to erase rights",
+        "do not infer execution from paperwork",
+        "do not authorize legislation, enforcement, budget, eligibility, regulation or public-resource disposition"
+      ],
+      "stop_or_failure_boundary": [
+        "stop when appeal and review are controlled by the same power chain, a rights floor is crossed, emergency rules become permanent, or the framework is used as legitimacy decoration",
+        "restore ordinary rights and procedure and roll back propagated records"
+      ],
       "next_handoff": "Handoff legality, budget, service and rights questions to the proper independent public or legal authority; send choices to ariadne-choice and governance failures to ariadne-audit."
     },
     {
       "id": "APP-OPI",
       "object_and_method": "Treat public interpretation as a frozen event-issue-group-network-platform-time object; separate fact, evidence, acknowledgement, explanation, responsibility, identity and action, because heat is neither the public nor representativeness.",
-      "protected_positions": ["directly affected people", "low-visibility and edge speakers", "people forced into public exposure", "people without agenda or public-relations resources", "people subject to harassment, throttling or employment consequences"],
-      "evidence_scope": "Partial coverage supports fact-evidence-explanation separation and propagation checks. Representativeness protocols, measurement contracts, platform data and intervention effects remain missing; without them, do not turn heat into consensus, a sample into the public or correlation into causality.",
-      "allowed_output": ["traceable clarification layers", "evidence and representation gaps", "repair and protection questions", "candidate T0-T4 task"],
-      "prohibited_leap_or_action": ["do not classify critics as instability mechanisms by identity", "do not force affected people to prove themselves publicly", "do not treat apology as compensation", "do not authorize comment deletion, throttling, opinion control, identity disclosure or labeling the public"],
-      "stop_or_failure_boundary": ["stop when the fact version changes, response raises exposure, platform action exceeds authority or corrections cannot write back to the propagation chain", "publish a traceable correction and protect the original and corrected records"],
+      "protected_positions": [
+        "directly affected people",
+        "low-visibility and edge speakers",
+        "people forced into public exposure",
+        "people without agenda or public-relations resources",
+        "people subject to harassment, throttling or employment consequences"
+      ],
+      "evidence_scope": "Partial coverage supports fact-evidence-explanation separation and propagation checks. Representativeness protocols, measurement contracts, platform data and intervention effects remain missing; without them, do not turn heat into consensus, a sample into the public or correlation into causality. Record separately the material eligible to appear, what was actually shown, reading or exposure, private judgment, public expression, and verifiable action. A changed exposure with no detected attitude change neither cancels the exposure effect nor proves permanent ineffectiveness. Heat and participation use platform-behavior denominators; public opinion needs its own population and sampling; public legitimacy needs independent normative and institutional grounds. The response aim is lower factual confusion, responsibility masking, trust loss, and missing repair, not lower heat.",
+      "allowed_output": [
+        "traceable clarification layers",
+        "evidence and representation gaps",
+        "repair and protection questions",
+        "candidate T0-T4 task"
+      ],
+      "prohibited_leap_or_action": [
+        "do not classify critics as instability mechanisms by identity",
+        "do not force affected people to prove themselves publicly",
+        "do not treat apology as compensation",
+        "do not authorize comment deletion, throttling, opinion control, identity disclosure or labeling the public"
+      ],
+      "stop_or_failure_boundary": [
+        "stop when the fact version changes, response raises exposure, platform action exceeds authority or corrections cannot write back to the propagation chain",
+        "publish a traceable correction and protect the original and corrected records"
+      ],
       "next_handoff": "Handoff verification to independent source and measurement processes, platform actions to the proper external authority, and correction, appeal and retention duties to ariadne-audit."
     },
     {
       "id": "APP-SPC",
       "object_and_method": "Freeze coordinates, functional meaning, users, time window and dependency layers for a space-channel network; distinguish physical location, functional network, administrative boundary, service area and infrastructure layer, and map nodes, bottlenecks, capacity, alternatives and recovery lag.",
-      "protected_positions": ["edge and disconnected areas", "people with limited mobility, health, income, digital access or expression", "people unable to migrate or detour", "maintenance and field-reporting positions"],
-      "evidence_scope": "Substantial framework coverage supports bottleneck, center-edge, layered-infrastructure and recovery-geography questions. Engineering data, capacity thresholds, facility inventory and field verification are external; a missing critical parameter limits output to survey and measurement requirements.",
-      "allowed_output": ["map, capacity and field-verification requirements", "critical-channel protection questions", "edge-impact and alternative-route register", "candidate T0-T4 task"],
-      "prohibited_leap_or_action": ["do not treat map connectivity as adequate capacity, substitutability or accessibility", "do not infer engineering feasibility or channel safety from structural language", "do not authorize road closure, population movement, land taking, public-resource dispatch or engineering change"],
-      "stop_or_failure_boundary": ["stop when field observation conflicts with the map, an alternative route is not operating, or a change increases edge harm", "restore channel and service and transfer to field and engineering authority"],
+      "protected_positions": [
+        "edge and disconnected areas",
+        "people with limited mobility, health, income, digital access or expression",
+        "people unable to migrate or detour",
+        "maintenance and field-reporting positions"
+      ],
+      "evidence_scope": "Substantial framework coverage supports bottleneck, center-edge, layered-infrastructure and recovery-geography questions. Engineering data, capacity thresholds, facility inventory and field verification are external; a missing critical parameter limits output to survey and measurement requirements. Check the continuous path from the actual starting point to service use (road network, time of day, fare, eligibility, physical and informational access, conditions for staying). Track original residents, current residents, those who moved out, newcomers, and those waiting to enter separately; a rising area mean may come from population replacement and is never written back as original residents' gain. Planning images, engineering sites, and lived experience check one another; local participation records who is absent and who can change decisions. After disasters, keep pre-disaster address, current residence, and destination in protected correspondence, and register building safety and re-exposure, household services, relationship networks, local memory, informed and feasible options, and remedies separately.",
+      "allowed_output": [
+        "map, capacity and field-verification requirements",
+        "critical-channel protection questions",
+        "edge-impact and alternative-route register",
+        "candidate T0-T4 task"
+      ],
+      "prohibited_leap_or_action": [
+        "do not treat map connectivity as adequate capacity, substitutability or accessibility",
+        "do not infer engineering feasibility or channel safety from structural language",
+        "do not authorize road closure, population movement, land taking, public-resource dispatch or engineering change"
+      ],
+      "stop_or_failure_boundary": [
+        "stop when field observation conflicts with the map, an alternative route is not operating, or a change increases edge harm",
+        "restore channel and service and transfer to field and engineering authority"
+      ],
       "next_handoff": "Handoff measurements and safety decisions to qualified field, engineering and public authorities; retain the bounded requirement and contestability record in ariadne-audit."
     },
     {
       "id": "APP-EMG",
-      "object_and_method": "Freeze incident phase, critical functions, command-information-resource chains, affected area and recovery window; keep hazard, incident system, emergency organization, critical function and recovery system separate, with distinct success criteria for rescue, stabilization, repair and rebuilding.",
-      "protected_positions": ["people unable to evacuate or decide", "mobility- or information-limited people", "front-line low-authority workers", "edge areas losing critical supply", "people reporting danger or refusing unsafe orders"],
-      "evidence_scope": "Substantial framework coverage supports normal-accident, near-miss, drift, functional-contraction, command and recovery-chain questions. Hazard thresholds, statutory command and professional operation cards come from the domain system; absent field confirmation or a responsible professional, Ariadne only records and flags risk.",
-      "allowed_output": ["risk and near-miss record", "critical-function and recovery-handoff questions", "candidate T0-T4 task", "post-event review once professional response has priority"],
-      "prohibited_leap_or_action": ["do not delay life-saving action to complete structural analysis", "do not replace medical, fire, engineering or incident command", "do not authorize evacuation, dispatch or treatment", "do not extend emergency power beyond its external expiry"],
-      "stop_or_failure_boundary": ["immediately defer when professional field information contradicts the model, incident phase changes, action exceeds authority or emergency authority expires", "restore ordinary rights and procedures after the emergency and preserve a reviewable record"],
+      "object_and_method": "Freeze incident phase, critical functions, command-information-resource chains, affected area and recovery window; keep hazard, incident system, emergency organization, critical function and recovery system separate, with distinct success criteria for rescue, stabilization, repair and rebuilding. Rescue (whether protection of life and against serious injury arrives), stabilization (damage spread and minimum services), repair (a named function available under stated conditions), and rebuilding (long-term facilities, livelihoods, re-exposure) never share success criteria, deadlines, or authority.",
+      "protected_positions": [
+        "people unable to evacuate or decide",
+        "mobility- or information-limited people",
+        "front-line low-authority workers",
+        "edge areas losing critical supply",
+        "people reporting danger or refusing unsafe orders"
+      ],
+      "evidence_scope": "Substantial framework coverage supports normal-accident, near-miss, drift, functional-contraction, command and recovery-chain questions. Hazard thresholds, statutory command and professional operation cards come from the domain system; absent field confirmation or a responsible professional, Ariadne only records and flags risk. The framework first acknowledges professional emergency authority and never delays life-saving action with structural analysis; time pressure does not cancel protection or give a model field authority. 'Half recovery' names only an observable combination unless cross-period tracking and competing explanations support a feedback trap; a recovery object can be reached in stages (temporary classrooms with transport, teachers, and a term budget truly restore this term's teaching, while unfunded rent next month does not show stability for the whole term); 'false recovery' first means a claim beyond its evidence, not deceit. Command handover, coordinated withdrawal, the end of each special power, continuity of key services, and long-term recovery are checked separately; when professional field information overturns a framework assumption, the framework retreats to recording and review.",
+      "allowed_output": [
+        "risk and near-miss record",
+        "critical-function and recovery-handoff questions",
+        "candidate T0-T4 task",
+        "post-event review once professional response has priority"
+      ],
+      "prohibited_leap_or_action": [
+        "do not delay life-saving action to complete structural analysis",
+        "do not replace medical, fire, engineering or incident command",
+        "do not authorize evacuation, dispatch or treatment",
+        "do not extend emergency power beyond its external expiry"
+      ],
+      "stop_or_failure_boundary": [
+        "immediately defer when professional field information contradicts the model, incident phase changes, action exceeds authority or emergency authority expires",
+        "restore ordinary rights and procedures after the emergency and preserve a reviewable record"
+      ],
       "next_handoff": "Handoff immediately to the valid professional incident commander or emergency service; Ariadne remains a recording and post-event review aid with authorization_effect none."
     },
     {
       "id": "APP-ULS",
       "object_and_method": "Freeze boundary, levels, jurisdictions, time window, critical subsystems, resource-transmission-return flows and external response for the nested system; re-run object conversion, nine-axis ordering and K at every local-to-whole, short-to-deep-time or organization-to-institution move.",
-      "protected_positions": ["anomalous regions and minority groups", "terminal and low-visibility samples", "people unable to exit a territory, institution or basic system", "future and cross-generational positions", "local reporters and appellants"],
-      "evidence_scope": "Substantial framework coverage supports blind-zone, applicability-switch, stress-test and intervention-priority questions. Unified data, case registration, causal identification, representativeness and cross-domain governance are object-specific; missing layered samples, capacity, execution chain or rollback evidence blocks whole-system extrapolation.",
-      "allowed_output": ["explicit undetermined regions", "layered stress tests and independent review", "small-scope reversible trial requirements", "candidate T0-T4 task"],
-      "prohibited_leap_or_action": ["do not infer the whole from a locality, execution from central intention, or J authority from wider observation", "do not treat plan completeness as resources or short-term stability as slow-variable health", "do not authorize one-size-fits-all or cross-domain governance"],
-      "stop_or_failure_boundary": ["stop expansion when grouped harm spreads, resources or execution capacity fall below assumptions, metrics systematically conflict with field reports, local appeals cannot write back, or rollback capacity is insufficient", "withdraw layer by layer and preserve local minimum services and exemptions"],
+      "protected_positions": [
+        "anomalous regions and minority groups",
+        "terminal and low-visibility samples",
+        "people unable to exit a territory, institution or basic system",
+        "future and cross-generational positions",
+        "local reporters and appellants"
+      ],
+      "evidence_scope": "Substantial framework coverage supports blind-zone, applicability-switch, stress-test and intervention-priority questions. Unified data, case registration, causal identification, representativeness and cross-domain governance are object-specific; missing layered samples, capacity, execution chain or rollback evidence blocks whole-system extrapolation. Check whether aggregation mixes plots, households, districts, and destinations into one denominator; sample anomalous regions, minorities, end-of-chain cases, non-textual experience, and absence signals independently and insert them back. Plan completeness is not resources in place, central intention is not frontline action, and short-term stability is not slow-variable health.",
+      "allowed_output": [
+        "explicit undetermined regions",
+        "layered stress tests and independent review",
+        "small-scope reversible trial requirements",
+        "candidate T0-T4 task"
+      ],
+      "prohibited_leap_or_action": [
+        "do not infer the whole from a locality, execution from central intention, or J authority from wider observation",
+        "do not treat plan completeness as resources or short-term stability as slow-variable health",
+        "do not authorize one-size-fits-all or cross-domain governance"
+      ],
+      "stop_or_failure_boundary": [
+        "stop expansion when grouped harm spreads, resources or execution capacity fall below assumptions, metrics systematically conflict with field reports, local appeals cannot write back, or rollback capacity is insufficient",
+        "withdraw layer by layer and preserve local minimum services and exemptions"
+      ],
       "next_handoff": "Handoff domain facts and jurisdiction to the responsible external authorities, maintain independent layered review, and send any scaled option through ariadne-choice and ariadne-audit before action."
     }
   ]

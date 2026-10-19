@@ -7,16 +7,16 @@ This module can be installed alone. The full machine-checkable schema ships with
 | Field | Constraint |
 |---|---|
 | `record_id` | `ariadne:<case>:<module\|merge\|root>:v<N>`; case slug without colons. |
-| `schema_version` | The string `'1.3'`. |
+| `schema_version` | The string `'2.0'`. |
 | `record_version` | Integer: 1 for a root, parent + 1 for a linear child, highest parent + 1 for a merge. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for `linear`; null for `root` and `merge`. |
 | `parent_records` | Empty for a root; one `{record_id, record_version}` for linear; two or more, sorted by ID then version, for merge. |
 | `request_type` | One of `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, `synthesis_design`. |
-| `object_contract` | `boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `status`. |
+| `object_contract` | `boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `task_profile` (`target_query`, `horizon`, `environment`, `allowed_operations`, `error_tolerance`), `status`. |
 | `evidence_cutoff` | `as_of` (RFC 3339), `included_source_ids`, `excluded_after_cutoff`. |
-| `scale_scope` | `source`, `target`, `transform_status`. |
-| `claim_ledger` | Typed claims with `claim_id`, `claim_type`, `text`, `status`, `support_ids`, `support_rule_ids`, `counterevidence_ids`; may be empty. |
+| `scale_scope` | `source`, `target`, `transform_kind` (`none` only with `transform_status: not_needed`), `transform_status`. |
+| `claim_ledger` | Typed claims (D/G/E/H/N/O/F) with `claim_id`, `claim_type`, `text`, `status`, `support_ids`, `support_rule_ids`, `counterevidence_ids`, optional `depends_on` naming earlier claims and optional `ceiling`; may be empty. |
 | `rule_registry` | Declared `RULE:*` entries; may be empty. |
 | `unknowns_and_counterevidence` | Explicit `unknowns` and `counterevidence` lists. |
 | `conflicts` | Named irreducible conflicts; empty array is valid and usual outside merges. |
@@ -26,3 +26,10 @@ This module can be installed alone. The full machine-checkable schema ships with
 | `module_payloads` | Typed payloads only for completed human, dynamics, mechanism, forecast, choice, or audit runs. |
 | `recommended_next_modules` | Only modules justified by remaining work. |
 | `authorization_effect` | Always `none`. |
+
+## Payload reminders
+
+- A mechanism payload lists at least two candidates, each with `mechanism_id`, `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), `channel_observation`, `discriminating_prediction`, `reverse_or_falsifier`, and `residual_comparison_rule`.
+- A dynamics payload records each event's fact status (`observed`, `externally_reported`, `planned`, `hypothetical`, `simulated`, `unknown`), sources, window, observation time, affected actors and circles, channel, direct change, evidence state, disputes, competing explanations, reversibility, duration, and follow-up observations.
+- A human payload records observation position, privacy state, allowed purpose, the four affected-position classes, at least two alternative explanations, and responsible human review.
+- A claim whose `depends_on` includes a contradicted, withdrawn, or retired claim is never `supported`, and no claim ceiling exceeds its dependencies' ceilings or the record ceiling.
