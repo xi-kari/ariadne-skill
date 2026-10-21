@@ -7,7 +7,7 @@ The single copy-ready template for the L1 compact profile defined in [method-rec
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:quick-check:root:v1
-schema_version: '1.3'
+schema_version: '2.0'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -26,6 +26,12 @@ object_contract:
     aggregation: team
     time: week
   identity_criterion: Same repository set and release process
+  task_profile:
+    target_query: Why weekly deploys slowed this quarter
+    horizon: 2026-Q3
+    environment: Current release process and staffing
+    allowed_operations: Observation only
+    error_tolerance: Candidate causes, unranked
   status: candidate
 evidence_cutoff:
   as_of: '2026-08-26T00:00:00+08:00'
@@ -35,6 +41,7 @@ evidence_cutoff:
 scale_scope:
   source: One conversational statement
   target: Team deploy-frequency explanation
+  transform_kind: scale
   transform_status: incomplete
 claim_ledger: []
 rule_registry: []
@@ -69,12 +76,15 @@ Prefer running the shipped validator: `python scripts/validate_record.py <record
 
 1. All twenty top-level fields above are present; none renamed, none added.
 2. `record_id` matches `ariadne:<case>:<module|merge|root>:v<N>`; the case slug contains no colon.
-3. `schema_version` is `'1.2'`; `record_version` is an integer.
+3. `schema_version` is `'2.0'`; `record_version` is an integer.
 4. Lineage is consistent: `root` has null `parent_record_id`, empty `parent_records`, version 1, ceiling `description_only`, operation `root`. `linear` has exactly one parent, version = parent version + 1. `merge` has two or more parents sorted by ID then version, version = highest parent version + 1, operation `meet`.
-5. `object_contract` carries all eight subfields (`boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `status`); `scale_profile` names at least one axis.
-6. `evidence_cutoff.as_of` is an RFC 3339 datetime; every ID that supports a `supported` claim appears in `included_source_ids` or as an earlier claim.
-7. `ceiling_transition.result` equals `output_ceiling`; `lower` carries a non-empty `reason`; `raise` lists only newly admitted basis IDs absent from every parent.
-8. Exactly one completed module run names this record as its `output_record`; `not_run` and `not_applicable` runs carry a `reason` and a null `output_record`.
-9. `authorization_effect` is `none`.
+5. `object_contract` carries all nine subfields (`boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `task_profile`, `status`); `scale_profile` names at least one axis; `task_profile` names the target query, horizon, environment, allowed operations, and error tolerance.
+6. `scale_scope.transform_kind` is `none` exactly when `transform_status` is `not_needed`.
+7. `evidence_cutoff.as_of` is an RFC 3339 datetime; every ID that supports a `supported` claim appears in `included_source_ids` or as an earlier claim.
+8. Every `depends_on` entry names an earlier claim; no claim is `supported` on a contradicted, withdrawn, or retired dependency; no claim ceiling exceeds its dependencies' ceilings or the record ceiling.
+9. `ceiling_transition.result` equals `output_ceiling`; `lower` carries a non-empty `reason`; `raise` lists only newly admitted basis IDs absent from every parent.
+10. Exactly one completed module run names this record as its `output_record`; `not_run` and `not_applicable` runs carry a `reason` and a null `output_record`.
+11. A choice payload has exactly one `no_action` option, and a non-null analytic recommendation only at `requirements_only`; an audit payload with IG6 `passed` has SJ1-SJ8 all `passed`.
+12. `authorization_effect` is `none`.
 
 If neither the validator nor this checklist can be completed, say so in the answer and record `validation: not_run` in `unknowns_and_counterevidence.unknowns` instead of claiming the record was validated.

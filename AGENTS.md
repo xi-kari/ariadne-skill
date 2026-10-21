@@ -10,10 +10,10 @@
 
 ## Source and scope
 
-- Treat *跨尺度多圈层结构推演框架 v8.2* as the primary methodology source.
-- Treat the referenced “数学结构概述” conversation as design context, not source authority.
+- Treat 《Xikari-条件结构与转化论》 (Xikari, October 2026; SHA-256 `18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6`) as the primary methodology source; the earlier *跨尺度多圈层结构推演框架 v8.2* is superseded and kept only as history in the 2026-08 design documents.
+- Keep Ariadne's derived status explicit: it is organized method and retrieval entries with candidate status, bound to the source hash and section anchors, never presented as author-confirmed item by item or as a separate author theory.
 - Build a methodology for agent work and human thinking, not an ontology, personality taxonomy, clinical tool, truth engine, or authorization system.
-- Do not copy the source DOCX into the public repository.
+- Do not copy the source text into the public repository.
 
 ## Mandatory implementation sequence (historical construction-phase note)
 

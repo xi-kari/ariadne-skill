@@ -26,9 +26,9 @@ EXPECTED_REFERENCES = {
         "source-navigation.json",
         "l1-record-template.md",
     },
-    "ariadne-framing": {"object-contract.md"},
+    "ariadne-framing": {"object-contract.md", "domain-atlas.md"},
     "ariadne-evidence": {"evidence-contracts.md"},
-    "ariadne-scale": {"scale-transformations.md"},
+    "ariadne-scale": {"scale-transformations.md", "representation-and-closure.md"},
     "ariadne-mechanism": {"mechanism-contracts.md", "record-fields.md"},
     "ariadne-human": {"human-domain.md", "human-variable-cards.json", "state-prototypes.json", "record-fields.md"},
     "ariadne-dynamics": {"dynamic-derivation.md", "record-fields.md"},
@@ -37,7 +37,7 @@ EXPECTED_REFERENCES = {
     "ariadne-audit": {"gates-core.md", "governance-lifecycle.md", "application-contracts.json"},
 }
 REQUIRED_FRONTMATTER_KEYS = {"name", "description"}
-EXPECTED_RECORD_SCHEMA_VERSION = "1.3"
+EXPECTED_RECORD_SCHEMA_VERSION = "2.0"
 SKILL_NAME_PATTERN = re.compile(r"[a-z][a-z0-9-]{0,63}")
 DESCRIPTION_MAX_CHARS = 1024
 DESCRIPTION_TOTAL_BUDGET = 5000
@@ -62,6 +62,8 @@ NUMBERING_PROBES = {
     "D0-D3": ("D0",),
     "U01-U11": ("U01",),
     "G1-G4": ("G1",),
+    "法1-法3": ("法1",),
+    "F1-F6": ("F1",),
     "E1-E5": ("E1",),
     "C1-C12": ("C12",),
     "A/X/T/O/C/R/I/N/J": ("A,X,T,O,C,R,I,N,J", "A aggregation"),
@@ -114,6 +116,8 @@ EXPECTED_NUMBERING_SYSTEMS = {
     "D0-D3",
     "U01-U11",
     "G1-G4",
+    "法1-法3",
+    "F1-F6",
     "E1-E5",
     "C1-C12",
     "A/X/T/O/C/R/I/N/J",
@@ -172,11 +176,32 @@ EXPECTED_PROHIBITED_SUBSTITUTIONS = {
         "shared_lineage",
     },
 }
-EXPECTED_D5_APPLICABILITY = {
+EXPECTED_C5_APPLICABILITY = {
     "kind": "conditional_proof_discipline",
     "admissible_output": ["testable_bridge_requirements", "bounded_candidate"],
     "prohibited_output": ["cross_domain_theorem", "empirical_transfer_without_conditions"],
 }
+EXPECTED_SOURCE_SHA256 = "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6"
+EXPECTED_DERIVED_STATUS = "derived_candidate_not_author_confirmed"
+EXPECTED_GOVERNANCE_INVARIANTS = (
+    "SHOU-1",
+    "SHOU-2",
+    "SHOU-3",
+    "SHOU-4",
+    "SHOU-5",
+    "SHOU-6",
+    "SHOU-7",
+    "SHOU-8",
+    "SHOU-9",
+)
+EXPECTED_KERNEL_LAYERS = (
+    "definition",
+    "common_method_constraint",
+    "conditional_formal_proposition",
+    "empirical_question_family",
+    "result_and_mechanism_contract",
+    "governance_invariant",
+)
 EXPECTED_PROOF_FIELDS = {
     "source_object",
     "target_object",
@@ -296,17 +321,42 @@ def validate_source_navigation(data: dict) -> list[str]:
         if symbols != EXPECTED_SHARED_NOTATION or len(notation) != len(EXPECTED_SHARED_NOTATION):
             errors.append("source navigation shared notation is incomplete or noncanonical")
 
-    appendix_d = data.get("appendix_d")
-    if not isinstance(appendix_d, dict):
-        return errors + ["source navigation appendix_d must be an object"]
-    dual_text = appendix_d.get("dual_text_difference")
+    identity = data.get("source_identity")
+    if not isinstance(identity, dict) or identity.get("sha256") != EXPECTED_SOURCE_SHA256:
+        errors.append("source navigation must pin the source identity and SHA-256")
+    elif identity.get("derived_status") != EXPECTED_DERIVED_STATUS:
+        errors.append("source navigation must keep the derived-candidate status of Ariadne entries")
+
+    invariants = data.get("governance_invariants")
+    if not isinstance(invariants, list) or [
+        entry.get("id") for entry in invariants if isinstance(entry, dict)
+    ] != list(EXPECTED_GOVERNANCE_INVARIANTS):
+        errors.append("source navigation must list the nine shared governance invariants in order")
+    elif any(
+        set(entry) != {"id", "rule"} or not isinstance(entry["rule"], str) or len(entry["rule"].strip()) < 30
+        for entry in invariants
+    ):
+        errors.append("source navigation governance invariant entries are malformed")
+
+    layers = data.get("shared_kernel_layers", {}).get("layers") if isinstance(
+        data.get("shared_kernel_layers"), dict
+    ) else None
+    if not isinstance(layers, list) or [
+        entry.get("layer") for entry in layers if isinstance(entry, dict)
+    ] != list(EXPECTED_KERNEL_LAYERS):
+        errors.append("source navigation shared kernel must list the six responsibility layers in order")
+
+    appendix_c = data.get("appendix_c")
+    if not isinstance(appendix_c, dict):
+        return errors + ["source navigation appendix_c must be an object"]
+    dual_text = appendix_c.get("dual_text_difference")
     if not isinstance(dual_text, dict):
-        errors.append("source navigation D.4 dual_text_difference is missing")
+        errors.append("source navigation C.4 dual_text_difference is missing")
     else:
         shared = set(dual_text.get("minimum_shared_semantics", []))
         shared_items = dual_text.get("minimum_shared_semantics", [])
         if shared != EXPECTED_SHARED_SEMANTICS or len(shared_items) != len(EXPECTED_SHARED_SEMANTICS):
-            errors.append("source navigation D.4 minimum shared semantics are incomplete")
+            errors.append("source navigation C.4 minimum shared semantics are incomplete")
         retained = dual_text.get("retained_differences", [])
         retained_map = {
             entry.get("id"): set(entry.get("semantic_elements", []))
@@ -322,7 +372,7 @@ def validate_source_navigation(data: dict) -> list[str]:
             for entry in retained
             if isinstance(entry, dict)
         ):
-            errors.append("source navigation D.4 must retain both contract-system differences")
+            errors.append("source navigation C.4 must retain both contract-system differences")
         substitutions = dual_text.get("prohibited_substitutions", [])
         substitution_map = {
             entry.get("id"): set(entry.get("guards", []))
@@ -338,22 +388,32 @@ def validate_source_navigation(data: dict) -> list[str]:
             for entry in substitutions
             if isinstance(entry, dict)
         ):
-            errors.append("source navigation D.4 prohibited substitutions are incomplete")
+            errors.append("source navigation C.4 prohibited substitutions are incomplete")
 
-    heuristic = appendix_d.get("cross_scale_proof_heuristic")
+    heuristic = appendix_c.get("cross_scale_proof_heuristic")
     if not isinstance(heuristic, dict):
-        errors.append("source navigation D.5 cross_scale_proof_heuristic is missing")
+        errors.append("source navigation C.5 cross_scale_proof_heuristic is missing")
     else:
         proof_fields = heuristic.get("required_fields", [])
         if set(proof_fields) != EXPECTED_PROOF_FIELDS or len(proof_fields) != len(EXPECTED_PROOF_FIELDS):
-            errors.append("source navigation D.5 proof fields are incomplete")
+            errors.append("source navigation C.5 proof fields are incomplete")
         non_proof = heuristic.get("non_proof_boundaries", [])
         if set(non_proof) != EXPECTED_NON_PROOF_BOUNDARIES or len(non_proof) != len(EXPECTED_NON_PROOF_BOUNDARIES):
-            errors.append("source navigation D.5 non-proof boundaries are incomplete")
+            errors.append("source navigation C.5 non-proof boundaries are incomplete")
         if heuristic.get("execution_owner") != "ariadne-scale":
-            errors.append("source navigation D.5 must route execution to ariadne-scale")
-        if heuristic.get("applicability") != EXPECTED_D5_APPLICABILITY:
-            errors.append("source navigation D.5 applicability boundary is missing")
+            errors.append("source navigation C.5 must route execution to ariadne-scale")
+        if heuristic.get("applicability") != EXPECTED_C5_APPLICABILITY:
+            errors.append("source navigation C.5 applicability boundary is missing")
+
+    atlas = data.get("appendix_d")
+    if not isinstance(atlas, dict) or atlas.get("owner") != "ariadne-framing":
+        errors.append("source navigation appendix_d must route the domain atlas to ariadne-framing")
+    else:
+        domains = atlas.get("domains")
+        if not isinstance(domains, list) or [
+            entry.get("code") for entry in domains if isinstance(entry, dict)
+        ] != [f"D.{index:02d}" for index in range(1, 33)]:
+            errors.append("source navigation appendix_d must list all 32 domain entries in order")
     return errors
 
 
@@ -631,6 +691,8 @@ def validate_record_semantics(
                         f"supported claim {claim['claim_id']} has unresolved support_rule_id: {rule_id}"
                     )
         seen_claims[claim["claim_id"]] = claim["status"]
+    errors.extend(claim_dependency_errors(record))
+    errors.extend(scale_scope_errors(record))
 
     completed_runs = [run for run in record["module_runs"] if run["status"] == "completed"]
     if not any(run["output_record"] == current_ref for run in completed_runs):
@@ -732,8 +794,13 @@ def validate_record_semantics(
                     "baseline <= cutoff <= start <= deadline < writeback"
                 )
 
+    choice_payload = payload_by_module.get("ariadne-choice")
+    if choice_payload is not None:
+        errors.extend(choice_payload_errors(choice_payload, record["output_ceiling"], record))
+
     audit_payload = payload_by_module.get("ariadne-audit")
     if audit_payload is not None:
+        errors.extend(strong_judgment_errors(audit_payload))
         register = audit_payload["gate_register"]
         any_gate_failed = False
         for gate_ids, gate_results in (
@@ -755,6 +822,105 @@ def validate_record_semantics(
             or register["main_gates"]["IG1"]["status"] == "failed"
         ) and record["output_ceiling"] != "description_only":
             errors.append("IT1 or IG1 failure requires output_ceiling description_only")
+    return errors
+
+
+def claim_dependency_errors(record: dict) -> list[str]:
+    """Proposition-level downgrade: a claim inherits the limits of what it depends on."""
+    errors: list[str] = []
+    record_rank = CEILING_RANK[record["output_ceiling"]]
+    earlier: dict[str, dict] = {}
+    for claim in record["claim_ledger"]:
+        claim_id = claim["claim_id"]
+        own = claim.get("ceiling")
+        if own is not None and CEILING_RANK[own] > record_rank:
+            errors.append(f"claim {claim_id} ceiling exceeds the record output_ceiling")
+        for dependency in claim.get("depends_on", []):
+            parent = earlier.get(dependency)
+            if parent is None:
+                errors.append(
+                    f"claim {claim_id} depends_on must name an earlier claim in this record: {dependency}"
+                )
+                continue
+            if claim["status"] == "supported" and parent["status"] in {
+                "contradicted",
+                "withdrawn",
+                "retired",
+            }:
+                errors.append(
+                    f"claim {claim_id} cannot stay supported on a {parent['status']} dependency: {dependency}"
+                )
+            parent_ceiling = parent.get("ceiling")
+            if (
+                own is not None
+                and parent_ceiling is not None
+                and CEILING_RANK[own] > CEILING_RANK[parent_ceiling]
+            ):
+                errors.append(
+                    f"claim {claim_id} ceiling exceeds the ceiling of its dependency {dependency}"
+                )
+        earlier[claim_id] = claim
+    return errors
+
+
+def scale_scope_errors(record: dict) -> list[str]:
+    scope = record["scale_scope"]
+    kind = scope["transform_kind"]
+    status = scope["transform_status"]
+    if (kind == "none") != (status == "not_needed"):
+        return ["scale_scope transform_kind none must pair exactly with transform_status not_needed"]
+    return []
+
+
+def choice_payload_errors(payload: dict, output_ceiling: str, record: dict | None = None) -> list[str]:
+    errors: list[str] = []
+    option_ids = [option["option_id"] for option in payload["options"]]
+    if len(option_ids) != len(set(option_ids)):
+        errors.append("choice option_id values must be unique")
+    no_action = [option for option in payload["options"] if option["kind"] == "no_action"]
+    if len(no_action) != 1:
+        errors.append("choice options must contain exactly one no_action option")
+    recommendation = payload["analytic_recommendation"]
+    if recommendation is not None:
+        if recommendation["option_id"] not in option_ids:
+            errors.append(
+                "analytic recommendation must name a registered option_id: "
+                f"{recommendation['option_id']}"
+            )
+        if output_ceiling != "requirements_only":
+            errors.append("an analytic recommendation requires output_ceiling requirements_only")
+        if record is not None:
+            normative = {claim["claim_id"] for claim in record["claim_ledger"] if claim["claim_type"] == "N"}
+            normative |= {
+                entry["rule_id"] for entry in record.get("rule_registry", []) if entry.get("rule_type") == "normative"
+            }
+            for premise in recommendation["normative_premise_ids"]:
+                if premise not in normative:
+                    errors.append(
+                        "analytic recommendation premise must resolve to an N claim or normative rule: " + premise
+                    )
+    return errors
+
+
+def strong_judgment_errors(payload: dict) -> list[str]:
+    errors: list[str] = []
+    ig6 = payload["gate_register"]["main_gates"]["IG6"]["status"]
+    strong = payload["strong_judgment"]
+    components = strong["components"]
+    if ig6 == "passed":
+        if strong["status"] != "triggered":
+            errors.append("IG6 passed requires a triggered strong-judgment register")
+        failing = [code for code, result in components.items() if result["status"] != "passed"]
+        if failing:
+            errors.append(
+                "IG6 passed requires SJ1-SJ8 all passed; not passed: " + ", ".join(sorted(failing))
+            )
+    if ig6 == "not_applicable" and strong["status"] != "not_triggered":
+        errors.append("IG6 not_applicable requires strong_judgment status not_triggered with a reason")
+    if strong["status"] == "not_triggered" and any(
+        result["status"] != "not_applicable" for result in components.values()
+    ):
+        errors.append("an untriggered strong-judgment register must mark SJ1-SJ8 not_applicable")
     return errors
 
 

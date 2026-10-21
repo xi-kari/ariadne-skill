@@ -1,20 +1,54 @@
 {
-  "source": "Appendix A of Cross-scale Multi-circle Structural Reasoning Framework v8.2",
-  "source_sha256": "608A4E4099B18C96C18ED3C92A2AB5CDACBD737DACA4214C77DEBDD795DA3A20",
+  "source": "Appendix A of Xikari, Conditions, Structures, and Transformations (Xikari-条件结构与转化论), 2026-10",
+  "source_sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
   "language": "zh-Hans card bodies with English field names",
   "toc": [
-    {"id": "HV01", "name": "结构域"},
-    {"id": "HV02", "name": "边界与接口"},
-    {"id": "HV03", "name": "指向锚点"},
-    {"id": "HV04", "name": "生成节点"},
-    {"id": "HV05", "name": "行动承接层"},
-    {"id": "HV06", "name": "动力—承接链"},
-    {"id": "HV07", "name": "反馈写回"},
-    {"id": "HV08", "name": "条件势场"},
-    {"id": "HV09", "name": "结构负荷"},
-    {"id": "HV10", "name": "演化相位"},
-    {"id": "HV11", "name": "开放性承担行动"}
+    {
+      "id": "HV01",
+      "name": "结构域"
+    },
+    {
+      "id": "HV02",
+      "name": "边界与接口"
+    },
+    {
+      "id": "HV03",
+      "name": "指向锚点"
+    },
+    {
+      "id": "HV04",
+      "name": "生成节点"
+    },
+    {
+      "id": "HV05",
+      "name": "行动承接层"
+    },
+    {
+      "id": "HV06",
+      "name": "动力—承接链"
+    },
+    {
+      "id": "HV07",
+      "name": "反馈写回"
+    },
+    {
+      "id": "HV08",
+      "name": "条件势场"
+    },
+    {
+      "id": "HV09",
+      "name": "结构负荷"
+    },
+    {
+      "id": "HV10",
+      "name": "演化相位"
+    },
+    {
+      "id": "HV11",
+      "name": "开放性承担行动"
+    }
   ],
+  "reading_rule": "An empty dependency (无（空集合）) only means no object is registered for that dependency type; it is not evidence that the claim holds. Read each conditional support route whole; never combine favorable conditions from different routes after the fact. Every card has an R0 low-tier route that does not require the higher-tier premises of its other routes.",
   "field_order": [
     "id",
     "name",
@@ -57,1595 +91,1692 @@
     "conditional_support_routes"
   ],
   "human_variables": [
-{
-  "id": "HV01",
-  "name": "结构域",
-  "proposition": "D0只声明候选人类对象；只有预注册G1-instance显示候选分组相对匹配N0在预选结果上取得超过阈值的样本外或外推增益时，才在该实例范围登记有限有效结构域。",
-  "scope": "关系、团队、组织、制度与公共议题",
-  "pause_condition": "对象、边界、尺度、时间窗、同一性或零模型不完整",
-  "allowed_inference": [
-    "只在G1-instance预注册对象、尺度、窗口、结果与外推单位内登记有限有效结构域及识别强度"
-  ],
-  "prohibited_leap": [
-    "命名即客观共同体",
-    "共同处境即共同意愿"
-  ],
-  "scale_invariants": [
-    "对象合同",
-    "参与与受影响位置"
-  ],
-  "changing_semantics": [
-    "有效成员、关系和同一性可随尺度改变"
-  ],
-  "non_applicable_objects": [
-    "无意向、制度或责任接口的非人系统"
-  ],
-  "action_ceiling": "本变量只生成候选结构域、边界争议与补证需求描述，不授权纳入、排除或处置；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，成员与受影响位置可经安全可达、反报复通道挑战边界、代表性和同一性判据，并触发与原命名或决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销结构域登记、移除其对下游对象范围的效力并恢复为材料集合，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：关系或事件单元、候选成员总体、边界内外分布及分组规则；X=空间范围：共同场所、组织边界、数字平台与跨域外部环境；T=时间跨度：识别窗口、成员变动周期与边界历史；O=组织层级：角色、团队、组织、制度至治理生态；C=因果层次：原始事件、互动机制、中观关系结构、制度与系统条件；R=观察分辨率：原始互动、事件序列、成员个案、边界分布、指标与摘要，并登记压缩损失；I=影响范围：直接成员、被排除者、间接受影响者、二阶外溢、跨域与代际位置；N=网络拓扑范围：成员关系、边界连接、孤立点与跨域桥接；J=管辖与授权范围：对象命名、边界采用及后续处置分别登记授权；不适用轴须登记not_applicable理由",
-  "effective_object": "由D0声明的候选对象；只有通过预注册G1-instance相对匹配N0的阈值检验后，才在该实例范围登记为有限有效结构域",
-  "state": [
-    "候选",
-    "可识别",
-    "边界争议",
-    "不成立"
-  ],
-  "observables": [
-    "边界内外关系密度与约束差异",
-    "成员进入、退出与被排除记录",
-    "共同问题、资源通道或制度规则的重复共现",
-    "改变分组规则后对象识别是否稳定"
-  ],
-  "evidence": [
-    "D0候选对象与同一性记录",
-    "G1-instance预注册表及匹配N0",
-    "训练与样本外或外推结果",
-    "候选分组与竞争分组的增益比较"
-  ],
-  "input_dependencies": [
-    "D0只提供候选对象字段，不构成结构成立证据",
-    "预注册G1-instance及匹配N0、阈值、模型类、样本或外推单位",
-    "观察位置、竞争分组与E1协议"
-  ],
-  "output_effects": [
-    "仅在G1-instance通过后限定其余十变量的对象范围；未通过时保持候选或材料集合"
-  ],
-  "carrier": [
-    "关系网络",
-    "组织边界",
-    "制度记录"
-  ],
-  "responsible_subject": [
-    "提出结构域判断的分析者",
-    "使用该判断的决策者"
-  ],
-  "time_window_and_lag": "登记识别窗口、边界变动与成员变化时滞",
-  "uncertainty": "记录边界争议、成员缺席和观察覆盖",
-  "local_exclusion_zone": "无法安全表达或未被采样的位置不得被总体代表",
-  "affected_positions": [
-    "成员",
-    "被排除者",
-    "边界外成本承担者"
-  ],
-  "normative_status": "描述性H-World接口，不产生正当性",
-  "judgment_ceiling": "只有G1-instance通过时，且仅限预注册对象、尺度、窗口、结果与外推单位，才可登记解释级有限有效对象；否则仅为候选对象或材料集合",
-  "required_scale_additions": [
-    "单位与总体",
-    "代表性",
-    "J轴",
-    "低可见位置"
-  ],
-  "counterexamples": [
-    "同一场所中反复共现的人群没有稳定关系或共同约束",
-    "分析者划定的群组在改变分组规则后立即消失"
-  ],
-  "forbidden_elevation": [
-    "局部群体直接代表全部受影响者"
-  ],
-  "qualified_id": "human_variable:HV01",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [
-    "D0"
-  ],
-  "protocol_requires": [
-    "E1",
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
     {
-      "route_id": "HV01-R0-candidate-object",
-      "claim_level": "candidate_description",
-      "when": "D0对象合同完整，但尚无符合资格且result_state=supported的G1-instance。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记候选人类对象、材料集合、边界争议与G1补证需求。",
-      "result_ceiling": "仅到候选对象描述；不得称有限有效结构域，也不得限定HV02-HV11的经验对象范围。"
+      "id": "HV01",
+      "name": "结构域",
+      "proposition": "D0只声明候选人类对象；只有预注册G1-instance显示候选分组相对匹配N0在预选结果上取得超过阈值的样本外或外推增益时，才在该实例范围登记有限有效结构域。",
+      "scope": "关系、团队、组织、制度与公共议题",
+      "pause_condition": "对象、边界、尺度、时间窗或同一性不足以支持所选路由；申请G1正式支持时，相应零模型或实例合同不完整",
+      "allowed_inference": [
+        "R0可登记候选对象、边界争议与有限描述引用",
+        "只在G1-instance预注册对象、尺度、窗口、结果与外推单位内登记其增益所支持的有限有效结构域及识别强度"
+      ],
+      "prohibited_leap": [
+        "命名即客观共同体",
+        "共同处境即共同意愿"
+      ],
+      "scale_invariants": [
+        "对象合同",
+        "参与与受影响位置"
+      ],
+      "changing_semantics": [
+        "有效成员、关系和同一性可随尺度改变"
+      ],
+      "non_applicable_objects": [
+        "无意向、制度或责任接口的非人系统"
+      ],
+      "action_ceiling": "本变量只生成候选结构域、边界争议与补证需求描述，不授权纳入、排除或处置；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，成员与受影响位置可经安全可达、反报复通道挑战边界、代表性和同一性判据，并触发与原命名或决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销结构域登记、移除其对下游对象范围的效力并恢复为材料集合，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：关系或事件单元、候选成员总体、边界内外分布及分组规则；X=空间范围：共同场所、组织边界、数字平台与跨域外部环境；T=时间跨度：识别窗口、成员变动周期与边界历史；O=组织层级：角色、团队、组织、制度至治理生态；C=因果层次：原始事件、互动机制、中观关系结构、制度与系统条件；R=观察分辨率：原始互动、事件序列、成员个案、边界分布、指标与摘要，并登记压缩损失；I=影响范围：直接成员、被排除者、间接受影响者、二阶外溢、跨域与代际位置；N=网络拓扑范围：成员关系、边界连接、孤立点与跨域桥接；J=管辖与授权范围：对象命名、边界采用及后续处置分别登记授权；不适用轴须登记not_applicable理由",
+      "effective_object": "由D0声明的候选对象；只有通过预注册G1-instance相对匹配N0的阈值检验后，才在该实例范围登记为有限有效结构域",
+      "state": [
+        "候选",
+        "可识别",
+        "边界争议",
+        "不成立"
+      ],
+      "observables": [
+        "边界内外关系密度与约束差异",
+        "成员进入、退出与被排除记录",
+        "共同问题、资源通道或制度规则的重复共现",
+        "改变分组规则后对象识别是否稳定"
+      ],
+      "evidence": [
+        "D0候选对象与同一性记录",
+        "G1-instance预注册表及匹配N0",
+        "训练与样本外或外推结果",
+        "候选分组与竞争分组的增益比较"
+      ],
+      "input_dependencies": [
+        "D0只提供候选对象字段，不构成结构成立证据",
+        "预注册G1-instance及匹配N0、阈值、模型类、样本或外推单位",
+        "观察位置、竞争分组与E1协议"
+      ],
+      "output_effects": [
+        "R0向其余变量提供候选对象引用、边界、时间窗与不确定性；R1另提供G1所支持的有限有效范围",
+        "对象存在及领域事实的依据与分组增益分别保留"
+      ],
+      "carrier": [
+        "关系网络",
+        "组织边界",
+        "制度记录"
+      ],
+      "responsible_subject": [
+        "提出结构域判断的分析者",
+        "使用该判断的决策者"
+      ],
+      "time_window_and_lag": "登记识别窗口、边界变动与成员变化时滞",
+      "uncertainty": "记录边界争议、成员缺席和观察覆盖",
+      "local_exclusion_zone": "无法安全表达或未被采样的位置不得被总体代表",
+      "affected_positions": [
+        "成员",
+        "被排除者",
+        "边界外成本承担者"
+      ],
+      "normative_status": "描述性H-World接口，不产生正当性",
+      "judgment_ceiling": "只有G1-instance通过时，且仅限预注册对象、尺度、窗口、结果与外推单位，才可登记解释级有限有效对象；否则仅为候选对象或材料集合",
+      "required_scale_additions": [
+        "单位与总体",
+        "代表性",
+        "J轴",
+        "低可见位置"
+      ],
+      "counterexamples": [
+        "同一场所中反复共现的人群没有稳定关系或共同约束",
+        "分析者划定的群组在改变分组规则后立即消失"
+      ],
+      "forbidden_elevation": [
+        "局部群体直接代表全部受影响者"
+      ],
+      "qualified_id": "human_variable:HV01",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [
+        "D0"
+      ],
+      "protocol_requires": [
+        "E1",
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV01-R0-candidate-object",
+          "claim_level": "candidate_description",
+          "when": "D0对象合同完整，但尚无符合资格且result_state=supported的G1-instance。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记候选人类对象、材料集合、边界争议与G1补证需求。",
+          "result_ceiling": "仅到候选对象描述；可向HV02-HV11提供带边界与不确定性的对象引用，不把这一引用当作G1已支持的有效结构域。"
+        },
+        {
+          "route_id": "HV01-R1-effective-domain",
+          "claim_level": "descriptive_classification",
+          "when": "同一对象、尺度、窗口、K与外推单元内的预注册G1-instance取得supported。",
+          "additional_inferential_requires": [
+            "G1-instance"
+          ],
+          "additional_protocol_requires": [
+            "E4"
+          ],
+          "allowed_conclusion": "登记该实例范围内的有限有效结构域、对象识别强度、边界可信度和适用窗。",
+          "result_ceiling": "只限预注册SP/T/K与generalization_unit；不得作终极本体、统一意志或授权判断。"
+        }
+      ]
     },
     {
-      "route_id": "HV01-R1-effective-domain",
-      "claim_level": "descriptive_classification",
-      "when": "同一对象、尺度、窗口、K与外推单元内的预注册G1-instance取得supported。",
-      "additional_inferential_requires": [
-        "G1-instance"
+      "id": "HV02",
+      "name": "边界与接口",
+      "proposition": "人类边界必须同时登记成员、资源、信息、权利、责任与跨界接口。",
+      "scope": "存在纳入、排除、交换或管辖的人类结构",
+      "pause_condition": "正式边界与实际边界混同或排除项不可见",
+      "allowed_inference": [
+        "边界选择性",
+        "接口通达性",
+        "跨界成本"
       ],
-      "additional_protocol_requires": [
-        "E4"
+      "prohibited_leap": [
+        "边界等于封闭",
+        "成员身份等于同意",
+        "影响范围等于管辖权"
       ],
-      "allowed_conclusion": "登记该实例范围内的有限有效结构域、对象识别强度、边界可信度和适用窗。",
-      "result_ceiling": "只限预注册SP/T/K与generalization_unit；不得作终极本体、统一意志或授权判断。"
-    }
-  ]
-},
-{
-  "id": "HV02",
-  "name": "边界与接口",
-  "proposition": "人类边界必须同时登记成员、资源、信息、权利、责任与跨界接口。",
-  "scope": "存在纳入、排除、交换或管辖的人类结构",
-  "pause_condition": "正式边界与实际边界混同或排除项不可见",
-  "allowed_inference": [
-    "边界选择性",
-    "接口通达性",
-    "跨界成本"
-  ],
-  "prohibited_leap": [
-    "边界等于封闭",
-    "成员身份等于同意",
-    "影响范围等于管辖权"
-  ],
-  "scale_invariants": [
-    "内外位置",
-    "跨界通道",
-    "权利责任边界"
-  ],
-  "changing_semantics": [
-    "成员、接口与实际控制边界可改变"
-  ],
-  "non_applicable_objects": [
-    "无成员、权利或责任概念的非人边界"
-  ],
-  "action_ceiling": "本变量只生成边界状态、接口障碍、排除风险与测试需求描述，不授权改变准入、退出、权利或资源流；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，边界内外受影响者可经安全可达、反报复通道挑战纳入、排除和接口障碍，并触发与原边界决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内纠正成员与拒绝记录、实际恢复受影响的准入权利或接口状态并撤销错误边界行动，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次跨界事件、接口使用个案、成员类别总体、准入拒绝分布及聚合规则；X=空间范围：物理入口、组织边界、数字接口、司法辖区与跨域通道；T=时间跨度：边界生效期、接口等待、迁移时滞与重组周期；O=组织层级：使用者角色、守门团队、组织、制度至治理生态；C=因果层次：跨界事件、守门互动机制、接口结构、制度规则与系统条件；R=观察分辨率：原始准入拒绝记录、使用序列、个案、流量分布、服务指标与摘要，并登记压缩损失；I=影响范围：直接使用者、被排除者、间接受益或成本位置、二阶外溢、跨域与代际影响；N=网络拓扑范围：接口节点、守门瓶颈、替代路径与跨域连接；J=管辖与授权范围：纳入、排除、接口改变及权利责任调整分别登记授权；升格须记录逐轴差值",
-  "effective_object": "对资源、信息、权利或责任流产生选择性的边界",
-  "state": [
-    "开放",
-    "选择性开放",
-    "封闭",
-    "争议",
-    "重组"
-  ],
-  "observables": [
-    "成员资格、准入与退出决定",
-    "资源、信息、权利和责任的跨界流量",
-    "守门节点、等待时间与拒绝理由",
-    "正式边界与实际通行边界的差异"
-  ],
-  "evidence": [
-    "成员名单与例外",
-    "接口使用记录",
-    "跨界流和拒绝记录"
-  ],
-  "input_dependencies": [
-    "HV01结构域",
-    "角色与授权"
-  ],
-  "output_effects": [
-    "HV05承接",
-    "HV07写回",
-    "PF-9退出"
-  ],
-  "carrier": [
-    "成员规则",
-    "访问机制",
-    "法律或制度边界",
-    "技术接口"
-  ],
-  "responsible_subject": [
-    "边界制定者",
-    "接口运营者",
-    "授权者"
-  ],
-  "time_window_and_lag": "记录边界生效、变更、退出和申诉时滞",
-  "uncertainty": "记录非正式边界、代理访问和数字空间漂移",
-  "local_exclusion_zone": "无法接入接口、无法退出或受保护不公开的位置",
-  "affected_positions": [
-    "成员",
-    "申请者",
-    "被排除者",
-    "边界外承担者"
-  ],
-  "normative_status": "边界事实与边界正当性分离",
-  "judgment_ceiling": "接口与影响证据充分时至诊断级",
-  "required_scale_additions": [
-    "新成员类别",
-    "跨域接口",
-    "代表与授权",
-    "保护继承"
-  ],
-  "counterexamples": [
-    "正式成员边界与实际资源控制边界相反",
-    "数字接口开放但物理、语言或安全门槛使部分位置无法进入"
-  ],
-  "forbidden_elevation": [
-    "空间或组织范围扩大自动产生管辖权"
-  ],
-  "qualified_id": "human_variable:HV02",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [
-    "human_variable:HV01"
-  ],
-  "protocol_requires": [
-    "E1",
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV02-R0-boundary-inventory",
-      "claim_level": "descriptive_classification",
-      "when": "成员、资源、信息、权利、责任、跨界接口及正式—实际边界差异可逐项登记。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "描述边界状态、接口通达性、守门位置、拒绝记录与排除风险。",
-      "result_ceiling": "只到边界与接口清单；不得断言边界已产生因果选择效应。"
+      "scale_invariants": [
+        "内外位置",
+        "跨界通道",
+        "权利责任边界"
+      ],
+      "changing_semantics": [
+        "成员、接口与实际控制边界可改变"
+      ],
+      "non_applicable_objects": [
+        "无成员、权利或责任概念的非人边界"
+      ],
+      "action_ceiling": "本变量只生成边界状态、接口障碍、排除风险与测试需求描述，不授权改变准入、退出、权利或资源流；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，边界内外受影响者可经安全可达、反报复通道挑战纳入、排除和接口障碍，并触发与原边界决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内纠正成员与拒绝记录、实际恢复受影响的准入权利或接口状态并撤销错误边界行动，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次跨界事件、接口使用个案、成员类别总体、准入拒绝分布及聚合规则；X=空间范围：物理入口、组织边界、数字接口、司法辖区与跨域通道；T=时间跨度：边界生效期、接口等待、迁移时滞与重组周期；O=组织层级：使用者角色、守门团队、组织、制度至治理生态；C=因果层次：跨界事件、守门互动机制、接口结构、制度规则与系统条件；R=观察分辨率：原始准入拒绝记录、使用序列、个案、流量分布、服务指标与摘要，并登记压缩损失；I=影响范围：直接使用者、被排除者、间接受益或成本位置、二阶外溢、跨域与代际影响；N=网络拓扑范围：接口节点、守门瓶颈、替代路径与跨域连接；J=管辖与授权范围：纳入、排除、接口改变及权利责任调整分别登记授权；升格须记录逐轴差值",
+      "effective_object": "对资源、信息、权利或责任流产生选择性的边界",
+      "state": [
+        "开放",
+        "选择性开放",
+        "封闭",
+        "争议",
+        "重组"
+      ],
+      "observables": [
+        "成员资格、准入与退出决定",
+        "资源、信息、权利和责任的跨界流量",
+        "守门节点、等待时间与拒绝理由",
+        "正式边界与实际通行边界的差异"
+      ],
+      "evidence": [
+        "成员名单与例外",
+        "接口使用记录",
+        "跨界流和拒绝记录"
+      ],
+      "input_dependencies": [
+        "HV01候选对象或已支持结构域及其证据状态",
+        "角色与授权；R0不要求G1预先通过"
+      ],
+      "output_effects": [
+        "HV05承接",
+        "HV07写回",
+        "PF-9退出"
+      ],
+      "carrier": [
+        "成员规则",
+        "访问机制",
+        "法律或制度边界",
+        "技术接口"
+      ],
+      "responsible_subject": [
+        "边界制定者",
+        "接口运营者",
+        "授权者"
+      ],
+      "time_window_and_lag": "记录边界生效、变更、退出和申诉时滞",
+      "uncertainty": "记录非正式边界、代理访问和数字空间漂移",
+      "local_exclusion_zone": "无法接入接口、无法退出或受保护不公开的位置",
+      "affected_positions": [
+        "成员",
+        "申请者",
+        "被排除者",
+        "边界外承担者"
+      ],
+      "normative_status": "边界事实与边界正当性分离",
+      "judgment_ceiling": "接口与影响证据充分时至诊断级",
+      "required_scale_additions": [
+        "新成员类别",
+        "跨域接口",
+        "代表与授权",
+        "保护继承"
+      ],
+      "counterexamples": [
+        "正式成员边界与实际资源控制边界相反",
+        "数字接口开放但物理、语言或安全门槛使部分位置无法进入"
+      ],
+      "forbidden_elevation": [
+        "空间或组织范围扩大自动产生管辖权"
+      ],
+      "qualified_id": "human_variable:HV02",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [
+        "human_variable:HV01"
+      ],
+      "protocol_requires": [
+        "E1",
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV02-R0-boundary-inventory",
+          "claim_level": "descriptive_classification",
+          "when": "成员、资源、信息、权利、责任、跨界接口及正式—实际边界差异可逐项登记。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "描述边界状态、接口通达性、守门位置、拒绝记录与排除风险。",
+          "result_ceiling": "只到边界与接口清单；不得断言边界已产生因果选择效应。"
+        },
+        {
+          "route_id": "HV02-R1-selective-effect",
+          "claim_level": "conditional_effect",
+          "when": "预注册边界或接口变动经符合资格的G2-instance显示对指定跨界流、准入或拒绝结果有超过阈值的通道效应。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定通道、窗口与位置上的边界选择效应及跨界成本分布。",
+          "result_ceiling": "只限已检验通道与结果；不得从空间、组织或影响范围推出J轴管辖与处置权。"
+        }
+      ]
     },
     {
-      "route_id": "HV02-R1-selective-effect",
-      "claim_level": "conditional_effect",
-      "when": "预注册边界或接口变动经符合资格的G2-instance显示对指定跨界流、准入或拒绝结果有超过阈值的通道效应。",
-      "additional_inferential_requires": [
-        "G2-instance"
+      "id": "HV03",
+      "name": "指向锚点",
+      "proposition": "目标、身份、记忆、承诺、恐惧或共同问题可以先登记为候选意义材料；只有H1-instance支持预先选定的资源配置、行动选择或协调结果，才在该实例范围登记条件性有效指向锚点。",
+      "scope": "具有意向、协调或共同问题的人类结构",
+      "pause_condition": "只有口号、解释者投射或被强制的一致表达时，不登记R1条件性有效指向锚点；有来源的表达材料、异质表达与强制风险仍可按R0登记，不据此推出共同意志。",
+      "allowed_inference": [
+        "条件性的协调方向与冲突锚点"
       ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
+      "prohibited_leap": [
+        "群体具有统一内心",
+        "共同语言等于真实同意",
+        "目标正当"
       ],
-      "allowed_conclusion": "登记指定通道、窗口与位置上的边界选择效应及跨界成本分布。",
-      "result_ceiling": "只限已检验通道与结果；不得从空间、组织或影响范围推出J轴管辖与处置权。"
-    }
-  ]
-},
-{
-  "id": "HV03",
-  "name": "指向锚点",
-  "proposition": "目标、身份、记忆、承诺、恐惧或共同问题只有改变资源与行动时才构成指向锚点。",
-  "scope": "具有意向、协调或共同问题的人类结构",
-  "pause_condition": "只有口号、解释者投射或被强制的一致表达",
-  "allowed_inference": [
-    "条件性的协调方向与冲突锚点"
-  ],
-  "prohibited_leap": [
-    "群体具有统一内心",
-    "共同语言等于真实同意",
-    "目标正当"
-  ],
-  "scale_invariants": [
-    "意义到资源或行动的桥接"
-  ],
-  "changing_semantics": [
-    "锚点内容、强度和承载主体可改变"
-  ],
-  "non_applicable_objects": [
-    "无意向、意义或承诺能力的非人系统"
-  ],
-  "action_ceiling": "本变量只生成候选锚点、异质表达、比较结果与补证需求描述，不授权统一意义、代表意愿或协调行动；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，成员可经安全可达、反报复通道否认代表性、提交异质目标或拒绝被锚定，并触发与原锚点判断链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销锚点命名、移除其代表性与下游协调效力并恢复异质表达状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次表达或行动、主体个案、候选参与总体、立场分布及聚合规则；X=空间范围：关系现场、组织空间、数字公共空间与跨域传播范围；T=时间跨度：表达—行动窗口、承诺周期、漂移与解耦时滞；O=组织层级：行动角色、团队、组织、制度至公共治理生态；C=因果层次：表达事件、意义—行动互动机制、中观协调结构、制度安排与系统条件；R=观察分辨率：原始表达与行动、事件序列、个案、立场分布、协调指标与摘要，并登记压缩损失；I=影响范围：直接参与者、异议者、间接受影响者、二阶协调后果、跨域与代际影响；N=网络拓扑范围：表达传播、协调连接、异质簇群与桥接节点；J=管辖与授权范围：锚点命名、代表性采用、协调或统一要求分别登记授权；必须保留异质锚点",
-  "effective_object": "能改变资源或行动的目标、身份、记忆、承诺、恐惧或共同问题",
-  "state": [
-    "分散",
-    "凝聚",
-    "竞争",
-    "固化",
-    "解耦"
-  ],
-  "observables": [
-    "预注册意义表达出现前后的资源配置差异",
-    "行动选择、协作完成率或冲突模式变化",
-    "不同位置对锚点的接受、拒绝与替代表述",
-    "比较条件下结果差异是否超过预定阈值"
-  ],
-  "evidence": [
-    "资源调整",
-    "行动序列",
-    "承诺与退出记录",
-    "冲突证据"
-  ],
-  "input_dependencies": [
-    "参与位置",
-    "表达安全",
-    "资源与行动数据"
-  ],
-  "output_effects": [
-    "生成事件",
-    "承接动员",
-    "规范选择议程"
-  ],
-  "carrier": [
-    "叙事",
-    "承诺",
-    "共同记忆",
-    "制度目标",
-    "问题定义"
-  ],
-  "responsible_subject": [
-    "提出代表性主张者",
-    "据此配置资源者"
-  ],
-  "time_window_and_lag": "区分短期口号、长期承诺与代际记忆",
-  "uncertainty": "记录沉默、强制一致与内部异质性",
-  "local_exclusion_zone": "低安全位置的不同目标不得被聚合抹去",
-  "affected_positions": [
-    "认同者",
-    "异议者",
-    "被代表者",
-    "成本承担者"
-  ],
-  "normative_status": "锚点存在不证明其正当",
-  "judgment_ceiling": "有行动桥接时至解释级，无桥接时仅描述表达",
-  "required_scale_additions": [
-    "代表规则",
-    "异质性",
-    "成本收益分布",
-    "J轴"
-  ],
-  "counterexamples": [
-    "反复出现的口号没有改变任何资源配置或行动",
-    "高压场景中的一致表达掩盖相互冲突的真实目标"
-  ],
-  "forbidden_elevation": [
-    "局部表达直接升级为共同意志"
-  ],
-  "qualified_id": "human_variable:HV03",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [
-    "human_variable:HV01"
-  ],
-  "protocol_requires": [
-    "E2",
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV03-R0-candidate-anchor",
-      "claim_level": "candidate_description",
-      "when": "目标、身份、记忆、承诺、恐惧或共同问题有可追踪表达与承载形式，但尚无符合资格的H1-instance。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记候选意义材料、异质表达、代表性争议与H1补证需求。",
-      "result_ceiling": "仅称候选意义表达；不得称有效指向锚点或共同意志。"
+      "scale_invariants": [
+        "意义到预选资源配置、行动选择或协调结果的桥接"
+      ],
+      "changing_semantics": [
+        "锚点内容、强度和承载主体可改变"
+      ],
+      "non_applicable_objects": [
+        "无意向、意义或承诺能力的非人系统"
+      ],
+      "action_ceiling": "本变量只生成候选锚点、异质表达、比较结果与补证需求描述，不授权统一意义、代表意愿或协调行动；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，成员可经安全可达、反报复通道否认代表性、提交异质目标或拒绝被锚定，并触发与原锚点判断链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销锚点命名、移除其代表性与下游协调效力并恢复异质表达状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次表达或行动、主体个案、候选参与总体、立场分布及聚合规则；X=空间范围：关系现场、组织空间、数字公共空间与跨域传播范围；T=时间跨度：表达—行动窗口、承诺周期、漂移与解耦时滞；O=组织层级：行动角色、团队、组织、制度至公共治理生态；C=因果层次：表达事件、意义—行动互动机制、中观协调结构、制度安排与系统条件；R=观察分辨率：原始表达与行动、事件序列、个案、立场分布、协调指标与摘要，并登记压缩损失；I=影响范围：直接参与者、异议者、间接受影响者、二阶协调后果、跨域与代际影响；N=网络拓扑范围：表达传播、协调连接、异质簇群与桥接节点；J=管辖与授权范围：锚点命名、代表性采用、协调或统一要求分别登记授权；必须保留异质锚点",
+      "effective_object": "可能改变资源配置、行动选择或协调结果的目标、身份、记忆、承诺、恐惧或共同问题",
+      "state": [
+        "分散",
+        "凝聚",
+        "竞争",
+        "固化",
+        "解耦"
+      ],
+      "observables": [
+        "预注册意义表达出现前后的资源配置差异",
+        "行动选择、协作完成率或冲突模式变化",
+        "不同位置对锚点的接受、拒绝与替代表述",
+        "比较条件下结果差异是否超过预定阈值"
+      ],
+      "evidence": [
+        "资源调整",
+        "行动序列",
+        "承诺与退出记录",
+        "冲突证据"
+      ],
+      "input_dependencies": [
+        "参与位置",
+        "表达安全",
+        "资源与行动数据"
+      ],
+      "output_effects": [
+        "生成事件",
+        "承接动员",
+        "规范选择议程"
+      ],
+      "carrier": [
+        "叙事",
+        "承诺",
+        "共同记忆",
+        "制度目标",
+        "问题定义"
+      ],
+      "responsible_subject": [
+        "提出代表性主张者",
+        "据此配置资源者"
+      ],
+      "time_window_and_lag": "区分短期口号、长期承诺与代际记忆",
+      "uncertainty": "记录沉默、强制一致与内部异质性",
+      "local_exclusion_zone": "低安全位置的不同目标不得被聚合抹去",
+      "affected_positions": [
+        "认同者",
+        "异议者",
+        "被代表者",
+        "成本承担者"
+      ],
+      "normative_status": "锚点存在不证明其正当",
+      "judgment_ceiling": "按R0/R1分别限制：R0仅描述候选意义表达；相应H1-instance支持所选结果效应时，R1可作限定范围的条件性锚点解释，不外推未选结果",
+      "required_scale_additions": [
+        "代表规则",
+        "异质性",
+        "成本收益分布",
+        "J轴"
+      ],
+      "counterexamples": [
+        "反复出现的口号没有改变任何资源配置或行动",
+        "高压场景中的一致表达掩盖相互冲突的真实目标"
+      ],
+      "forbidden_elevation": [
+        "局部表达直接升级为共同意志"
+      ],
+      "qualified_id": "human_variable:HV03",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [
+        "human_variable:HV01"
+      ],
+      "protocol_requires": [
+        "E2",
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV03-R0-candidate-anchor",
+          "claim_level": "candidate_description",
+          "when": "目标、身份、记忆、承诺、恐惧或共同问题有可追踪表达与承载形式，但尚无符合资格的H1-instance。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记候选意义材料、异质表达、代表性争议与H1补证需求。",
+          "result_ceiling": "仅称候选意义表达；不得称有效指向锚点或共同意志。"
+        },
+        {
+          "route_id": "HV03-R1-effective-anchor",
+          "claim_level": "conditional_effect",
+          "when": "预注册H1-instance在资源配置、行动选择或协调结果中唯一预选的判据取得supported。",
+          "additional_inferential_requires": [
+            "H1-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记该实例、结果家族、尺度与窗口内的条件性有效指向锚点。",
+          "result_ceiling": "不外推到未选资源、行动或协调结果，也不推出真实同意、统一内心或强制统一意义。"
+        }
+      ]
     },
     {
-      "route_id": "HV03-R1-effective-anchor",
-      "claim_level": "conditional_effect",
-      "when": "预注册H1-instance在资源配置、行动选择或协调结果中唯一预选的判据取得supported。",
-      "additional_inferential_requires": [
-        "H1-instance"
+      "id": "HV04",
+      "name": "生成节点",
+      "proposition": "生成必须分流为生成条件GC、生成主体GS与生成事件GE，允许无可识别主体的涌现型生成。",
+      "scope": "人类结构中新行动、组织、制度或状态转移的形成",
+      "pause_condition": "条件被人格化、事件被当作主体或主体资格未经依据确认时，暂停相应主体或分型断言；R0仍可分别登记候选GC、GS、GE及未识别主体状态，不把未识别当作已证明无主体。",
+      "allowed_inference": [
+        "条件性生成路径",
+        "有主体或无主体生成"
       ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
+      "prohibited_leap": [
+        "技术或危机具有意图",
+        "生成主体自动拥有持续授权"
       ],
-      "allowed_conclusion": "登记该实例、结果家族、尺度与窗口内的条件性有效指向锚点。",
-      "result_ceiling": "不外推到未选资源、行动或协调结果，也不推出真实同意、统一内心或强制统一意义。"
-    }
-  ]
-},
-{
-  "id": "HV04",
-  "name": "生成节点",
-  "proposition": "生成必须分流为生成条件GC、生成主体GS与生成事件GE，允许无可识别主体的涌现型生成。",
-  "scope": "人类结构中新行动、组织、制度或状态转移的形成",
-  "pause_condition": "条件被人格化、事件被当作主体或主体资格不明",
-  "allowed_inference": [
-    "条件性生成路径",
-    "有主体或无主体生成"
-  ],
-  "prohibited_leap": [
-    "技术或危机具有意图",
-    "生成主体自动拥有持续授权"
-  ],
-  "scale_invariants": [
-    "GC、GS、GE强类型分离"
-  ],
-  "changing_semantics": [
-    "生成主体、条件与事件可随尺度改变"
-  ],
-  "non_applicable_objects": [
-    "没有新状态形成或生成主张的稳定描述"
-  ],
-  "action_ceiling": "本变量只生成GC、GS、GE候选分型、状态转移描述与补证需求，不授权启动、扩散或停止生成过程；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，被归为生成主体者可经安全可达、反报复通道挑战意图、角色与授权归因，并触发与原分型或决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内纠正GC、GS、GE类型，实际移除错误意图或责任归因及其下游效力，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：条件暴露、主体行动与生成事件单元，各自个案总体、分布及聚合规则；X=空间范围：生成现场、组织或平台边界、扩散区域与跨域环境；T=时间跨度：条件积累期、主体行动窗、事件时点与扩散时滞；O=组织层级：行动角色、生成团队、组织、制度至治理生态；C=因果层次：生成事件、主体—条件互动机制、中观生成结构、制度安排与系统条件；R=观察分辨率：原始条件行动事件、生成序列、个案、结果分布、转移指标与摘要，并登记压缩损失；I=影响范围：直接生成参与者、承接者、间接受影响者、二阶后果、跨域与代际影响；N=网络拓扑范围：条件传播、主体协作、事件扩散与涌现连接；J=管辖与授权范围：生成识别、启动改变、资源投入及扩散处置分别登记授权；GC、GS、GE分别登记尺度",
-  "effective_object": "形成可检测状态转移的条件、主体与事件组合",
-  "state": [
-    "潜在",
-    "触发",
-    "形成",
-    "中断",
-    "扩散"
-  ],
-  "observables": [
-    "候选条件出现、改变或移除的时间记录",
-    "生成主体的能力、授权、决策与实际行动",
-    "生成事件前后预注册状态转移",
-    "无主体涌现时局部互动与总体结果的桥接记录"
-  ],
-  "evidence": [
-    "启动记录",
-    "条件窗口",
-    "主体行动",
-    "无主体互动机制"
-  ],
-  "input_dependencies": [
-    "指向锚点",
-    "资源与制度条件",
-    "因果合同"
-  ],
-  "output_effects": [
-    "承接需求",
-    "状态转移",
-    "责任链起点"
-  ],
-  "carrier": [
-    "启动者",
-    "程序",
-    "技术设施",
-    "关系网络"
-  ],
-  "responsible_subject": [
-    "实际行动者",
-    "决策者",
-    "授权者"
-  ],
-  "time_window_and_lag": "登记条件积累、触发事件与形成时滞",
-  "uncertainty": "记录共同生成、无主体涌现和不可识别主体",
-  "local_exclusion_zone": "被遗漏的非正式启动者与受影响位置",
-  "affected_positions": [
-    "启动者",
-    "承接者",
-    "受益者",
-    "受影响者"
-  ],
-  "normative_status": "生成事实不证明正当或责任完整",
-  "judgment_ceiling": "机制链完整时至解释级",
-  "required_scale_additions": [
-    "新单位与总体",
-    "代表关系",
-    "责任类型",
-    "外部影响"
-  ],
-  "counterexamples": [
-    "技术条件被错误描述成具有目标的生成主体",
-    "无统一发起者的涌现过程被强行归因给一个可见人物"
-  ],
-  "forbidden_elevation": [
-    "把条件或事件升格为有意图主体"
-  ],
-  "qualified_id": "human_variable:HV04",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [],
-  "protocol_requires": [
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV04-R0-generation-typing",
-      "claim_level": "descriptive_classification",
-      "when": "GC、GS与GE的规定字段可分别登记，并保留无主体涌现与未识别主体状态。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "分别登记候选生成条件、候选生成主体与候选生成事件，不将三者互相替代。",
-      "result_ceiling": "只到强类型分类；条件、主体或事件任一存在都不证明另两项或因果生成机制。"
+      "scale_invariants": [
+        "GC、GS、GE强类型分离"
+      ],
+      "changing_semantics": [
+        "生成主体、条件与事件可随尺度改变"
+      ],
+      "non_applicable_objects": [
+        "没有新状态形成或生成主张的稳定描述"
+      ],
+      "action_ceiling": "本变量只生成GC、GS、GE候选分型、状态转移描述与补证需求，不授权启动、扩散或停止生成过程；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，被归为生成主体者可经安全可达、反报复通道挑战意图、角色与授权归因，并触发与原分型或决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内纠正GC、GS、GE类型，实际移除错误意图或责任归因及其下游效力，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：条件暴露、主体行动与生成事件单元，各自个案总体、分布及聚合规则；X=空间范围：生成现场、组织或平台边界、扩散区域与跨域环境；T=时间跨度：条件积累期、主体行动窗、事件时点与扩散时滞；O=组织层级：行动角色、生成团队、组织、制度至治理生态；C=因果层次：生成事件、主体—条件互动机制、中观生成结构、制度安排与系统条件；R=观察分辨率：原始条件行动事件、生成序列、个案、结果分布、转移指标与摘要，并登记压缩损失；I=影响范围：直接生成参与者、承接者、间接受影响者、二阶后果、跨域与代际影响；N=网络拓扑范围：条件传播、主体协作、事件扩散与涌现连接；J=管辖与授权范围：生成识别、启动改变、资源投入及扩散处置分别登记授权；GC、GS、GE分别登记尺度",
+      "effective_object": "形成可检测状态转移的条件、主体与事件组合",
+      "state": [
+        "潜在",
+        "触发",
+        "形成",
+        "中断",
+        "扩散"
+      ],
+      "observables": [
+        "候选条件出现、改变或移除的时间记录",
+        "生成主体的能力、授权、决策与实际行动",
+        "生成事件前后预注册状态转移",
+        "无主体涌现时局部互动与总体结果的桥接记录"
+      ],
+      "evidence": [
+        "启动记录",
+        "条件窗口",
+        "主体行动",
+        "无主体互动机制"
+      ],
+      "input_dependencies": [
+        "指向锚点",
+        "资源与制度条件",
+        "因果合同"
+      ],
+      "output_effects": [
+        "承接需求",
+        "状态转移",
+        "责任链起点"
+      ],
+      "carrier": [
+        "启动者",
+        "程序",
+        "技术设施",
+        "关系网络"
+      ],
+      "responsible_subject": [
+        "实际行动者",
+        "决策者",
+        "授权者"
+      ],
+      "time_window_and_lag": "登记条件积累、触发事件与形成时滞",
+      "uncertainty": "记录共同生成、无主体涌现和不可识别主体",
+      "local_exclusion_zone": "被遗漏的非正式启动者与受影响位置",
+      "affected_positions": [
+        "启动者",
+        "承接者",
+        "受益者",
+        "受影响者"
+      ],
+      "normative_status": "生成事实不证明正当或责任完整",
+      "judgment_ceiling": "机制链完整时至解释级",
+      "required_scale_additions": [
+        "新单位与总体",
+        "代表关系",
+        "责任类型",
+        "外部影响"
+      ],
+      "counterexamples": [
+        "技术条件被错误描述成具有目标的生成主体",
+        "无统一发起者的涌现过程被强行归因给一个可见人物"
+      ],
+      "forbidden_elevation": [
+        "把条件或事件升格为有意图主体"
+      ],
+      "qualified_id": "human_variable:HV04",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [],
+      "protocol_requires": [
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV04-R0-generation-typing",
+          "claim_level": "descriptive_classification",
+          "when": "GC、GS与GE的规定字段可分别登记，并保留无主体涌现与未识别主体状态。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "分别登记候选生成条件、候选生成主体与候选生成事件，不将三者互相替代。",
+          "result_ceiling": "只到强类型分类；条件、主体或事件任一存在都不证明另两项或因果生成机制。"
+        },
+        {
+          "route_id": "HV04-R1-generation-mechanism",
+          "claim_level": "mechanism_explanation",
+          "when": "预注册G2-instance识别GC、GS或无主体涌现通道对指定GE状态转移的超过阈值效应。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定尺度、窗口和通道内的候选生成机制及其GC、GS、GE分型。",
+          "result_ceiling": "不得把条件人格化、把事件倒推为主体，或从生成事实推出正当性、责任与授权。"
+        }
+      ]
     },
     {
-      "route_id": "HV04-R1-generation-mechanism",
-      "claim_level": "mechanism_explanation",
-      "when": "预注册G2-instance识别GC、GS或无主体涌现通道对指定GE状态转移的超过阈值效应。",
-      "additional_inferential_requires": [
-        "G2-instance"
+      "id": "HV05",
+      "name": "行动承接层",
+      "proposition": "执行、传导、维护、记录、照护与修复的承接载体CV必须和责任主体RS、成本承担者、受益者及停止权分别登记。",
+      "scope": "需要持续行动、维护、照护或执行的人类结构",
+      "pause_condition": "低权限执行者被默认归为主要责任人或承接能力被当作义务",
+      "allowed_inference": [
+        "承接缺口",
+        "任务资源错配",
+        "责任分流"
       ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
+      "prohibited_leap": [
+        "最可见者等于主要责任人",
+        "能承担所以应承担",
+        "仅凭设施或程序执行功能就赋予责任；组织责任另据主体资格与具体规则"
       ],
-      "allowed_conclusion": "登记指定尺度、窗口和通道内的候选生成机制及其GC、GS、GE分型。",
-      "result_ceiling": "不得把条件人格化、把事件倒推为主体，或从生成事实推出正当性、责任与授权。"
-    }
-  ]
-},
-{
-  "id": "HV05",
-  "name": "行动承接层",
-  "proposition": "执行、传导、维护、记录、照护与修复的承接载体CV必须和责任主体RS、成本承担者、受益者及停止权分别登记。",
-  "scope": "需要持续行动、维护、照护或执行的人类结构",
-  "pause_condition": "低权限执行者被默认归为主要责任人或承接能力被当作义务",
-  "allowed_inference": [
-    "承接缺口",
-    "任务资源错配",
-    "责任分流"
-  ],
-  "prohibited_leap": [
-    "最可见者等于主要责任人",
-    "能承担所以应承担",
-    "非人载体承担责任"
-  ],
-  "scale_invariants": [
-    "CV不等于RS",
-    "成本与受益分别登记",
-    "停止权"
-  ],
-  "changing_semantics": [
-    "承接载体和责任主体可随层级改变"
-  ],
-  "non_applicable_objects": [
-    "无主体行动、责任或维护要求的非人过程"
-  ],
-  "action_ceiling": "本变量只生成CV、RS、成本、容量、停止权与承接缺口描述，以及减载、补资源或重分配需求，不授权任务调整、资源配置、归责或保护；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，承接者可经安全可达、反报复通道挑战任务、资源、成本、停止权受限和归责，并触发与原任务分配或归责链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销错误任务、资源或归责状态，实际恢复先前任务与记录状态并执行经授权补救，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单项任务或承接事件、载体个案、承接总体、成本容量分布及聚合规则；X=空间范围：岗位现场、团队或组织边界、数字系统与跨域服务范围；T=时间跨度：任务周期、维护窗口、恢复时滞与责任有效期；O=组织层级：执行角色、团队、组织、制度至治理生态；C=因果层次：执行事件、任务—资源互动机制、中观承接结构、制度责任安排与系统条件；R=观察分辨率：原始任务日志、承接序列、载体个案、成本容量分布、绩效指标与摘要，并登记压缩损失；I=影响范围：直接承接者、服务依赖者、间接受益或成本位置、二阶外溢、跨域与代际影响；N=网络拓扑范围：承接依赖、替代路径、单点瓶颈与跨域服务网络；J=管辖与授权范围：任务分配、停止、资源调整、归责与补救分别登记授权；CV与RS分别登记尺度",
-  "effective_object": "实际执行、传导、维护、记录、照护或修复的人、岗位、程序、设施或制度",
-  "state": [
-    "充足",
-    "脆弱",
-    "过载",
-    "断裂",
-    "替代"
-  ],
-  "observables": [
-    "任务实际执行、维护、记录与修复日志",
-    "资源、容量、时间和成本流向",
-    "停止权、替代安排与承接转移记录",
-    "决策、授权、监督、受益与补救依据"
-  ],
-  "evidence": [
-    "任务流",
-    "工时与资源",
-    "维护记录",
-    "停止和拒绝记录"
-  ],
-  "input_dependencies": [
-    "生成需求",
-    "资源",
-    "授权",
-    "角色"
-  ],
-  "output_effects": [
-    "实现状态转移",
-    "成本分布",
-    "结构负荷"
-  ],
-  "carrier": [
-    "人员",
-    "岗位",
-    "程序",
-    "设施",
-    "制度"
-  ],
-  "responsible_subject": [
-    "行为责任者",
-    "决策责任者",
-    "授权责任者",
-    "监督责任者",
-    "受益责任者",
-    "补救责任者"
-  ],
-  "time_window_and_lag": "登记排班、维护周期、积压与恢复时滞",
-  "uncertainty": "记录隐性劳动、非正式照护和边界外成本",
-  "local_exclusion_zone": "低权限、非正式与不可退出承接者",
-  "affected_positions": [
-    "承接者",
-    "受益者",
-    "被服务者",
-    "替代者"
-  ],
-  "normative_status": "承接事实不产生继续承担义务",
-  "judgment_ceiling": "资源与责任链完整时至诊断级",
-  "required_scale_additions": [
-    "任务聚合",
-    "代表和委托",
-    "六类责任",
-    "外部成本"
-  ],
-  "counterexamples": [
-    "最可见的低权限执行者不是决策、授权或受益责任主体",
-    "自动化设施承担传导任务但不能承担道德或法律责任"
-  ],
-  "forbidden_elevation": [
-    "个体承接直接等于组织责任"
-  ],
-  "qualified_id": "human_variable:HV05",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [],
-  "protocol_requires": [
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [
-    "H2"
-  ],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV05-R0-carrier-responsibility-split",
-      "claim_level": "descriptive_classification",
-      "when": "CV、同型成本承担者、受益者、停止权、RS、资源与容量可依H2分别登记。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记当前承接载体、任务、成本、容量、停止权、责任类型与承接缺口。",
-      "result_ceiling": "只到当前分型与缺口描述；承接能力不成为义务，CV不成为RS。"
+      "scale_invariants": [
+        "CV不等于RS",
+        "成本与受益分别登记",
+        "停止权"
+      ],
+      "changing_semantics": [
+        "承接载体和责任主体可随层级改变"
+      ],
+      "non_applicable_objects": [
+        "无主体行动、责任或维护要求的非人过程"
+      ],
+      "action_ceiling": "本变量只生成CV、RS、成本、容量、停止权与承接缺口描述，以及减载、补资源或重分配需求，不授权任务调整、资源配置、归责或保护；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，承接者可经安全可达、反报复通道挑战任务、资源、成本、停止权受限和归责，并触发与原任务分配或归责链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销错误任务、资源或归责状态，实际恢复先前任务与记录状态并执行经授权补救，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单项任务或承接事件、载体个案、承接总体、成本容量分布及聚合规则；X=空间范围：岗位现场、团队或组织边界、数字系统与跨域服务范围；T=时间跨度：任务周期、维护窗口、恢复时滞与责任有效期；O=组织层级：执行角色、团队、组织、制度至治理生态；C=因果层次：执行事件、任务—资源互动机制、中观承接结构、制度责任安排与系统条件；R=观察分辨率：原始任务日志、承接序列、载体个案、成本容量分布、绩效指标与摘要，并登记压缩损失；I=影响范围：直接承接者、服务依赖者、间接受益或成本位置、二阶外溢、跨域与代际影响；N=网络拓扑范围：承接依赖、替代路径、单点瓶颈与跨域服务网络；J=管辖与授权范围：任务分配、停止、资源调整、归责与补救分别登记授权；CV与RS分别登记尺度",
+      "effective_object": "实际执行、传导、维护、记录、照护或修复的人、岗位、程序、设施或制度",
+      "state": [
+        "充足",
+        "脆弱",
+        "过载",
+        "断裂",
+        "替代"
+      ],
+      "observables": [
+        "任务实际执行、维护、记录与修复日志",
+        "资源、容量、时间和成本流向",
+        "停止权、替代安排与承接转移记录",
+        "决策、授权、监督、受益与补救依据"
+      ],
+      "evidence": [
+        "任务流",
+        "工时与资源",
+        "维护记录",
+        "停止和拒绝记录",
+        "若目标涉及总体负担，分别核管理、待命、替代者条件及接续；单项任务判断不强制全部采集"
+      ],
+      "input_dependencies": [
+        "生成需求",
+        "资源",
+        "授权",
+        "角色"
+      ],
+      "output_effects": [
+        "实现状态转移",
+        "成本分布",
+        "结构负荷"
+      ],
+      "carrier": [
+        "人员",
+        "岗位",
+        "程序",
+        "设施",
+        "制度"
+      ],
+      "responsible_subject": [
+        "行为责任者",
+        "决策责任者",
+        "授权责任者",
+        "监督责任者",
+        "受益责任者",
+        "补救责任者"
+      ],
+      "time_window_and_lag": "登记排班、维护周期、积压与恢复时滞",
+      "uncertainty": "记录隐性劳动、非正式照护和边界外成本",
+      "local_exclusion_zone": "低权限、非正式与不可退出承接者",
+      "affected_positions": [
+        "承接者",
+        "受益者",
+        "被服务者",
+        "替代者"
+      ],
+      "normative_status": "承接事实不产生继续承担义务",
+      "judgment_ceiling": "R0限于承接与责任分型；R1限于所识别的载体功能效应；R3限于H5支持的持久留痕；R4依§4.5与覆盖后续窗口的通道证据解释载体型再生产；R2另有G3时才解释当前表示之外的历史增量。材料和窗口各自限定，不以任一路线代替其余路线，也不产生无限承担义务。",
+      "required_scale_additions": [
+        "任务聚合",
+        "代表和委托",
+        "六类责任",
+        "外部成本"
+      ],
+      "counterexamples": [
+        "最可见的低权限执行者不是决策、授权或受益责任主体",
+        "自动化设施承担传导任务但不能承担道德或法律责任"
+      ],
+      "forbidden_elevation": [
+        "个体承接直接等于组织责任"
+      ],
+      "qualified_id": "human_variable:HV05",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [],
+      "protocol_requires": [
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [
+        "H2"
+      ],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV05-R0-carrier-responsibility-split",
+          "claim_level": "descriptive_classification",
+          "when": "CV、同型成本承担者、受益者、停止权、RS、资源与容量可依H2分别登记。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记当前承接载体、任务、成本、容量、停止权、责任类型与承接缺口。",
+          "result_ceiling": "只到当前分型与缺口描述；承接能力不成为义务，CV不成为RS。"
+        },
+        {
+          "route_id": "HV05-R1-functional-carrier-effect",
+          "claim_level": "conditional_effect",
+          "when": "符合资格的G2-instance显示指定载体替换、中断、补给或减载对预选功能结果有超过阈值的通道效应。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定载体在已测功能、容量、时延或损耗维度上的候选承接效应。",
+          "result_ceiling": "未测维度保持未知；功能效应不得直接生成责任、牺牲义务或资源重配授权。"
+        },
+        {
+          "route_id": "HV05-R2-intertemporal-reproduction",
+          "claim_level": "intertemporal_explanation",
+          "when": "当前承接通道已有G2-instance支持，且G3-instance显示其历史变量对后续承接或再生产结果具有条件增量。",
+          "additional_inferential_requires": [
+            "G2-instance",
+            "G3-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定窗口与载体内、当前状态之外的历史增量型跨期承接或再生产候选。",
+          "result_ceiling": "不推出历史宿命、不可逆、责任归属或继续承担义务。"
+        },
+        {
+          "route_id": "HV05-R3-historical-carrier-trace",
+          "claim_level": "descriptive_classification",
+          "when": "H5-instance对唯一预选的具体载体与持久判据取得supported。",
+          "additional_inferential_requires": [
+            "H5-instance"
+          ],
+          "additional_protocol_requires": [
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定载体、留痕可观察量与窗口内的持久人类留痕，并向G3-instance提交预先定义的历史变量候选。",
+          "result_ceiling": "H5-instance不证明未来路径效应、跨期再生产、修复窗口、责任或行动；这些结论分别依载体或历史增量路线、结果合同与规范程序取证。"
+        },
+        {
+          "route_id": "HV05-R4-carried-reproduction",
+          "claim_level": "intertemporal_explanation",
+          "when": "符合资格的G2-instance支持指定承接通道在所声明后续结果与窗口内的效应，且依§4.5核实当前能力、规则、资源或关系载体、多个周期的保留或补给、实际接续及区分性因果材料。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定载体、周期和结果内的载体传递型跨期承接或再生产候选。",
+          "result_ceiling": "不登记当前状态之外的历史增量，不由一次功能效应外推长期，不从承接事实产生继续承担义务或授权。"
+        }
+      ]
     },
     {
-      "route_id": "HV05-R1-functional-carrier-effect",
-      "claim_level": "conditional_effect",
-      "when": "符合资格的G2-instance显示指定载体替换、中断、补给或减载对预选功能结果有超过阈值的通道效应。",
-      "additional_inferential_requires": [
-        "G2-instance"
+      "id": "HV06",
+      "name": "动力—承接链",
+      "proposition": "从指向、生成到执行、维护与偿付的链条必须逐段登记通道、资源、成本、责任和时滞。",
+      "scope": "人类集体行动、项目、组织与制度运行",
+      "pause_condition": "用热情、愿景或命令替代承接与偿付证据",
+      "allowed_inference": [
+        "链条瓶颈",
+        "动力与承接脱节",
+        "隐性偿付"
       ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
+      "prohibited_leap": [
+        "动力强等于可持续",
+        "失败归因意愿不足",
+        "承接者应自行补洞"
       ],
-      "allowed_conclusion": "登记指定载体在已测功能、容量、时延或损耗维度上的候选承接效应。",
-      "result_ceiling": "未测维度保持未知；功能效应不得直接生成责任、牺牲义务或资源重配授权。"
+      "scale_invariants": [
+        "指向、生成、承接、资源、成本和责任链"
+      ],
+      "changing_semantics": [
+        "节点、通道和瓶颈可随组织尺度改变"
+      ],
+      "non_applicable_objects": [
+        "无意向动力与人类承接的非人过程"
+      ],
+      "action_ceiling": "本变量只生成链条连通、时滞、损耗、中断、成本与承接需求描述，不授权减载、资源调整或试验；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，链上承接或受影响位置可经安全可达、反报复通道挑战资源、成本与链条归因，并触发与原链条判断或决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销整体链条归因及其下游效力、恢复为节点级描述与未决状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单个链节事件、链条个案、同类链总体、输入输出分布及聚合规则；X=空间范围：行动现场、项目或组织边界、数字协作空间与跨域外溢；T=时间跨度：启动、维持、中断、恢复窗口及跨期周期；O=组织层级：发起角色、执行团队、组织、制度至治理生态；C=因果层次：链节事件、动力—资源—任务互动机制、中观承接链、制度安排与系统条件；R=观察分辨率：原始任务资源记录、链节序列、链条个案、损耗分布、绩效指标与摘要，并登记压缩损失；I=影响范围：直接发起与承接位置、间接受益或成本位置、二阶外溢、跨域与代际影响；N=网络拓扑范围：依赖链、替代路径、瓶颈、反馈连接与跨域桥接；J=管辖与授权范围：目标采用、任务分配、资源投入、停止与试验分别登记授权；逐段标明跨轴位置",
+      "effective_object": "把指向和生成转为持续行动的可追踪链条",
+      "state": [
+        "贯通",
+        "迟滞",
+        "过载",
+        "断裂",
+        "替代"
+      ],
+      "observables": [
+        "锚点转化为任务、预算、规则或排程的记录",
+        "每段输入输出、时延、损耗与中断点",
+        "承接者容量、停止与替代路径变化",
+        "链条输出对目标结果的实际贡献"
+      ],
+      "evidence": [
+        "资源流",
+        "任务与维护记录",
+        "偿付与成本",
+        "时滞"
+      ],
+      "input_dependencies": [
+        "指向锚点",
+        "生成节点",
+        "承接层"
+      ],
+      "output_effects": [
+        "行动结果",
+        "负荷",
+        "反馈与演化痕迹"
+      ],
+      "carrier": [
+        "人员与岗位",
+        "程序",
+        "预算",
+        "基础设施"
+      ],
+      "responsible_subject": [
+        "各节点行为、决策、授权、监督与补救责任者"
+      ],
+      "time_window_and_lag": "逐段登记启动、传导、维护和偿付时滞",
+      "uncertainty": "记录断点、替代通道与边界外偿付",
+      "local_exclusion_zone": "非正式、低可见和跨组织承接位置",
+      "affected_positions": [
+        "发起者",
+        "承接者",
+        "受益者",
+        "成本承担者"
+      ],
+      "normative_status": "链条有效不证明目标正当",
+      "judgment_ceiling": "全链证据充分时至解释或诊断级",
+      "required_scale_additions": [
+        "跨层桥接",
+        "聚合损失",
+        "责任继承",
+        "保护底板"
+      ],
+      "counterexamples": [
+        "强烈愿景和集中动员没有持续资源、维护或偿付",
+        "表面贯通的链条把关键成本转移给边界外承接者"
+      ],
+      "forbidden_elevation": [
+        "局部动力或单一节点直接代表完整链条"
+      ],
+      "qualified_id": "human_variable:HV06",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [],
+      "protocol_requires": [
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV06-R0-segment-map",
+          "claim_level": "descriptive_classification",
+          "when": "至少一个链段的输入、输出、时延、损耗、中断、资源、成本与边界可观察。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记局部链段、缺失桥、时滞、损耗、中断点与成本位置。",
+          "result_ceiling": "不得由单一链段或动力语言宣称完整链条或有效通道。"
+        },
+        {
+          "route_id": "HV06-R1-complete-chain-composition",
+          "claim_level": "descriptive_classification",
+          "when": "指向、生成与承接三个接口记录可在同一对象、尺度、窗口与量的映射中逐段连接。",
+          "additional_inferential_requires": [
+            "human_variable:HV03",
+            "human_variable:HV04",
+            "human_variable:HV05"
+          ],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记完整候选动力—承接链及逐段证据覆盖。",
+          "result_ceiling": "只到候选链条组成；接口记录齐全不等于各链段具有因果效力。"
+        },
+        {
+          "route_id": "HV06-R2-effective-channel",
+          "claim_level": "mechanism_explanation",
+          "when": "完整候选链已组成，符合资格的G2-instance支持指定通道，并且同案对应、共同支持范围、联合响应、时序、容量与终端结果足以支持所问整链效应；不能只将边的平均效应相乘。",
+          "additional_inferential_requires": [
+            "human_variable:HV03",
+            "human_variable:HV04",
+            "human_variable:HV05",
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记已检验链段和窗口内的有效动力—承接通道、损耗与中断机制。",
+          "result_ceiling": "不得从一次贯通推出跨期再生产、责任、正当性或行动授权。"
+        }
+      ]
     },
     {
-      "route_id": "HV05-R2-intertemporal-reproduction",
-      "claim_level": "intertemporal_explanation",
-      "when": "当前承接通道已有G2-instance支持，且G3-instance显示其历史变量对后续承接或再生产结果具有条件增量。",
-      "additional_inferential_requires": [
-        "G2-instance",
-        "G3-instance"
+      "id": "HV07",
+      "name": "反馈写回",
+      "proposition": "申诉、审计和反馈只有改变记录、规则、资源、角色、责任、记忆或停止条件，且相应改变已实际执行时，才构成人类制度写回。",
+      "scope": "具有反馈、申诉、审计或治理程序的人类结构",
+      "pause_condition": "只有接收回执、表态或发布而无状态更新，或字段改变尚未实际执行时，暂停制度性写回成立断言；已提交、已受理、字段改变等有限状态仍按R0分类。",
+      "allowed_inference": [
+        "有效写回、阻塞写回与表面反馈"
       ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
+      "prohibited_leap": [
+        "有渠道即会学习",
+        "一次更新即长期修复",
+        "沉默即同意"
       ],
-      "allowed_conclusion": "登记指定窗口与载体内的跨期承接或再生产候选。",
-      "result_ceiling": "不推出历史宿命、不可逆、责任归属或继续承担义务。"
+      "scale_invariants": [
+        "反馈来源、通道、写回字段和后续变化"
+      ],
+      "changing_semantics": [
+        "写回载体、时滞和责任主体可改变"
+      ],
+      "non_applicable_objects": [
+        "无记录、规则、资源、角色或停止条件的过程"
+      ],
+      "action_ceiling": "本变量只生成受理、字段变化、执行、持续时间与写回缺口描述，以及复核或程序修复需求，不授权改写记录规则、执行修复或关闭申诉；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，反馈提交者可经安全可达、反报复通道要求状态、时限、责任人与写回结果，并触发与原受理、写回或决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销错误更新，实际恢复先前记录、规则、资源、角色或停止条件状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次反馈或申诉、写回个案、反馈总体、受理执行分布及聚合规则；X=空间范围：提交渠道、组织或平台边界、制度辖区与跨域申诉范围；T=时间跨度：提交、受理、字段变化、执行、持续与复核时滞；O=组织层级：反馈角色、受理团队、组织、制度至治理生态；C=因果层次：反馈事件、写回互动机制、中观程序结构、制度规则与系统条件；R=观察分辨率：原始反馈、处理序列、写回个案、结果分布、时效指标与摘要，并登记压缩损失；I=影响范围：直接申诉人与承接者、间接受影响者、二阶制度后果、跨域与代际影响；N=网络拓扑范围：反馈通道、受理节点、复核路径、阻塞点与跨层连接；J=管辖与授权范围：受理、字段修改、执行、停止、回滚与补救分别登记授权；登记跨层路径",
+      "effective_object": "改变后续制度状态或转移的返回通道",
+      "state": [
+        "到达",
+        "受理",
+        "写回",
+        "阻塞",
+        "失真"
+      ],
+      "observables": [
+        "反馈或申诉的提交与受理凭证",
+        "记录、规则、资源、角色、责任或停止条件的版本差异",
+        "变更的执行记录、生效时间与持续时间",
+        "复核、撤销、补救及后续状态变化"
+      ],
+      "evidence": [
+        "反馈原文",
+        "受理轨迹",
+        "字段版本",
+        "后续规则或资源变化"
+      ],
+      "input_dependencies": [
+        "反馈来源",
+        "安全通道",
+        "责任人",
+        "复核程序"
+      ],
+      "output_effects": [
+        "记录、规则、资源、角色、责任、记忆或停止条件更新"
+      ],
+      "carrier": [
+        "申诉系统",
+        "审计程序",
+        "会议记录",
+        "规则库",
+        "责任链"
+      ],
+      "responsible_subject": [
+        "受理者",
+        "决策者",
+        "写回执行者",
+        "监督者"
+      ],
+      "time_window_and_lag": "登记提交、受理、决定、执行和复审时限",
+      "uncertainty": "记录未达反馈、保护性匿名与不可见处理",
+      "local_exclusion_zone": "无法安全提交、受反报复威胁或无数字接入的位置",
+      "affected_positions": [
+        "提交者",
+        "被评价者",
+        "执行者",
+        "制度受益者"
+      ],
+      "normative_status": "反馈有效性与反馈内容正当性分别判断",
+      "judgment_ceiling": "R0判断写回过程的实际完成位置；R1在相应G2支持下判断返回通道效应；R3依更新保留、跨轮调用及任务比较判断载体型反馈介导学习；R2另有G3时才判断历史增量型学习。一次写回、一般学习、迁移与净收益分别结案。",
+      "required_scale_additions": [
+        "反馈代表性",
+        "跨层写回路径",
+        "聚合损失",
+        "外部复核"
+      ],
+      "counterexamples": [
+        "申诉获得接收回执但记录、规则、资源和停止条件均未改变",
+        "审计报告被发布却没有责任人、时限或后续状态更新"
+      ],
+      "forbidden_elevation": [
+        "个案反馈直接代表总体意见"
+      ],
+      "qualified_id": "human_variable:HV07",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [
+        "D2"
+      ],
+      "protocol_requires": [
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [
+        "H3"
+      ],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV07-R0-writeback-classification",
+          "claim_level": "descriptive_classification",
+          "when": "输入通道、回执、字段前后版本、执行记录、生效时间、持续时间及停止或回滚状态可分别检查。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "区分未提交、已提交、已受理、字段改变、已执行、持续或失效的写回状态。",
+          "result_ceiling": "只有字段改变且实际执行才称制度性写回；一次写回不称学习，写回也不等正确纠错。有理由维持决定的程序价值和其他已发生变化按各自证据保留。"
+        },
+        {
+          "route_id": "HV07-R1-causal-feedback",
+          "claim_level": "mechanism_explanation",
+          "when": "符合资格的G2-instance显示制度返回通道相对无返回或阻断条件改变预选后续状态或转移。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定字段、通道和窗口内的有效反馈与制度写回效应。",
+          "result_ceiling": "不得从反馈存在推出学习、长期修复、正当性或授权扩大。"
+        },
+        {
+          "route_id": "HV07-R2-feedback-mediated-learning",
+          "claim_level": "intertemporal_explanation",
+          "when": "有效反馈已有G2-instance支持，且G3-instance显示可保留更新在重复轮次对预定任务提供历史条件增量。",
+          "additional_inferential_requires": [
+            "G2-instance",
+            "G3-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记限定任务、轮次和窗口内、当前状态之外的历史增量型反馈介导学习候选。",
+          "result_ceiling": "不得称整体制度已经学习、修复完成或价值方向正确。"
+        },
+        {
+          "route_id": "HV07-R3-carried-learning",
+          "claim_level": "intertemporal_explanation",
+          "when": "有效反馈已有符合资格的G2-instance支持，且按C3-carried-learning与§4.5核实当前更新载体、跨轮保留和实际调用、预定任务比较及其因果依据；即时反馈实例不自动覆盖后续任务结果。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定更新载体、任务和轮次内的载体传递型反馈介导学习候选。",
+          "result_ceiling": "不取得CM-LEARNING-history或G3的历史增量资格，不把训练、归档、写回或一次成功直接称为学习，不宣称整体制度已改善。"
+        }
+      ]
     },
     {
-      "route_id": "HV05-R3-historical-carrier-trace",
-      "claim_level": "descriptive_classification",
-      "when": "H5-instance对唯一预选的具体载体与持久判据取得supported。",
-      "additional_inferential_requires": [
-        "H5-instance"
+      "id": "HV08",
+      "name": "条件势场",
+      "proposition": "资源、制度、关系、权力、安全、指标、平台与历史条件只有通过可检测机制改变相应路由预先唯一选定的证据覆盖、表达安全、对象行为或反身响应，并取得相应H4-instance支持时，才进入该结果家族的条件性解释。",
+      "scope": "人类行动受情境、制度与权力位置影响的场景",
+      "pause_condition": "势场被当作万能背景、意图主体或道德标签",
+      "allowed_inference": [
+        "条件性机会、约束、遮蔽与放大"
       ],
-      "additional_protocol_requires": [
-        "E4"
+      "prohibited_leap": [
+        "条件决定个体行为",
+        "权力位置证明恶意",
+        "环境具有意图"
       ],
-      "allowed_conclusion": "登记指定载体、留痕可观察量与窗口内的持久人类留痕，并向G3-instance提交预先定义的历史变量候选。",
-      "result_ceiling": "H5-instance不证明未来路径效应、跨期再生产、修复窗口、责任或行动；这些结论仍须各自的G3、推论与规范程序。"
-    }
-  ]
-},
-{
-  "id": "HV06",
-  "name": "动力—承接链",
-  "proposition": "从指向、生成到执行、维护与偿付的链条必须逐段登记通道、资源、成本、责任和时滞。",
-  "scope": "人类集体行动、项目、组织与制度运行",
-  "pause_condition": "用热情、愿景或命令替代承接与偿付证据",
-  "allowed_inference": [
-    "链条瓶颈",
-    "动力与承接脱节",
-    "隐性偿付"
-  ],
-  "prohibited_leap": [
-    "动力强等于可持续",
-    "失败归因意愿不足",
-    "承接者应自行补洞"
-  ],
-  "scale_invariants": [
-    "指向、生成、承接、资源、成本和责任链"
-  ],
-  "changing_semantics": [
-    "节点、通道和瓶颈可随组织尺度改变"
-  ],
-  "non_applicable_objects": [
-    "无意向动力与人类承接的非人过程"
-  ],
-  "action_ceiling": "本变量只生成链条连通、时滞、损耗、中断、成本与承接需求描述，不授权减载、资源调整或试验；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，链上承接或受影响位置可经安全可达、反报复通道挑战资源、成本与链条归因，并触发与原链条判断或决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销整体链条归因及其下游效力、恢复为节点级描述与未决状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单个链节事件、链条个案、同类链总体、输入输出分布及聚合规则；X=空间范围：行动现场、项目或组织边界、数字协作空间与跨域外溢；T=时间跨度：启动、维持、中断、恢复窗口及跨期周期；O=组织层级：发起角色、执行团队、组织、制度至治理生态；C=因果层次：链节事件、动力—资源—任务互动机制、中观承接链、制度安排与系统条件；R=观察分辨率：原始任务资源记录、链节序列、链条个案、损耗分布、绩效指标与摘要，并登记压缩损失；I=影响范围：直接发起与承接位置、间接受益或成本位置、二阶外溢、跨域与代际影响；N=网络拓扑范围：依赖链、替代路径、瓶颈、反馈连接与跨域桥接；J=管辖与授权范围：目标采用、任务分配、资源投入、停止与试验分别登记授权；逐段标明跨轴位置",
-  "effective_object": "把指向和生成转为持续行动的可追踪链条",
-  "state": [
-    "贯通",
-    "迟滞",
-    "过载",
-    "断裂",
-    "替代"
-  ],
-  "observables": [
-    "锚点转化为任务、预算、规则或排程的记录",
-    "每段输入输出、时延、损耗与中断点",
-    "承接者容量、停止与替代路径变化",
-    "链条输出对目标结果的实际贡献"
-  ],
-  "evidence": [
-    "资源流",
-    "任务与维护记录",
-    "偿付与成本",
-    "时滞"
-  ],
-  "input_dependencies": [
-    "指向锚点",
-    "生成节点",
-    "承接层"
-  ],
-  "output_effects": [
-    "行动结果",
-    "负荷",
-    "反馈与演化痕迹"
-  ],
-  "carrier": [
-    "人员与岗位",
-    "程序",
-    "预算",
-    "基础设施"
-  ],
-  "responsible_subject": [
-    "各节点行为、决策、授权、监督与补救责任者"
-  ],
-  "time_window_and_lag": "逐段登记启动、传导、维护和偿付时滞",
-  "uncertainty": "记录断点、替代通道与边界外偿付",
-  "local_exclusion_zone": "非正式、低可见和跨组织承接位置",
-  "affected_positions": [
-    "发起者",
-    "承接者",
-    "受益者",
-    "成本承担者"
-  ],
-  "normative_status": "链条有效不证明目标正当",
-  "judgment_ceiling": "全链证据充分时至解释或诊断级",
-  "required_scale_additions": [
-    "跨层桥接",
-    "聚合损失",
-    "责任继承",
-    "保护底板"
-  ],
-  "counterexamples": [
-    "强烈愿景和集中动员没有持续资源、维护或偿付",
-    "表面贯通的链条把关键成本转移给边界外承接者"
-  ],
-  "forbidden_elevation": [
-    "局部动力或单一节点直接代表完整链条"
-  ],
-  "qualified_id": "human_variable:HV06",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [],
-  "protocol_requires": [
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV06-R0-segment-map",
-      "claim_level": "descriptive_classification",
-      "when": "至少一个链段的输入、输出、时延、损耗、中断、资源、成本与边界可观察。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记局部链段、缺失桥、时滞、损耗、中断点与成本位置。",
-      "result_ceiling": "不得由单一链段或动力语言宣称完整链条或有效通道。"
+      "scale_invariants": [
+        "条件到行为或证据的机制链"
+      ],
+      "changing_semantics": [
+        "关键条件与作用强度可随尺度改变"
+      ],
+      "non_applicable_objects": [
+        "无意向行动、权力或制度位置的非人系统"
+      ],
+      "action_ceiling": "本变量只生成候选条件通道、位置异质性、证据遮蔽与风险降低需求描述，不授权改变规则平台、资源配置、评价或处置主体；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，不同位置可经安全可达、反报复通道提交机制差异、缺席信号与安全影响，并触发与原势场判断或决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销不成立的势场归因、移除位置标签及其下游评价处置效力并恢复未决状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次暴露或评价事件、位置个案、受条件总体、响应分布及聚合规则；X=空间范围：互动现场、组织或平台边界、公开数字空间与跨域环境；T=时间跨度：暴露积累、响应、反身变化与消退窗口；O=组织层级：行动与评价角色、团队、组织、制度至治理生态；C=因果层次：暴露事件、条件—行为互动机制、中观权力结构、制度规则与系统条件；R=观察分辨率：原始暴露表达行为、时间序列、位置个案、响应分布、平台指标与摘要，并登记压缩损失；I=影响范围：直接被评价者、间接受影响者、二阶反身后果、跨域与代际影响；N=网络拓扑范围：权力与信息连接、中介节点、遮蔽区、放大路径与跨域传播；J=管辖与授权范围：规则配置、指标使用、公开评价、人工复核与处置分别登记授权；比较位置异质性",
+      "effective_object": "R0登记可能相关的条件集合；R1/R2据相应证据判断其对预选结果的作用。“势场”名称不预设势函数、共同单位或物理守恒。",
+      "state": [
+        "支持",
+        "约束",
+        "遮蔽",
+        "放大",
+        "混合"
+      ],
+      "observables": [
+        "资源、规则、平台或公开条件改变前后的行为差异",
+        "不同位置的表达安全、证据覆盖和缺席率",
+        "指标、评分或AI中介前后的可见性与处置变化",
+        "比较条件下候选通道效应是否超过预定阈值"
+      ],
+      "evidence": [
+        "资源与规则",
+        "位置差异",
+        "平台或指标变化",
+        "行为响应"
+      ],
+      "input_dependencies": [
+        "边界与接口",
+        "观察位置",
+        "因果合同"
+      ],
+      "output_effects": [
+        "可行路径",
+        "表达和证据",
+        "生成与失稳"
+      ],
+      "carrier": [
+        "制度",
+        "资源配置",
+        "平台",
+        "指标",
+        "关系网络",
+        "历史沉积"
+      ],
+      "responsible_subject": [
+        "规则制定者",
+        "平台运营者",
+        "资源配置者",
+        "行动决策者"
+      ],
+      "time_window_and_lag": "登记条件积累、响应与消退时滞",
+      "uncertainty": "记录不可观察条件、共线性和反身变化",
+      "local_exclusion_zone": "因安全、身份或平台门槛而不可见的位置",
+      "affected_positions": [
+        "优势位置",
+        "低权力位置",
+        "中介者",
+        "被评价者"
+      ],
+      "normative_status": "条件优势或筛选结果不构成正当性",
+      "judgment_ceiling": "R0只列候选条件；R1、R2在所选H4结果和窗口内形成位置或反身响应判断；R3还须有当前载体、跨窗保留与持续作用的证据。即时效应不外推持久，通道成立不产生恶意、责任或授权结论。",
+      "required_scale_additions": [
+        "位置分布",
+        "条件异质性",
+        "跨域外部性",
+        "J轴"
+      ],
+      "counterexamples": [
+        "相同制度条件下不同安全和权力位置出现相反行动",
+        "以权力或平台标签替代实际因果通道后无法解释状态变化"
+      ],
+      "forbidden_elevation": [
+        "局部条件直接普遍化为所有主体的动机"
+      ],
+      "qualified_id": "human_variable:HV08",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [],
+      "protocol_requires": [
+        "E2",
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV08-R0-condition-inventory",
+          "claim_level": "candidate_description",
+          "when": "资源、规则、位置、安全、指标、平台、AI中介或历史沉积可按位置、尺度和时间窗列出，但尚无符合资格的H4-instance。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记候选条件、位置异质性、观察盲区、竞争解释与补证需求。",
+          "result_ceiling": "仅称条件清单或候选通道；不得把条件人格化，也不得称权力、中介或反身效应已成立。"
+        },
+        {
+          "route_id": "HV08-R1-position-or-mediation-effect",
+          "claim_level": "conditional_effect",
+          "when": "H4-instance在证据覆盖、表达安全或对象行为中唯一预选的成功判据取得supported。",
+          "additional_inferential_requires": [
+            "H4-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记该实例位置、中介、结果家族和窗口内的遮蔽、放大或行为响应通道。",
+          "result_ceiling": "不外推到未选结果家族，不从位置或中介效应推出恶意、责任或自动处置。"
+        },
+        {
+          "route_id": "HV08-R2-reflexive-response",
+          "claim_level": "mechanism_explanation",
+          "when": "H4-instance唯一预选反身响应判据，且观测、命名、评分或发布经实际通道到达对象并取得supported。",
+          "additional_inferential_requires": [
+            "H4-instance"
+          ],
+          "additional_protocol_requires": [
+            "E3",
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定观测或发布通道与窗口内的反身响应。",
+          "result_ceiling": "一次响应不称持久反身性；不得据此隐藏观察、压制表达或扩大授权。"
+        },
+        {
+          "route_id": "HV08-R3-carried-reflexive-persistence",
+          "claim_level": "intertemporal_explanation",
+          "when": "H4-instance在唯一预选反身响应判据及所声明跨窗范围内取得supported，并按§4.5核实响应进入当前载体、保留或更新及持续效应，比较重复刺激、持续观测、共同变化和其他可解释材料。",
+          "additional_inferential_requires": [
+            "H4-instance"
+          ],
+          "additional_protocol_requires": [
+            "E3",
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定观测或发布通道、当前载体与窗口内的持续反身响应。",
+          "result_ceiling": "不由即时H4效应外推持续，不取得G3历史增量资格，不据此隐藏观察、压制表达或扩大授权。"
+        }
+      ]
     },
     {
-      "route_id": "HV06-R1-complete-chain-composition",
-      "claim_level": "descriptive_classification",
-      "when": "指向、生成与承接三个接口记录可在同一对象、尺度、窗口与量的映射中逐段连接。",
-      "additional_inferential_requires": [
-        "human_variable:HV03",
-        "human_variable:HV04",
-        "human_variable:HV05"
+      "id": "HV09",
+      "name": "结构负荷",
+      "proposition": "人类结构负荷必须把任务、协调损耗、维护要求、容量、恢复余量和成本承担位置共同登记。",
+      "scope": "持续运转、维护、照护或高压条件下的人类结构",
+      "pause_condition": "只用熵、脆弱或韧性隐喻而无任务、容量和恢复机制",
+      "allowed_inference": [
+        "候选过载、余量不足、维护缺口与恢复差异"
       ],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记完整候选动力—承接链及逐段证据覆盖。",
-      "result_ceiling": "只到候选链条组成；接口记录齐全不等于各链段具有因果效力。"
+      "prohibited_leap": [
+        "承接者应继续承担",
+        "高负荷证明奉献",
+        "过载主体等于失稳机制"
+      ],
+      "scale_invariants": [
+        "负荷、容量、恢复与成本位置"
+      ],
+      "changing_semantics": [
+        "瓶颈、容量和恢复方式可随层级改变"
+      ],
+      "non_applicable_objects": [
+        "无持续非平衡、维护或人类承接要求的过程"
+      ],
+      "action_ceiling": "本变量只生成负荷、容量、恢复、局部过载与减载补资源需求描述，不授权任务削减、资源投入、绩效处置或强迫承担；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，承接者可经安全可达、反报复通道报告隐性劳动、过载和恢复需求，并触发与原负荷判断、绩效或任务决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销错误负荷判断及绩效或责任效力，实际恢复任务、资源与记录状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单项任务负荷、承接个案、岗位或群体总体、负荷容量分布及聚合规则；X=空间范围：工作或照护现场、组织边界、数字劳动空间与跨域外包范围；T=时间跨度：瞬时峰值、持续积压、恢复时滞、跨期与代际窗口；O=组织层级：承接角色、团队、组织、制度至治理生态；C=因果层次：任务事件、任务—容量互动机制、中观瓶颈结构、制度分配与系统条件；R=观察分辨率：原始任务工时记录、负荷序列、承接个案、容量分布、时延错误指标与摘要，并登记压缩损失；I=影响范围：直接承接者、服务依赖者、间接替代者、二阶外溢、跨域与代际成本；N=网络拓扑范围：任务依赖、关键瓶颈、替代节点、恢复路径与跨域外包网络；J=管辖与授权范围：任务分配、资源调整、停止、绩效使用与补救分别登记授权；保留负荷容量分布",
+      "effective_object": "给定窗口内任务和协调要求相对可用容量与恢复余量的结构关系",
+      "state": [
+        "低负荷",
+        "可承受",
+        "临界",
+        "过载",
+        "恢复"
+      ],
+      "observables": [
+        "单位时间任务量、积压、时延和错误率",
+        "人员资源容量、隐性劳动与替代可用性",
+        "停止、缺席、退出和恢复曲线",
+        "平均负荷与关键局部承接位置的分布差异"
+      ],
+      "evidence": [
+        "任务量",
+        "时延与错误",
+        "人员与资源",
+        "恢复记录",
+        "退出和缺席",
+        "按目标区分执行、同时活动、管理、待命和机会成本，说明重叠、单位及跨位置转移，不直接加成统一负担"
+      ],
+      "input_dependencies": [
+        "承接层",
+        "动力—承接链",
+        "条件势场",
+        "R0登记同类型、同时间窗、同承担位置的任务量、容量、积压及恢复，不以G2成立为描述前提。",
+        "R1的通道效应调用G2与CM-LOAD；R3的载体型累积依§4.5核当前状态、形成与跨窗作用；R2的额外历史条件增量另检G3。H5留痕不替代后续效应或G3检验。",
+        "各路线未获正式机制支持，不取消独立领域证据已经支持的一般伤害、持续负担或历史因果；结论按自己的依据分别登记。"
+      ],
+      "output_effects": [
+        "状态更新",
+        "失稳行为",
+        "维护和修复需求"
+      ],
+      "carrier": [
+        "人员",
+        "岗位",
+        "程序",
+        "设施",
+        "预算"
+      ],
+      "responsible_subject": [
+        "任务分配者",
+        "资源配置者",
+        "授权者",
+        "监督者",
+        "补救责任者"
+      ],
+      "time_window_and_lag": "区分即时峰值、持续积压、恢复时滞与代际成本",
+      "uncertainty": "记录隐性劳动、外包成本和保护性缺席",
+      "local_exclusion_zone": "非正式劳动、家庭照护、外包和低可见承接位置",
+      "affected_positions": [
+        "承接者",
+        "依赖服务者",
+        "替代者",
+        "成本外溢位置"
+      ],
+      "normative_status": "高效率或高承载不构成正当性",
+      "judgment_ceiling": "R0描述同窗任务、容量与恢复；R1依G2与CM-LOAD形成限定通道解释；R3依§4.5形成当前载体传递的累积损伤或迟恢复判断；R2另有G3时才判断当前表示之外的历史增量。不以持续相关、一时过载或总体平均替代相应证据。",
+      "required_scale_additions": [
+        "负荷分布",
+        "聚合遮蔽",
+        "责任继承",
+        "代际影响"
+      ],
+      "counterexamples": [
+        "总体平均容量充足但少数关键承接位置持续过载",
+        "只用熵或韧性隐喻却无法识别任务、容量和恢复通道"
+      ],
+      "forbidden_elevation": [
+        "平均负荷掩盖局部过载"
+      ],
+      "qualified_id": "human_variable:HV09",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [],
+      "protocol_requires": [
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV09-R0-instant-task-capacity",
+          "claim_level": "descriptive_classification",
+          "when": "同一窗口、位置与类型映射下的任务或协调要求、容量、恢复余量及其分布可观察。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记瞬时任务—容量关系、余量、积压、局部缺口与恢复状态。",
+          "result_ceiling": "只到同窗描述；瞬时峰值或缺口不自动成为过载机制、累积损伤或崩溃。"
+        },
+        {
+          "route_id": "HV09-R1-overload-mechanism",
+          "claim_level": "mechanism_explanation",
+          "when": "CM-LOAD的适用条件完整，且符合资格的G2-instance显示负荷、补给、减载或恢复通道对预选结果有超过阈值效应。",
+          "additional_inferential_requires": [
+            "G2-instance",
+            "CM-LOAD"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定位置、类型、窗口和通道内的过载或恢复机制候选。",
+          "result_ceiling": "不得普遍化为熵、韧性或所有位置必然崩溃，也不直接生成减载或牺牲义务。"
+        },
+        {
+          "route_id": "HV09-R2-cumulative-overload",
+          "claim_level": "intertemporal_explanation",
+          "when": "过载机制已有G2-instance与CM-LOAD支持，且G3-instance显示历史负荷对后续容量、错误或恢复具有条件增量。",
+          "additional_inferential_requires": [
+            "G2-instance",
+            "CM-LOAD",
+            "G3-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记预注册载体、窗口和结果内、当前状态之外的历史增量型累积损伤或迟恢复候选。",
+          "result_ceiling": "不推出不可逆、必然崩溃、责任归属或具名主体承担义务。"
+        },
+        {
+          "route_id": "HV09-R3-carried-cumulative-overload",
+          "claim_level": "intertemporal_explanation",
+          "when": "CM-LOAD-carried-cumulative的条件完整，符合资格的G2-instance覆盖指定负荷、补给或恢复通道及所声明跨窗结果，并按§4.5核实当前损伤或容量载体、跨窗累积或恢复及区分性因果材料。",
+          "additional_inferential_requires": [
+            "G2-instance",
+            "CM-LOAD"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定载体、窗口与结果内的载体传递型累积损伤或迟恢复候选。",
+          "result_ceiling": "不登记G3历史增量，不从单次过载或持续相关推出损伤机制，不推出不可逆、必然崩溃、责任或牺牲义务。"
+        }
+      ]
     },
     {
-      "route_id": "HV06-R2-effective-channel",
-      "claim_level": "mechanism_explanation",
-      "when": "完整候选链已组成，且符合资格的G2-instance逐段识别指定通道对目标转移的效应。",
-      "additional_inferential_requires": [
+      "id": "HV10",
+      "name": "演化相位",
+      "proposition": "S0-S6和X0只适用于正在形成或运作的人类意向性集体；方向、生成、承接与制度化作为待检查面向，不要求全部成熟；允许跳阶、并行、混合、回退、分裂、合并、休眠、吞并和功能转移。",
+      "scope": "符合适用条件的人类意向性集体",
+      "pause_condition": "阶段被道德化或标题与判据不一致时，暂停相应原型断言；适用条件缺失时，不作依赖该条件的原型或路径结论，但仍可按R0完整条件登记不适用、组件缺失与观察需求。",
+      "allowed_inference": [
+        "条件性状态坐标",
+        "非线性路径",
+        "有序退场X0"
+      ],
+      "prohibited_leap": [
+        "所有系统必经S0-S6",
+        "阶段越高越正当",
+        "解体等于失败"
+      ],
+      "scale_invariants": [
+        "适用条件",
+        "相位判据",
+        "非线性路径",
+        "X0不计为第八阶段"
+      ],
+      "changing_semantics": [
+        "承接者、制度载体和有效对象可随相位改变"
+      ],
+      "non_applicable_objects": [
+        "没有人类意向性集体依据的种群、纯技术系统或相似类别；形成期缺少成熟承接本身不构成一概排除"
+      ],
+      "action_ceiling": "本变量按所选路由生成组件适用性、原型匹配、混合状态、限定的相位机制或历史条件增量解释、独立X0路径状态、不确定性与观察需求，不授权试探、推进、合并、退场或淘汰；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，成员可经安全可达、反报复通道挑战相位证据、线性假设和道德化使用，并触发与原相位判断或决策链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销相位命名及其下游决策效力、实际恢复变量级描述与未决状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次状态事件、局部群体个案、意向集体总体、相位分布及聚合规则；X=空间范围：行动现场、组织或制度边界、数字协作空间与跨域演化范围；T=时间跨度：状态窗口、转移时滞、回退、休眠、迟滞与代际周期；O=组织层级：成员角色、团队、组织、制度至治理生态；C=因果层次：状态事件、转移互动机制、中观相位结构、制度化过程与系统条件；R=观察分辨率：原始状态事件、转移序列、局部个案、相位分布、状态指标与摘要，并登记压缩损失；I=影响范围：直接成员与承接者、退出者、间接受影响者、二阶后果、跨域与代际影响；N=网络拓扑范围：局部相位簇群、跨层连接、分裂合并、功能转移与继承路径；J=管辖与授权范围：相位命名、监测采用、试探、推进、退场与淘汰分别登记授权；保留混合相位",
+      "effective_object": "正在形成或运作的人类意向性集体状态；各组件可存在、形成中、缺失或不适用，按原型具体条件判断",
+      "state": [
+        "原型：S0、S1、S2、S3、S4、S5、S6；分类模式：single_dominant、mixed、parallel、unknown；独立路径：X0，按R4登记，不列为第八状态"
+      ],
+      "observables": [
+        "方向、生成、承接、制度化和反馈变量的同期状态",
+        "相位判据跨观察窗的重复匹配记录",
+        "跳阶、并行、混合、回退、分裂、合并与休眠轨迹",
+        "X0中的功能转移、责任继承与有序退场记录"
+      ],
+      "evidence": [
+        "相位变量",
+        "转移记录",
+        "留痕",
+        "承接与制度状态"
+      ],
+      "input_dependencies": [
+        "指向锚点",
+        "生成节点",
+        "承接层",
+        "反馈写回",
+        "结构负荷",
+        "模式相位不要求G3；因果转移另需CAUSAL；R5按§4.5核当前载体传递的持续或迟恢复，R3才另需G3检验额外历史条件增量；H5只支持相应候选留痕。"
+      ],
+      "output_effects": [
+        "相位判断",
+        "承接继承",
+        "退场和修复需求"
+      ],
+      "carrier": [
+        "集体行动",
+        "组织结构",
+        "制度记录",
+        "共同记忆"
+      ],
+      "responsible_subject": [
+        "作出相位判断的分析者",
+        "据此行动的决策与授权者"
+      ],
+      "time_window_and_lag": "登记相位观察窗、转移时滞、回退与休眠",
+      "uncertainty": "记录混合相位、分裂、合并与尺度差异",
+      "local_exclusion_zone": "总体相位无法代表的局部群体和角色",
+      "affected_positions": [
+        "成员",
+        "承接者",
+        "异议者",
+        "退出者",
+        "继承者"
+      ],
+      "normative_status": "相位不构成健康、成功或正当性等级",
+      "judgment_ceiling": "按各自完整路由条件分别限制：R0只作组件适用性与缺失分类；R1按§8.2—8.3作S0-S6原型匹配，不硬要求CM-PHASE；R2在CM-PHASE及G2-instance条件下作限定的候选因果相位转移解释；R3在CM-PHASE及G3-instance条件下作历史条件增量解释；R4按§8.5独立判断X0路径状态，不以S0-S6或CM-PHASE匹配为前提。R5依CM-PHASE、G2-instance与§4.5证据作当前载体维持的跨窗机制判断。各路由不互相补齐条件，均不产生现实行动授权。",
+      "required_scale_additions": [
+        "局部相位分布",
+        "跨层转移",
+        "承接继承",
+        "保护与退出"
+      ],
+      "counterexamples": [
+        "同一集体同时呈现S2承接成形与S5漏洞积累的混合相位",
+        "有序退场X0保持功能转移而不是阶段失败"
+      ],
+      "forbidden_elevation": [
+        "个案相位直接代表总体",
+        "人类阶段迁入通用核心"
+      ],
+      "qualified_id": "human_variable:HV10",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [
         "human_variable:HV03",
         "human_variable:HV04",
         "human_variable:HV05",
-        "G2-instance"
+        "human_variable:HV07"
       ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
+      "protocol_requires": [
+        "EVIDENCE",
+        "SOURCE"
       ],
-      "allowed_conclusion": "登记已检验链段和窗口内的有效动力—承接通道、损耗与中断机制。",
-      "result_ceiling": "不得从一次贯通推出跨期再生产、责任、正当性或行动授权。"
+      "specializes": [],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV10-R0-component-applicability",
+          "claim_level": "descriptive_classification",
+          "when": "HV03、HV04、HV05与HV07已有可审计评估记录；记录允许为missing、not_applicable或unsupported，不要求四组件经验成立。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记适用、不适用、组件缺失、混合状态与继续观察需求。",
+          "result_ceiling": "组件检查本身不产生S0-S6原型匹配，也不完成X0退场路径判断。"
+        },
+        {
+          "route_id": "HV10-R1-pattern-phase-match",
+          "claim_level": "descriptive_classification",
+          "when": "依§8.2—8.3完成适用性、对象K、观察窗及所选原型的必要入口、观察、反例和证伪检查；需要跨窗证据的具体判据按其要求成立，不要求先有第二个运转区间或CM-PHASE模式。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [
+            "E4"
+          ],
+          "allowed_conclusion": "登记S0-S6的单一、混合或并行原型配置；其他描述路径按§8.4的各自条件另记，X0按独立退场路径判断。",
+          "result_ceiling": "只到原型配置描述，不自动取得CM-PHASE模式、因果相位转移或历史增量资格；原型不是健康、成功、正当性或淘汰等级。"
+        },
+        {
+          "route_id": "HV10-R2-causal-transition",
+          "claim_level": "mechanism_explanation",
+          "when": "CM-PHASE匹配成立，且G2-instance识别指定相位转移通道对预选状态变化的效应。",
+          "additional_inferential_requires": [
+            "CM-PHASE",
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定对象、窗口和通道内的候选因果相位转移。",
+          "result_ceiling": "不得从转移机制推出必然阶段序列、价值方向或推进与淘汰授权。"
+        },
+        {
+          "route_id": "HV10-R3-path-dependent-phase",
+          "claim_level": "intertemporal_explanation",
+          "when": "CM-PHASE匹配成立，且G3-instance显示历史相位变量对后续状态、迟滞或回退具有条件增量。",
+          "additional_inferential_requires": [
+            "CM-PHASE",
+            "G3-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记预注册窗口内、当前状态之外的历史增量型路径依赖、迟滞或历史相位差异候选。",
+          "result_ceiling": "不得称命运、绝对不可逆或自动规定修复、退出与退场方案。"
+        },
+        {
+          "route_id": "HV10-R4-orderly-exit-path",
+          "claim_level": "descriptive_classification",
+          "when": "依§8.5逐项检查X0候选入口与完成条件，并分别记录原对象K、功能、人员、关系、资源、记忆、债务、申诉及接续状态；不要求先取得S0-S6中的任何最低原型或CM-PHASE匹配。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [
+            "E4"
+          ],
+          "allowed_conclusion": "登记X0候选、进行中、部分完成、完成或unknown的独立生命周期路径判断。",
+          "result_ceiling": "受影响群体、遗留义务、接收能力、申诉或记忆安全仍未知时，不得判为良性完成；X0不是第八阶段，不产生解散、转移、公开档案或放弃责任的授权。"
+        },
+        {
+          "route_id": "HV10-R5-carried-phase-persistence",
+          "claim_level": "intertemporal_explanation",
+          "when": "CM-PHASE模式条件成立，CM-PHASE-carried-persistence的当前载体、跨窗持续或迟恢复及区分性证据完整，且符合资格的G2-instance覆盖指定结果与窗口。",
+          "additional_inferential_requires": [
+            "CM-PHASE",
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记同一K与指定窗口内经当前载体维持的相位持续或迟恢复机制候选。",
+          "result_ceiling": "不把相位持续、回退或曲线形状直接当机制，不登记G3历史增量，不产生阶段必经、价值方向或现实行动授权。"
+        }
+      ]
+    },
+    {
+      "id": "HV11",
+      "name": "开放性承担行动",
+      "proposition": "开放性承担只观察真实成本、自愿性、方向、替代解释和结构后果，不诊断某人有没有爱。",
+      "scope": "人类关系、组织、制度与公共行动中的承担",
+      "pause_condition": "无法安全确认自愿、拒绝或退出时，暂停R1开放性承担命名；仍可按R0登记候选行动、成本、强制风险、停止权缺口与保护需求。人格与爱的诊断始终禁止。",
+      "allowed_inference": [
+        "描述有限承担行动与后果"
+      ],
+      "prohibited_leap": [
+        "诊断有没有爱",
+        "牺牲等于爱",
+        "责任等于无限承担",
+        "拒绝等于道德失败"
+      ],
+      "scale_invariants": [
+        "成本、自愿性、方向、替代解释、后果与停止权"
+      ],
+      "changing_semantics": [
+        "承担形式、成本位置和受益对象可改变"
+      ],
+      "non_applicable_objects": [
+        "无意向、自愿性、责任或意义能力的非人系统"
+      ],
+      "action_ceiling": "本变量只生成自愿性、真实成本、方向、替代解释、结构后果与停止保护需求描述，不授权保护措施、承担要求、资源征用或人格裁决；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
+      "appeal": "依appeal_and_rollback_rule，行动者可经安全可达、反报复通道拒绝被代表，说明强制、成本、替代解释和退出限制，并触发与原承担判断或要求链独立的复核",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销承担命名与相关要求，实际恢复拒绝、退出、记录和资源状态，保留版本与完成验证",
+      "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次承担行动、行动者个案、关系或组织总体、成本自愿性分布及聚合规则；X=空间范围：关系与照护现场、组织边界、数字公共空间与跨域受益范围；T=时间跨度：即时行动、持续承担、耗竭、恢复与代际窗口；O=组织层级：行动角色、关系或团队、组织、制度至治理生态；C=因果层次：承担事件、行动—成本互动机制、中观关系结构、制度责任安排与系统条件；R=观察分辨率：原始行动与成本、承担序列、行动者个案、成本自愿性分布、后果指标与摘要，并登记压缩损失；I=影响范围：直接行动者与受益者、依赖者、间接替代承接者、二阶外溢、跨域与代际影响；N=网络拓扑范围：依赖照护、受益连接、替代承接、退出路径与跨域成本网络；J=管辖与授权范围：承担要求、资源使用、拒绝、停止、保护与补救分别登记授权；保留自愿成本退出差异",
+      "effective_object": "需要分别审查行动、成本、方向、自愿性、拒绝条件和后果的人类承担安排；R0、R1、R2按各自条件判断，不先用结构后果筛选行动",
+      "state": [
+        "候选",
+        "自愿且有限",
+        "强制风险",
+        "单方耗竭",
+        "停止或退出"
+      ],
+      "observables": [
+        "行动投入的时间、资源、机会与身体心理成本",
+        "拒绝、退出、停止和重新协商是否真实可用",
+        "行动方向、受益位置和可检测结构后果",
+        "强制、恐惧、依赖、利益与表演等替代解释"
+      ],
+      "evidence": [
+        "行动与成本",
+        "拒绝和退出条件",
+        "替代解释",
+        "受益与后果"
+      ],
+      "input_dependencies": [
+        "指向锚点",
+        "承接层",
+        "条件势场",
+        "权力与安全"
+      ],
+      "output_effects": [
+        "成本分布",
+        "关系和制度状态",
+        "停止与修复"
+      ],
+      "carrier": [
+        "具体行动者",
+        "关系实践",
+        "照护或责任安排"
+      ],
+      "responsible_subject": [
+        "提出要求者",
+        "授权者",
+        "受益责任者",
+        "补救责任者"
+      ],
+      "time_window_and_lag": "登记即时成本、持续承担、耗竭与恢复时滞",
+      "uncertainty": "记录依赖、恐惧、隐性强制与表达安全",
+      "local_exclusion_zone": "无法安全拒绝、无法退出或被道德压力遮蔽的位置",
+      "affected_positions": [
+        "行动者",
+        "受益者",
+        "依赖者",
+        "替代承接者"
+      ],
+      "normative_status": "受N4约束，不可命令或征用",
+      "judgment_ceiling": "按R0/R1/R2分别限制：R0只作成本、方向、风险及候选行动描述；R1在相应证据下作自愿性、拒绝和退出条件的行动描述；R2只有在相应G2及因果条件成立时，才作限定范围的结构后果判断。任何一级均不得进入人格诊断、证明爱或善、推出承担义务或生成现实授权。伦理命名另受GOV-14的规范前提约束，不能以达到R2代替该要求。",
+      "required_scale_additions": [
+        "自愿性分布",
+        "代表关系",
+        "成本外溢",
+        "真实退出与代理保护"
+      ],
+      "counterexamples": [
+        "无法拒绝的单方牺牲被赞美为爱或责任",
+        "承担宣称缺少所称行动或成本的证据；真实失败尝试与结果未知另记，不能因无结构成功而一概撤销其行动描述"
+      ],
+      "forbidden_elevation": [
+        "个体承担升格为群体义务",
+        "人类承担概念迁入非人核心"
+      ],
+      "qualified_id": "human_variable:HV11",
+      "claim_type": "H",
+      "contract_role": "human_variable_interface",
+      "inferential_requires": [],
+      "protocol_requires": [
+        "N4",
+        "EVIDENCE",
+        "SOURCE"
+      ],
+      "specializes": [
+        "H6",
+        "H2"
+      ],
+      "applies_to": [],
+      "conditional_support_routes": [
+        {
+          "route_id": "HV11-R0-action-cost-record",
+          "claim_level": "normative_boundary",
+          "when": "行动与相关成本有据，可记录方向、受益及后果的已知或未知状态，但自愿性、拒绝或退出尚不充分。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "描述候选承担行动、成本分布、强制风险、停止权缺口与保护需求。",
+          "result_ceiling": "不得称开放性承担，不得诊断爱、人格或要求继续承担。"
+        },
+        {
+          "route_id": "HV11-R1-voluntary-limited-action",
+          "claim_level": "normative_boundary",
+          "when": "行动及真实成本有据，方向明确，自愿性、真实拒绝、退出或协商条件分别得到支持，并检查相关替代解释；结果按实现、未实现、有害或未知记录，不以结构成功为准入。",
+          "additional_inferential_requires": [],
+          "additional_protocol_requires": [],
+          "allowed_conclusion": "登记有限自愿承担描述及结果状态；失败或结果未知不取消有据的行动与自愿性事实。",
+          "result_ceiling": "只到行动描述；不把个体承担升格为群体义务，也不授权征用、保护或资源安排。"
+        },
+        {
+          "route_id": "HV11-R2-structural-consequence",
+          "claim_level": "conditional_effect",
+          "when": "符合资格的G2-instance显示该行动经指定通道对预选结构结果产生超过阈值的效应。",
+          "additional_inferential_requires": [
+            "G2-instance"
+          ],
+          "additional_protocol_requires": [
+            "CAUSAL",
+            "E4"
+          ],
+          "allowed_conclusion": "登记指定通道、对象与窗口内的行动结构后果。",
+          "result_ceiling": "结构效应不证明自愿性、爱、善、正当性、无限责任或行动授权；R2对效应的支持不能替R1补证，受强制行动也可能有可识别效应。"
+        }
+      ]
     }
-  ]
-},
-{
-  "id": "HV07",
-  "name": "反馈写回",
-  "proposition": "申诉、审计和反馈只有改变记录、规则、资源、角色、责任、记忆或停止条件时才构成人类制度写回。",
-  "scope": "具有反馈、申诉、审计或治理程序的人类结构",
-  "pause_condition": "只有接收回执、表态或发布而无状态更新",
-  "allowed_inference": [
-    "有效写回、阻塞写回与表面反馈"
   ],
-  "prohibited_leap": [
-    "有渠道即会学习",
-    "一次更新即长期修复",
-    "沉默即同意"
-  ],
-  "scale_invariants": [
-    "反馈来源、通道、写回字段和后续变化"
-  ],
-  "changing_semantics": [
-    "写回载体、时滞和责任主体可改变"
-  ],
-  "non_applicable_objects": [
-    "无记录、规则、资源、角色或停止条件的过程"
-  ],
-  "action_ceiling": "本变量只生成受理、字段变化、执行、持续时间与写回缺口描述，以及复核或程序修复需求，不授权改写记录规则、执行修复或关闭申诉；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，反馈提交者可经安全可达、反报复通道要求状态、时限、责任人与写回结果，并触发与原受理、写回或决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销错误更新，实际恢复先前记录、规则、资源、角色或停止条件状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次反馈或申诉、写回个案、反馈总体、受理执行分布及聚合规则；X=空间范围：提交渠道、组织或平台边界、制度辖区与跨域申诉范围；T=时间跨度：提交、受理、字段变化、执行、持续与复核时滞；O=组织层级：反馈角色、受理团队、组织、制度至治理生态；C=因果层次：反馈事件、写回互动机制、中观程序结构、制度规则与系统条件；R=观察分辨率：原始反馈、处理序列、写回个案、结果分布、时效指标与摘要，并登记压缩损失；I=影响范围：直接申诉人与承接者、间接受影响者、二阶制度后果、跨域与代际影响；N=网络拓扑范围：反馈通道、受理节点、复核路径、阻塞点与跨层连接；J=管辖与授权范围：受理、字段修改、执行、停止、回滚与补救分别登记授权；登记跨层路径",
-  "effective_object": "改变后续制度状态或转移的返回通道",
-  "state": [
-    "到达",
-    "受理",
-    "写回",
-    "阻塞",
-    "失真"
-  ],
-  "observables": [
-    "反馈或申诉的提交与受理凭证",
-    "记录、规则、资源、角色、责任或停止条件的版本差异",
-    "变更的执行记录、生效时间与持续时间",
-    "复核、撤销、补救及后续状态变化"
-  ],
-  "evidence": [
-    "反馈原文",
-    "受理轨迹",
-    "字段版本",
-    "后续规则或资源变化"
-  ],
-  "input_dependencies": [
-    "反馈来源",
-    "安全通道",
-    "责任人",
-    "复核程序"
-  ],
-  "output_effects": [
-    "记录、规则、资源、角色、责任、记忆或停止条件更新"
-  ],
-  "carrier": [
-    "申诉系统",
-    "审计程序",
-    "会议记录",
-    "规则库",
-    "责任链"
-  ],
-  "responsible_subject": [
-    "受理者",
-    "决策者",
-    "写回执行者",
-    "监督者"
-  ],
-  "time_window_and_lag": "登记提交、受理、决定、执行和复审时限",
-  "uncertainty": "记录未达反馈、保护性匿名与不可见处理",
-  "local_exclusion_zone": "无法安全提交、受反报复威胁或无数字接入的位置",
-  "affected_positions": [
-    "提交者",
-    "被评价者",
-    "执行者",
-    "制度受益者"
-  ],
-  "normative_status": "反馈有效性与反馈内容正当性分别判断",
-  "judgment_ceiling": "确认写回字段和后续变化时至解释级",
-  "required_scale_additions": [
-    "反馈代表性",
-    "跨层写回路径",
-    "聚合损失",
-    "外部复核"
-  ],
-  "counterexamples": [
-    "申诉获得接收回执但记录、规则、资源和停止条件均未改变",
-    "审计报告被发布却没有责任人、时限或后续状态更新"
-  ],
-  "forbidden_elevation": [
-    "个案反馈直接代表总体意见"
-  ],
-  "qualified_id": "human_variable:HV07",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [
-    "D2"
-  ],
-  "protocol_requires": [
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [
-    "H3"
-  ],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV07-R0-writeback-classification",
-      "claim_level": "descriptive_classification",
-      "when": "输入通道、回执、字段前后版本、执行记录、生效时间、持续时间及停止或回滚状态可分别检查。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "区分未提交、已提交、已受理、字段改变、已执行、持续或失效的写回状态。",
-      "result_ceiling": "只有字段改变且实际执行才称制度性写回；一次写回不称学习。"
-    },
-    {
-      "route_id": "HV07-R1-causal-feedback",
-      "claim_level": "mechanism_explanation",
-      "when": "符合资格的G2-instance显示制度返回通道相对无返回或阻断条件改变预选后续状态或转移。",
-      "additional_inferential_requires": [
-        "G2-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记指定字段、通道和窗口内的有效反馈与制度写回效应。",
-      "result_ceiling": "不得从反馈存在推出学习、长期修复、正当性或授权扩大。"
-    },
-    {
-      "route_id": "HV07-R2-feedback-mediated-learning",
-      "claim_level": "intertemporal_explanation",
-      "when": "有效反馈已有G2-instance支持，且G3-instance显示可保留更新在重复轮次对预定任务提供历史条件增量。",
-      "additional_inferential_requires": [
-        "G2-instance",
-        "G3-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记限定任务、轮次和窗口内的反馈介导学习候选。",
-      "result_ceiling": "不得称整体制度已经学习、修复完成或价值方向正确。"
+  "shared_action_boundary": {
+    "rule": "The eleven variables share one action boundary: they generate only descriptions, evidence gaps, and action requirements, and authorize no testing, load reduction, resource supply, repair, protection, blame, probing, advancement, exit arrangement, or disposition.",
+    "per_variable_outputs": {
+      "HV01": "候选结构域、边界争议与补证需求",
+      "HV02": "边界状态、接口障碍、排除风险与测试需求",
+      "HV03": "候选锚点、异质表达、比较结果与补证需求",
+      "HV04": "GC、GS、GE 候选分型、状态转移与补证需求",
+      "HV05": "CV、RS、成本、容量、停止权、承接缺口及减载、补资源或重分配需求",
+      "HV06": "链条连通、时滞、损耗、中断、成本与承接需求",
+      "HV07": "受理、字段变化、执行、持续时间、写回缺口与程序修复需求",
+      "HV08": "候选条件通道、位置异质性、证据遮蔽与风险降低需求",
+      "HV09": "负荷、容量、恢复、局部过载与减载补资源需求",
+      "HV10": "按所选路由的组件适用性、原型匹配与混合状态、限定相位机制或历史条件增量解释、独立X0路径状态、不确定性与观察需求",
+      "HV11": "自愿性、真实成本、方向、替代解释、结构后果与停止保护需求"
     }
-  ]
-},
-{
-  "id": "HV08",
-  "name": "条件势场",
-  "proposition": "资源、制度、关系、权力、安全、指标、平台与历史条件只有通过可检测机制改变人类行动概率或约束时进入解释。",
-  "scope": "人类行动受情境、制度与权力位置影响的场景",
-  "pause_condition": "势场被当作万能背景、意图主体或道德标签",
-  "allowed_inference": [
-    "条件性机会、约束、遮蔽与放大"
-  ],
-  "prohibited_leap": [
-    "条件决定个体行为",
-    "权力位置证明恶意",
-    "环境具有意图"
-  ],
-  "scale_invariants": [
-    "条件到行为或证据的机制链"
-  ],
-  "changing_semantics": [
-    "关键条件与作用强度可随尺度改变"
-  ],
-  "non_applicable_objects": [
-    "无意向行动、权力或制度位置的非人系统"
-  ],
-  "action_ceiling": "本变量只生成候选条件通道、位置异质性、证据遮蔽与风险降低需求描述，不授权改变规则平台、资源配置、评价或处置主体；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，不同位置可经安全可达、反报复通道提交机制差异、缺席信号与安全影响，并触发与原势场判断或决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销不成立的势场归因、移除位置标签及其下游评价处置效力并恢复未决状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次暴露或评价事件、位置个案、受条件总体、响应分布及聚合规则；X=空间范围：互动现场、组织或平台边界、公开数字空间与跨域环境；T=时间跨度：暴露积累、响应、反身变化与消退窗口；O=组织层级：行动与评价角色、团队、组织、制度至治理生态；C=因果层次：暴露事件、条件—行为互动机制、中观权力结构、制度规则与系统条件；R=观察分辨率：原始暴露表达行为、时间序列、位置个案、响应分布、平台指标与摘要，并登记压缩损失；I=影响范围：直接被评价者、间接受影响者、二阶反身后果、跨域与代际影响；N=网络拓扑范围：权力与信息连接、中介节点、遮蔽区、放大路径与跨域传播；J=管辖与授权范围：规则配置、指标使用、公开评价、人工复核与处置分别登记授权；比较位置异质性",
-  "effective_object": "经实际通道改变行动概率、表达安全或证据分布的条件集合",
-  "state": [
-    "支持",
-    "约束",
-    "遮蔽",
-    "放大",
-    "混合"
-  ],
-  "observables": [
-    "资源、规则、平台或公开条件改变前后的行为差异",
-    "不同位置的表达安全、证据覆盖和缺席率",
-    "指标、评分或AI中介前后的可见性与处置变化",
-    "比较条件下候选通道效应是否超过预定阈值"
-  ],
-  "evidence": [
-    "资源与规则",
-    "位置差异",
-    "平台或指标变化",
-    "行为响应"
-  ],
-  "input_dependencies": [
-    "边界与接口",
-    "观察位置",
-    "因果合同"
-  ],
-  "output_effects": [
-    "可行路径",
-    "表达和证据",
-    "生成与失稳"
-  ],
-  "carrier": [
-    "制度",
-    "资源配置",
-    "平台",
-    "指标",
-    "关系网络",
-    "历史沉积"
-  ],
-  "responsible_subject": [
-    "规则制定者",
-    "平台运营者",
-    "资源配置者",
-    "行动决策者"
-  ],
-  "time_window_and_lag": "登记条件积累、响应与消退时滞",
-  "uncertainty": "记录不可观察条件、共线性和反身变化",
-  "local_exclusion_zone": "因安全、身份或平台门槛而不可见的位置",
-  "affected_positions": [
-    "优势位置",
-    "低权力位置",
-    "中介者",
-    "被评价者"
-  ],
-  "normative_status": "条件优势或筛选结果不构成正当性",
-  "judgment_ceiling": "机制链与反事实充分时至解释级",
-  "required_scale_additions": [
-    "位置分布",
-    "条件异质性",
-    "跨域外部性",
-    "J轴"
-  ],
-  "counterexamples": [
-    "相同制度条件下不同安全和权力位置出现相反行动",
-    "以权力或平台标签替代实际因果通道后无法解释状态变化"
-  ],
-  "forbidden_elevation": [
-    "局部条件直接普遍化为所有主体的动机"
-  ],
-  "qualified_id": "human_variable:HV08",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [],
-  "protocol_requires": [
-    "E2",
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV08-R0-condition-inventory",
-      "claim_level": "candidate_description",
-      "when": "资源、规则、位置、安全、指标、平台、AI中介或历史沉积可按位置、尺度和时间窗列出，但尚无符合资格的H4-instance。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记候选条件、位置异质性、观察盲区、竞争解释与补证需求。",
-      "result_ceiling": "仅称条件清单或候选通道；不得把条件人格化，也不得称权力、中介或反身效应已成立。"
-    },
-    {
-      "route_id": "HV08-R1-position-or-mediation-effect",
-      "claim_level": "conditional_effect",
-      "when": "H4-instance在证据覆盖、表达安全或对象行为中唯一预选的成功判据取得supported。",
-      "additional_inferential_requires": [
-        "H4-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记该实例位置、中介、结果家族和窗口内的遮蔽、放大或行为响应通道。",
-      "result_ceiling": "不外推到未选结果家族，不从位置或中介效应推出恶意、责任或自动处置。"
-    },
-    {
-      "route_id": "HV08-R2-reflexive-response",
-      "claim_level": "mechanism_explanation",
-      "when": "H4-instance唯一预选反身响应判据，且观测、命名、评分或发布经实际通道到达对象并取得supported。",
-      "additional_inferential_requires": [
-        "H4-instance"
-      ],
-      "additional_protocol_requires": [
-        "E3",
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记指定观测或发布通道与窗口内的反身响应。",
-      "result_ceiling": "一次响应不称持久反身性；不得据此隐藏观察、压制表达或扩大授权。"
-    }
-  ]
-},
-{
-  "id": "HV09",
-  "name": "结构负荷",
-  "proposition": "人类结构负荷必须把任务、协调损耗、维护要求、容量、恢复余量和成本承担位置共同登记。",
-  "scope": "持续运转、维护、照护或高压条件下的人类结构",
-  "pause_condition": "只用熵、脆弱或韧性隐喻而无任务、容量和恢复机制",
-  "allowed_inference": [
-    "候选过载、余量不足、维护缺口与恢复差异"
-  ],
-  "prohibited_leap": [
-    "承接者应继续承担",
-    "高负荷证明奉献",
-    "过载主体等于失稳机制"
-  ],
-  "scale_invariants": [
-    "负荷、容量、恢复与成本位置"
-  ],
-  "changing_semantics": [
-    "瓶颈、容量和恢复方式可随层级改变"
-  ],
-  "non_applicable_objects": [
-    "无持续非平衡、维护或人类承接要求的过程"
-  ],
-  "action_ceiling": "本变量只生成负荷、容量、恢复、局部过载与减载补资源需求描述，不授权任务削减、资源投入、绩效处置或强迫承担；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，承接者可经安全可达、反报复通道报告隐性劳动、过载和恢复需求，并触发与原负荷判断、绩效或任务决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销错误负荷判断及绩效或责任效力，实际恢复任务、资源与记录状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单项任务负荷、承接个案、岗位或群体总体、负荷容量分布及聚合规则；X=空间范围：工作或照护现场、组织边界、数字劳动空间与跨域外包范围；T=时间跨度：瞬时峰值、持续积压、恢复时滞、跨期与代际窗口；O=组织层级：承接角色、团队、组织、制度至治理生态；C=因果层次：任务事件、任务—容量互动机制、中观瓶颈结构、制度分配与系统条件；R=观察分辨率：原始任务工时记录、负荷序列、承接个案、容量分布、时延错误指标与摘要，并登记压缩损失；I=影响范围：直接承接者、服务依赖者、间接替代者、二阶外溢、跨域与代际成本；N=网络拓扑范围：任务依赖、关键瓶颈、替代节点、恢复路径与跨域外包网络；J=管辖与授权范围：任务分配、资源调整、停止、绩效使用与补救分别登记授权；保留负荷容量分布",
-  "effective_object": "给定窗口内任务和协调要求相对可用容量与恢复余量的结构关系",
-  "state": [
-    "低负荷",
-    "可承受",
-    "临界",
-    "过载",
-    "恢复"
-  ],
-  "observables": [
-    "单位时间任务量、积压、时延和错误率",
-    "人员资源容量、隐性劳动与替代可用性",
-    "停止、缺席、退出和恢复曲线",
-    "平均负荷与关键局部承接位置的分布差异"
-  ],
-  "evidence": [
-    "任务量",
-    "时延与错误",
-    "人员与资源",
-    "恢复记录",
-    "退出和缺席"
-  ],
-  "input_dependencies": [
-    "承接层",
-    "动力—承接链",
-    "条件势场",
-    "瞬时负荷只调用G2与CM-LOAD；累积损伤、迟恢复或历史条件增量另需预注册G3-instance，H5候选留痕不能替代G3"
-  ],
-  "output_effects": [
-    "状态更新",
-    "失稳行为",
-    "维护和修复需求"
-  ],
-  "carrier": [
-    "人员",
-    "岗位",
-    "程序",
-    "设施",
-    "预算"
-  ],
-  "responsible_subject": [
-    "任务分配者",
-    "资源配置者",
-    "授权者",
-    "监督者",
-    "补救责任者"
-  ],
-  "time_window_and_lag": "区分即时峰值、持续积压、恢复时滞与代际成本",
-  "uncertainty": "记录隐性劳动、外包成本和保护性缺席",
-  "local_exclusion_zone": "非正式劳动、家庭照护、外包和低可见承接位置",
-  "affected_positions": [
-    "承接者",
-    "依赖服务者",
-    "替代者",
-    "成本外溢位置"
-  ],
-  "normative_status": "高效率或高承载不构成正当性",
-  "judgment_ceiling": "负荷容量和恢复证据充分时至诊断级",
-  "required_scale_additions": [
-    "负荷分布",
-    "聚合遮蔽",
-    "责任继承",
-    "代际影响"
-  ],
-  "counterexamples": [
-    "总体平均容量充足但少数关键承接位置持续过载",
-    "只用熵或韧性隐喻却无法识别任务、容量和恢复通道"
-  ],
-  "forbidden_elevation": [
-    "平均负荷掩盖局部过载"
-  ],
-  "qualified_id": "human_variable:HV09",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [],
-  "protocol_requires": [
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV09-R0-instant-task-capacity",
-      "claim_level": "descriptive_classification",
-      "when": "同一窗口、位置与类型映射下的任务或协调要求、容量、恢复余量及其分布可观察。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记瞬时任务—容量关系、余量、积压、局部缺口与恢复状态。",
-      "result_ceiling": "只到同窗描述；瞬时峰值或缺口不自动成为过载机制、累积损伤或崩溃。"
-    },
-    {
-      "route_id": "HV09-R1-overload-mechanism",
-      "claim_level": "mechanism_explanation",
-      "when": "CM-LOAD的适用条件完整，且符合资格的G2-instance显示负荷、补给、减载或恢复通道对预选结果有超过阈值效应。",
-      "additional_inferential_requires": [
-        "G2-instance",
-        "CM-LOAD"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记指定位置、类型、窗口和通道内的过载或恢复机制候选。",
-      "result_ceiling": "不得普遍化为熵、韧性或所有位置必然崩溃，也不直接生成减载或牺牲义务。"
-    },
-    {
-      "route_id": "HV09-R2-cumulative-overload",
-      "claim_level": "intertemporal_explanation",
-      "when": "过载机制已有G2-instance与CM-LOAD支持，且G3-instance显示历史负荷对后续容量、错误或恢复具有条件增量。",
-      "additional_inferential_requires": [
-        "G2-instance",
-        "CM-LOAD",
-        "G3-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记预注册载体、窗口和结果内的累积损伤或迟恢复候选。",
-      "result_ceiling": "不推出不可逆、必然崩溃、责任归属或具名主体承担义务。"
-    }
-  ]
-},
-{
-  "id": "HV10",
-  "name": "演化相位",
-  "proposition": "S0-S6和X0只适用于存在方向、生成主体或事件、承接层与制度化过程的人类意向性集体，且允许跳阶、并行、混合、回退、分裂、合并、休眠、吞并和功能转移。",
-  "scope": "符合适用条件的人类意向性集体",
-  "pause_condition": "适用条件缺失、阶段被道德化或标题与判据不一致",
-  "allowed_inference": [
-    "条件性状态坐标",
-    "非线性路径",
-    "有序退场X0"
-  ],
-  "prohibited_leap": [
-    "所有系统必经S0-S6",
-    "阶段越高越正当",
-    "解体等于失败"
-  ],
-  "scale_invariants": [
-    "适用条件",
-    "相位判据",
-    "非线性路径",
-    "X0不计为第八阶段"
-  ],
-  "changing_semantics": [
-    "承接者、制度载体和有效对象可随相位改变"
-  ],
-  "non_applicable_objects": [
-    "无方向、生成、承接或制度化过程的系统"
-  ],
-  "action_ceiling": "本变量只生成相位原型匹配、混合状态、不确定性与观察需求描述，不授权试探、推进、合并、退场或淘汰；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，成员可经安全可达、反报复通道挑战相位证据、线性假设和道德化使用，并触发与原相位判断或决策链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销相位命名及其下游决策效力、实际恢复变量级描述与未决状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次状态事件、局部群体个案、意向集体总体、相位分布及聚合规则；X=空间范围：行动现场、组织或制度边界、数字协作空间与跨域演化范围；T=时间跨度：状态窗口、转移时滞、回退、休眠、迟滞与代际周期；O=组织层级：成员角色、团队、组织、制度至治理生态；C=因果层次：状态事件、转移互动机制、中观相位结构、制度化过程与系统条件；R=观察分辨率：原始状态事件、转移序列、局部个案、相位分布、状态指标与摘要，并登记压缩损失；I=影响范围：直接成员与承接者、退出者、间接受影响者、二阶后果、跨域与代际影响；N=网络拓扑范围：局部相位簇群、跨层连接、分裂合并、功能转移与继承路径；J=管辖与授权范围：相位命名、监测采用、试探、推进、退场与淘汰分别登记授权；保留混合相位",
-  "effective_object": "具有人类意向、生成、承接和制度化的集体状态",
-  "state": [
-    "S0",
-    "S1",
-    "S2",
-    "S3",
-    "S4",
-    "S5",
-    "S6",
-    "X0转换路径"
-  ],
-  "observables": [
-    "方向、生成、承接、制度化和反馈变量的同期状态",
-    "相位判据跨观察窗的重复匹配记录",
-    "跳阶、并行、混合、回退、分裂、合并与休眠轨迹",
-    "X0中的功能转移、责任继承与有序退场记录"
-  ],
-  "evidence": [
-    "相位变量",
-    "转移记录",
-    "留痕",
-    "承接与制度状态"
-  ],
-  "input_dependencies": [
-    "指向锚点",
-    "生成节点",
-    "承接层",
-    "反馈写回",
-    "结构负荷",
-    "模式相位不要求G3；因果转移另需CAUSAL；迟滞、路径依赖或历史效应另需预注册G3-instance，H5只登记候选留痕"
-  ],
-  "output_effects": [
-    "相位判断",
-    "承接继承",
-    "退场和修复需求"
-  ],
-  "carrier": [
-    "集体行动",
-    "组织结构",
-    "制度记录",
-    "共同记忆"
-  ],
-  "responsible_subject": [
-    "作出相位判断的分析者",
-    "据此行动的决策与授权者"
-  ],
-  "time_window_and_lag": "登记相位观察窗、转移时滞、回退与休眠",
-  "uncertainty": "记录混合相位、分裂、合并与尺度差异",
-  "local_exclusion_zone": "总体相位无法代表的局部群体和角色",
-  "affected_positions": [
-    "成员",
-    "承接者",
-    "异议者",
-    "退出者",
-    "继承者"
-  ],
-  "normative_status": "相位不构成健康、成功或正当性等级",
-  "judgment_ceiling": "适用条件和相位证据充分时至原型匹配级",
-  "required_scale_additions": [
-    "局部相位分布",
-    "跨层转移",
-    "承接继承",
-    "保护与退出"
-  ],
-  "counterexamples": [
-    "同一集体同时呈现S2承接成形与S5漏洞积累的混合相位",
-    "有序退场X0保持功能转移而不是阶段失败"
-  ],
-  "forbidden_elevation": [
-    "个案相位直接代表总体",
-    "人类阶段迁入通用核心"
-  ],
-  "qualified_id": "human_variable:HV10",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [
-    "human_variable:HV03",
-    "human_variable:HV04",
-    "human_variable:HV05",
-    "human_variable:HV07"
-  ],
-  "protocol_requires": [
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV10-R0-component-applicability",
-      "claim_level": "descriptive_classification",
-      "when": "HV03、HV04、HV05与HV07已有可审计评估记录；记录允许为missing、not_applicable或unsupported，不要求四组件经验成立。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记适用、不适用、组件缺失、混合状态与继续观察需求。",
-      "result_ceiling": "组件检查本身不产生S0-S6或X0相位匹配。"
-    },
-    {
-      "route_id": "HV10-R1-pattern-phase-match",
-      "claim_level": "descriptive_classification",
-      "when": "CM-PHASE的状态判据、观察窗、混合与转换规则完整，并在重复窗口匹配。",
-      "additional_inferential_requires": [
-        "CM-PHASE"
-      ],
-      "additional_protocol_requires": [
-        "E4"
-      ],
-      "allowed_conclusion": "登记S0-S6或X0的原型匹配、混合、并行、回退、休眠或转换描述。",
-      "result_ceiling": "只到模式相位；相位不是健康、成功、正当性或淘汰等级。"
-    },
-    {
-      "route_id": "HV10-R2-causal-transition",
-      "claim_level": "mechanism_explanation",
-      "when": "CM-PHASE匹配成立，且G2-instance识别指定相位转移通道对预选状态变化的效应。",
-      "additional_inferential_requires": [
-        "CM-PHASE",
-        "G2-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记指定对象、窗口和通道内的候选因果相位转移。",
-      "result_ceiling": "不得从转移机制推出必然阶段序列、价值方向或推进与淘汰授权。"
-    },
-    {
-      "route_id": "HV10-R3-path-dependent-phase",
-      "claim_level": "intertemporal_explanation",
-      "when": "CM-PHASE匹配成立，且G3-instance显示历史相位变量对后续状态、迟滞或回退具有条件增量。",
-      "additional_inferential_requires": [
-        "CM-PHASE",
-        "G3-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记预注册窗口内的路径依赖、迟滞或历史相位差异候选。",
-      "result_ceiling": "不得称命运、绝对不可逆或自动规定修复、退出与退场方案。"
-    }
-  ]
-},
-{
-  "id": "HV11",
-  "name": "开放性承担行动",
-  "proposition": "开放性承担只观察真实成本、自愿性、方向、替代解释和结构后果，不诊断某人有没有爱。",
-  "scope": "人类关系、组织、制度与公共行动中的承担",
-  "pause_condition": "无法安全确认自愿、拒绝和退出，或分析转向人格与爱的诊断",
-  "allowed_inference": [
-    "描述有限承担行动与后果"
-  ],
-  "prohibited_leap": [
-    "诊断有没有爱",
-    "牺牲等于爱",
-    "责任等于无限承担",
-    "拒绝等于道德失败"
-  ],
-  "scale_invariants": [
-    "成本、自愿性、方向、替代解释、后果与停止权"
-  ],
-  "changing_semantics": [
-    "承担形式、成本位置和受益对象可改变"
-  ],
-  "non_applicable_objects": [
-    "无意向、自愿性、责任或意义能力的非人系统"
-  ],
-  "action_ceiling": "本变量只生成自愿性、真实成本、方向、替代解释、结构后果与停止保护需求描述，不授权保护措施、承担要求、资源征用或人格裁决；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
-  "appeal": "依appeal_and_rollback_rule，行动者可经安全可达、反报复通道拒绝被代表，说明强制、成本、替代解释和退出限制，并触发与原承担判断或要求链独立的复核",
-  "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内撤销承担命名与相关要求，实际恢复拒绝、退出、记录和资源状态，保留版本与完成验证",
-  "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：单次承担行动、行动者个案、关系或组织总体、成本自愿性分布及聚合规则；X=空间范围：关系与照护现场、组织边界、数字公共空间与跨域受益范围；T=时间跨度：即时行动、持续承担、耗竭、恢复与代际窗口；O=组织层级：行动角色、关系或团队、组织、制度至治理生态；C=因果层次：承担事件、行动—成本互动机制、中观关系结构、制度责任安排与系统条件；R=观察分辨率：原始行动与成本、承担序列、行动者个案、成本自愿性分布、后果指标与摘要，并登记压缩损失；I=影响范围：直接行动者与受益者、依赖者、间接替代承接者、二阶外溢、跨域与代际影响；N=网络拓扑范围：依赖照护、受益连接、替代承接、退出路径与跨域成本网络；J=管辖与授权范围：承担要求、资源使用、拒绝、停止、保护与补救分别登记授权；保留自愿成本退出差异",
-  "effective_object": "满足真实成本、自愿性、方向和结构后果条件的人类行动",
-  "state": [
-    "候选",
-    "自愿且有限",
-    "强制风险",
-    "单方耗竭",
-    "停止或退出"
-  ],
-  "observables": [
-    "行动投入的时间、资源、机会与身体心理成本",
-    "拒绝、退出、停止和重新协商是否真实可用",
-    "行动方向、受益位置和可检测结构后果",
-    "强制、恐惧、依赖、利益与表演等替代解释"
-  ],
-  "evidence": [
-    "行动与成本",
-    "拒绝和退出条件",
-    "替代解释",
-    "受益与后果"
-  ],
-  "input_dependencies": [
-    "指向锚点",
-    "承接层",
-    "条件势场",
-    "权力与安全"
-  ],
-  "output_effects": [
-    "成本分布",
-    "关系和制度状态",
-    "停止与修复"
-  ],
-  "carrier": [
-    "具体行动者",
-    "关系实践",
-    "照护或责任安排"
-  ],
-  "responsible_subject": [
-    "提出要求者",
-    "授权者",
-    "受益责任者",
-    "补救责任者"
-  ],
-  "time_window_and_lag": "登记即时成本、持续承担、耗竭与恢复时滞",
-  "uncertainty": "记录依赖、恐惧、隐性强制与表达安全",
-  "local_exclusion_zone": "无法安全拒绝、无法退出或被道德压力遮蔽的位置",
-  "affected_positions": [
-    "行动者",
-    "受益者",
-    "依赖者",
-    "替代承接者"
-  ],
-  "normative_status": "受N4约束，不可命令或征用",
-  "judgment_ceiling": "证据充分时只到行动描述级，不进入人格诊断",
-  "required_scale_additions": [
-    "自愿性分布",
-    "代表关系",
-    "成本外溢",
-    "真实退出与代理保护"
-  ],
-  "counterexamples": [
-    "无法拒绝的单方牺牲被赞美为爱或责任",
-    "承担宣称没有真实成本、行动方向或可检测结构后果"
-  ],
-  "forbidden_elevation": [
-    "个体承担升格为群体义务",
-    "人类承担概念迁入非人核心"
-  ],
-  "qualified_id": "human_variable:HV11",
-  "claim_type": "H",
-  "contract_role": "human_variable_interface",
-  "inferential_requires": [],
-  "protocol_requires": [
-    "N4",
-    "EVIDENCE",
-    "SOURCE"
-  ],
-  "specializes": [
-    "H6",
-    "H2"
-  ],
-  "applies_to": [],
-  "conditional_support_routes": [
-    {
-      "route_id": "HV11-R0-action-cost-record",
-      "claim_level": "normative_boundary",
-      "when": "行动、真实成本、方向、替代解释、受益与后果可观察，但自愿性、拒绝或退出尚不充分。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "描述候选承担行动、成本分布、强制风险、停止权缺口与保护需求。",
-      "result_ceiling": "不得称开放性承担，不得诊断爱、人格或要求继续承担。"
-    },
-    {
-      "route_id": "HV11-R1-voluntary-limited-action",
-      "claim_level": "normative_boundary",
-      "when": "真实成本、自愿性、真实拒绝与退出、方向、替代解释和结构后果均分别可见。",
-      "additional_inferential_requires": [],
-      "additional_protocol_requires": [],
-      "allowed_conclusion": "登记有限、自愿且具有方向和可观察后果的开放性承担行动描述。",
-      "result_ceiling": "只到行动描述；不把个体承担升格为群体义务，也不授权征用、保护或资源安排。"
-    },
-    {
-      "route_id": "HV11-R2-structural-consequence",
-      "claim_level": "conditional_effect",
-      "when": "符合资格的G2-instance显示该行动经指定通道对预选结构结果产生超过阈值的效应。",
-      "additional_inferential_requires": [
-        "G2-instance"
-      ],
-      "additional_protocol_requires": [
-        "CAUSAL",
-        "E4"
-      ],
-      "allowed_conclusion": "登记指定通道、对象与窗口内的行动结构后果。",
-      "result_ceiling": "结构效应不证明爱、善、正当性、无限责任或行动授权。"
-    }
-  ]
-}
-  ]
+  }
 }

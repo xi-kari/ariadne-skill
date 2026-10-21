@@ -2,7 +2,7 @@
 
 The repository gates only lint structure; this harness runs the actual prompts.
 It shells each scenario prompt out to a host command template, saves the raw
-transcript, and writes a rubric scoring sheet (F1-F8 from evals/rubric.md) with
+transcript, and writes a rubric scoring sheet (F1-F11 from evals/rubric.md) with
 null scores for a human or judge model to fill in. Scoring is deliberately not
 automated and this script is not a CI gate.
 
@@ -34,7 +34,7 @@ SCENARIO_FILES = (
     ROOT / "evals" / "standalone-scenarios.md",
     ROOT / "evals" / "chain-scenarios.md",
 )
-RUBRIC_ITEMS = ("F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8")
+RUBRIC_ITEMS = ("F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11")
 TABLE_ROW = re.compile(r"^\|\s*`?([^|`]+)`?\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|$")
 
 

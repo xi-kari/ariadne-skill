@@ -18,40 +18,42 @@ Reading rules for this form:
 
 ## ariadne-skill
 
-> Coordinate a structured multi-angle analysis of a complex real-world question: frame the object, freeze evidence, route only the needed peer modules (framing, evidence, scale, mechanism, human, dynamics, forecast, choice, audit), and merge results into one bounded, inspectable record. Use when a question mixes explanation, prediction, and action, spans people, evidence, and decisions at once, or the user asks for a systematic, thorough, multi-angle, or auditable analysis. 适用于：系统分析、全面评估、多角度复盘、这个复杂问题怎么看/该不该做、需要可检查可续接的结论。
+> Coordinate a structured multi-angle analysis of a complex real-world question: frame the object and task, freeze evidence, route only the needed peer modules, downgrade claim by claim, and merge into one bounded, inspectable record with a complete plain-language analysis and, for choices, a premised recommendation for deliberation. Use when a question mixes explanation, prediction, and action, spans people, evidence, and decisions, or the user asks for a systematic, thorough, multi-angle, or auditable analysis. 适用于：系统分析、全面评估、多角度复盘、复杂问题怎么看或该不该做。
 
 ### Core promise
 
-Turn a complex request into a bounded, inspectable method run. Classify the requested output, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, and stop every conclusion at its supported output ceiling.
+Turn a complex request into a bounded, inspectable method run. Start from the concrete difference that needs explaining or deciding, declare the task together with its representation, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, lower each conclusion only as far as its own dependencies require, and deliver the complete analysis at its supported ceiling.
 
-Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis. For a generative or build request (write, design, implement, create), run only its judgment core as `synthesis_design` - frozen constraints, compared candidate designs, a bounded proposal - and hand the construction itself back to the host's normal workflow; a request with no judgment core is out of scope entirely. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority.
+Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis. For a generative or build request (write, design, implement, create), run only its judgment core as `synthesis_design` - frozen constraints, compared candidate designs, a bounded proposal - and hand the construction back to the host's normal workflow; a request with no judgment core is out of scope. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority. A shorter adequate domain method may answer alone; Ariadne then adds only source and boundary checks.
+
+Ariadne's entries are method and retrieval entries derived from its source theory, with candidate status; where an entry and the source disagree, the source governs.
 
 ### Required references
 
-Read by declared depth instead of all at once. Depth levels L0-L3 are defined in the routing reference: L0 direct bounded answer, L1 low-impact reversible work, L2 comparative work with reviewable impact, L3 public, automated, institutional, high-power, or hard-to-reverse use.
+Read by declared depth instead of all at once. Depth levels L0-L3 are defined in the routing reference: L0 direct bounded answer, L1 light description and probing questions, L2 standard reviewable judgment, L3 high-responsibility strong-judgment candidate set by use and foreseeable impact.
 
 - L0: no reference read is required beyond this file.
-- L1: read Lattice Kernel (`references/lattice-kernel.md` in the source repository) - invariants, claim classes, missing states, hard boundaries, and the coding family index - and copy the record shape from the L1 record template (`references/l1-record-template.md` in the source repository).
-- L2: add Method Record (`references/method-record.md` in the source repository) - shared record, identifiers, carrier, lineage, ceilings, raise rules, and handoff format.
-- Full pass or L3: add Routing (`references/routing.md` in the source repository) - intake, depth selection, module map, routing algorithm, restarts, and stop-loss.
-- Clustered execution, merging, or continuing an earlier run: add Clustering (`references/clustering.md` in the source repository) - lane admission, merge rules, stop table, host orchestration mapping, and the merge lineage example.
-- Only when a shared source code or term is ambiguous, or dual-text work is in scope: consult Source navigation (`references/source-navigation.json` in the source repository) - stable numbering ownership, D.4 dual-text difference rule, D.5 cross-scale proof heuristic, and Chinese stable references.
+- L1: read Lattice Kernel (`references/lattice-kernel.md` in the source repository) - invariants, claim roles, connection conditions, history routes, missing states, ceilings, and the coding family index - and copy the record shape from the L1 record template (`references/l1-record-template.md` in the source repository).
+- L2: add Method Record (`references/method-record.md` in the source repository) - shared record, task profile, proposition-level dependencies, carrier, lineage, ceilings, raise rules, typed payloads, and presentation.
+- Full pass or L3: add Routing (`references/routing.md` in the source repository) - intake, depth selection by use, module map, routing algorithm, retrieval order, restarts, and stop-loss.
+- Clustered execution, merging, or continuing an earlier run: add Clustering (`references/clustering.md` in the source repository) - lane admission, merge rules, per-proposition stop table, continuation events, host orchestration mapping, and the merge lineage example.
+- Only when a source code or term is ambiguous, dual-text work is in scope, or the source identity must be checked: consult Source navigation (`references/source-navigation.json` in the source repository) - source SHA-256 and derived status, Appendix B numbering ownership, body-only codes, the nine governance invariants, the six kernel layers, the C.4 dual-text difference rule, the C.5 cross-scale proof heuristic, and the D.01-D.32 domain-atlas route.
 
-Validate every emitted record by running the shipped validator, `python scripts/validate_record.py <record.yaml>`, from this skill's directory; it checks the Method Record schema (`references/method-record.schema.json` in the source repository) (byte-identical to the repository-root copy) plus the semantic rules, so the 30KB schema never needs to enter context. Without code execution, use the manual checklist in the L1 record template and say which path was taken; never claim a validation that did not run.
+Validate every emitted record by running the shipped validator, `python scripts/validate_record.py <record.yaml>`, from this skill's directory; it checks the Method Record schema (`references/method-record.schema.json` in the source repository) (byte-identical to the repository-root copy) plus the semantic rules. Without code execution, use the manual checklist in the L1 record template and say which path was taken; never claim a validation that did not run.
 
 ### Full-pass workflow
 
-1. Restate the user's real-world question without Ariadne vocabulary.
-2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, synthesis design. Keep the outputs separate. If none fits, declare out of scope as promised above.
-3. Select depth. L0: answer directly with a one-line boundary declaration; no module run, no record. L1: run framing plus the one relevant module and emit a compact record from the template. Only L2 and above continue with the full workflow below. When in doubt between L0 and L1, use L1.
-4. Run `ariadne-framing`. Freeze the candidate object, boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
-5. Run `ariadne-evidence`. Freeze the evidence cutoff and separate source, material, observation, evidence, counterevidence, judgment, and external authorization.
-6. Select the minimum adequate module set. Do not retain a module merely because it is available. When a source code (G1, C1-C12, CM-*, and similar Appendix B families) or a shared term is ambiguous, resolve its owner through the coding family index in the Lattice Kernel or through `source-navigation.json`. When the user has supplied two source contract texts, apply the D.4 dual-text difference rule from `source-navigation.json`; otherwise mark dual-text work `not_applicable`. Route any cross-scale bridge proof to `ariadne-scale` (D.5).
+1. Restate the user's real-world question without Ariadne vocabulary, and name the difference that needs explaining, deciding, or protecting.
+2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, synthesis design. Keep the outputs separate; each extra output adds its own conditions. If none fits, declare out of scope as promised above.
+3. Select depth by intended and foreseeable use. L0: answer directly with a one-line boundary declaration; no module run, no record. L1: run framing plus the one relevant module and emit a compact record from the template. Only L2 and above continue with the full workflow below. When in doubt between L0 and L1, use L1.
+4. Run `ariadne-framing`. Freeze the candidate object, task profile (target query, horizon, environment, allowed operations, error tolerance), boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
+5. Run `ariadne-evidence`. Freeze the evidence cutoff; separate source, material, observation, evidence, counterevidence, judgment, and authorization; register claim roles and `depends_on` links.
+6. Select the minimum adequate module set. Do not retain a module merely because it is available. Resolve an ambiguous code family through the coding family index in the Lattice Kernel or through `source-navigation.json`. When the user has supplied two source contract texts, apply the C.4 dual-text difference rule; otherwise mark dual-text work `not_applicable`. Route any cross-scale bridge proof to `ariadne-scale` (C.5).
 7. After framing and evidence are frozen, run independent scale, mechanism, or human-domain lanes in parallel when the runtime supports it (see the host orchestration mapping in Clustering). Otherwise run the same lanes sequentially.
-8. Run dynamics only for event propagation or path derivation. Run forecast only for a dated, evaluable future claim. Run choice only for option comparison. Run audit for high-impact use and as the merger of clustered records.
-9. Merge child records without averaging conflicts; record irreducible disagreements as named entries in the `conflicts` field. Preserve every parent ID/version and module input/output reference; apply the deterministic ceiling meet and keep `authorization_effect: none`.
-10. For an action request at L2 or above, emit the complete facts/values/options/jurisdiction/authorization/stop/rollback boundary card even when entries are `unknown`. An action request that meets every L1 condition may compress the all-unknown card into a single declaration line, as the routing reference specifies.
-11. Present a plain-language result first. Add the compact Method Record when it improves checking, continuation, challenge, or writeback.
+8. Run dynamics only for event propagation or path derivation. Run forecast only for a dated, evaluable future claim. Run choice for option comparison and every action request. Run audit for high-impact use and as the merger of clustered records.
+9. Merge child records without averaging conflicts; record irreducible disagreements as named `conflicts` entries. Preserve every parent ID/version, module input/output reference, claim dependency, and claim-level ceiling; apply the deterministic ceiling meet and keep `authorization_effect: none`.
+10. For an action request at L2 or above, emit the typed choice card: facts, explicit values, structured options with exactly one no-action option, jurisdiction, authorization, stop conditions, rollback plan, and an analytic recommendation or an explicit `null` naming what blocks it. An action request that meets every L1 condition may compress the all-unknown card into a single declaration line, as the routing reference specifies.
+11. Deliver the complete plain-language analysis first: current judgment and scope, evidence, every substantive path compared, unknowns and reverse conditions, the ceiling, and, for choices, the recommendation with its premises, costs, objections, and change conditions. Compress only when the user asks for brevity. Add the Method Record when it improves checking, continuation, challenge, or writeback.
 
 ### Module dispatch
 
@@ -59,30 +61,30 @@ Use these peers as independent method workers:
 
 | Need | Module |
 |---|---|
-| Object, boundary, scope, task type | `ariadne-framing` |
-| Claims, sources, causality, analogy | `ariadne-evidence` |
-| Cross-level, cross-time, cross-domain transfer | `ariadne-scale` |
-| Channels, feedback, baselines, residuals | `ariadne-mechanism` |
-| People, roles, circles, power, privacy | `ariadne-human` |
-| Events, clocks, thresholds, branches | `ariadne-dynamics` |
+| Object, task, representation, boundary, domain entry | `ariadne-framing` |
+| Claims, sources, causality, analogy, measurement, independence | `ariadne-evidence` |
+| Cross-scale, cross-circle, and representation transfer; closure | `ariadne-scale` |
+| Channels, feedback, carriers, baselines, residuals | `ariadne-mechanism` |
+| People, roles, circles, power, privacy, actors | `ariadne-human` |
+| Events, clocks, thresholds, branches, recursion | `ariadne-dynamics` |
 | Dated future judgment and calibration | `ariadne-forecast` |
-| Action, delay, experiment, exit, inaction | `ariadne-choice` |
-| High-impact gates, appeal, rollback, retirement | `ariadne-audit` |
+| Action, delay, probing, exit, inaction, recommendation | `ariadne-choice` |
+| Strong-judgment gates, appeal, rollback, governance, retirement | `ariadne-audit` |
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ### Cluster contract
 
-Parallelize only after the object record and evidence cutoff are identical across workers; give each worker the raw task, the frozen record, its bounded responsibility, and no preferred conclusion. Merge through `ariadne-audit` under the merge rules in Clustering (`references/clustering.md` in the source repository): shared frozen facts stay shared, unknowns accumulate, incompatible boundaries or explanations stay named conflicts, evidence grades never rise by vote, the ceiling meet takes the minimum, and no number of completed modules creates authorization.
+Parallelize only after the object record and evidence cutoff are identical across workers; give each worker the raw task, the frozen record, its bounded responsibility, and no preferred conclusion. Merge through `ariadne-audit` under the merge rules in Clustering (`references/clustering.md` in the source repository): shared frozen facts stay shared, unknowns accumulate, incompatible boundaries or explanations stay named conflicts, evidence grades never rise by vote, lanes that share data or sources count as one lineage, the ceiling meet takes the minimum, and no number of completed modules creates authorization.
 
 ### Output contract
 
 Default to two layers:
 
-1. **Usable answer:** current bounded judgment, supporting observations, alternatives, uncertainty, and the safest next information or option.
-2. **Method record:** request type, object status, evidence cutoff, scale scope, claim ledger, counterevidence, conflicts, module runs, output ceiling, and next modules.
+1. **Complete analysis:** current bounded judgment and scope, supporting evidence, every substantive alternative or path actually compared, uncertainty and what would change the judgment, and the safest next information or option; for choices, the analytic recommendation for deliberation with its normative premises, reasons, costs, objections, and change conditions, stated as not yet adopted or authorized.
+2. **Method record:** request type, object and task profile, evidence cutoff, scale scope and transformation kind, claim ledger with dependencies, counterevidence, conflicts, module runs, output ceiling, and next modules.
 
-For low-impact questions, keep the record compact and show it only when the user asks or continuation needs it. For forecasts, high-impact judgments, public claims, automated use, or real-world choices, expose the fields needed for failure, appeal, rollback, and writeback.
+Shorten the visible analysis only when the user asks; never drop a substantive comparison because it is a minor branch. For forecasts, high-impact judgments, public claims, automated use, or real-world choices, expose the fields needed for failure, appeal, rollback, and writeback.
 
 ### Mini example
 
@@ -103,19 +105,20 @@ At `description_only` this run may already list unranked candidate mechanisms (m
 
 ### Stop and downgrade
 
-Stop or lower the ceiling when any of these holds:
+Lower the propositions that depend on any of these, and only those, unless the failure is global:
 
-- The object changes under the chosen identity criterion.
+- The object changes under the chosen identity criterion, or the task changes.
 - Critical evidence is unknown, not observable, or protected without a trusted review path.
-- A scale bridge or causal channel is only asserted.
+- A scale, circle, or translation bridge, or a causal channel, is only asserted.
+- A cross-time claim has no identified formation, carrier, or increment route.
 - Forecast inputs were not frozen before the outcome.
 - The request asks facts or predictions to manufacture values, jurisdiction, or authorization.
 - A high-impact output lacks contestability, stopping, correction, or rollback.
 - The stop-loss in the routing reference fires: projected record work is disproportionate to the stakes, or two consecutive module runs left the conclusion unchanged.
 
-Downgrade is a valid result. Return a candidate analysis, evidence request, scenario set, requirements-only handoff, or explicit non-action state.
+A failure of the shared source, a common premise, the object boundary, or the task's lawful use blocks every dependent output. Renaming or splitting a claim never restores its ceiling. Downgrade is a valid result: return a candidate analysis, evidence request, scenario set, requirements handoff, recommendation for deliberation, or explicit non-action state.
 
-Router-only installation (only this skill installed): the deliverable is still defined. Run intake, classification, and depth selection, which are this router's own responsibilities: produce the request classification, a candidate object and boundary statement, the evidence cutoff, the module-absence list with installation guidance, and a degraded root record whose peer responsibilities are `not_run` with reason `module_unavailable` and whose ceiling stays `description_only`. Do not execute peer responsibilities inline; a single-file bundle for hosts without multi-skill support ships as `dist/ariadne-bundle.md` in the repository.
+Router-only installation (only this skill installed): the deliverable is still defined. Run intake, classification, and depth selection, which are this router's own responsibilities: produce the request classification, a candidate object, task profile, and boundary statement, the evidence cutoff, the module-absence list with installation guidance, and a degraded root record whose peer responsibilities are `not_run` with reason `module_unavailable` and whose ceiling stays `description_only`. Do not execute peer responsibilities inline; a single-file bundle for hosts without multi-skill support ships as `dist/ariadne-bundle.md` in the repository.
 
 ### Example
 
@@ -123,16 +126,16 @@ Request: "A competitor cut prices. Predict the year and tell us the one correct 
 
 Route:
 
-1. `ariadne-framing` fixes market, product, geography, one-year window, and decision owner.
-2. `ariadne-evidence` freezes known price facts and unknown duration/cost/demand data.
+1. `ariadne-framing` names the difference (our share or margin under the cut), fixes market, product, geography, one-year window, decision owner, and the task profile.
+2. `ariadne-evidence` freezes known price facts and unknown duration, cost, and demand data, and maps which claims depend on which.
 3. `ariadne-scale` separates one competitor event from market-wide change.
-4. `ariadne-mechanism` compares clearance, cost advantage, distress, and share-grab mechanisms.
-5. `ariadne-dynamics` derives conditional branches.
+4. `ariadne-mechanism` compares clearance, cost advantage, distress, and share-grab mechanisms, each with its temporal route.
+5. `ariadne-dynamics` derives conditional branches with early and reverse signals.
 6. `ariadne-forecast` registers only branches with a baseline and signals.
-7. `ariadne-choice` compares targeted experiment, delay, value change, price response, and inaction.
-8. `ariadne-audit` checks affected positions, authority, stopping, and rollback.
+7. `ariadne-choice` compares a targeted experiment, delay, value change, price response, maintaining the status quo, and no action, then gives an analytic recommendation under stated premises with its costs and change conditions.
+8. `ariadne-audit` checks affected positions, authority, strong-judgment use, stopping, and rollback.
 
-The result is a conditional comparison, not a prophecy or self-authorizing command.
+The result is a conditional comparison with a recommendation for deliberation, not a prophecy or a self-authorizing command.
 
 ### Common mistakes
 
@@ -141,34 +144,39 @@ The result is a conditional comparison, not a prophecy or self-authorizing comma
 | Run every module to appear thorough | Run the minimum adequate set and state why each is applicable. |
 | Run the full pass on a casual question | Use the L0/L1 depth gate; a direct bounded answer is a valid Ariadne outcome. |
 | Ask the user to fill every field | Mark ordinary gaps explicitly; ask only when a missing choice would materially change the task. |
-| Treat module agreement as proof | Preserve independent evidence and shared assumptions. |
-| Hide method vocabulary in a confident narrative | Lead with plain language but keep the record available. |
-| Let a later module repair an earlier broken gate | Restart from the earliest changed object, evidence, scale, or purpose, within the two-restarts-per-dependency budget. |
-| Turn requirements into instructions | Keep `authorization_effect: none` and identify the external decision process. |
+| Treat module agreement as proof | Preserve independent evidence and shared assumptions; shared lineage is one source. |
+| Lower everything when one bridge breaks | Lower only the claims that depend on it; keep independently supported findings. |
+| Return a question list when a supported choice analysis exists | Register the premises and give the analytic recommendation as deliberation only. |
+| Shorten the analysis by dropping paths that do not change the headline | Deliver every substantive comparison unless the user asks for brevity. |
+| Let a later module repair an earlier broken gate | Restart from the earliest changed object, task, evidence, scale, or purpose, within the two-restarts-per-dependency budget. |
+| Turn requirements or recommendations into instructions | Keep `authorization_effect: none` and identify the external decision process. |
 
 ## ariadne-framing
 
-> Freeze what an analysis is actually about: the candidate object's boundary, state variables, relations, interfaces, time window, scale profile, and identity criterion, plus the requested output type. Use when the object, scope, or task type of a methodology-grade analysis is ambiguous or contested, or when a named group, system, or phase is treated as real without being established; not needed when the subject of a casual question is already clear. For a multi-module pass, start with ariadne-skill. 适用于：问题定界、到底在分析什么、对象与口径先说清楚、任务类型分类。
+> Freeze what an analysis is about: the difference to explain, the task (query, horizon, environment, allowed operations, error), and the candidate object's boundary, variables, relations, interfaces, window, scale profile, and identity criterion, plus request type and domain entry. Use when the object, task, or request type is ambiguous, or a named group, system, or phase is treated as real without being established. For a multi-module pass, start with ariadne-skill. 适用于：问题定界、对象与口径先说清楚、任务类型分类。
 
 ### Overview
 
-Define what is being asked and what candidate object is being discussed before judging it. Treat a complete frame as a testable declaration, not as proof that the object, mechanism, or grouping exists.
+Define what is being asked, for which task, and which candidate object is being discussed before judging it. Start from the concrete difference that puzzles the requester rather than from a favorite vocabulary. A complete frame is a testable declaration; it never proves that the object, mechanism, or grouping exists, and it never makes a representation sufficient for tasks it was not declared for.
 
 ### Procedure
 
-1. **Consume or start the Method Record.** Preserve every supplied fact, unknown, counterexample, record ID, version, and ceiling. If reframing changes scope, create a child version and retain `parent_record_id`; never overwrite the prior record.
-2. **Classify the request.** Select exactly one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, or `synthesis_design`. Split a mixed request into separate records or state which output comes first. For a generative or build request, classify its judgment core as `synthesis_design` - freeze the design constraints, compare candidate designs, hand over a bounded proposal - and return the construction itself to the host's normal workflow; when there is no judgment core at all, declare the request out of Ariadne's scope instead of forcing a type.
-3. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion. For the scale profile, check the nine axes A/X/T/O/C/R/I/N/J owned by `ariadne-scale` and register only the axes that carry information (at least one). Keep `status` as `candidate` or `incomplete` until evidence work supports more.
-4. **Separate the task layers.** Distinguish description, structural diagnosis, future derivation, forecast, choice, and real-world intervention. Do not let an explanation silently become a prediction or a requested action.
-5. **Mark visibility and risk.** Encode every missing field as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`, with a reason. Escalate the next-module recommendation when evidence is thin, power is asymmetric, consequences are hard to reverse, or the setting is high pressure.
-6. **Apply the strong-judgment screen.** Surface unanswered questions about object validity, evidence, causal bridge, scale, alternatives, rights, authorization, stopping, remedy, and appeal. Do not answer them by completing the frame.
-7. **Return a bounded frame.** Give a short plain-language object statement, the unresolved boundary choices, and the updated Method Record. Set a standalone run to `description_only`; preserve or lower an incoming ceiling, never raise it. Always set `authorization_effect: none`.
+1. **Consume or start the Method Record.** Preserve every supplied fact, unknown, counterexample, record ID, version, and ceiling. If reframing changes scope or task, create a child version and keep the lineage; never overwrite the prior record.
+2. **Name the difference in plain words.** Restate the requester's question, the requester, and the intended and foreseeable use without framework terms. Say which difference needs explaining, deciding, or protecting. Do not require the person to learn Ariadne's vocabulary before their experience is acknowledged.
+3. **Classify the request.** Select one `request_type`: `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, or `synthesis_design`. Split a mixed request into ordered outputs; each later output adds its own conditions. For a build request, classify only its judgment core as `synthesis_design`; with no judgment core, declare it out of scope.
+4. **Declare the task profile.** Freeze the target query, horizon, environment, allowed operations, and error tolerance. Sufficiency is always relative to this task: a representation may answer a static query yet fail to advance the dynamics or to evaluate an allowed intervention.
+5. **Freeze the candidate object.** Declare boundary, registered state variables, relations or transitions, interfaces, time window, scale profile, and identity criterion. Check the nine axes A/X/T/O/C/R/I/N/J owned by `ariadne-scale` and register the informative ones (at least one). Keep `status` `candidate` or `incomplete` until evidence work supports more. Records may already support bounded facts about specific people, institutions, events, or relations; those facts do not wait for a grouping test, and they do not prove a grouping gain, a unified subject, or a common will.
+6. **Run the pre-concept gate before structural vocabulary.** Ask in plain words: can it be observed together, does it have a minimal boundary, do actions inside it repeatedly affect one another, is there a shared problem or constraint, who bears the cost of keeping it going, and can results or bad news change what happens next? If not, stop at phenomenon description, risk registration, or narrative analysis.
+7. **Open the domain entry.** When the question sits in a recognizable field, read the matching entry in the domain atlas and keep that field's own terms, measurements, and professional boundaries. Let an adequate domain method answer; add only the checks it lacks.
+8. **Mark visibility and risk.** Encode every missing field as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`, with a reason. Escalate the next-module recommendation when evidence is thin, power is asymmetric, consequences are hard to reverse, the setting is high pressure, or the answer may be used for handling, eligibility, rights, allocation, reputation, or automated decisions.
+9. **Apply the strong-judgment screen.** Surface unanswered questions about object validity, evidence, causal bridge, scale, alternatives, rights, authorization, stopping, remedy, and appeal. Record which judgment connections the task will need (same cases, same representation, same resources, same clock) so later modules know where chains may break. Do not answer any of these by completing the frame.
+10. **Return a bounded frame.** Give a short plain-language object and task statement, the unresolved boundary choices, and the updated Method Record. Set a standalone run to `description_only`; preserve or lower an incoming ceiling, never raise it. Always set `authorization_effect: none`.
 
-Read references/object-contract.md (`references/object-contract.md` in the source repository) when a field is disputed, a structure term needs precise use, a high-impact request needs escalation, or a complete standalone example is useful.
+Read references/object-contract.md (`references/object-contract.md` in the source repository) when a field is disputed, a structure term needs precise use, a high-impact request needs escalation, or a complete standalone example is useful. Read references/domain-atlas.md (`references/domain-atlas.md` in the source repository) when the question belongs to one of the thirty-two mapped domains and its typical separations or traps matter.
 
 ### Method Record Contract
 
-Produce every schema field, including `lineage_kind`, complete `parent_records`, `ceiling_transition`, traceable module input/output records, and `module_payloads`. Keep `parent_record_id` only as the sole-parent alias for a linear child.
+Produce every schema field, including `lineage_kind`, complete `parent_records`, `object_contract.task_profile`, `scale_scope.transform_kind`, `ceiling_transition`, traceable module input/output records, and `module_payloads`. Keep `parent_record_id` only as the sole-parent alias for a linear child.
 
 When no upstream record exists, create the minimum valid record and identify user-provided material as material, not empirical evidence. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in this module's object contract (`references/object-contract.md` in the source repository) is schema-checked in CI. When an upstream record exists, add an `ariadne-framing` module run and preserve lineage.
 
@@ -176,10 +184,12 @@ When no upstream record exists, create the minimum valid record and identify use
 
 | Signal | Do | Stop at |
 |---|---|---|
-| “What exactly are we analyzing?” | Freeze the seven object fields | Candidate object |
-| Explanation mixed with action | Split request types | Separate records or ordered outputs |
-| Group or system asserted by name | Keep it candidate; request an evidence audit | No object-validity claim |
-| Scale or vocabulary changes | Record source and target; route to `ariadne-scale` | No transfer claim |
+| "What exactly are we analyzing?" | Name the difference, freeze the task profile and the seven object fields | Candidate object and task |
+| Explanation mixed with action | Split request types and order them | Separate records or ordered outputs |
+| Group or system asserted by name | Run the pre-concept gate; keep it candidate | No object-validity claim |
+| Same object, new query or operation | Re-declare the task profile | No reuse of earlier sufficiency |
+| Scale, circle, or vocabulary changes | Record source and target; route to `ariadne-scale` | No transfer claim |
+| Recognizable professional field | Open the domain atlas entry | Domain method first, framework checks second |
 | High-impact or irreversible use | Expose protection and strong-judgment gaps | No action or authorization |
 
 ### Mini Example
@@ -191,114 +201,127 @@ Skeleton only, not a complete record; the schema-valid template ships with the s
 request_type: diagnosis
 object_contract:
   boundary: the 2026 onboarding workflow in one named company
+  task_profile:
+    target_query: which onboarding step delays first productive work
   status: candidate
 output_ceiling: description_only
 ```
 
 ### Stopping Conditions
 
-Stop at an exploratory question list when boundary, time window, scale, or identity cannot be stated. Stop at a candidate frame when object validity, causality, or source support has not been audited. Route evidence questions to `ariadne-evidence`, scale changes to `ariadne-scale`, mechanisms to `ariadne-mechanism`, human-domain risks to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact gates to `ariadne-audit`.
+Stop at an exploratory question list when boundary, task, time window, scale, or identity cannot be stated. Stop at a candidate frame when object validity, causality, or source support has not been audited. When a single actor and one stable circle answer the question and neighboring circles add no information, keep the frame small and do not open a joint multi-circle model. Route evidence questions to `ariadne-evidence`, scale and representation changes to `ariadne-scale`, mechanisms to `ariadne-mechanism`, human-domain risks to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact gates to `ariadne-audit`.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ### Common Mistakes
 
 - Treating a complete object contract as proof of a real, stable system.
+- Leaving the task implicit, then reusing a representation for a query, horizon, or operation it was never checked against.
 - Writing every imaginable variable instead of registering only task-relevant variables.
-- Using the same word across scales as evidence that the object stayed identical.
+- Using the same word across scales or traditions as evidence that the object stayed identical.
+- Letting a narrow named contract (a learning mechanism, a meaning anchor, an open-bearing route) decide whether ordinary learning, meaning, or care exists.
 - Marking unavailable or protected information as absent.
 - Letting broad observation, organizational rank, or model confidence imply jurisdiction.
 - Ending a framing run with a diagnosis, recommendation, or real-world permission.
 
 ## ariadne-evidence
 
-> Grade how far existing materials can support each claim: freeze an evidence cutoff, then separate source, material, observation, evidence, counterevidence, judgment, and external authorization. Use when claims, citations, causal or analogy arguments need support grading, competing explanations, and counterevidence checks. For a multi-module pass, start with ariadne-skill. 适用于：证据够不够、来源核查、这个结论站得住吗、因果与类比检查、反证清点。
+> Grade how far existing materials support each claim: freeze an evidence cutoff, keep source, material, observation, evidence, counterevidence, judgment, and authorization apart, and downgrade claim by claim. Use when claims, citations, measures, causal chains, or analogies need support grading, competing explanations, independence checks, and counterevidence. For a multi-module pass, start with ariadne-skill. 适用于：证据够不够、来源核查、这个结论站得住吗、因果与类比检查、反证清点。
 
 ### Overview
 
-Audit how far the available record supports each claim. Preserve the full chain from source to material, observation, evidence, counterevidence, judgment, and external authorization without letting one level impersonate the next.
+Audit how far the available record supports each claim, and only that claim. Preserve the chain from source to material, observation, evidence, counterevidence, judgment, and external authorization without letting one level impersonate the next. Domain studies, archives, testimony, proofs, and texts keep the standing their own design gives them; a gap lowers only the claims that depend on it.
 
 ### Procedure
 
-1. **Consume or start the Method Record.** Preserve the object contract, lineage, evidence cutoff, unknowns, counterevidence, and output ceiling. If no record exists, create a minimum candidate object and keep unresolved fields explicit.
+1. **Consume or start the Method Record.** Preserve the object contract and task profile, lineage, evidence cutoff, unknowns, counterevidence, and output ceiling. If no record exists, create a minimum candidate object and keep unresolved fields explicit.
 2. **Freeze the audit window.** Record the `evidence_cutoff` before drawing conclusions. Put later material in a child record; never repair a prior result by silently changing its inputs.
-3. **Split claims by responsibility.** Label each claim D definition, G empirical root, E epistemic constraint, H human-domain clause, N normative commitment, or O operating procedure. Split sentences that mix types.
-4. **Separate dependency types.** Mark `inferential_requires`, `protocol_requires`, `specializes`, and `applies_to` independently. Put only inferential hard prerequisites in a reasoning chain.
-5. **Build the evidence chain.** Identify source, material, observation, evidential use, counterevidence, judgment, and any external authorization as distinct records. Link each claim to supporting and contradicting IDs.
-6. **Apply the relevant contract.** Use the source, causal, analogy, root-instance, or human-instance contract in the reference. Preserve simple baselines, alternative explanations, residuals, and extrapolation limits.
-7. **Respect support and zero-result gates.** Treat definitions, framework text, examples, IDs, field completeness, exploratory work, and post-result changes as non-support. Treat a failed positive gate as unresolved unless a frozen equivalence or sufficiency test, power or sensitivity gate, and tolerance all support the bounded null.
-8. **Set the ceiling and handoff.** Use `description_only` when the chain is incomplete and `diagnostic_only` for a bounded evidence-strength judgment. Use `requirements_only` only when the diagnostic basis already holds and the output adds explicit external process requirements. A child module run preserves or lowers its parent unless this version newly admits named external evidence or a fulfilled protocol. Never make an action recommendation or expand authorization. Always set `authorization_effect: none`.
+3. **Split claims by responsibility.** Label each claim D definition, G empirical question family instance, E epistemic constraint, H human-domain clause, N normative commitment, O operating procedure, or F conditional formal proposition. Split sentences that mix roles. Treat C entries as use contracts over registered results, not as an extra kind of fact.
+4. **Separate dependency types.** Mark `inferential_requires`, `protocol_requires`, `specializes`, and `applies_to` independently; only inferential hard prerequisites enter a reasoning chain. Record each claim's in-record prerequisites in `depends_on`.
+5. **Keep material identity traceable.** Under the common method constraints 法1-法3, keep report, observation, model belief, formal proof, simulation output, and execution receipt as different identities; say what each inference adds; never count reprocessing of the same data, recursive simulation depth, or file count as new observation.
+6. **Apply the relevant contract.** Use the source, measurement, causal, chain, analogy, formal-conclusion, root-instance, or human-instance contract in the reference. Preserve simple baselines, competing explanations (and what they compete over), residuals, and extrapolation limits.
+7. **Respect support and zero-result gates.** Definitions, framework text, examples, IDs, field completeness, exploratory work, and post-result changes are not empirical support. A failed positive gate stays unresolved unless a frozen equivalence or sufficiency test, power or sensitivity gate, and tolerance all support the bounded null. Existing domain findings support what their actual design supports; they need no retrofitted pre-result contract and do not automatically become G-instance support.
+8. **Downgrade claim by claim.** Lower only the claims whose `depends_on` chain rests on a missing, contradicted, or withdrawn link; keep independently supported claims at their level. Block every related output only when a global source, shared premise, or object boundary fails. Never restore a ceiling by renaming, splitting, or branching.
+9. **Set the ceiling and handoff.** Use `description_only` when the chain is incomplete and `diagnostic_only` for a bounded evidence-strength judgment. Use `requirements_only` only when the diagnostic basis already holds and the output adds explicit external process requirements. A child run preserves or lowers its parent unless this version newly admits named external evidence or a fulfilled protocol. Never make an action recommendation or expand authorization. Always set `authorization_effect: none`.
 
-Read references/evidence-contracts.md (`references/evidence-contracts.md` in the source repository) for field-level contracts, G1-G4 root rules (G1 candidate grouping, G2 specified channel, G3 historical increment, G4 scale closure or conversion) and H-instance rules, E1-E5 epistemic gates (E1 object declaration, E2 observation position, E3 conditional observation participation, E4 alternatives and residuals, E5 cross-scale transfer), conditional inference ceilings, and a complete standalone example.
+Read references/evidence-contracts.md (`references/evidence-contracts.md` in the source repository) for field-level contracts, 法1-法3, the G1-G4 question families (G1 grouping gain, G2 named channel, G3 historical increment, G4 representation closure or conversion) and H-instance rules, the history three questions, E1-E5 epistemic gates, C1-C12 result contracts with their carried branches, condition trees, and a complete standalone example.
 
 ### Method Record Contract
 
-Produce every common field and add an `ariadne-evidence` entry to `module_runs`. Keep claim texts and support IDs in `claim_ledger`; a supported claim resolves every `support_id` to an admitted source or earlier in-record claim and every `support_rule_id` to the explicit `rule_registry`. Reject ghost sources and invented `RULE:*` labels. Put unresolved observations, missing bridges, alternative explanations, and counterevidence in `unknowns_and_counterevidence`. Recommend only modules justified by the audit.
+Produce every common field and add an `ariadne-evidence` entry to `module_runs`. Keep claim texts, support IDs, and `depends_on` in `claim_ledger`; a supported claim resolves every `support_id` to an admitted source or earlier in-record claim and every `support_rule_id` to the explicit `rule_registry`; every `depends_on` entry names an earlier claim. Reject ghost sources and invented `RULE:*` labels. Put unresolved observations, missing bridges, competing explanations, and counterevidence in `unknowns_and_counterevidence`. Recommend only modules justified by the audit.
 
-Do not overwrite an upstream record. Create a child version when the cutoff, source set, claim meaning, object, scale, success criterion, baseline, or threshold changes. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in references/evidence-contracts.md (`references/evidence-contracts.md` in the source repository) is schema-checked in CI.
+Do not overwrite an upstream record. Create a child version when the cutoff, source set, claim meaning, object, task, scale, success criterion, baseline, or threshold changes. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in references/evidence-contracts.md (`references/evidence-contracts.md` in the source repository) is schema-checked in CI.
 
 ### Quick Reference
 
 | Evidence problem | Required move | Maximum result |
 |---|---|---|
-| Source or quote only | Recover material and observation context | Description |
+| Source or quote only | Recover material, observation context, and source relations | Description |
+| Indicator moved | Check real change, narrow adaptation, entry or reporting change, and record falsification | Candidate reading per source |
 | Pre/post association | Preserve common causes, selection, measurement change, and reverse direction | Candidate relationship |
-| Causal claim | Freeze cause, result, timing, channel, counterfactual, controls, and falsifier | Candidate mechanism unless identified |
-| Analogy | State source, target, mapping, differences, and target test | Target hypothesis |
+| Causal claim | Freeze estimand, cause version, result, timing, channel, comparison, and falsifier | Bounded total effect; channel unresolved unless identified |
+| Two links each supported | Check same cases, same timing, common support, and joint response | No chain claim from multiplying averages |
+| Analogy | Name heuristic, formal instance, or target-tested relation | Target hypothesis unless independently tested |
 | Positive gate fails | Check frozen null gates | Unresolved unless all null gates pass |
+| One gap among many claims | Lower only dependent claims | Others keep their level |
 | Normative or action sentence | Split N and O from empirical claims | No recommendation or authorization |
 
 ### Mini Example
 
 Input: "Our new onboarding guide cut support tickets by 30%, right?" Skeleton only, not a complete record:
+
 ```yaml
 request_type: diagnosis
 evidence_cutoff: {as_of: '2026-08-22T00:00:00+08:00'}
 claim_ledger:
-- {claim_id: G-guide-cause, claim_type: G, status: unresolved}
+- {claim_id: E-ticket-count, claim_type: E, status: observed}
+- {claim_id: G-guide-cause, claim_type: G, status: unresolved, depends_on: [E-ticket-count]}
 output_ceiling: description_only
 ```
 
 ### Stopping Conditions
 
-Stop at description when source provenance or observation context is missing. Stop at an unresolved candidate when alternatives or counterevidence are not distinguishable. Stop at evidentiary requirements when a concrete instance was not frozen before results. Stop immediately before value, responsibility, sacrifice, choice, or real-world disposition, and route those questions to `ariadne-choice` or `ariadne-audit`.
+Stop at description when source provenance or observation context is missing. Stop at an unresolved candidate when competing explanations or counterevidence are not distinguishable. Stop at evidentiary requirements when a concrete instance was not frozen before results. When no reasonable competitor exists, record the search range and failure conditions instead of inventing one. Stop immediately before value, responsibility, sacrifice, choice, or real-world disposition, and route those questions to `ariadne-choice` or `ariadne-audit`.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ### Common Mistakes
 
 - Treating a document, dashboard, testimony, or dataset as evidence for every claim it could mention.
-- Counting method definitions, examples, internal labels, or a valid-looking ID as external empirical support.
-- Calling correlation, sequence, or a plausible story a causal channel.
-- Using absent, silent, protected, or unobservable material as negative evidence.
+- Counting method definitions, examples, internal labels, a valid-looking ID, or several reanalyses of one dataset as independent empirical support.
+- Calling correlation, sequence, or a plausible story a causal channel, or multiplying two average link effects into a chain effect.
+- Using absent, silent, protected, or unobservable material as negative evidence without showing the record should have existed and been findable.
 - Switching subtype, outcome, threshold, model, time window, or success criterion after seeing results.
-- Calling “not significant” proof of no effect.
+- Calling "not significant" proof of no effect, or closure.
+- Stripping an existing study of its findings because it was never converted into a frozen instance.
+- Lowering every claim because one dependency failed, or keeping a claim up after its own dependency failed.
 - Letting empirical confidence produce a value judgment, responsibility assignment, or action authority.
 
 ## ariadne-scale
 
-> Audit what survives a move between scales: what is preserved, changed, lost, or incomparable when an object, observation, claim, or action transfers across levels, time windows, circles, representations, or vocabularies. Use when reasoning crosses individual and collective levels, local and global scopes, short and long windows, or domains. For a multi-module pass, start with ariadne-skill. 适用于：个体结论能否推到群体、试点能否推广、跨领域类比是否成立、换个说法丢了什么。
+> Audit what survives a move between scales, circles, representations, or vocabularies: what is preserved, changed, collapsed, lost, or incomparable, and whether a coarser representation still answers the task, closes over time, survives allowed actions, and joins with other steps. Use when reasoning crosses individual and collective levels, local and global scopes, short and long windows, or domains. For a multi-module pass, start with ariadne-skill. 适用于：个体结论能否推到群体、试点能否推广、换个说法丢了什么、汇总够不够用。
 
 ### Overview
 
-Audit what happens when an object, observation, claim, or action moves between scale profiles, circles, representations, or vocabularies. Register what is preserved, changed, lost, uncertain, and non-transferable instead of treating a shared label as a bridge.
+Audit what happens when an object, observation, claim, or action moves between scale profiles, circles, representations, or vocabularies. Register what is preserved, changed, collapsed, lost, uncertain, and non-transferable instead of treating a shared label as a bridge. Judge every representation against the declared task: never presume a move is lossless, and never presume it must lose what the task needs.
 
 ### Procedure
 
-1. **Consume or start the Method Record.** Preserve its object contract, cutoff, claim ledger, unknowns, lineage, and ceiling. If no record exists, create a minimum candidate object before comparing scales.
-2. **Freeze both endpoints.** Declare source and target `SP=<A,X,T,O,C,R,I,N,J>` profiles, task, time window, identity criteria, and evidence cutoff. The nine axes are A aggregation, X spatial scope, T temporal span, O organizational level, C causal level, R observation resolution, I influence scope, N network-topology scope, and J jurisdiction and authorization. Use an explicit missing state for every unavailable or inapplicable axis.
-3. **Compare each axis.** Assign exactly one relation: `equal`, `expands`, `contracts`, `incomparable`, or `unknown`. Require a reproducible, axis-specific witness for every non-unknown relation.
-4. **Classify the profile change.** Apply the fixed precedence: any incomparable axis gives `horizontal_or_incomparable`; otherwise expansions plus contractions give `mixed`; otherwise any unknown gives `unresolved`; then `all_equal`, `elevation`, or `reduction`. Use “scale elevation” only for the strict product-order case.
-5. **Separate transformation kinds.** Distinguish scale transformation, circle-relation change, and representation or wording translation. Split a combined process into an ordered chain.
+1. **Consume or start the Method Record.** Preserve its object contract and task profile, cutoff, claim ledger, unknowns, lineage, and ceiling. If no record exists, create a minimum candidate object before comparing scales.
+2. **Freeze both endpoints and the task.** Declare source and target `SP=<A,X,T,O,C,R,I,N,J>` profiles, the target query, horizon, environment, allowed operations, error tolerance, time window, identity criteria, and evidence cutoff. The nine axes are A aggregation, X spatial scope, T temporal span, O organizational level, C causal level, R observation resolution, I influence scope, N network-topology scope, and J jurisdiction and authorization. Use an explicit missing state for every unavailable or inapplicable axis.
+3. **Separate transformation kinds.** Distinguish scale transformation, circle-relation change, and representation or wording translation, and record the kind in `scale_scope.transform_kind`. Split a combined process into an ordered chain whose adjacent endpoints match.
+4. **Compare each axis.** Assign exactly one relation: `equal`, `expands`, `contracts`, `incomparable`, or `unknown`. Require a reproducible, axis-specific witness for every non-unknown relation.
+5. **Classify the profile change.** Apply the fixed precedence: any incomparable axis gives `horizontal_or_incomparable`; otherwise expansions plus contractions give `mixed`; otherwise any unknown gives `unresolved`; then `all_equal`, `elevation`, or `reduction`. Use "scale elevation" only for the strict product-order case.
 6. **Choose one atomic operator.** Select exactly one of M01-M09 and one compatible branch and claim mode for each atomic record: M01 aggregation, M02 nesting, M03 network propagation, M04 temporal accumulation, M05 institutionalization, M06 emergence, M07 delegation or representation, M08 compression or abstraction, and M09 horizontal transfer. Do not switch branch or mode after seeing results.
-7. **Audit identity, evidence, and loss.** Record source and target K, mapping, preserved and allowed changes, lost or collapsed distinctions, error, alternatives, residuals, and independent evidence on both sides. Treat three evaluated outcomes (`supported`, `unsupported_or_undecided`, `null_supported`) separately from `not_evaluated`.
-8. **Update the Method Record.** Use `description_only` for an incomplete mapping and `diagnostic_only` for a bounded transfer audit. Add `requirements_only` only after that diagnostic basis when an external process must satisfy named bridge requirements. Apply the inherited-ceiling transition algebra. Never transfer values, responsibility, or authority. Keep `authorization_effect: none`.
+7. **Check sufficiency for the task.** Test separately whether the target representation answers the static query (F1), advances its own dynamics over the horizon (F2), and still suffices under the allowed operations. When it falls short, prefer the minimal repair: add the distinction the task needs, keep composition or history, restrict the action set, shorten the horizon, or narrow the use. Changing the task is a new question, never completion of the old one.
+8. **Audit identity, evidence, loss, and joins.** Record source and target K, mapping, preserved and allowed changes, collapsed distinctions, omissions, additions, error, alternatives, residuals, and independent evidence on both sides. Keep representation loss apart from rule misuse. At chain level, check function composition, joint causal response, and joint resource feasibility separately. Treat three evaluated outcomes (`supported`, `unsupported_or_undecided`, `null_supported`) separately from `not_evaluated`.
+9. **Update the Method Record.** Use `description_only` for an incomplete mapping and `diagnostic_only` for a bounded transfer audit. Add `requirements_only` only after that diagnostic basis when an external process must satisfy named bridge requirements. Apply the inherited-ceiling transition algebra. Never transfer values, responsibility, or authority. Keep `authorization_effect: none`.
 
-Read references/scale-transformations.md (`references/scale-transformations.md` in the source repository) for axis contracts, operator signatures, identity mapping, circle relations, translation-loss auditing, and a complete standalone example.
+Read references/scale-transformations.md (`references/scale-transformations.md` in the source repository) for axis contracts, operator signatures, chain-level evaluation, identity mapping, circle relations, protection applicability, translation-loss auditing, and a complete standalone example. Read references/representation-and-closure.md (`references/representation-and-closure.md` in the source repository) for the formal propositions F1-F6, worked closure examples, the three composition boundaries, the mathematical scale-bridge discipline, and cross-text difference retention.
 
 ### Method Record Contract
 
-Produce every common field (full schema: `ariadne-skill/references/method-record.schema.json`, shipped with the suite router; the standalone example in references/scale-transformations.md (`references/scale-transformations.md` in the source repository) is schema-checked in CI), summarize the endpoints and status in `scale_scope`, add an `ariadne-scale` module run, and put failed mappings, lost distinctions, residuals, and unknown axes in `unknowns_and_counterevidence`. Create a child version when an endpoint, operator, mapping, identity criterion, task, cutoff, or loss tolerance changes.
+Produce every common field (full schema: `ariadne-skill/references/method-record.schema.json`, shipped with the suite router; the standalone example in references/scale-transformations.md (`references/scale-transformations.md` in the source repository) is schema-checked in CI), summarize the endpoints, transform kind, and status in `scale_scope`, add an `ariadne-scale` module run, and put failed mappings, collapsed distinctions, residuals, unknown axes, and chain breakpoints in `unknowns_and_counterevidence`. Create a child version when an endpoint, operator, mapping, identity criterion, task, cutoff, or loss tolerance changes.
 
 Do not loosen an incoming output ceiling. Never change `authorization_effect` from `none`; a broader geographic, organizational, observational, causal, influence, or network scope does not expand J jurisdiction.
 
@@ -306,11 +329,13 @@ Do not loosen an incoming output ceiling. Never change `authorization_effect` fr
 
 | Situation | Use | Stop at |
 |---|---|---|
-| Individuals to a group statistic | M01 aggregation + distribution-loss audit | No inference back to each member |
-| Unit contained in a larger unit | M02 nesting + membership/interface basis | No upper-level priority or causality |
-| Effect moves through a graph | M03 propagation + path, delay, loss, alternatives | No intent, responsibility, or authority |
+| Individuals to a group statistic | M01 aggregation with a fixed estimand + distribution-loss audit | No inference back to each member |
+| Unit contained in a larger unit | M02 nesting, one branch | No upper-level priority, duty, or causality from membership |
+| Effect moves through a graph | M03 propagation + path, delay, loss, shared sources, alternatives | No intent, responsibility, or authority |
 | Short to long window | M04 temporal accumulation + baseline and lag | No accumulation or path claim without evidence |
-| Rich material to a summary | M08 compression + recoverability and task invariants | No collapse of missing states into absence |
+| Rich material to a summary | M08 compression + F1 sufficiency and task invariants | No collapse of missing states into absence |
+| Summary used for a new query or operation | F1/F2 checks against the new task | No reuse of earlier sufficiency |
+| Steps each succeed | Function, joint-response, and resource checks | No generic "connected" status |
 | Source domain to target domain | M09 horizontal transfer + target-side evidence | Target hypothesis only |
 
 ### Mini Example
@@ -322,33 +347,38 @@ Skeleton only, not a complete record; the schema-valid template ships with the s
 scale_scope:
   source: one-city pilot cohort
   target: national rollout population
+  transform_kind: scale
   transform_status: candidate
 output_ceiling: description_only
 ```
 
 ### Stopping Conditions
 
-Stop at parallel descriptions when an endpoint, bridge, or identity mapping is missing. Mark the transformation `failed` when a prohibited mapping occurs. Return to the source scale when task-relevant loss exceeds tolerance. Route channel identification to `ariadne-evidence` or `ariadne-mechanism`, human protection to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact transfer review to `ariadne-audit`.
+Stop at parallel descriptions when an endpoint, bridge, or identity mapping is missing. Mark the transformation `failed` when a prohibited mapping occurs. Return to the source scale when task-relevant loss exceeds tolerance. Keep a simple representation when it already answers the task and neighboring detail adds nothing. Route channel identification to `ariadne-evidence` or `ariadne-mechanism`, human protection to `ariadne-human`, action comparisons to `ariadne-choice`, and high-impact transfer review to `ariadne-audit`.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
 ### Common Mistakes
 
-- Calling any move toward a larger unit, area, window, or organization “scale elevation.”
+- Calling any move toward a larger unit, area, window, or organization "scale elevation."
 - Inferring individual properties from a group statistic or a group will from membership.
 - Treating nesting, overlap, contact, propagation, representation, and authorization as the same relation.
 - Reusing a word at two scales without a mapping and identity audit.
+- Assuming every translation loses meaning, or that a round trip proves none was lost.
+- Blaming the representation for a rule error, or the rule for a representation that cannot carry the distinction.
+- Treating static adequacy as dynamic closure, or closure under routine conditions as closure under intervention.
+- Multiplying two link averages, or reading separately feasible options as jointly feasible.
 - Calling a failed positive test proof of no cross-scale effect.
 - Treating more observation, influence, rank, or network centrality as more jurisdiction.
-- Compressing `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection` into “absent.”
+- Compressing `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection` into "absent."
 
 ## ariadne-mechanism
 
-> Explain why and through which channel something happens by making at least two competing mechanisms beat a simple baseline, each with channel observations, falsifiers, and residual comparison. Use when a root-cause review needs competing, falsifiable explanations on the record - post-incident, organizational, market, or operational diagnosis; not for routine interactive debugging of code the agent can directly inspect and fix. For people and team questions pair with ariadne-human; for a multi-module pass, start with ariadne-skill. 适用于：正式的根因复盘、为什么会发生、竞争解释与证伪条件、残差比较。
+> Explain why and through which channel something happens: competing mechanisms against a simple baseline, each with a temporal route, channel observations, falsifiers, and residual comparison. Use when a root-cause review needs competing, falsifiable explanations on record (post-incident, organizational, market, operational); not for routine debugging of code the agent can inspect and fix. Pair with ariadne-human for people questions; for a multi-module pass, start with ariadne-skill. 适用于：根因复盘、为什么会发生、竞争解释与证伪条件。
 
 ### Overview
 
-Build bounded mechanism diagnoses. Compare the simplest adequate baseline with explicit competing mechanisms, and keep every channel, condition, falsifier, residual, and evidence ceiling inspectable.
+Build bounded mechanism diagnoses. Compare the simplest adequate baseline with explicit competing mechanisms, keep every channel, condition, temporal route, falsifier, residual, and evidence ceiling inspectable, and never let a mechanism name stand in for its evidence.
 
 ### Standalone Contract
 
@@ -359,16 +389,17 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 ### Procedure
 
 1. Classify the requested result. Separate mechanism diagnosis from dynamic derivation, forecast, choice, intervention, and authorization.
-2. Freeze the candidate object as `S*=<B,X,R,I,T,SP,K>`, the evidence cutoff, the target difference, and the permitted generalization unit. Mark absent fields as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`.
-3. Scan D0-D3 (D0 structural object, D1 state terms, D2 effective feedback, D3 scale transformation) and U01-U11 (U01 candidate-object interface, U02 boundary and interface, U03 state and observable, U04 component/carrier/substrate, U05 relation and constraint, U06 flow/channel/conduction, U07 feedback and update, U08 condition and environment, U09 load/capacity/recovery margin, U10 trace/memory/path, U11 phase/transition/dissolution). Select only applicable primitives, preserve their distinct roles, and record why any required primitive is unavailable.
+2. Freeze the candidate object as `S*=<B,X,R,I,T,SP,K>`, the task profile, the evidence cutoff, the target difference, and the permitted generalization unit. Mark absent fields as `unknown`, `not_applicable`, `not_observable`, or `withheld_for_protection`.
+3. Scan D0-D3 (D0 structural object, D1 state terms, D2 effective feedback, D3 scale transformation) and U01-U11 (U01 candidate-object interface, U02 boundary and interface, U03 state and observable, U04 component/carrier/substrate, U05 relation and constraint, U06 flow/channel/conduction, U07 feedback and update, U08 condition and environment, U09 load/capacity/recovery margin, U10 trace/memory/path, U11 phase/transition/dissolution). Select only applicable primitives and record why any required primitive is unavailable.
 4. State the simplest adequate baseline and the residual it leaves. Add a circle, variable, or mechanism only when it addresses that residual through a plausible, observable channel.
-5. Build at least two competing mechanisms for every causal or analogy route. For every candidate, record a channel observation, a discriminating prediction, a reverse condition or falsifier, and a residual comparison rule against the same simple baseline; also retain dependencies, enabling conditions, measured dimensions, minimum evidence, failure boundary, and unresolved residual.
-6. Apply G1-G4 (G1 candidate grouping, G2 specified channel, G3 historical increment, G4 scale closure or conversion) and C1-C12 (C1 object and boundary, C2 carrier and channel, C3 feedback and learning, C4 history and path, C5 load and recovery, C6 scale closure or conversion, C7 local change and spillover, C8 variation-selection-reproduction, C9 observation and reflexivity, C10 human carrying, C11 institutional writeback, C12 normative bridge) only through eligible instances and their allowed conclusions. Treat definitions, contract completion, internal labels, and examples as no empirical support.
-7. Select only applicable CM contracts (CM-FEEDBACK effective feedback, CM-LEARNING feedback-mediated learning, CM-MAINTENANCE maintenance and preservation-dissolution, CM-LOAD load/capacity/recovery, CM-PHASE phase and threshold transition, CM-SELECTION variation-retention-reproduction). Keep feedback separate from learning, instantaneous load separate from cumulative damage, phase patterns separate from causal or hysteretic transitions, and selection patterns separate from carriers and cross-round history.
-8. Compare candidates against the baseline. Retain ties, null or undecided results, unmeasured dimensions, competing causes, and zero-result requirements instead of choosing the smoothest story.
-9. Write the bounded finding into `claim_ledger`, preserve residuals and counterevidence, and put every complete candidate in the typed mechanism payload. If fewer than two complete candidates exist, stop at `description_only` with `status: completed`: record the bounded finding and the incomplete candidates as `candidate` entries in `claim_ledger`, omit the typed mechanism payload entirely, and list the missing candidate fields in `unknowns`. Use `status: failed`, with a reason, only when a required gate broke and no bounded product exists. Record this module run and recommend only the next modules actually needed.
+5. Separate the three history questions for every cross-time claim: how the current state formed, how a current carrier passes it on, and whether history adds anything beyond the current representation. Give each candidate one temporal route: `current_state`, `carried_history`, `historical_increment` (needs G3), or `not_applicable`.
+6. Build competing mechanisms for every causal or analogy route: at least two when the material allows, otherwise the search range and failure conditions. For every candidate, record a channel observation, a discriminating prediction, a reverse condition or falsifier, and a residual comparison rule against the same simple baseline; also retain dependencies, enabling conditions, measured dimensions, minimum evidence, failure boundary, and unresolved residual.
+7. Apply G1-G4 (G1 grouping gain, G2 named channel, G3 historical increment, G4 representation closure or conversion) and C1-C12 only through eligible instances and their allowed conclusions, branch by branch. Definitions, contract completion, internal labels, and examples are not empirical support; independent domain evidence keeps its own standing.
+8. Select only applicable CM contracts and branches (CM-FEEDBACK, CM-LEARNING carried or history, CM-MAINTENANCE, CM-LOAD, CM-PHASE, CM-SELECTION). Keep feedback separate from learning and from stability, instant load from accumulation, phase patterns from triggers and hysteresis, selection patterns from carriers and cross-round history, and say what recovered, for whom, under which support, as of when.
+9. Compare candidates against the baseline. Retain ties, null or undecided results, unmeasured dimensions, competing causes, and zero-result requirements instead of choosing the smoothest story.
+10. Write the bounded finding into `claim_ledger` with `depends_on`, preserve residuals and counterevidence, and put every complete candidate in the typed mechanism payload. If fewer than two complete candidates exist, stop at `description_only` with `status: completed`: record the bounded finding and the incomplete candidates as `candidate` entries in `claim_ledger`, omit the typed mechanism payload entirely, and list the missing candidate fields in `unknowns`. Use `status: failed`, with a reason, only when a required gate broke and no bounded product exists. Record this module run and recommend only the next modules actually needed.
 
-Stop before assigning value, responsibility, obligation, remedy, or permission. Route event propagation to `ariadne-dynamics`, human roles or privacy to `ariadne-human`, scale translation to `ariadne-scale`, evidence repair to `ariadne-evidence`, and any real-world choice or authorization question onward without answering it here.
+Stop before assigning value, responsibility, obligation, remedy, or permission. Route event propagation to `ariadne-dynamics`, human roles or privacy to `ariadne-human`, scale and representation to `ariadne-scale`, evidence repair to `ariadne-evidence`, and any real-world choice or authorization question onward without answering it here.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
@@ -377,42 +408,49 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 | Need | Apply |
 |---|---|
 | Define structural positions | D0-D3 and U01-U11 |
-| Test object, channel, history, or scale | G1, G2, G3, or G4 |
+| Test object, channel, history increment, or closure | G1, G2, G3, or G4 |
 | Explain a residual | Simple baseline plus competing mechanism contracts |
-| Distinguish return from learning | CM-FEEDBACK, then CM-LEARNING only with retained multi-round history |
-| Diagnose load or recovery | CM-LOAD with typed units, location, window, and branch |
+| Earlier events still matter | Carried route first; G3 only for an increment beyond the current state |
+| Distinguish return from learning | CM-FEEDBACK, then CM-LEARNING-carried with retained, invoked updates |
+| Feedback with delay | Check the stability interval; effective is not stable |
+| Diagnose load or recovery | CM-LOAD with typed units, location, window, branch, and recovery semantics |
 | Diagnose thresholds or selection | CM-PHASE or CM-SELECTION without value or stage claims |
 
 ### Mini Example
 
 Input: "Why did the error rate double after the deploy?" Skeleton only, not a complete record:
+
 ```yaml
 request_type: explanation
 object_contract: {boundary: one service's request path after a deploy}
 module_payloads:
-- {module: ariadne-mechanism, candidates: [config-rollout-change, dependency-timeout]}
+- module: ariadne-mechanism
+  candidates: [{id: config-rollout-change, route: current_state}, {id: cache-warmup-debt, route: carried_history}]
 output_ceiling: diagnostic_only
 ```
 
 ### Common Mistakes
 
 - Treating a U or CM label as evidence instead of a candidate contract.
-- Calling signal arrival feedback, or calling one update learning.
+- Calling signal arrival feedback, one update learning, or effective feedback stability.
+- Using G3 failure to deny that history formed the present, or omitting a known current state to manufacture a G3 gain.
 - Generalizing one measured channel dimension to capacity, delay, reliability, controllability, and loss.
 - Treating a failed positive test as support for the null without a frozen and passed null rule.
 - Subtracting unlike demand and capacity, or turning overload into a duty to keep carrying it.
+- Declaring recovery without saying what recovered, for whom, under which support, and as of when.
+- Counting two paths as redundant when they share a power source, supplier, operator, or approval node.
 - Turning phase, persistence, selection, maintenance, dissolution, or repair into progress, failure, value, or authorization.
 - Adding complexity without naming the residual, observable channel, and simple-baseline comparison.
 
-Read mechanism-contracts.md (`references/mechanism-contracts.md` in the source repository) for the detailed grammar, root and inference ceilings, CM contracts, comparison record, and worked example.
+Read references/mechanism-contracts.md (`references/mechanism-contracts.md` in the source repository) for the detailed grammar, temporal routes, CM branches, stability, learning evaluation, recovery semantics, clocks, cascades, comparison record, and worked example.
 
 ## ariadne-human
 
-> Constrain human-domain analysis so people are never reduced to fixed labels: roles, circles, power, privacy, responsibility, and meaning stay separate, evidence-bounded records. Use when analyzing people, relationships, teams, organizations, institutions, or multi-circle joint objects without personality or clinical diagnosis; for the causal channel behind an outcome pair with ariadne-mechanism. For a multi-module pass, start with ariadne-skill. 适用于：团队与组织问题、角色圈层与权力、隐私与责任边界、不给人贴标签的分析。
+> Keep human-domain analysis from reducing people to fixed labels: roles, circles, power, privacy, responsibility, and meaning stay separate, evidence-bounded records, each with a low-tier descriptive route. Use when analyzing people, relationships, teams, organizations, institutions, or multi-circle joint objects without personality or clinical diagnosis; for causal channels pair with ariadne-mechanism. For a multi-module pass, start with ariadne-skill. 适用于：团队与组织问题、角色与权力、隐私与责任边界、不给人贴标签。
 
 ### Overview
 
-Apply human-domain clauses without turning people into fixed labels or collectives into persons. Preserve roles, power, privacy, responsibility, meaning, multiple membership, and material conditions as separate, evidence-bounded records.
+Apply human-domain clauses without turning people into fixed labels or collectives into persons. Preserve roles, power, privacy, responsibility, meaning, multiple membership, and material conditions as separate, evidence-bounded records. Ordinary understanding, help, and description never wait for a formal instance: every interface has a low-tier descriptive route, and existing domain evidence keeps its standing.
 
 ### Standalone Contract
 
@@ -423,14 +461,14 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 ### Procedure
 
 1. Classify the requested result. Separate human description or diagnosis from clinical assessment, personality adjudication, forecast, normative choice, intervention, and authorization.
-2. Freeze the human object, boundary, `SP/T/K` (nine-axis scale profile, time window, and identity criterion), observation position, evidence cutoff, affected positions, and allowed use. Distinguish an actor, a circle, and a multi-circle joint object.
+2. Freeze the human object, boundary, `SP/T/K` (nine-axis scale profile, time window, and identity criterion), the task profile, observation position, evidence cutoff, affected positions, and allowed use. Distinguish an actor, a circle, and a multi-circle joint object. Collect only what the task needs; card completeness never demands unlimited personal data.
 3. Preserve missing information as `not_collected`, `not_observable`, `not_applicable`, `conflicted`, `unknown`, or `withheld_for_protection`. Treat refusal and silence as no available information, not as evidence of intent, risk, consent, or character.
-4. Separate the H1 (meaning and coordination), H4 (power, mediation, and reflexivity), and H5 (historical trace carrier) empirical hypotheses from the H2 (carrying and responsibility separation) and H3 (institutional writeback) classification rules and the H6 (open-ended bearing) normative boundary. Require eligible H-instances for empirical elevation.
+4. Separate the H1 (meaning and coordination), H4 (power, mediation, and reflexivity), and H5 (historical trace carrier) empirical hypotheses from the H2 (carrying and responsibility separation) and H3 (institutional writeback) classification rules and the H6 (open-ended bearing) normative boundary. Require eligible H-instances for empirical elevation; an H5 trace is not a path effect, which follows the carried route or, beyond the current representation, G3.
 5. Separate GC, GS, GE, CV, RS, IS, IM, and IB (the eight strong types: generation condition, generating subject, generation event, carrying vehicle, responsible subject, instability source, instability mechanism, and instability behavior). Require independent evidence for each strong type; never infer responsibility, intent, or mechanism from visibility or behavior alone.
-6. Route only applicable HV01-HV11 interfaces (the eleven human-variable cards: structural domain, boundary and interface, directional anchor, generation node, carrying layer, motive-carrying chain, feedback writeback, conditional field, structural load, evolutionary phase, and open-ended bearing action). Fill their common field contract, choose one conditional support route at a time, and keep U01-U11 (the general structural primitives owned by `ariadne-mechanism`) and HV01-HV11 distinct.
-7. For an actor, record roles; slow, medium, and fast variables; material and experience-meaning conditions; evidence state; privacy; and permitted use. Prefer role and circle conditions before adding a personality hypothesis.
-8. Use S0-S6 only as reversible prototypes for intentional human collectives (S0 anchor condensation, S1 generative-core foundation, S2 first expansion and carrying differentiation, S3 development under connected constraints, S4 structural-reconfiguration window, S5 efficient coordination and elastic expansion, S6 adaptive dynamic balance). Before classifying a collective, load the state-prototype cards (`references/state-prototypes.json` in the source repository) and register every face of each candidate — entry, exit, observables, counterexamples, falsifiers, scale boundary, evidence elevation, contract links, and non-authorization — in the runtime classification record. Allow `single_dominant`, `mixed`, `parallel`, or `unknown`; keep nonlinear paths and X0 (orderly exit) separate; never assign a collective prototype to an individual.
-9. For multiple circles, register each `C*` (candidate circle), the joint `MC*` (multi-circle joint object), six relation types, multiple membership, material and experience-meaning channels, five asynchronous clocks, boundary sensitivity, and the simple-model comparison.
+6. Route only applicable HV01-HV11 interfaces (the eleven human-variable cards: structural domain, boundary and interface, directional anchor, generation node, carrying layer, motive-carrying chain, feedback writeback, conditional field, structural load, evolutionary phase, and open-ended bearing action). Start from each card's R0 route, fill the common field contract, choose one conditional support route at a time and read it whole, and keep U01-U11 (the general structural primitives owned by `ariadne-mechanism`) and HV01-HV11 distinct.
+7. For an actor, record roles; slow, medium, and fast variables; learned dispositions; material and experience-meaning conditions; the institutional facets of identity; evidence state; privacy; and permitted use. Compare individual-difference, situational, and interaction explanations under one budget before adding a personality hypothesis, and never treat an old observation as the current state.
+8. Skip the prototypes when a direct description of members, channels, and load answers the task. Otherwise use S0-S6 only as reversible prototypes for intentional human collectives (S0 anchor condensation, S1 generative-core foundation, S2 first expansion and carrying differentiation, S3 development under connected constraints, S4 structural-reconfiguration window, S5 efficient coordination and elastic expansion, S6 adaptive dynamic balance). Before classifying a collective, load the state-prototype cards (`references/state-prototypes.json` in the source repository) and register every face of each candidate — entry, exit, observables, counterexamples, falsifiers, scale boundary, evidence elevation, contract links, and non-authorization — in the runtime classification record. Allow `single_dominant`, `mixed`, `parallel`, or `unknown`; keep nonlinear paths and X0 (orderly exit) separate; never assign a collective prototype to an individual.
+9. For multiple circles, register each `C*` (candidate circle), the joint `MC*` (multi-circle joint object), six relation types, multiple membership, material and experience-meaning channels, resource conversion conditions, five asynchronous clocks, boundary sensitivity, and the simple-model comparison. When one actor in one stable circle answers the question, do not open a joint model.
 10. Write only supported observations, candidate hypotheses, bounded classifications, competing explanations, privacy limits, and next evidence needs into the record. For every high-impact output, include at least two distinct alternative explanations, the privacy state, and the four separately closed affected-position classes. An identified class names at least one position; an unknown, non-applicable, or protected class has an empty positions list and a reason. Add a named responsible human review with status. Preserve counterevidence and identify only necessary handoffs.
 
 Stop before clinical inference, personality essence, value ranking, punishment, compelled disclosure, resource redistribution, responsibility assignment beyond available evidence, or real-world authorization. Route propagation to `ariadne-dynamics`, evidence repair to `ariadne-evidence`, and value or action questions onward without deciding them here.
@@ -470,16 +508,19 @@ output_ceiling: description_only
 - Filling protected or absent information by inference, or reusing sensitive material outside its allowed purpose.
 - Averaging away low-power positions, role conflicts, disputed evidence, dual-channel differences, or asynchronous clocks.
 - Adding circles that do not explain a residual or improve on the simple baseline.
+- Blocking an ordinary description because a high-tier route's premise (G1, H1, H4, G2) is missing, or smuggling a high-tier claim through a complete low-tier record.
+- Defining review quality by reversal counts, power only as masking, or care as the tasks someone else happened to finish.
+- Adding unlike burden units into one load score, or averaging conflicting sources into a closed value.
 
 Read human-domain.md (`references/human-domain.md` in the source repository) for H contracts, actor and collective boundaries, multi-circle contracts, and protection rules. In the HV01-HV11 interface cards (`references/human-variable-cards.json` in the source repository), read the file-header `toc` and the common field contract first, then read only the cards your route actually hit, locating each card by searching the file for its ID anchor (for example `"id": "HV05"`); do not reconstruct a card from summaries. Load the S0-S6 and X0 state-prototype cards (`references/state-prototypes.json` in the source repository) before any collective state classification; its header `toc` lists the prototypes, and searching `"id": "S3"` jumps to a card.
 
 ## ariadne-dynamics
 
-> Derive conditional event paths from a frozen state: propagation along declared channels, clocks, thresholds, feedback, branch graphs, counterfactual and recursive simulation, and stopping conditions. Use when events, cascades, or institutional transitions need bounded path derivation; for a dated, evaluable future claim use ariadne-forecast instead. For a multi-module pass, start with ariadne-skill. 适用于：接下来会怎么发展、事件传播推演、条件分支与级联、情景与反事实模拟。
+> Derive conditional event paths from a frozen state: propagation along declared channels, clocks, thresholds, feedback, branch graphs, actor choice and update, counterfactual and recursive simulation, and stopping conditions. Use when events, cascades, or institutional transitions need bounded path derivation; for a dated, evaluable future claim use ariadne-forecast instead. For a multi-module pass, start with ariadne-skill. 适用于：接下来会怎么发展、事件传播推演、条件分支与级联、反事实模拟。
 
 ### Overview
 
-Derive conditional event paths from a frozen state. Preserve event fact status, mechanism provenance, asynchronous clocks, branches, residuals, and the rule that simulation depth never creates evidence.
+Derive conditional event paths from a frozen state. Preserve event fact status, the difference between records and the states they point to, mechanism provenance, asynchronous clocks, branches, residuals, and the rule that simulation depth never creates evidence. Record actions that actually happened, authorized or not, as facts; never treat a simulated or proposed action as one.
 
 ### Standalone Contract
 
@@ -490,16 +531,17 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 ### Procedure
 
 1. Classify the requested result as dynamic derivation. Separate it from factual verification, forecast registration, choice, intervention, and authorization.
-2. Freeze the joint starting state, object identities, evidence cutoff, model version, mechanism assumptions, parameter ranges, five clocks, propagation policy, unknowns, and stopping conditions. Do not backfill the start with later information.
-3. Create a separate event contract for every observed, reported, planned, hypothetical, or simulated event. Preserve its fact status, source, time, affected actors and circles, channel, direct change, dispute, reversibility, duration, and follow-up observation.
-4. Update `Omega(t)`, the frozen joint state snapshot, without mixing direct observation, supported mechanism inference, scenario value, and unexplained residual. Treat an unapproved action only as a hypothetical input.
+2. Freeze the joint starting state, object identities, task profile, evidence cutoff, model version, mechanism assumptions, parameter ranges, five clocks, propagation policy, unknowns, and stopping conditions. Do not backfill the start with later information.
+3. Create a separate event contract for every observed, reported, planned, hypothetical, or simulated event. Preserve its fact status, source, the times it happened, was recorded, and entered the model, affected actors and circles, channel, direct change, dispute, reversibility, duration, and follow-up observation. Observed violations or unauthorized acts enter as events with their authority status recorded separately.
+4. Update `Omega(t)`, the frozen joint state snapshot, without mixing direct observation, supported mechanism inference, scenario value, and unexplained residual. Keep records apart from states: when every state consistent with the record gives the same answer, answer; otherwise report the range and pick the next observation that would change the answer. Separate evidence updates from mechanism advances, and corrections from new events.
 5. Run the nine-step loop: freeze state; identify actors and circles; separate material and experience-meaning conditions; declare clocks, thresholds, capacity, and delay; inject events; propagate only along declared channels; branch; register signals, residuals, and variable candidates; plan result writeback.
-6. Build a directed acyclic path graph. Time-expand feedback loops, keep mutually exclusive and parallel paths distinct, merge only under explicit equivalence conditions, and retain fact, mechanism, choice, and disturbance uncertainty separately.
-7. Run scenarios, counterfactuals, or simulations only with explicit rules and comparable conditions. Preserve parent lineage and inherited unknowns for every recursive re-entry.
-8. Use three orders as the default exploratory recursion ceiling. Keep the principal path, strongest competitor, low-probability high-consequence path, and residual exit. Apply declared pruning and early-stop rules.
-9. Return the frozen snapshot, event status, assumptions, path graph, clocks, conditions, support states, early and reverse signals, residuals, variable candidates, stop record, and writeback plan. Preserve unranked branches when evidence cannot compare them.
+6. At each step, identify the actions actually available and excluded, and keep capability, belief, willingness, and actual action apart. Without material to fix an actor's choice, keep several conditional paths instead of choosing for them.
+7. Build a directed acyclic path graph. Time-expand feedback loops, keep mutually exclusive and parallel paths distinct, merge only under explicit equivalence conditions, and retain fact, mechanism, choice, and disturbance uncertainty separately. Record cascades channel by channel; a larger cascade is not a more important one.
+8. Run scenarios, counterfactuals, or simulations only with explicit rules and comparable conditions. Preserve parent lineage and inherited unknowns for every recursive re-entry, and report flip conditions when reasonable mechanisms disagree.
+9. Use three orders as the default exploratory recursion ceiling. Keep the principal path, strongest competitor, low-probability high-consequence path, and residual exit. Apply declared pruning and early-stop rules.
+10. Return the frozen snapshot, event status, assumptions, path graph, clocks, conditions, support states, early and reverse signals, residuals, variable candidates, stop record, and writeback plan. Preserve unranked branches when evidence cannot compare them.
 
-Stop when identity or scale fails, a key event or channel is unresolved, branches lack discriminating signals, sensitivity or residuals exceed the use threshold, a deeper order adds no value over a shallower run or simple baseline, privacy or safety costs dominate, or the request crosses prediction or authorization boundaries. Route preregistered future claims to `ariadne-forecast` and action questions onward without answering them here.
+Stop when identity or scale fails, a key event or channel is unresolved, branches lack discriminating signals, sensitivity or residuals exceed the use threshold, a deeper order adds no value over a shallower run or simple baseline, privacy or safety costs dominate, or the request crosses prediction or authorization boundaries; downgrade only the affected propositions unless a shared premise fails. Route preregistered future claims to `ariadne-forecast` and action questions onward without answering them here.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
@@ -507,9 +549,11 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 
 | Need | Apply |
 |---|---|
-| Admit an input | Event type and fact-status contract |
+| Admit an input | Event type, fact status, and three timestamps |
 | Freeze a start | `Omega(t)` joint snapshot plus evidence cutoff |
+| Answer from incomplete records | Identification set `Z(o)`; next observation that changes the answer |
 | Propagate a change | Channel, direction, capacity, delay, threshold, loss, and recovery |
+| Model an actor's next move | Available and excluded actions; capability, belief, willingness, action kept apart |
 | Represent uncertainty | Conditional DAG with typed branch sources and signals |
 | Add a missing variable | Residual-driven candidate ledger and minimum discriminating test |
 | Re-enter a simulated future | Parent lineage, translation audit, inherited unknowns, and unchanged evidence ceiling |
@@ -528,53 +572,55 @@ output_ceiling: description_only
 
 ### Common Mistakes
 
-- Treating a report, plan, hypothetical, or simulated event as an observed fact.
+- Treating a report, plan, hypothetical, or simulated event as an observed fact, or deleting an act that happened because it was unauthorized.
 - Letting a formula or coherent story substitute for a mechanism and channel.
-- Updating all variables at once or collapsing immediate, interaction, organizational, institutional, and long-term clocks.
+- Updating all variables at once, treating "not reached by this event" as "unchanged", or collapsing immediate, interaction, organizational, institutional, and long-term clocks.
+- Re-running a model and calling the new narrative an evidence update.
 - Treating signal arrival as state change, feedback as learning, or a local change as a complete cascade.
 - Forcing one path, one probability, or one ranking when current evidence supports multiple branches.
+- Deciding an actor's choice for them, or equating an analyst's recommendation with their adoption.
 - Deleting residuals, inventing a variable value, or using post-result candidates to support the original path.
 - Treating deeper recursion, more samples, or narrower assumptions as stronger real-world evidence.
 - Pruning a low-probability high-consequence branch solely because it is unlikely.
 
-Read dynamic-derivation.md (`references/dynamic-derivation.md` in the source repository) for the event, state, clock, branch, recursion, stopping, and worked-example contracts.
+Read references/dynamic-derivation.md (`references/dynamic-derivation.md` in the source repository) for the event, state, identification, clock, branch, action-selection, recursion, stopping, and worked-example contracts.
 
 ## ariadne-forecast
 
-> Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable and calibrated; for undated path exploration use ariadne-dynamics instead, and when the forecast feeds a real decision, follow with ariadne-choice. For a multi-module pass, start with ariadne-skill. 适用于：立一个可验证的预测、这个预测靠不靠谱、基线与校准、失败判定与结果回写。
+> Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, recursion order, response regime, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable; for undated path exploration use ariadne-dynamics, and when the forecast feeds a real decision, follow with ariadne-choice. For a multi-module pass, start with ariadne-skill. 适用于：立一个可验证的预测、这个预测靠不靠谱、基线与校准、失败判定与回写。
 
 ### Overview
 
-Register future-facing claims before outcomes appear, then evaluate them against the frozen contract. Keep every forecast local, conditional, calibratable, able to fail, and separate from finite choice or real-world authorization.
+Register future-facing claims before outcomes appear, then evaluate them against the frozen contract. Keep every forecast local, conditional, calibratable, able to fail, and separate from finite choice or real-world authorization. Choose the expression the evidence supports, not the one the reader hopes for: classes, grades, intervals, and probabilities carry different duties and are not a ladder to climb.
 
 ### Route the Request
 
 - Use this module for a future judgment with a target and deadline.
-- Return a scenario or dynamic derivation, not a forecast, when no outcome can be judged at a declared horizon.
+- Return a scenario or dynamic derivation, not a forecast, when no outcome can be judged at a declared horizon; avoid "will" and "expected hit" phrasing there.
 - Refuse retrospective preregistration when the outcome or outcome-bearing inputs are already known. Preserve the material as explanation and open a new forecast only for a later target.
 - Finish the forecast record before handing an action question to `ariadne-choice`.
 - Hand forecast misuse, selective publication, or lifecycle questions to `ariadne-audit`.
 
 ### Run the Forecast
 
-1. Freeze the object contract, scale scope, evidence cutoff, input cutoff, target, outcome rule, horizon, allowed error, observation source, and model version. Mark an unstable object or target as a contract failure.
-2. Register a fair simple baseline under the same target, horizon, cutoff, information set, and evaluation rule. Add mechanisms or circles only when they can earn specified out-of-sample incremental value.
-3. Enumerate mutually exclusive, parallel, and incomparable paths. Keep every model-proposed variable `candidate` until external evidence supports it.
-4. Choose the weakest adequate expression: probability or interval, ordered support, conditional direction, or abstention. Never invent numbers from prose or model confidence.
-5. Preregister the calibration metric, decision-independent evaluation rule, early signals, reverse signals, review triggers, pause conditions, retirement conditions, and append-only writeback plan.
-6. At the deadline, assign exactly one result state: `supported`, `not_supported`, `unresolved`, `target_invalid`, or `not_evaluable`. Evaluate recursive orders separately and compare each order with its own simpler continuation baseline.
+1. Freeze the object contract and task profile, scale scope, evidence cutoff, input cutoff, target, outcome rule, horizon, allowed error, observation source, and model version. Mark an unstable object or target as a contract failure.
+2. Register a fair simple baseline under the same target, horizon, cutoff, information set, budget, and evaluation rule. State separately what added information, computation, and structure contribute; add mechanisms or circles only when they can earn specified out-of-sample incremental value.
+3. Enumerate mutually exclusive, parallel, and incomparable paths. Keep every model-proposed variable `candidate` until external evidence supports it. Record the recursion stage (0 when there is no re-entry).
+4. Choose the expression the evidence supports: probability or interval, ordered support, conditional direction, or unknown. Keep real probability, actors' beliefs, decision weights, model path rankings, and computation priorities apart; model sampling frequencies are never real probabilities, and no number is invented from prose or model confidence.
+5. Preregister the calibration metric, evaluation rule, response regime, early signals, reverse signals, review triggers, pause conditions, retirement conditions, and append-only writeback plan. Measure warning clocks to the point where the last affected person can complete protection.
+6. At the deadline, assign exactly one result state: `supported`, `not_supported`, `unresolved`, `target_invalid`, or `not_evaluable`. Evaluate recursive orders separately against their own simpler baselines, and answer separately how the forecast scored, what publication or action changed, and whether adopting the forecast and response is appropriate.
 7. Append the observation source, actual result, metric, baseline comparison, distributional errors, unexpected effects, downgrade or retirement decision, and next review. Never overwrite the original target, probability, horizon, or failure.
 8. State the narrowest output ceiling and recommended handoff. Keep `authorization_effect` equal to `none` in every version.
 
 ### Method Record
 
-Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace module inputs and output, and apply the ceiling algebra. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in references/forecast-contract.md (`references/forecast-contract.md` in the source repository) is schema-checked in CI. The typed forecast payload always carries both closed branches and exactly one is non-null. For a live forecast, fill the complete `preregistration`, link its `record_id` and `record_version` to the current Method Record, and set `post_hoc_reconstruction: null`. For an outcome-aware reconstruction, set `preregistration: null`, fill every reconstruction field including `calibration` and `failure_classification`, and never disguise it as preregistration.
+Create or extend a schema-valid Method Record. Preserve complete parent ID/version lineage, trace module inputs and output, and apply the ceiling algebra. The full schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; the complete standalone example in references/forecast-contract.md (`references/forecast-contract.md` in the source repository) is schema-checked in CI. The typed forecast payload always carries both closed branches and exactly one is non-null. For a live forecast, fill the complete `preregistration` (including `recursion_stage` and `response_regime`), link its `record_id` and `record_version` to the current Method Record, and set `post_hoc_reconstruction: null`. For an outcome-aware reconstruction, set `preregistration: null`, fill every reconstruction field including `calibration` and `failure_classification`, and never disguise it as preregistration.
 
 A normal module child preserves or lowers its parent ceiling. Raise only in a child that newly admits named external evidence or a newly fulfilled declared protocol. Keep `authorization_effect: none`.
 
 ### Output Contract
 
-Return plain-language reasoning first. Then expose the forecast ID, frozen target and deadline, input cutoff, simple baseline, paths, expression strength, early and reverse signals, evaluation rule, failure states, next review, and compact Method Record. Use `requirements_only` only when lower permissions remain satisfied and the output adds conditions a downstream external choice process still needs; do not phrase those conditions as a recommendation.
+Publish the complete analysis by default: open with the current judgment and its scope, then the forecast ID, frozen target and deadline, input cutoff, simple baseline, every substantive path compared, expression strength, early and reverse signals, evaluation rule, failure states, next review, and compact Method Record. Do not drop substantive analysis because it does not change the headline; compress only when the user asks for brevity, and keep the full version available. Use `requirements_only` only when lower permissions remain satisfied and the output adds conditions a downstream external choice process still needs; do not phrase those conditions as a recommendation.
 
 Stop at `description_only` when the object, target, observation rule, horizon, or cutoff is not stable. Stop at `diagnostic_only` after publishing or evaluating a forecast. Never claim inevitability, empirical verification from simulation, value priority, consent, jurisdiction, or permission to act.
 
@@ -587,6 +633,8 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 | No judgeable target or deadline | Do not publish a forecast; repair the contract. |
 | No fair simple baseline | Keep only a scenario or conditional direction. |
 | Data support ranking but not probability | Publish an ordered support level, not a number. |
+| A path matters for its consequences, not its likelihood | Prioritize checking it, publish the reason, keep its probability unknown. |
+| Warning is used to trigger responses | Register the response regime; score the original target separately from response effects. |
 | Outcome changes the object identity | Mark `target_invalid`; preserve the original record. |
 | Complex model ties the baseline | Prefer the baseline and withdraw incremental-ability claims. |
 | Action question follows | Hand off conditions to `ariadne-choice`; keep authorization at `none`. |
@@ -600,34 +648,36 @@ Skeleton only, not a complete record; the schema-valid template ships with the s
 target: three voluntary departure notices from the frozen roster
 horizon: {start: '2026-09-01', deadline: '2026-11-30'}
 simple_baseline: matched historical frequency predicts two departures
+recursion_stage: 0
 output_ceiling: description_only
 ```
 
 ### Common Mistakes
 
 - **Backdating the forecast:** Treat an outcome-aware account as explanation, not preregistration.
-- **Choosing a weak baseline:** Match the information, target, horizon, and metric before comparing complexity.
+- **Choosing a weak baseline:** Match the information, target, horizon, budget, and metric before comparing complexity.
 - **Calling every branch a hit:** Freeze path relations and success rules before the outcome.
-- **Turning prose into probabilities:** Downgrade to rank, direction, or abstention when calibration support is absent.
+- **Turning prose or sample counts into probabilities:** Downgrade to rank, direction, or unknown when calibration support is absent.
+- **Treating "no event" as success or false alarm:** Separate the forecast's score from what the response changed.
 - **Counting `unresolved` as partial success:** Keep all five result states distinct.
 - **Repairing failure by editing history:** Append a child record and preserve the failed original.
 - **Converting accuracy into authority:** Keep forecast, choice, and authorization in separate records.
 
 ### Load Detailed Guidance
 
-Read forecast-contract.md (`references/forecast-contract.md` in the source repository) when defining fields, selecting baselines or metrics, evaluating recursive forecasts, publishing a result, writing back outcomes, or following the worked example.
+Read references/forecast-contract.md (`references/forecast-contract.md` in the source repository) when defining fields, selecting baselines or metrics, choosing an expression, evaluating recursive forecasts or response regimes, publishing a result, writing back outcomes, or following the worked example.
 
 ## ariadne-choice
 
-> Compare action, delay, reversible experiment, exit, and inaction on one baseline, keeping facts, values, rights, jurisdiction, and authorization separate and issuing no permissions. Use when a real-world decision, pilot, exit, or act-or-not question needs a bounded option comparison with external requirements; when the decision hinges on an unregistered future claim, run ariadne-forecast first. For a multi-module pass, start with ariadne-skill. 适用于：该不该做、方案比较、试点与退出、不行动也是选项、授权边界。
+> Compare action, delay, probing, exit, and no action on one baseline, then give an analytic recommendation for deliberation under explicit norms, with costs, objections, and change conditions, keeping rights, jurisdiction, and authorization separate and issuing no permissions. Use when a decision, pilot, exit, or act-or-not question needs a bounded option comparison; run ariadne-forecast first if it hinges on an unregistered future claim. For a multi-module pass, start with ariadne-skill. 适用于：该不该做、方案比较与推荐、不行动也是选项。
 
 ### Overview
 
-Compare a finite option set without turning facts, forecasts, efficiency, survival, or model confidence into an instruction. Keep value premises, protection, jurisdiction, procedure, authorization, execution, and correction separately inspectable.
+Compare a finite option set and, when explicit normative premises and evidence allow, say which option the analysis currently recommends and why. Keep two identities apart: an analytic recommendation for deliberation, which the module may form, and an authorized choice, which only a qualified subject with valid authority can make. Never turn facts, forecasts, efficiency, survival, or model confidence into an instruction, and never send a supported analysis back to a question list merely because no one has authority to execute.
 
 ### Route the Request
 
-- Use this module when a subject must compare active action, delay, a reversible experiment, exit or transfer, and explicit inaction.
+- Use this module when a subject must compare active action, delay, a reversible probe, exit or transfer, maintaining the status quo, and explicit no action.
 - Use `SEL-SYS` only to describe differential retention without intention or legitimacy. Do not include an external-action option or an `authorized` state.
 - Use `SEL-AGT` for an identifiable subject choosing only within that subject's actual rights, territory, and time.
 - Use `SEL-GOV` for a collective decision with agenda, representation, participation, minority protection, conflicts, accountability, and expiring public authority.
@@ -635,21 +685,21 @@ Compare a finite option set without turning facts, forecasts, efficiency, surviv
 
 ### Run the Choice
 
-1. Freeze O1 (O1-O4 are the four operational freezes: O1 facts, O2 values, O3 subject and authority, O4 bounded execution): the descriptive claims, evidence status, uncertainty, scale, forecast references, and descriptive output ceiling. Do not repair them after seeing attractive options.
+1. Freeze O1 (O1-O4 are the four operational freezes: O1 facts, O2 values, O3 options, subject, and authority, O4 bounded execution): the descriptive claims, evidence status, uncertainty, scale, forecast references, and descriptive output ceiling. Do not repair them after seeing attractive options.
 2. Classify the process as `SEL-SYS`, `SEL-AGT`, or `SEL-GOV`. Reject language that gives a system intent, extends one person's choice over others, or turns governance into a large personal preference.
-3. Freeze O2: the runtime N1-N5 premises (N1 explanation does not authorize disposition, N2 protection must not degrade, N3 high-impact judgments must be correctable, N4 do not requisition love or care, N5 survival and selection are not legitimacy), each premise's role as goal, constraint, or veto, all value conflicts, dissent, beneficiaries, and burden bearers. Keep the PF-1-PF-10 rights floor (the ten protection bindings: affected positions, low-exposure submission, effective refusal, timed appeal, anti-retaliation, evidence correction, external review, operational rollback, real exit or proxy support, and a frozen action ceiling) separate from tradable preferences.
-4. Create stable option IDs. Include exactly one `no_action` option and distinguish it from maintaining the status quo. Include active action, delay, reversible experiment, and exit or transfer when applicable.
-5. Compare every option against the same baseline across consequences, distribution, nine-axis scale, affected and low-power positions, information value, reversibility, lock-in, resources, and residual harm. Keep incomparable dimensions and conflicts visible.
-6. Check coercion, defaults, information, capacity, safe refusal, and real exit. For `SEL-GOV`, also check agenda control, representation, participation, minority protection, dissent, conflicts of interest, and execution accountability.
-7. Freeze O3 and C12 (the ten-component validity bridge from description to normative choice): bind the selected option, explicit N premises, all ten bridge components, least-harm and proportionality reviews, protection floor, atomic J tuple, jurisdiction, validity period, and external verification references.
-8. Freeze O4: cap execution at the narrowest intersection of evidence, values, rights, selected option, J authority, reversibility, trial scope, and expiry. Register prohibited actions, monitors, stop authority, appeal, anti-retaliation, independent review, rollback, remedy, and reauthorization.
+3. Freeze O2: the runtime N1-N5 premises (N1 explanation does not authorize disposition, N2 protection must not degrade, N3 high-impact judgments must be correctable, N4 do not requisition love or bearing, N5 survival and selection are not legitimacy), each premise's role as goal, constraint, or veto, all value conflicts, dissent, beneficiaries, and burden bearers. Keep the PF-1-PF-10 rights floor (the ten protection bindings: affected positions, low-exposure submission, effective refusal, timed appeal, anti-retaliation, evidence correction, external review, operational rollback, real exit or proxy support, and a frozen action ceiling) separate from tradable preferences.
+4. Create stable option IDs with kinds. Include exactly one `no_action` option and distinguish it from `maintain_status_quo`. Check active action, delay, probing, and exit or transfer for applicability and give reasons for any omitted.
+5. Compare every option against the same baseline across consequences, distribution, nine-axis scale, affected and low-power positions, worst acceptable outcome, information value, reversibility, lock-in, resources, joint feasibility with other options, and residual harm. Keep incomparable dimensions and conflicts visible; never sum them away.
+6. Check coercion, defaults, information, capacity, safe refusal, and real exit. For `SEL-GOV`, also check agenda control, representation, participation, minority protection, dissent, conflicts of interest, and execution accountability. Ask separately about resources, standing, and representation.
+7. Form the analytic recommendation when premises allow: the recommended option, the explicit N premises it rests on, reasons, costs, objections, change conditions, and `adoption_status: deliberation_only`. Withhold it only for the specific missing norm, protection, or option that blocks it, and say which. With only N1 or no positive premise, the recommendation is limited to no action, more evidence, or continued deliberation.
+8. For real adoption, freeze O3 and C12 (the ten-component validity bridge from description to normative choice): the selected option, explicit N premises, all ten bridge components, least-harm and proportionality reviews, protection floor, atomic J tuple, jurisdiction, validity period, and external verification references. Then freeze O4: cap execution at the narrowest intersection of evidence, values, rights, selected option, J authority, reversibility, trial scope, and expiry, with prohibited actions, monitors, stop authority, appeal, anti-retaliation, independent review, rollback, remedy, and reauthorization.
 9. Assign the record state and append every transition. Never erase `paused`, `stopped`, `rolled_back`, or expired history. Keep `authorization_effect` equal to `none`, including when the module verifies an external authorization record.
 
 ### Method Record
 
-Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition (full schema: `ariadne-skill/references/method-record.schema.json`, shipped with the suite router; the standalone example in references/choice-and-authorization.md (`references/choice-and-authorization.md` in the source repository) is schema-checked in CI). For every action request, write the typed choice payload with facts, values, options including inaction, jurisdiction, authorization, stop conditions, and rollback plan. Use `unknown` rather than omit any boundary.
+Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition (full schema: `ariadne-skill/references/method-record.schema.json`, shipped with the suite router; the lineage example in references/choice-and-authorization.md (`references/choice-and-authorization.md` in the source repository) is schema-checked in CI). For every action request, write the typed choice payload with facts, values, structured options (`option_id`, `kind`, `description`, exactly one `no_action`), jurisdiction, authorization, stop conditions, rollback plan, and `analytic_recommendation` as an object or explicit `null`. Use `unknown` rather than omit any boundary.
 
-Use `description_only` for incomplete facts, `diagnostic_only` for bounded consequence comparison, and `requirements_only` only when lower permissions remain satisfied and external process requirements are explicit. Keep `authorization_effect: none`.
+Use `description_only` for incomplete facts, `diagnostic_only` for bounded consequence comparison, and `requirements_only` when lower permissions remain satisfied and external process requirements are explicit; a non-null analytic recommendation requires `requirements_only`, and each of its premise IDs must resolve to an N claim or normative rule in the record. Because a root record always starts at `description_only`, a recommendation lives in a child that admits its basis. Keep `authorization_effect: none`.
 
 ### Mini Example
 
@@ -657,16 +707,17 @@ Input question: "May we run a reversible workload pilot now, or must we not act?
 
 ```yaml
 selection_type: SEL-AGT
-options: [active_action, reversible_experiment, delay, no_action]
+options: [{id: OPT-TRIAL, kind: probing_action}, {id: OPT-DELAY, kind: delayed_action}, {id: OPT-NONE, kind: no_action}]
+analytic_recommendation: {option_id: OPT-TRIAL, adoption_status: deliberation_only}
 authorization: unknown
-output_ceiling: description_only
+output_ceiling: requirements_only
 ```
 
 ### Stop and Handoff
 
-Stop at inaction, evidence collection, protective preservation, continued review, or external referral whenever a positive N premise, a C12 component, a PF binding, atomic J coverage, O1-O4, safe dissent, or rollback capacity is absent. In an emergency, identify only the minimum protective action allowed by an external emergency rule, then require prompt review, appeal, and rollback.
+Stop real adoption at no action, evidence collection, protective preservation, continued review, or external referral whenever a positive N premise, a C12 component, a PF binding, atomic J coverage, O1-O4, safe dissent, or rollback capacity is absent; the analytic comparison and any supported recommendation remain. In an emergency, identify only the minimum protective action allowed by an external emergency rule, then require prompt review, appeal, and rollback.
 
-Do not choose values for the subject, infer consent from silence or non-exit, sign authorization, execute an option, or guarantee success. Return plain-language comparison first, followed by the compact Method Record and, for high-impact cases, the detailed choice card.
+Do not choose values for the subject, infer consent from silence or non-exit, sign authorization, execute an option, or guarantee success. Lead with the current analytic recommendation and its scope, then the full comparison: reasons for accepting and rejecting each option, costs and their distribution, objections, change conditions, and what real adoption still needs. Never phrase a recommendation in imperative mood or as an executable decision.
 
 Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserve-or-lower, never inline (full clause: lattice-kernel.md, Peer unavailability clause).
 
@@ -675,34 +726,39 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 | Condition | Maximum response |
 |---|---|
 | `SEL-SYS` differential retention | Description only; no external-action option or authorization. |
-| Facts ready, values unresolved | Show conflicts and consequences; retain inaction. |
-| Values stated, PF or J incomplete | Requirements, protection, and referral only. |
+| Facts ready, values unresolved | Show conflicts and consequences; retain no action; recommendation withheld for the named missing premise. |
+| Values stated, options and costs registered | Analytic recommendation for deliberation, with execution marked not authorized. |
+| Values stated, PF or J incomplete | Recommendation plus requirements, protection, and referral; no execution. |
 | External authorization exists but mismatches one action field | Treat the option as unauthorized. |
 | Evidence weak and action reversible with clear authority | Consider only a bounded information-gathering trial. |
-| Irreversible harm, failed protection, or no rollback | Pause or choose protective inaction. |
+| Irreversible harm, failed protection, or no rollback | Pause or choose protective no action. |
 
 ### Common Mistakes
 
-- **Deriving “ought” from “is”:** Freeze facts in O1 and values in O2 as separate records.
-- **Deleting inaction:** Include exactly one `no_action` and price its continuing harms and responsibilities.
+- **Deriving "ought" from "is":** Freeze facts in O1 and values in O2 as separate records.
+- **Withholding a supported recommendation for lack of execution authority:** Register the premises and give it as `deliberation_only`.
+- **Dressing a recommendation as a decision:** Keep adoption status, imperative-free wording, and the authorization gap explicit.
+- **Deleting no action:** Include exactly one `no_action` and price its continuing harms and responsibilities.
 - **Treating status quo as no action:** Record the resources and enforcement required to maintain the status quo.
 - **Aggregating away burden:** Preserve low-power, overlapping, bridge, cross-domain, and long-horizon positions.
-- **Patching authority:** Require one atomic J tuple to cover subject, object, action, territory, full period, and authority source, as section 8 of the reference enumerates.
+- **Reading separately feasible options as jointly feasible:** Check shared capacity, budget, staff, and deadlines.
+- **Hiding a worst-case rule:** State any selection rule explicitly instead of treating it as the only rational one.
+- **Patching authority:** Require one atomic J tuple to cover subject, object, action, territory, full period, and authority source.
 - **Calling formal participation consent:** Test safe refusal, exit, dissent effect, and anti-retaliation.
 - **Using a pilot as an ethics exemption:** Apply the same protection, stop, appeal, rollback, data-use, and remedy duties.
 - **Letting the module authorize:** Verify external records only and keep `authorization_effect: none`.
 
 ### Load Detailed Guidance
 
-Read choice-and-authorization.md (`references/choice-and-authorization.md` in the source repository) when defining N, PF, J, O1-O4, C12, boundary cards, options, distribution, selection states, intervention ceilings, T0-T4 tasks (the five intervention task types: T0 safety carrier, T1 reversible minimum order, T2 carrying-return repair, T3 deep-time maintenance, T4 exit and memory preservation), or the worked example. Read intervention-levels.json (`references/intervention-levels.json` in the source repository) for the T0-T4 machine contract covering entry conditions and the hash-chained execution-state log. Handoff any domain application to `ariadne-audit` for its matching Part 15 APP contract (APP-REL through APP-ULS, the nine domain application contracts) before external use.
+Read references/choice-and-authorization.md (`references/choice-and-authorization.md` in the source repository) when defining the two identities, N, PF, J, O1-O4, C12, options, the comparison card, joint feasibility, distribution, non-domination, selection states, correction endpoints, action ceilings, when not to act, T0-T4 tasks (the five intervention task types: T0 safety and trust carrier, T1 reversible minimum order, T2 carrying-and-return chain repair, T3 deep-time maintenance, T4 exit, transfer, and memory preservation), or the worked example. Read references/intervention-levels.json (`references/intervention-levels.json` in the source repository) for the T0-T4 machine contract covering entry conditions, success scope, exit continuity, and the hash-chained execution-state log. Hand any domain application to `ariadne-audit` for its matching Part 15 APP contract (APP-REL through APP-ULS, the nine domain application contracts) before external use.
 
 ## ariadne-audit
 
-> Gate high-impact use of completed Ariadne records: transformation and main gates, appeal, rollback, downgrade, pause, withdrawal, retirement, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or when clustered module records must be merged and their conflicts preserved. For a multi-module pass, start with ariadne-skill. 适用于：结论公开或上线前的审查、能不能这么用、申诉与回滚、降级与退役、集群合并终审。
+> Gate high-impact use of completed Ariadne records: transformation and main gates, the strong-judgment register by actual use, AI tool-chain endpoints, appeal, rollback, downgrade, withdrawal, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or clustered records must be merged with conflicts kept. For a multi-module pass, start with ariadne-skill. 适用于：结论公开或上线前的审查、能不能这么用、申诉与回滚、集群合并终审。
 
 ### Overview
 
-Audit whether a bounded methodology record may retain its current judgment and use ceiling. Treat completed forms, fluent prose, automated scores, internal tests, and framework consistency as process artifacts, never as proof of reality, safety, consent, effectiveness, or authorization.
+Audit whether a bounded methodology record may retain its current judgment and use ceiling. Treat completed forms, fluent prose, automated scores, internal tests, and framework consistency as process artifacts, never as proof of reality, safety, consent, effectiveness, or authorization. Whether a judgment is strong is set by its actual and foreseeable use, never by tone or length, and renaming an output never lowers its responsibility.
 
 ### Route the Audit
 
@@ -714,18 +770,18 @@ Audit whether a bounded methodology record may retain its current judgment and u
 ### Run the Audit
 
 1. Freeze the audit subject, version, owner, object contract, scale, evidence cutoff, intended use, affected and low-power positions, challenge path, and current output ceiling.
-2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark every later transformation `not_run`. An IT1 failure fixes `output_ceiling: description_only`; describe missing requirements or a protective pause without issuing requirements.
+2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark every later transformation `not_run`. An IT1 failure fixes `output_ceiling: description_only`; describe missing requirements or a protective pause without issuing requirements. Downstream claims sharing the gap stay lowered whatever they are renamed or split into; independently grounded claims keep their level.
 3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Mark every gate after the first failure `not_run`. An IG1 failure fixes `output_ceiling: description_only`; do not let later paperwork repair or elevate it.
 4. Expand with FG1-FG5 (the five expansion gates: object, evidence, scale, responsibility, and observation) and DS01-DS13 (the thirteen diagnostic steps: problem entry, object and boundary, signal layers, observation participation, dominant constraint, state and window, core structure, protected variables, carrying and repayment, hazard and boundary type, competing mechanisms, branch outlook, and output and writeback) when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
-5. Require SJ1-SJ8 (the strong-judgment eight: reverse conditions, repair window, evidence requirements, appeal entry, anti-retaliation, evidence supplementation, external-review trigger, and rollback and writeback) for every L3 judgment (the highest of the L1-L3 responsibility levels) that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output. SJ4-SJ8 re-verify the choice-level PF bindings; SJ1-SJ3 are the audit-specific increment, as the gates reference maps them.
+5. Decide whether the strong-judgment condition is triggered by use: handling, eligibility, rights, resource allocation, material effects on a specific subject's reputation or public memory, or embedding in automated, organizational, or institutional decisions. Record the `strong_judgment` register with its reason; when not triggered, mark IG6 `not_applicable` and SJ1-SJ8 `not_applicable`. Require SJ1-SJ8 (the strong-judgment eight: reverse conditions, repair window, evidence requirements, appeal entry, anti-retaliation, evidence supplementation, external-review trigger, and rollback and writeback) for every L3 judgment (the highest of the L1-L3 responsibility levels) that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output. SJ4-SJ8 re-verify the choice-level PF bindings; SJ1-SJ3 are the audit-specific increment, as the gates reference maps them.
 6. Add DF1-DF9 (the nine dynamic gates: fact freeze, joint object, channels and clocks, mechanism propagation, path branching, forecast registration, normative choice, authorization and execution, and result writeback) when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
-7. Apply the AI boundary. Mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
-8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Require an externally verifiable approval for an applied governance change.
+7. Apply the AI boundary. Expect AI to compare mechanisms, form refutable judgments, recommend options, and draft complete texts where evidence and explicit premises allow; mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Check sources, quotations, passage support, and world facts separately; record suggestion, tool request, execution, external state, and consequence separately, and verify the task's real endpoint. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
+8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback with separately registered text, theory, contract, software, and run versions, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Keep derived method entries, Ariadne included, in candidate status. Require an externally verifiable approval for an applied governance change, and make sure people can protect themselves, record facts, and seek support without learning the framework.
 9. Return findings, failed or not-run gates, affected claims, the lowered output ceiling, and a typed contestability payload with a reachable owner, deadline, retained original record, downstream correction target, rollback recovery target, and remedy. Keep `authorization_effect` equal to `none`.
 
 ### Method Record
 
-Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition. A merge lists every sibling parent in canonical order and uses the ceiling meet. Put reachable contestability, correction, rollback-recovery, retention, deadline, and remedy fields in the typed audit payload. Keep detailed gate registers beside the record under stable IDs.
+Create or extend a schema-valid Method Record with complete parent references, traced module inputs/output, and the ceiling transition. A merge lists every sibling parent in canonical order and uses the ceiling meet. Put the gate register, the strong-judgment register (IG6 `passed` only with SJ1-SJ8 all `passed`; IG6 `not_applicable` only with an untriggered register), and reachable contestability, correction, rollback-recovery, retention, deadline, and remedy fields in the typed audit payload. Keep detailed gate registers beside the record under stable IDs.
 
 Use `intervention_review` for a proposed or active real-world intervention and `governance_review` for claim, process, model, or framework governance. Preserve failed gates and terminal states in child versions. Keep `authorization_effect: none`.
 
@@ -754,7 +810,9 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 |---|---|---|
 | Any judgment | IT1-IT4 plus IG1-IG7 | Mark later gates `not_run`; lower the ceiling. |
 | Complex or reflexive diagnosis | FG1-FG5 plus DS01-DS13 | Feed findings back into IG gates; do not create a second pass state. |
-| High-impact L3 judgment | SJ1-SJ8 | Fail IG6 and downgrade if any item is missing. |
+| High-impact L3 judgment | SJ1-SJ8, triggered by use | Fail IG6 and downgrade if any item is missing. |
+| Ordinary argument or mechanism evaluation with no strong-judgment use | IG6 `not_applicable` with a reason | Clear conclusions with proportionate evidence and review. |
+| AI tool action | Suggestion, request, execution, external state, consequence | Treat a timeout as unknown; verify the real endpoint before retrying. |
 | Dynamics, forecast, choice, or intervention | DF1-DF9 after IG gates | Keep scenario, forecast, choice, and execution boundaries separate. |
 | Public strong claim | Nine publication gates | Block publication on any failure. |
 | Applied governance change | External approval, dissent effects, and VERSION-LOG writeback | Keep proposed or suspended; never self-approve. |
@@ -769,7 +827,9 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 - **Offering an appeal that cannot change anything:** Treat it as no appeal and block high-impact use.
 - **Calling a new version rollback:** Restore state, records, downstream effects, remedies, and residual-harm tracking.
 - **Archiving counterexamples without consequences:** Bind them to text, process, ceiling, and lifecycle changes.
-- **Letting AI verify itself:** Require external evidence and accountable human review.
+- **Letting AI verify itself:** Require external evidence and accountable human review; several models repeating one source are one source.
+- **Upgrading by tone or downgrading by label:** Decide strong judgment by use; calling it commentary or a draft changes nothing.
+- **Calling a sampled review author confirmation:** Derived entries stay candidates until the source text itself carries them.
 - **Reviving a terminal state:** Create a new successor identity; never move `withdrawn`, `replaced`, or `retired` back to active.
 - **Letting audit authorize:** Keep every audit record at `authorization_effect: none`.
 
@@ -786,16 +846,16 @@ This module can be installed alone. The full machine-checkable schema ships with
 | Field | Constraint |
 |---|---|
 | `record_id` | `ariadne:<case>:<module\|merge\|root>:v<N>`; case slug without colons. |
-| `schema_version` | The string `'1.3'`. |
+| `schema_version` | The string `'2.0'`. |
 | `record_version` | Integer: 1 for a root, parent + 1 for a linear child, highest parent + 1 for a merge. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for `linear`; null for `root` and `merge`. |
 | `parent_records` | Empty for a root; one `{record_id, record_version}` for linear; two or more, sorted by ID then version, for merge. |
 | `request_type` | One of `explanation`, `diagnosis`, `dynamic_derivation`, `conditional_forecast`, `finite_choice`, `intervention_review`, `governance_review`, `synthesis_design`. |
-| `object_contract` | `boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `status`. |
+| `object_contract` | `boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `task_profile` (`target_query`, `horizon`, `environment`, `allowed_operations`, `error_tolerance`), `status`. |
 | `evidence_cutoff` | `as_of` (RFC 3339), `included_source_ids`, `excluded_after_cutoff`. |
-| `scale_scope` | `source`, `target`, `transform_status`. |
-| `claim_ledger` | Typed claims with `claim_id`, `claim_type`, `text`, `status`, `support_ids`, `support_rule_ids`, `counterevidence_ids`; may be empty. |
+| `scale_scope` | `source`, `target`, `transform_kind` (`none` only with `transform_status: not_needed`), `transform_status`. |
+| `claim_ledger` | Typed claims (D/G/E/H/N/O/F) with `claim_id`, `claim_type`, `text`, `status`, `support_ids`, `support_rule_ids`, `counterevidence_ids`, optional `depends_on` naming earlier claims and optional `ceiling`; may be empty. |
 | `rule_registry` | Declared `RULE:*` entries; may be empty. |
 | `unknowns_and_counterevidence` | Explicit `unknowns` and `counterevidence` lists. |
 | `conflicts` | Named irreducible conflicts; empty array is valid and usual outside merges. |
@@ -805,3 +865,10 @@ This module can be installed alone. The full machine-checkable schema ships with
 | `module_payloads` | Typed payloads only for completed human, dynamics, mechanism, forecast, choice, or audit runs. |
 | `recommended_next_modules` | Only modules justified by remaining work. |
 | `authorization_effect` | Always `none`. |
+
+### Payload reminders
+
+- A mechanism payload lists at least two candidates, each with `mechanism_id`, `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), `channel_observation`, `discriminating_prediction`, `reverse_or_falsifier`, and `residual_comparison_rule`.
+- A dynamics payload records each event's fact status (`observed`, `externally_reported`, `planned`, `hypothetical`, `simulated`, `unknown`), sources, window, observation time, affected actors and circles, channel, direct change, evidence state, disputes, competing explanations, reversibility, duration, and follow-up observations.
+- A human payload records observation position, privacy state, allowed purpose, the four affected-position classes, at least two alternative explanations, and responsible human review.
+- A claim whose `depends_on` includes a contradicted, withdrawn, or retired claim is never `supported`, and no claim ceiling exceeds its dependencies' ceilings or the record ceiling.

@@ -21,7 +21,7 @@ def load_schema() -> dict:
 def valid_record() -> dict:
     return {
         "record_id": "ariadne:case-001:v1",
-        "schema_version": "1.3",
+        "schema_version": "2.0",
         "record_version": 1,
         "lineage_kind": "root",
         "parent_record_id": None,
@@ -35,6 +35,13 @@ def valid_record() -> dict:
             "time_window": "2026-Q2",
             "scale_profile": {"aggregation": "team", "time": "quarter"},
             "identity_criterion": "same mandate and membership rule",
+            "task_profile": {
+                "target_query": "which handoff explains the delivery delay",
+                "horizon": "2026-Q2",
+                "environment": "current staffing and dependencies",
+                "allowed_operations": "observation only",
+                "error_tolerance": "candidate mechanisms, unranked",
+            },
             "status": "candidate",
         },
         "evidence_cutoff": {
@@ -45,6 +52,7 @@ def valid_record() -> dict:
         "scale_scope": {
             "source": "individual reports",
             "target": "team diagnosis",
+            "transform_kind": "scale",
             "transform_status": "incomplete",
         },
         "claim_ledger": [

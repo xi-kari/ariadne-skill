@@ -7,8 +7,10 @@ Ships inside the ariadne-skill package so any host with a Python runtime can run
 - Structural validation uses the bundled JSON schema (jsonschema when installed,
   a built-in structural subset otherwise, and the mode used is always reported).
 - Semantic validation mirrors the repository validator: lineage arithmetic,
-  ceiling algebra, raise-basis novelty, module-run and payload pairing, and
-  supported-claim resolution. Non-root records need --parent context for the
+  ceiling algebra, raise-basis novelty, module-run and payload pairing,
+  supported-claim resolution, proposition-level dependency limits, transform
+  kind/status pairing, choice options and analytic recommendation, audit gate
+  order, and the IG6 strong-judgment binding. Non-root records need --parent context for the
   parent-dependent checks; without it those checks are reported as skipped.
 - Records may be YAML (needs PyYAML) or JSON (standard library only).
 
@@ -207,6 +209,10 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
                 if rule_id not in declared_rules:
                     errors.append(f"supported claim {claim['claim_id']} has unresolved support_rule_id: {rule_id}")
         earlier[claim["claim_id"]] = claim["status"]
+    errors.extend(claim_dependency_errors(record))
+    scope = record["scale_scope"]
+    if (scope["transform_kind"] == "none") != (scope["transform_status"] == "not_needed"):
+        errors.append("scale_scope transform_kind none must pair exactly with transform_status not_needed")
 
     completed = [run for run in record["module_runs"] if run["status"] == "completed"]
     if not any(run["output_record"] == ref for run in completed):
@@ -234,7 +240,103 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
     for module in sorted(set(payload_modules) - completed_modules):
         errors.append(f"{module} payload requires a matching completed module run")
 
+    payloads = {payload["module"]: payload["payload"] for payload in record["module_payloads"]}
+    choice = payloads.get("ariadne-choice")
+    if choice is not None:
+        errors.extend(choice_payload_errors(choice, record["output_ceiling"], record))
+    audit = payloads.get("ariadne-audit")
+    if audit is not None:
+        errors.extend(audit_payload_errors(audit, record["output_ceiling"], transition["operation"]))
+
     return errors, skipped
+
+
+def claim_dependency_errors(record: dict) -> list[str]:
+    errors: list[str] = []
+    record_rank = CEILING_RANK[record["output_ceiling"]]
+    earlier: dict[str, dict] = {}
+    for claim in record["claim_ledger"]:
+        claim_id = claim["claim_id"]
+        own = claim.get("ceiling")
+        if own is not None and CEILING_RANK[own] > record_rank:
+            errors.append(f"claim {claim_id} ceiling exceeds the record output_ceiling")
+        for dependency in claim.get("depends_on", []):
+            parent = earlier.get(dependency)
+            if parent is None:
+                errors.append(f"claim {claim_id} depends_on must name an earlier claim in this record: {dependency}")
+                continue
+            if claim["status"] == "supported" and parent["status"] in {"contradicted", "withdrawn", "retired"}:
+                errors.append(f"claim {claim_id} cannot stay supported on a {parent['status']} dependency: {dependency}")
+            parent_ceiling = parent.get("ceiling")
+            if own is not None and parent_ceiling is not None and CEILING_RANK[own] > CEILING_RANK[parent_ceiling]:
+                errors.append(f"claim {claim_id} ceiling exceeds the ceiling of its dependency {dependency}")
+        earlier[claim_id] = claim
+    return errors
+
+
+def choice_payload_errors(payload: dict, output_ceiling: str, record: dict | None = None) -> list[str]:
+    errors: list[str] = []
+    option_ids = [option["option_id"] for option in payload["options"]]
+    if len(option_ids) != len(set(option_ids)):
+        errors.append("choice option_id values must be unique")
+    if sum(option["kind"] == "no_action" for option in payload["options"]) != 1:
+        errors.append("choice options must contain exactly one no_action option")
+    recommendation = payload["analytic_recommendation"]
+    if recommendation is not None:
+        if recommendation["option_id"] not in option_ids:
+            errors.append(f"analytic recommendation must name a registered option_id: {recommendation['option_id']}")
+        if output_ceiling != "requirements_only":
+            errors.append("an analytic recommendation requires output_ceiling requirements_only")
+        if record is not None:
+            normative = {claim["claim_id"] for claim in record["claim_ledger"] if claim["claim_type"] == "N"}
+            normative |= {
+                entry["rule_id"] for entry in record.get("rule_registry", []) if entry.get("rule_type") == "normative"
+            }
+            for premise in recommendation["normative_premise_ids"]:
+                if premise not in normative:
+                    errors.append(
+                        "analytic recommendation premise must resolve to an N claim or normative rule: " + premise
+                    )
+    return errors
+
+
+def audit_payload_errors(payload: dict, output_ceiling: str, operation: str) -> list[str]:
+    errors: list[str] = []
+    register = payload["gate_register"]
+    any_failed = False
+    for gate_ids, results in (
+        (("IT1", "IT2", "IT3", "IT4"), register["transformations"]),
+        (("IG1", "IG2", "IG3", "IG4", "IG5", "IG6", "IG7"), register["main_gates"]),
+    ):
+        failed_gate = None
+        for gate_id in gate_ids:
+            status = results[gate_id]["status"]
+            if failed_gate is not None and status != "not_run":
+                errors.append(f"{gate_id} must be not_run after {failed_gate} failed")
+            if failed_gate is None and status == "failed":
+                failed_gate = gate_id
+                any_failed = True
+    if any_failed and operation == "raise":
+        errors.append("audit gate failure forbids ceiling raise")
+    if (
+        register["transformations"]["IT1"]["status"] == "failed"
+        or register["main_gates"]["IG1"]["status"] == "failed"
+    ) and output_ceiling != "description_only":
+        errors.append("IT1 or IG1 failure requires output_ceiling description_only")
+    ig6 = register["main_gates"]["IG6"]["status"]
+    strong = payload["strong_judgment"]
+    components = strong["components"]
+    if ig6 == "passed":
+        if strong["status"] != "triggered":
+            errors.append("IG6 passed requires a triggered strong-judgment register")
+        failing = sorted(code for code, result in components.items() if result["status"] != "passed")
+        if failing:
+            errors.append("IG6 passed requires SJ1-SJ8 all passed; not passed: " + ", ".join(failing))
+    if ig6 == "not_applicable" and strong["status"] != "not_triggered":
+        errors.append("IG6 not_applicable requires strong_judgment status not_triggered with a reason")
+    if strong["status"] == "not_triggered" and any(result["status"] != "not_applicable" for result in components.values()):
+        errors.append("an untriggered strong-judgment register must mark SJ1-SJ8 not_applicable")
+    return errors
 
 
 def main(argv: list[str] | None = None) -> int:

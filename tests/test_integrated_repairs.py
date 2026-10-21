@@ -36,6 +36,16 @@ def passed_gate_register() -> dict:
     }
 
 
+def triggered_strong_judgment() -> dict:
+    return {
+        "status": "triggered",
+        "reason": "the output feeds an eligibility decision",
+        "components": {
+            f"SJ{index}": {"status": "passed", "finding": "contract satisfied"} for index in range(1, 9)
+        },
+    }
+
+
 def affected_positions() -> dict:
     return {
         "direct": {
@@ -133,6 +143,7 @@ def test_root_linear_and_merge_lineage_are_lossless() -> None:
                 "module": "ariadne-audit",
                 "payload": {
                     "gate_register": passed_gate_register(),
+                    "strong_judgment": triggered_strong_judgment(),
                     "contestability": {
                         "owner": {"contact": "review@example.invalid", "status": "reachable"},
                         "deadline": "2026-08-18T00:00:00+08:00",
@@ -239,6 +250,7 @@ def test_forward_safety_payloads_are_structurally_complete() -> None:
                 "candidates": [
                     {
                         "mechanism_id": "M1",
+                        "temporal_route": "current_state",
                         "channel_observation": "queue delay rises before delivery delay",
                         "discriminating_prediction": "queue intervention changes delay first",
                         "reverse_or_falsifier": "delay changes without queue change",
@@ -246,6 +258,7 @@ def test_forward_safety_payloads_are_structurally_complete() -> None:
                     },
                     {
                         "mechanism_id": "M2",
+                        "temporal_route": "not_applicable",
                         "channel_observation": "dependency latency precedes delivery delay",
                         "discriminating_prediction": "external latency explains delay when queue is stable",
                         "reverse_or_falsifier": "delay persists after external latency normalizes",
@@ -259,17 +272,22 @@ def test_forward_safety_payloads_are_structurally_complete() -> None:
             "payload": {
                 "facts": ["unknown"],
                 "values": ["unknown"],
-                "options": ["inaction", "unknown"],
+                "options": [
+                    {"option_id": "OPT-NONE", "kind": "no_action", "description": "no new action"},
+                    {"option_id": "OPT-UNKNOWN", "kind": "active_action", "description": "unknown"},
+                ],
                 "jurisdiction": "unknown",
                 "authorization": "unknown",
                 "stop_conditions": ["unknown"],
                 "rollback_plan": "unknown",
+                "analytic_recommendation": None,
             },
         },
         {
             "module": "ariadne-audit",
             "payload": {
                 "gate_register": passed_gate_register(),
+                    "strong_judgment": triggered_strong_judgment(),
                 "contestability": {
                     "owner": {"contact": "review@example.invalid", "status": "reachable"},
                     "deadline": "2026-08-18T00:00:00+08:00",

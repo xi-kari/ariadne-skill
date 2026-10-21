@@ -78,6 +78,7 @@ def full_mechanism_payload() -> dict:
             "candidates": [
                 {
                     "mechanism_id": "M1",
+                    "temporal_route": "current_state",
                     "channel_observation": "queue delay rises before delivery delay",
                     "discriminating_prediction": "queue repair changes delay before other changes",
                     "reverse_or_falsifier": "delivery delay changes while queue delay is stable",
@@ -85,6 +86,7 @@ def full_mechanism_payload() -> dict:
                 },
                 {
                     "mechanism_id": "M2",
+                    "temporal_route": "carried_history",
                     "channel_observation": "dependency latency rises before delivery delay",
                     "discriminating_prediction": "dependency recovery changes delay while queue is stable",
                     "reverse_or_falsifier": "delay persists after dependency latency normalizes",
@@ -181,8 +183,10 @@ def full_preregistration(record: dict) -> dict:
         "simple_baseline": "matched historical frequency",
         "candidate_mechanisms": ["workload persistence", "appeal repair"],
         "paths": ["threshold met", "threshold not met", "target invalid"],
+        "recursion_stage": 0,
         "expression": "ordered support",
         "evaluation_rule": "apply the frozen roster, notice, and deadline rules",
+        "response_regime": "monitoring only; no personnel action is triggered",
         "calibration_plan": {
             "metric": "rank score",
             "reference_class": "all forecasts under forecast-model-1",
@@ -255,6 +259,14 @@ def full_audit_payload() -> dict:
                     "IG5": {"status": "not_run", "finding": "stopped after IG1"},
                     "IG6": {"status": "not_run", "finding": "stopped after IG1"},
                     "IG7": {"status": "not_run", "finding": "stopped after IG1"},
+                },
+            },
+            "strong_judgment": {
+                "status": "triggered",
+                "reason": "the output is intended for eligibility decisions",
+                "components": {
+                    f"SJ{index}": {"status": "not_run", "finding": "stopped after IG1"}
+                    for index in range(1, 9)
                 },
             },
             "contestability": {
@@ -725,17 +737,29 @@ def test_source_navigation_rejects_missing_numbering_and_non_proof_boundaries() 
     assert validate_source(duplicate_numbering)
 
     missing_boundary = copy.deepcopy(data)
-    missing_boundary["appendix_d"]["cross_scale_proof_heuristic"]["non_proof_boundaries"].pop()
+    missing_boundary["appendix_c"]["cross_scale_proof_heuristic"]["non_proof_boundaries"].pop()
     assert validate_source(missing_boundary)
 
-    content_free_d4 = copy.deepcopy(data)
-    content_free_d4["appendix_d"]["dual_text_difference"]["retained_differences"] = ["x", "y"]
-    content_free_d4["appendix_d"]["dual_text_difference"]["prohibited_substitutions"] = ["x", "y"]
-    assert validate_source(content_free_d4)
+    content_free_c4 = copy.deepcopy(data)
+    content_free_c4["appendix_c"]["dual_text_difference"]["retained_differences"] = ["x", "y"]
+    content_free_c4["appendix_c"]["dual_text_difference"]["prohibited_substitutions"] = ["x", "y"]
+    assert validate_source(content_free_c4)
 
-    content_free_d5 = copy.deepcopy(data)
-    content_free_d5["appendix_d"]["cross_scale_proof_heuristic"]["applicability"] = "x"
-    assert validate_source(content_free_d5)
+    content_free_c5 = copy.deepcopy(data)
+    content_free_c5["appendix_c"]["cross_scale_proof_heuristic"]["applicability"] = "x"
+    assert validate_source(content_free_c5)
+
+    missing_identity = copy.deepcopy(data)
+    missing_identity["source_identity"]["derived_status"] = "author_confirmed"
+    assert validate_source(missing_identity)
+
+    missing_domain = copy.deepcopy(data)
+    missing_domain["appendix_d"]["domains"].pop()
+    assert validate_source(missing_domain)
+
+    missing_invariant = copy.deepcopy(data)
+    missing_invariant["governance_invariants"].pop()
+    assert validate_source(missing_invariant)
 
 
 def test_stage_order_and_distribution_metadata_fail_closed() -> None:
