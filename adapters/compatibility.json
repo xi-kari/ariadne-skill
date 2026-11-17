@@ -6,24 +6,8 @@
   "windows_install_mode": "copy",
   "agent_skills_spec_url": "https://agentskills.io/specification",
   "installer_evidence_url": "https://github.com/vercel-labs/skills",
-  "router_only_degradation": {
-    "installed_skills": [
-      "ariadne-skill"
-    ],
-    "missing_peer_status": "module_unavailable",
-    "semantic_equivalence": false
-  },
   "skills": [
-    "ariadne-skill",
-    "ariadne-framing",
-    "ariadne-evidence",
-    "ariadne-scale",
-    "ariadne-mechanism",
-    "ariadne-human",
-    "ariadne-dynamics",
-    "ariadne-forecast",
-    "ariadne-choice",
-    "ariadne-audit"
+    "ariadne-skill"
   ],
   "hosts": [
     {
@@ -141,8 +125,8 @@
       "invocation": "/ariadne-skill",
       "evidence_url": "https://reasonix.io/docs/",
       "required_smoke_checks": [
-        "json-references",
-        "peer-routing",
+        "resource-loading",
+        "path-routing",
         "context-growth"
       ],
       "verification": {

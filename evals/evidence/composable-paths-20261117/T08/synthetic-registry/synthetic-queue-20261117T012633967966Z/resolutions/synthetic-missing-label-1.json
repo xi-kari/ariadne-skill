@@ -1,0 +1,16 @@
+{
+  "artifact_version": "1.0",
+  "artifact_type": "forecast_resolution",
+  "resolution_id": "synthetic-missing-label-1",
+  "observed_at": "2026-11-17T01:26:34Z",
+  "sources": [],
+  "actual_result": null,
+  "status": "not_evaluable",
+  "reason": "合成测试的登记后检查：截止时间仍在未来，尚未提供任何截止结果标签；sources 为空，因为没有结果来源。原登记 expression 为 unknown。此记录只陈述本轮标签缺失，不是现实队列观察，也不是最终结果判定。",
+  "baseline_comparison": "合成测试基线仍冻结为 80；因 actual_result 为 null，差值、绝对误差和阈值比较均不可评价，不能填 0 或沿用假设 80 作为结果。",
+  "response_observations": "本轮只执行本地文件登记与缺失标签追加，无现实干预，也无虚构结果标签生成。",
+  "next_step": "本轮演示在验证本次追加及原件完整性后结束。若用户以后提供明确的合成截止标签，手动调用 resolve 并使用新的 resolution_id 追加；unknown 仍不能计为预测命中。不承诺后台监控或自动复查。",
+  "forecast_id": "synthetic-queue-20261117T012633967966Z",
+  "registered_artifact_sha256": "8b2bea46d0291feedc3b9eacb69c2f3f37d8447ab4c863e5049cc429cfd8e10e",
+  "resolved_at": "2026-11-17T01:26:34.932317Z"
+}

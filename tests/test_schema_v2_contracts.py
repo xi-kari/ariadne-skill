@@ -388,7 +388,7 @@ def test_mechanism_candidates_declare_a_temporal_route() -> None:
 
 def test_human_variable_cards_carry_low_tier_routes_and_new_source() -> None:
     cards = json.loads(
-        (ROOT / "skills" / "ariadne-human" / "references" / "human-variable-cards.json").read_text(encoding="utf-8")
+        (ROOT / "skills" / "ariadne-skill" / "references" / "library" / "human-variable-cards.json").read_text(encoding="utf-8")
     )
     assert cards["source_sha256"] == "6ef2e508474d4ac1ad07d7e4e068955342c405b5f680afcfc40d68cca3d0149c"
     for card in cards["human_variables"]:
@@ -401,13 +401,13 @@ def test_human_variable_cards_carry_low_tier_routes_and_new_source() -> None:
 
 
 def test_domain_atlas_covers_all_thirty_two_domains() -> None:
-    atlas = (ROOT / "skills" / "ariadne-framing" / "references" / "domain-atlas.md").read_text(encoding="utf-8")
+    atlas = (ROOT / "skills" / "ariadne-skill" / "references" / "library" / "domain-atlas.md").read_text(encoding="utf-8")
     for index in range(1, 33):
         assert f"### D.{index:02d} " in atlas
 
 
 def test_formal_propositions_are_owned_by_scale() -> None:
-    text = (ROOT / "skills" / "ariadne-scale" / "references" / "representation-and-closure.md").read_text(
+    text = (ROOT / "skills" / "ariadne-skill" / "references" / "library" / "representation-and-closure.md").read_text(
         encoding="utf-8"
     )
     for code in ("F1", "F2", "F3", "F4", "F5", "F6"):

@@ -37,6 +37,7 @@ RUNTIME_TAG_ATTRIBUTES = {
     "video": {"poster", "src"},
 }
 SHARED_SITE_ASSETS = {"readme-hero.svg", "lattice-kernel-map.svg"}
+SITE_URL_PREFIX = "/ariadne-skill/"
 CSS_REFERENCE = re.compile(r"(?:@import\s+(?:url\(\s*)?|url\(\s*)([^)\s'\"]+|['\"][^'\"]+['\"])", re.IGNORECASE)
 SCRIPT_REFERENCE = re.compile(r"(?:import\s*(?:\(\s*)?|from\s+)[\"']([^\"']+)[\"']")
 FRONTMATTER_BLOCK = re.compile(r"\A---\n.*?\n---\n?", re.DOTALL)
@@ -45,24 +46,22 @@ FRONTMATTER_BLOCK = re.compile(r"\A---\n.*?\n---\n?", re.DOTALL)
 # regression cannot hollow a reference into a heading-only shell while CI stays
 # green. Raising method text is always allowed; shrinking below a floor fails.
 REFERENCE_MARKDOWN_BYTE_FLOORS = {
-    "skills/ariadne-skill/references/lattice-kernel.md": 5800,
-    "skills/ariadne-skill/references/routing.md": 4100,
-    "skills/ariadne-skill/references/clustering.md": 7300,
-    "skills/ariadne-skill/references/method-record.md": 10400,
-    "skills/ariadne-skill/references/l1-record-template.md": 1900,
-    "skills/ariadne-framing/references/object-contract.md": 6700,
-    "skills/ariadne-evidence/references/evidence-contracts.md": 12900,
-    "skills/ariadne-scale/references/scale-transformations.md": 12500,
-    "skills/ariadne-mechanism/references/mechanism-contracts.md": 11200,
-    "skills/ariadne-mechanism/references/record-fields.md": 1400,
-    "skills/ariadne-dynamics/references/record-fields.md": 1400,
-    "skills/ariadne-human/references/record-fields.md": 1400,
-    "skills/ariadne-human/references/human-domain.md": 23300,
-    "skills/ariadne-dynamics/references/dynamic-derivation.md": 11400,
-    "skills/ariadne-forecast/references/forecast-contract.md": 10200,
-    "skills/ariadne-choice/references/choice-and-authorization.md": 12700,
-    "skills/ariadne-audit/references/gates-core.md": 13300,
-    "skills/ariadne-audit/references/governance-lifecycle.md": 10000,
+    "skills/ariadne-skill/references/legacy/lattice-kernel.md": 5800,
+    "skills/ariadne-skill/references/legacy/routing.md": 4100,
+    "skills/ariadne-skill/references/legacy/clustering.md": 7300,
+    "skills/ariadne-skill/references/legacy/method-record.md": 10400,
+    "skills/ariadne-skill/references/legacy/l1-record-template.md": 1900,
+    "skills/ariadne-skill/references/library/object-contract.md": 6700,
+    "skills/ariadne-skill/references/library/evidence-contracts.md": 12900,
+    "skills/ariadne-skill/references/library/scale-transformations.md": 12500,
+    "skills/ariadne-skill/references/library/mechanism-contracts.md": 11200,
+    "skills/ariadne-skill/references/legacy/record-fields.md": 1400,
+    "skills/ariadne-skill/references/library/human-domain.md": 23300,
+    "skills/ariadne-skill/references/library/dynamic-derivation.md": 11400,
+    "skills/ariadne-skill/references/library/forecast-contract.md": 10200,
+    "skills/ariadne-skill/references/library/choice-and-authorization.md": 12700,
+    "skills/ariadne-skill/references/library/gates-core.md": 13300,
+    "skills/ariadne-skill/references/library/governance-lifecycle.md": 10000,
 }
 SKILL_BODY_MIN_BYTES = 3000
 SKILL_BODY_MIN_H2_SECTIONS = 3
@@ -267,28 +266,51 @@ def _validate_reference(
     if local is None:
         return []
     path_part, fragment = local
-    candidate = source if not path_part else source.parent / path_part
+    source_relative = source.relative_to(root)
+    site_source = bool(source_relative.parts and source_relative.parts[0] == "site")
+    project_root_url = site_source and path_part.startswith(SITE_URL_PREFIX)
+    if path_part.startswith("/") and not project_root_url:
+        return [_issue("path-escape", root, source, raw_target)]
+    if project_root_url:
+        site_relative = path_part[len(SITE_URL_PREFIX):]
+        if site_relative.startswith("/") or "\\" in site_relative or any(
+            part in {".", ".."} for part in site_relative.split("/")
+        ):
+            return [_issue("path-escape", root, source, raw_target)]
+        candidate = root / "site" / (site_relative or "index.html")
+    else:
+        candidate = source if not path_part else source.parent / path_part
     resolved = candidate.resolve()
     try:
-        resolved.relative_to(root)
+        resolved.relative_to(root / "site" if project_root_url else root)
     except ValueError:
         return [_issue("path-escape", root, source, raw_target)]
     if not resolved.exists():
-        source_relative = source.relative_to(root)
-        generated_name = Path(path_part).name
+        asset_path = Path(site_relative if project_root_url else path_part)
+        generated_name = asset_path.name
         if (
-            source_relative.parts
-            and source_relative.parts[0] == "site"
-            and Path(path_part).parent.as_posix() == "assets"
+            site_source
+            and asset_path.parent.as_posix() == "assets"
             and generated_name in SHARED_SITE_ASSETS
         ):
             shared_source = (root / "docs" / "assets" / generated_name).resolve()
+            try:
+                shared_source.relative_to(root)
+            except ValueError:
+                return [_issue("path-escape", root, source, raw_target)]
             if shared_source.exists():
                 resolved = shared_source
     if not resolved.exists():
         return [_issue("missing-target", root, source, raw_target)]
     if not resolved.is_file():
         return [_issue("directory-target", root, source, raw_target)]
+    if not fragment:
+        try:
+            with resolved.open("rb") as attachment:
+                attachment.read(1)
+        except OSError:
+            return [_issue("unreadable-target", root, source, raw_target)]
+        return []
     if resolved not in decoded:
         try:
             decoded[resolved] = resolved.read_text(encoding="utf-8")
@@ -420,7 +442,7 @@ def _load_card_file(root: Path, relative: str) -> tuple[Path, object | None, lis
 
 def _validate_human_variable_cards(root: Path) -> list[str]:
     path, data, errors = _load_card_file(
-        root, "skills/ariadne-human/references/human-variable-cards.json"
+        root, "skills/ariadne-skill/references/library/human-variable-cards.json"
     )
     if data is None or not isinstance(data, dict):
         return errors
@@ -454,7 +476,7 @@ def _validate_human_variable_cards(root: Path) -> list[str]:
 
 def _validate_application_contracts(root: Path) -> list[str]:
     path, data, errors = _load_card_file(
-        root, "skills/ariadne-audit/references/application-contracts.json"
+        root, "skills/ariadne-skill/references/library/application-contracts.json"
     )
     if data is None or not isinstance(data, dict):
         return errors
@@ -481,7 +503,7 @@ def _validate_application_contracts(root: Path) -> list[str]:
 
 def _validate_state_prototypes(root: Path) -> list[str]:
     path, data, errors = _load_card_file(
-        root, "skills/ariadne-human/references/state-prototypes.json"
+        root, "skills/ariadne-skill/references/library/state-prototypes.json"
     )
     if data is None or not isinstance(data, dict):
         return errors
@@ -538,7 +560,7 @@ def _validate_state_prototypes(root: Path) -> list[str]:
 
 def _validate_intervention_levels(root: Path) -> list[str]:
     path, data, errors = _load_card_file(
-        root, "skills/ariadne-choice/references/intervention-levels.json"
+        root, "skills/ariadne-skill/references/library/intervention-levels.json"
     )
     if data is None or not isinstance(data, dict):
         return errors

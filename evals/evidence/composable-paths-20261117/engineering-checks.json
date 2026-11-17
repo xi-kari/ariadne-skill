@@ -1,0 +1,119 @@
+{
+  "run_at": "2026-11-17T01:33:23.541425+00:00",
+  "scope": "Final local development checks; not external-host smoke tests",
+  "checks": [
+    {
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.094,
+      "stdout": "........................................................................ [ 26%]\n........................................................................ [ 52%]\n........................................................................ [ 79%]\n........................................................                 [100%]\n272 passed in 5.83s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.42,
+      "stdout": "........................................................................ [ 26%]\n........................................................................ [ 52%]\n........................................................................ [ 79%]\n........................................................                 [100%]\n272 passed in 5.14s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/validate_repo.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.93,
+      "stdout": "Ariadne repository validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/validate_evals.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.165,
+      "stdout": "Ariadne frozen evaluation validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/validate_adapters.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.056,
+      "stdout": "Ariadne adapter validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/build_bundle.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.195,
+      "stdout": "single-file bundle is in sync with architecture.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/build_site.py",
+        "--output",
+        "build/site"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.039,
+      "stdout": "Built Ariadne site: /workspace/ariadne-skill/build/site\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.027,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 - Use **Ariadne** as the external name.
 - Use **`ariadne-skill`** as the repository name and primary installable skill name.
 - Use **Lattice Kernel** as the methodology-kernel name.
-- Keep every installable module in the `ariadne-*` namespace.
+- Keep `skills/ariadne-skill` as the single installable entry. Internal paths are composable resources, not separate skills.
 - Do not depend on, mirror, or modify other skill repositories; the foreign product names banned from installable files are pinned in `FOREIGN_PRODUCT_NAMES` in `scripts/validate_repo.py`.
 
 ## Source and scope
@@ -33,7 +33,7 @@ Do not review, approve, reject, polish, or forward-test modules one by one while
 ## Local and publishing boundaries
 
 - Test local skills only by explicit name or direct repository path.
-- Do not install this development clone into a global skills directory on the maintainer's workstation; end users installing via the README OP-01/OP-02 commands are out of scope for this rule.
+- Do not install this development clone into a global skills directory on the maintainer's workstation; end users installing via the README commands are out of scope for this rule.
 - Host smoke verification runs in a disposable container, VM, or throwaway project-scoped directory that never enters any global skills path; record outcomes in the `verification` fields of adapters/compatibility.json.
 - Do not publish partial implementation branches or partial skill releases.
 - Keep skill files free of iteration narration, development diary text, and version-by-version explanations.
@@ -51,8 +51,9 @@ CONTRIBUTING.md holds the full workflow, including the site build and `git diff 
 
 These machine-checked invariants break most otherwise-reasonable edits:
 
-- **Stage-table sync.** The execution stage tables in `README.md` and `docs/superpowers/plans/2026-08-03-ariadne-skill-implementation.md` must stay identical, word for word.
 - **Release seal.** `RELEASE` is `complete`: the seal was lifted in the reviewed change of 2026-08-26 that shipped the full external-review remediation and tag `v1.0.0`. The stage must stay `complete`; any further release-state change (re-sealing included) requires another reviewed change that updates the assertion in `scripts/validate_repo.py` itself, and no edit to README, plan, or docs alone can change release state.
-- **Pinned reference manifest.** The file set under each `skills/*/references/` directory must exactly match `EXPECTED_REFERENCES` in `scripts/validate_repo.py`; adding or removing a reference file requires updating the validator in the same reviewed change.
+- **Package manifest.** `skills/ariadne-skill/architecture.json` declares the entry, shared guidance, paths, library, selective contracts, legacy resources, and bundle order. Every package resource must exist, be safe to read, and be reachable from the entry; internal route counts are not fixed.
+- **Legacy compatibility.** Method Record 2.0/2.1 remains optional. Its two schema copies stay byte-identical; `skills/ariadne-skill/scripts/validate_record.py` is the sole semantic implementation, imported by repository wrappers. Legacy records do not define ordinary current outputs.
+- **Bundle scope.** Rebuild `dist/ariadne-bundle.md` after changes to any manifest-selected guidance. Links to libraries, schemas, and tools must not imply they were embedded, read, or executed.
 - **File hygiene.** Every text file must be UTF-8 with LF line endings, no trailing whitespace, and a final newline.
 - **Banned markers.** Unfinished-work markers and foreign product names — pinned as `FORBIDDEN_MARKERS` and `FOREIGN_PRODUCT_NAMES` in `scripts/validate_repo.py` — fail validation in any installable file.

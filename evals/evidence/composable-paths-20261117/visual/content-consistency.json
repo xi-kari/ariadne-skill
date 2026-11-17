@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "install_command_same": true,
+    "old_release_identity_same": true,
+    "pr_status_same": true,
+    "current_source_same": true,
+    "synthetic_case_labeled": true,
+    "csv_same": true,
+    "docs_exist": true,
+    "paths_exist": true
+  },
+  "content_link_findings": [
+    "path-escape: site/404.html: /ariadne-skill/",
+    "path-escape: site/404.html: /ariadne-skill/assets/favicon.svg",
+    "path-escape: site/404.html: /ariadne-skill/assets/site.css"
+  ],
+  "external_destinations": "Compared with repository paths only; no external accounts opened.",
+  "note": "404 project-root mapping is under engineering-agent validator update; browser routing already passed."
+}

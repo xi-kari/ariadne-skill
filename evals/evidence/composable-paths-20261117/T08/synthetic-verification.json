@@ -1,0 +1,28 @@
+{
+  "material_label": "合成测试材料的真实文件与流程核验；不认证任何现实队列事实。",
+  "forecast_id": "synthetic-queue-20261117T012633967966Z",
+  "cutoff": "2026-11-17T01:26:33Z",
+  "registered_at": "2026-11-17T01:26:34.403094Z",
+  "window": {
+    "starts_at": "2026-11-17T02:26:33Z",
+    "deadline": "2026-11-18T01:26:33Z",
+    "error_tolerance": "合成测试使用截止时的精确整数计数，阈值无容差；恰好 100 不属于超过 100。缺少对应时点标签时保留缺失，不作插值。"
+  },
+  "original_artifact": "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json",
+  "original_sha256_before_append": "8b2bea46d0291feedc3b9eacb69c2f3f37d8447ab4c863e5049cc429cfd8e10e",
+  "original_sha256_after_append": "8b2bea46d0291feedc3b9eacb69c2f3f37d8447ab4c863e5049cc429cfd8e10e",
+  "original_bytes_unchanged": true,
+  "registration_receipt_hash_matches": true,
+  "resolution_receipt_hash_matches": true,
+  "resolution_binds_original_hash": true,
+  "resolution_artifact": "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/resolutions/synthetic-missing-label-1.json",
+  "resolution_count": 1,
+  "expression": "unknown",
+  "resolution_status": "not_evaluable",
+  "actual_result": null,
+  "outcome_source_count": 0,
+  "tool_validation_count": 5,
+  "future_window_verified": true,
+  "immediate_review_completed_at": "2026-11-17T01:26:34.932317Z",
+  "background_monitoring": false
+}

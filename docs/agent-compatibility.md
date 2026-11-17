@@ -1,39 +1,32 @@
-# Ariadne 多智能体兼容与安装
+# Ariadne 宿主兼容与安装
 
-Ariadne 以仓库中的十个 `skills/ariadne-*/` 目录为唯一方法论权威源。宿主目录只是安装目标；本仓库不保存 `.agent/skills`、`.agents/skills`、`.claude/skills`、`.codex/skills`、`.cursor/skills`、`.gemini/skills`、`.github/skills` 或 `.reasonix/skills` 镜像。
+Ariadne 只安装一个入口：`skills/ariadne-skill/`。这个目录包含主 `SKILL.md`、六条可组合的内部路径、共享方法引用、按需合同库和辅助工具。内部路径不是另外的 Skill；完整安装无需发现或调度其他 `ariadne-*` 入口。
 
-兼容等级描述 Skill 格式、发现位置与调用入口，不代表已在每个宿主、版本和运行表面完成真实任务验证。默认安装完整十 Skill；只安装总路由是有记录的降级模式。
+宿主目录只是安装目标。本仓库不保存 `.agent/skills`、`.agents/skills`、`.claude/skills`、`.codex/skills`、`.cursor/skills`、`.gemini/skills`、`.github/skills` 或 `.reasonix/skills` 镜像。兼容等级说明格式、发现位置与调用入口，实际验证状态另行记录。
 
-## 默认完整包
+## 完整单包安装
 
-完整包包括：
-
-1. `ariadne-skill`
-2. `ariadne-framing`
-3. `ariadne-evidence`
-4. `ariadne-scale`
-5. `ariadne-mechanism`
-6. `ariadne-human`
-7. `ariadne-dynamics`
-8. `ariadne-forecast`
-9. `ariadne-choice`
-10. `ariadne-audit`
-
-项目级安装把 Skill 复制到当前项目的宿主发现目录，适合审查和试用：
+项目级安装适合审查和试用。只选择自己使用的宿主即可，例如 Codex：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill '*' --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
+npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex
 ```
 
-全局安装让同一用户在多个项目中发现 Skill：
+同时为多个原生宿主安装同一个完整包：
 
 ```powershell
-npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
+npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
 ```
 
-Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装命令前应检查来源；运行后应使用目标宿主的 Skill 列表或发现界面确认十个名称全部出现。
+用户希望在多个项目中复用时，可以选择全局安装：
 
-仓库已有稳定 tag `v2.0.0`（record schema 2.0，2026-10 理论来源），可用 `xi-kari/ariadne-skill@v2.0.0` 固定安装。当前方法文件采用 schema 2.1 与理论 v2（2026-11-16），本次改造不发布新 tag。以上不带版本的 GitHub 简写跟随默认分支 `main`，属于滚动安装；需要复现当前方法文件时，应固定实际审阅的提交。理论版本、记录 schema 与软件 tag 分别登记。
+```powershell
+npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy --global -a codex
+```
+
+示例使用 `--copy`，Windows 不需要符号链接权限。安装前检查来源；安装后在目标宿主的 Skill 列表或发现界面确认 `ariadne-skill`，并核对包内的路径、引用和工具文件已经复制。只复制 `SKILL.md` 不是完整安装。
+
+不带版本的命令跟随默认分支 `main`。需要复现时，将仓库目标固定到实际审阅的提交。已有稳定 tag `v2.0.0` 是旧十入口版本（2026-10 理论来源、Method Record 2.0），其安装结构与本页的单入口版本不同，应查看对应 tag 的文档。理论版本、记录格式和软件 tag 分别登记；此架构更新本身不创建 tag 或 Release。
 
 ## 六宿主矩阵
 
@@ -46,67 +39,54 @@ Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装
 | GitHub Copilot | `native-agent-skills` | `.github/skills`、`.claude/skills`、`.agents/skills` | `~/.copilot/skills`、`~/.agents/skills` | 云端、CLI 与编辑器表面不承诺统一斜杠入口；用自然语言点名并核对所在表面的发现结果 | [GitHub Copilot Skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills) |
 | Reasonix | `directory-compatible-subset` | `.reasonix/skills`、`.agents/skills`、`.agent/skills`、`.claude/skills` | `~/.reasonix/skills`、`~/.agents/skills`、`~/.claude/skills` | 候选显式入口为 `/ariadne-skill`；必须先用 `/skills` 核对发现并完成下列专项冒烟 | [Reasonix Docs](https://reasonix.io/docs/) |
 
-`SKILL.md` 的基础合同来自 [Agent Skills 开放规范](https://agentskills.io/specification)，安装参数与目标适配器来自 [`npx skills`](https://github.com/vercel-labs/skills)。宿主官方文档与安装工具的兼容别名可能不同；以宿主实际发现结果为准，出现差异时先降低兼容声明，不改写 Ariadne 核心合同迎合单一宿主。
+`SKILL.md` 的基础合同来自 [Agent Skills 开放规范](https://agentskills.io/specification)，安装参数与目标适配器来自 [`npx skills`](https://github.com/vercel-labs/skills)。宿主官方文档与安装工具的兼容别名可能不同，以目标宿主实际发现结果为准。格式兼容不证明任务表现或渐进加载已经实测。
+
+## 内部资源加载
+
+唯一入口按当前任务组合 `paths/understand.md`、`discover.md`、`project.md`、`decide.md`、`create.md`、`review.md`。这些路径共享 `references/` 中的方法，并按需读取 `references/library/` 的专业合同。宿主可以直接通过文件工具完成这些读取，不需要跨 Skill 派发。
+
+缺少被选中的内部文件意味着安装或资源访问不完整。应报告具体路径和受影响工作，继续完成独立可完成的部分，并修复安装后再承接依赖；不能宣称缺失内容已经读取或执行。包内 `references/legacy/` 和 Method Record 2.0/2.1 校验工具用于显式旧记录互操作，不要求普通任务填写旧二十字段记录。
 
 ## Reasonix 兼容上限
 
-Reasonix 只标记为 `directory-compatible-subset`，且不出现在默认安装命令中：手动把 `skills/ariadne-*` 目录复制进 `.reasonix/skills`（或其全局对应目录），用 `/skills` 核对发现，然后完成本节的专项冒烟。`npx skills` 能复制到 `.reasonix/skills`，以及目录中出现 `SKILL.md`，都不能证明 Reasonix 与原生 Agent Skills 在渐进加载、引用解析、peer 路由或上下文控制上语义等价。
+Reasonix 保持 `directory-compatible-subset`，不进入默认 `npx skills` 命令。手动把完整的 `skills/ariadne-skill/` 目录复制到 `.reasonix/skills/ariadne-skill/` 或对应全局位置，再用 `/skills` 核对入口。目录中存在 `SKILL.md` 不能证明渐进读取、内部路径组合或工具运行与原生宿主等价。
 
 用于真实任务前至少完成三项专项冒烟：
 
-- `json-references`：按 Skill 指令读取 `source-navigation.json`、`human-variable-cards.json` 与 `application-contracts.json`，并确认 Markdown reference 可达。
-- `peer-routing`：总路由能点名九个 peer；peer 缺失时记录 `module_unavailable`，不得假装已经运行。
-- `context-growth`：多模块连续与集群运行时检查渐进加载和上下文增长，不把目录可见性误写成隐式路由等价。
+- `resource-loading`：能从入口读取包资源清单、共享引用及实际选用的 Markdown/JSON 合同；路径在已安装包内解析。
+- `path-routing`：能依据任务选择和组合内部路径；文件不可用时准确说明缺口，不伪造已经运行的步骤。
+- `context-growth`：连续工作按需读取相关资源，检查上下文增长和恢复能力，不将整个合同库作为统一前置。
 
-冒烟失败时保留失败证据，并把该宿主降级为未验证；不要复制或改写十个权威 Skill 来隐藏差异。
+失败时保留实际证据并维持未验证状态，不复制或改写另一套方法内容来隐藏宿主差异。
 
-## Router-only 降级
+## 从旧多入口版本迁移
 
-只有在宿主或任务明确限制安装数量时，才只安装总路由：
+此前安装的九个独立入口可能仍被宿主发现。先确认它们确实来自旧 Ariadne 安装，再使用相应宿主或安装器的卸载方式处理；也可以将这些目录归档到宿主扫描范围之外。旧名称为 `ariadne-framing`、`ariadne-evidence`、`ariadne-scale`、`ariadne-mechanism`、`ariadne-human`、`ariadne-dynamics`、`ariadne-forecast`、`ariadne-choice`、`ariadne-audit`。
 
-```powershell
-npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
-```
+新的完整包仍名为 `ariadne-skill`，更新时替换完整目录，并再次核对内部资源。历史任务材料与旧 Method Record 保留在原任务目录，不能当作安装清理对象。开发或验证过程不自动删除用户的全局副本。
 
-这种安装不是完整 Ariadne。总路由仍可做边界化分流，但九个 peer 均可能不可用；每个未运行模块必须记录 `module_unavailable`，输出不能假装来自完整方法运行，也不能提高 `output_ceiling` 或改变 `authorization_effect: none`。
+## 本仓库的验证边界
 
-## 单 peer 安装
-
-安装器同样允许只装某一个执行模块，例如：
-
-```powershell
-npx skills add xi-kari/ariadne-skill --skill ariadne-evidence --copy -a codex -a claude-code -a gemini-cli -a cursor -a github-copilot
-```
-
-这是与 Router-only 方向相反的降级模式：当前模块在场，但它正文里点名的转交目标（总路由或其他 peer）可能不在本机。此模式的降级语义固定如下：
-
-- 转交目标 Skill 缺失时，在 `module_runs` 把该次转交记为 `not_run`，`reason` 写 `module_unavailable`。
-- 该转交目标负责的产出保持 `unknown`，当前记录维持或降低 `output_ceiling`，不得因缺件而升档。
-- 当前 Skill 不得代跑缺失 peer 的职责，也不得把未运行的模块表述为已运行；`authorization_effect: none` 不变。
-- 源文编号（如 Part 15、Appendix A）依赖总路由的 `source-navigation.json` 才能解析；单 peer 安装读不到时，把对应引用当作未解析记入 unknowns，不自行猜测其内容。
-
-## 本仓库的本地验证边界
-
-本机开发与评测继续只按显式 Skill 名或直接仓库路径运行，不把开发仓库安装进任何全局目录。仓库验证只检查清单、frontmatter、路径、证据 URL、Reasonix 冒烟合同和无镜像边界：
+开发与评测只按显式入口名或直接仓库路径运行，不把开发副本安装到全局目录。适配器验证检查清单、frontmatter、安装命令、宿主路径、证据 URL、冒烟合同和无镜像边界：
 
 ```powershell
 python -X utf8 -B scripts/validate_adapters.py
 ```
 
-该命令不启动六个外部宿主，也不产生 Release、发布或现实授权。
+该命令不启动外部宿主，也不产生发布或现实授权。工具结果只支持它实际检查的环节。
 
 ## 验证状态与通用冒烟合同
 
-兼容等级描述的是格式与入口，不是已完成的宿主实测。`adapters/compatibility.json` 为每个宿主维护 `verification` 字段：`unverified`（默认，六宿主当前状态）或 `smoke-passed`（附 `last_verified` 日期）。把任何宿主升级为 `smoke-passed` 前，在一次性容器或虚拟机中完成三项通用冒烟——`json-references`（JSON 引用可读取）、`peer-routing`（路由能点名 peer 并拿到降级记录）、`context-growth`（渐进加载不整包注入）——并把命令输出存入 `evals/` 的宿主冒烟记录（模板：`evals/host-smoke-template.md`）。行为场景可用 `python scripts/run_evals.py --host-command "claude -p {prompt}"` 一类命令批量执行并生成评分底稿。
+`adapters/compatibility.json` 为每个宿主维护 `verification`：当前六宿主均为 `unverified`，`last_verified` 为 null。只有在一次性容器、虚拟机或项目级测试目录中实际完成 `resource-loading`、`path-routing`、`context-growth`，保存命令和观察证据后，才可记录为 `smoke-passed` 并填写日期。模板在 `evals/host-smoke-template.md`。
 
-## 宿主扩展文件
+行为场景可通过 `scripts/run_evals.py` 发送给已配置的宿主并保留转录，评分另行进行。目录发现、格式校验、示例通过和模型实际表现是不同的证据，不互相替代。
 
-仅 Codex 使用宿主扩展文件 `agents/openai.yaml`（控制展示名、短描述与隐式调用开关）；其余宿主按 Agent Skills 规范零配置发现 `SKILL.md`，不需要任何扩展文件。本套 Skill 是纯方法论，不声明工具依赖，因此也不需要 Claude Code 的 `allowed-tools` 一类字段。
+## 宿主扩展与工具
+
+`agents/openai.yaml` 提供 Codex 的展示名、短描述和调用策略。其他宿主使用其支持的 Agent Skills 发现方式；本包不附带另一套宿主镜像。Python 辅助工具由实际任务按需调用，运行依赖和可完成范围以工具说明为准；没有运行工具时不声称已经通过工具校验。
 
 ## 单文件捆绑版
 
-没有 Agent Skills 目录的宿主（网页版 ChatGPT/Gemini/Claude、自定义 GPT、纯系统提示场景）使用 `dist/ariadne-bundle.md`：由 `scripts/build_bundle.py` 按依赖序拼接十个 SKILL.md 正文生成，附 Working method、Generative workflow、方法记录字段清单与人工校验清单；CI 以 `--check` 校验它与 skills/ 永不漂移。该形态没有渐进加载与 peer 派发，整份文本一次性进入上下文（大小随内容变化，以生成文件为准），适合长上下文模型或手工节选。
+没有 Agent Skills 目录的宿主可以使用 `dist/ariadne-bundle.md`。它由 `scripts/build_bundle.py` 按架构清单的 bundle 顺序生成，包含主入口、共享方法和六条内部路径；CI 用 `--check` 检查同步。
 
-## Router-only 交付物
-
-Router-only 安装下的交付物是固定的：请求分类、候选对象与边界初判、证据截止点、模块缺席清单与安装指引，加上一份 peer 职责全部 `not_run`/`module_unavailable`、上限保持 `description_only` 的降级根记录。主 SKILL.md 的 Stop and downgrade 一节是该形态的权威定义。
+深层合同库、旧记录资料和 Python 工具不因此自动进入单文件。需要未内嵌资源时，应从可访问的原包读取或说明实际缺口；不能假装已读取合同、保存登记或执行脚本。单文件内容一次性进入上下文，大小以生成文件为准，宿主还需核对可用上下文容量。

@@ -1,0 +1,177 @@
+{
+  "material_label": "合成测试材料：所有队列内容均为虚构；本文件记录真实本地命令及结果，不是现实队列证据。",
+  "clock_source": "datetime.now(timezone.utc)，读取执行环境的真实 UTC 时钟；未使用固定示例日期或回填日期。",
+  "created_at": "2026-11-17T01:26:33Z",
+  "forecast_id": "synthetic-queue-20261117T012633967966Z",
+  "events": [
+    {
+      "operation": "write_and_read_back",
+      "path": "/workspace/ariadne-behavior-runs/T08/synthetic-draft.json",
+      "sha256": "c1e4732900b55f27b4cb35c09061374d22cd9fabccfeb64787bd8164885ed8e1"
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "validate",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-draft.json"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:33Z",
+      "completed_at": "2026-11-17T01:26:34Z",
+      "exit_code": 0,
+      "stdout": "{\"validated\": \"/workspace/ariadne-behavior-runs/T08/synthetic-draft.json\", \"artifact_type\": \"forecast_draft\", \"reality_certified\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "register",
+        "--input",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-draft.json",
+        "--registry",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-registry"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:34Z",
+      "completed_at": "2026-11-17T01:26:34Z",
+      "exit_code": 0,
+      "stdout": "{\"artifact_path\": \"/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json\", \"artifact_type\": \"forecast_registration\", \"sha256\": \"8b2bea46d0291feedc3b9eacb69c2f3f37d8447ab4c863e5049cc429cfd8e10e\", \"readback_verified\": true, \"background_monitoring\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "save_raw_tool_receipt",
+      "material_label": "合成测试流程的真实工具回执，原样保存。",
+      "path": "/workspace/ariadne-behavior-runs/T08/synthetic-registration-receipt.json",
+      "sha256": "a209d3bc20d610f6e30b48a66d57d8b6df1ea188d5c241d6d036ac4e06d4612b"
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "validate",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:34Z",
+      "completed_at": "2026-11-17T01:26:34Z",
+      "exit_code": 0,
+      "stdout": "{\"validated\": \"/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json\", \"artifact_type\": \"forecast_registration\", \"reality_certified\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "write_and_read_back",
+      "path": "/workspace/ariadne-behavior-runs/T08/synthetic-observation.json",
+      "sha256": "c01f674e4a4a8d509be5ba864e0f897de89ac58c2f85d40bc68f1dac2fa8b42e"
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "validate",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-observation.json"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:34Z",
+      "completed_at": "2026-11-17T01:26:34Z",
+      "exit_code": 0,
+      "stdout": "{\"validated\": \"/workspace/ariadne-behavior-runs/T08/synthetic-observation.json\", \"artifact_type\": \"resolution_draft\", \"reality_certified\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "resolve",
+        "--id",
+        "synthetic-queue-20261117T012633967966Z",
+        "--input",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-observation.json",
+        "--registry",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-registry"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:34Z",
+      "completed_at": "2026-11-17T01:26:34Z",
+      "exit_code": 0,
+      "stdout": "{\"artifact_path\": \"/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/resolutions/synthetic-missing-label-1.json\", \"artifact_type\": \"forecast_resolution\", \"sha256\": \"4ff2eb9d982e829487bac0ef6cf8b1501679df9c68b7b78bb3007fd111ec43e8\", \"readback_verified\": true, \"background_monitoring\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "save_raw_tool_receipt",
+      "material_label": "合成测试流程的真实工具回执，原样保存。",
+      "path": "/workspace/ariadne-behavior-runs/T08/synthetic-resolution-receipt.json",
+      "sha256": "48117ee42bf94545f81ed8d98ed8c69efdec393c58dd49b97b24c5e4a33ffe86"
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "validate",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/resolutions/synthetic-missing-label-1.json"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:34Z",
+      "completed_at": "2026-11-17T01:26:35Z",
+      "exit_code": 0,
+      "stdout": "{\"validated\": \"/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/resolutions/synthetic-missing-label-1.json\", \"artifact_type\": \"forecast_resolution\", \"reality_certified\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "forecast_tool",
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "/workspace/ariadne-behavior-runs/skill-final/scripts/forecast.py",
+        "validate",
+        "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json"
+      ],
+      "cwd": "/workspace/ariadne-behavior-runs/T08",
+      "started_at": "2026-11-17T01:26:35Z",
+      "completed_at": "2026-11-17T01:26:35Z",
+      "exit_code": 0,
+      "stdout": "{\"validated\": \"/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json\", \"artifact_type\": \"forecast_registration\", \"reality_certified\": false}\n",
+      "stderr": ""
+    },
+    {
+      "operation": "write_and_read_back",
+      "path": "/workspace/ariadne-behavior-runs/T08/synthetic-verification.json",
+      "sha256": "5f7df180c51d353c41f1f4b8613871334fabdea1cf38cf4f8d984e3663f291d9"
+    }
+  ],
+  "completed_at": "2026-11-17T01:26:35Z",
+  "completion": {
+    "material_label": "合成测试材料的真实文件与流程核验；不认证任何现实队列事实。",
+    "forecast_id": "synthetic-queue-20261117T012633967966Z",
+    "cutoff": "2026-11-17T01:26:33Z",
+    "registered_at": "2026-11-17T01:26:34.403094Z",
+    "window": {
+      "starts_at": "2026-11-17T02:26:33Z",
+      "deadline": "2026-11-18T01:26:33Z",
+      "error_tolerance": "合成测试使用截止时的精确整数计数，阈值无容差；恰好 100 不属于超过 100。缺少对应时点标签时保留缺失，不作插值。"
+    },
+    "original_artifact": "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/forecast.json",
+    "original_sha256_before_append": "8b2bea46d0291feedc3b9eacb69c2f3f37d8447ab4c863e5049cc429cfd8e10e",
+    "original_sha256_after_append": "8b2bea46d0291feedc3b9eacb69c2f3f37d8447ab4c863e5049cc429cfd8e10e",
+    "original_bytes_unchanged": true,
+    "registration_receipt_hash_matches": true,
+    "resolution_receipt_hash_matches": true,
+    "resolution_binds_original_hash": true,
+    "resolution_artifact": "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/resolutions/synthetic-missing-label-1.json",
+    "resolution_count": 1,
+    "expression": "unknown",
+    "resolution_status": "not_evaluable",
+    "actual_result": null,
+    "outcome_source_count": 0,
+    "tool_validation_count": 5,
+    "future_window_verified": true,
+    "immediate_review_completed_at": "2026-11-17T01:26:34.932317Z",
+    "background_monitoring": false
+  }
+}

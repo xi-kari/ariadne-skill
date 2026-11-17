@@ -1,0 +1,148 @@
+{
+  "format_version": "1.0",
+  "identity": {
+    "name": "Ariadne",
+    "kernel": "Lattice Kernel",
+    "installable_skill": "ariadne-skill"
+  },
+  "entry": "SKILL.md",
+  "source": "references/library/source-navigation.json",
+  "routes": [
+    {
+      "id": "understand",
+      "name": "理解与解释",
+      "path": "paths/understand.md",
+      "result_types": [
+        "concept_answer",
+        "interpretation",
+        "formal_result",
+        "empirical_explanation"
+      ]
+    },
+    {
+      "id": "discover",
+      "name": "批判与发现",
+      "path": "paths/discover.md",
+      "result_types": [
+        "new_question",
+        "counterexample",
+        "mechanism_candidate",
+        "design_candidate"
+      ]
+    },
+    {
+      "id": "project",
+      "name": "推演与前瞻",
+      "path": "paths/project.md",
+      "result_types": [
+        "conditional_path",
+        "registered_forecast"
+      ]
+    },
+    {
+      "id": "decide",
+      "name": "有限选择",
+      "path": "paths/decide.md",
+      "result_types": [
+        "option_comparison",
+        "analytic_recommendation",
+        "institutional_draft"
+      ]
+    },
+    {
+      "id": "create",
+      "name": "构建与修复",
+      "path": "paths/create.md",
+      "result_types": [
+        "document",
+        "code",
+        "prototype",
+        "repaired_artifact"
+      ]
+    },
+    {
+      "id": "review",
+      "name": "复核与接续",
+      "path": "paths/review.md",
+      "result_types": [
+        "challenge",
+        "revised_judgment",
+        "corrected_artifact",
+        "retirement_decision"
+      ]
+    }
+  ],
+  "shared": [
+    "references/kernel.md",
+    "references/composition.md",
+    "references/responsibility.md",
+    "references/continuity.md"
+  ],
+  "library": [
+    "references/library/application-contracts.json",
+    "references/library/choice-and-authorization.md",
+    "references/library/domain-atlas.md",
+    "references/library/dynamic-derivation.md",
+    "references/library/evidence-contracts.md",
+    "references/library/forecast-contract.md",
+    "references/library/gates-core.md",
+    "references/library/governance-lifecycle.md",
+    "references/library/human-domain.md",
+    "references/library/human-variable-cards.json",
+    "references/library/intervention-levels.json",
+    "references/library/mechanism-contracts.md",
+    "references/library/object-contract.md",
+    "references/library/representation-and-closure.md",
+    "references/library/scale-transformations.md",
+    "references/library/source-navigation.json",
+    "references/library/state-prototypes.json"
+  ],
+  "contracts": [
+    {
+      "id": "forecast",
+      "guide": "contracts/forecast.md",
+      "schema": "contracts/forecast.schema.json",
+      "tool": "scripts/forecast.py",
+      "required_when": "publishing a formal conditional forecast before its outcome"
+    }
+  ],
+  "legacy": [
+    "references/legacy/clustering.md",
+    "references/legacy/generative-workflow.md",
+    "references/legacy/l1-record-template.md",
+    "references/legacy/lattice-kernel.md",
+    "references/legacy/method-record.md",
+    "references/legacy/methodology.md",
+    "references/legacy/record-fields.md",
+    "references/legacy/routing.md",
+    "references/method-record.schema.json",
+    "scripts/validate_record.py",
+    "references/legacy/choice-and-authorization.md",
+    "references/legacy/dynamic-derivation.md",
+    "references/legacy/evidence-contracts.md",
+    "references/legacy/forecast-contract.md",
+    "references/legacy/gates-core.md",
+    "references/legacy/governance-lifecycle.md",
+    "references/legacy/human-domain.md",
+    "references/legacy/mechanism-contracts.md",
+    "references/legacy/object-contract.md",
+    "references/legacy/representation-and-closure.md",
+    "references/legacy/scale-transformations.md"
+  ],
+  "bundle": [
+    "SKILL.md",
+    "references/kernel.md",
+    "references/composition.md",
+    "references/responsibility.md",
+    "references/continuity.md",
+    "paths/understand.md",
+    "paths/discover.md",
+    "paths/project.md",
+    "paths/decide.md",
+    "paths/create.md",
+    "paths/review.md",
+    "contracts/forecast.md"
+  ],
+  "composition_rule": "Routes are starting recipes, not a closed classification or mandatory pipeline. Add only operations needed by the question, preserve each output responsibility, and return a complete result.",
+  "record_rule": "Use prose or requested artifacts by default. Persist useful state for continuity; formal forecasts require a pre-outcome registration. Legacy Method Record rules apply only to explicitly selected legacy records."
+}

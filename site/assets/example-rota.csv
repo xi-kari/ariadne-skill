@@ -1,0 +1,9 @@
+example_status,night,original,candidate,revised_after_C_unavailable_on_night_3
+synthetic_teaching_example,1,A,A,A
+synthetic_teaching_example,2,B,B,B
+synthetic_teaching_example,3,A,C,D
+synthetic_teaching_example,4,B,D,C
+synthetic_teaching_example,5,C,A,A
+synthetic_teaching_example,6,D,B,B
+synthetic_teaching_example,7,C,C,C
+synthetic_teaching_example,8,D,D,D

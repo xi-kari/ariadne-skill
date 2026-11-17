@@ -1,0 +1,118 @@
+{
+  "scope": "Final local development checks before commit; not external-host smoke tests",
+  "checks": [
+    {
+      "command": [
+        "/tmp/ariadne-review-310/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 5.99,
+      "stdout": "........................................................................ [ 26%]\n...................F.................................................... [ 53%]\n........................................................................ [ 80%]\n.....................................................                    [100%]\n=================================== FAILURES ===================================\n__________ test_repository_validator_executes_all_extension_contracts __________\n\n    def test_repository_validator_executes_all_extension_contracts() -> None:\n        module = importlib.import_module(\"scripts.validate_repo\")\n        assert hasattr(module, \"validate_extension_contracts\")\n>       assert module.validate_extension_contracts() == []\nE       AssertionError: assert ['missing-fin...angement.pdf'] == []\nE         \nE         Left contains 5 more items, first extra item: 'missing-final-newline: evals/evidence/composable-paths-20261117/T04/execution.json: file must end with LF'\nE         Use -v to get more diff\n\ntests/test_extension_contracts.py:335: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_extension_contracts.py::test_repository_validator_executes_all_extension_contracts\n1 failed, 268 passed in 5.75s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 5.029,
+      "stdout": "........................................................................ [ 26%]\n...................F.................................................... [ 53%]\n........................................................................ [ 80%]\n.....................................................                    [100%]\n=================================== FAILURES ===================================\n__________ test_repository_validator_executes_all_extension_contracts __________\n\n    def test_repository_validator_executes_all_extension_contracts() -> None:\n        module = importlib.import_module(\"scripts.validate_repo\")\n        assert hasattr(module, \"validate_extension_contracts\")\n>       assert module.validate_extension_contracts() == []\nE       AssertionError: assert ['missing-fin...angement.pdf'] == []\nE         \nE         Left contains 5 more items, first extra item: 'missing-final-newline: evals/evidence/composable-paths-20261117/T04/execution.json: file must end with LF'\nE         Use -v to get more diff\n\ntests/test_extension_contracts.py:335: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_extension_contracts.py::test_repository_validator_executes_all_extension_contracts\n1 failed, 268 passed in 4.72s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/validate_repo.py"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 1.784,
+      "stdout": "Ariadne repository validation failed:\n- missing-final-newline: evals/evidence/composable-paths-20261117/T04/execution.json: file must end with LF\n- missing-final-newline: evals/evidence/composable-paths-20261117/T05/execution.json: file must end with LF\n- missing-final-newline: evals/evidence/composable-paths-20261117/T07/execution.json: file must end with LF\n- unreadable-target: evals/evidence/composable-paths-20261117/REPORT.md: T05/one_page_arrangement.pdf\n- unreadable-target: evals/evidence/composable-paths-20261117/T05/response.md: ./one_page_arrangement.pdf\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/validate_evals.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.187,
+      "stdout": "Ariadne frozen evaluation validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/validate_adapters.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.044,
+      "stdout": "Ariadne adapter validation passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/build_bundle.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.206,
+      "stdout": "single-file bundle is in sync with architecture.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ariadne-inspection-venv/bin/python",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/build_site.py",
+        "--output",
+        "build/site"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.034,
+      "stdout": "Built Ariadne site: /workspace/ariadne-skill/build/site\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.028,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

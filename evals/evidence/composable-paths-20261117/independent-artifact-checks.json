@@ -1,0 +1,34 @@
+{
+  "rota.csv.initial": {
+    "person_days": {
+      "A": 3,
+      "B": 3
+    },
+    "coverage": [
+      1,
+      1,
+      2,
+      1,
+      1
+    ]
+  },
+  "rota.csv": {
+    "person_days": {
+      "A": 3,
+      "B": 3
+    },
+    "coverage": [
+      1,
+      1,
+      2,
+      1,
+      1
+    ]
+  },
+  "T06": {
+    "normal_empty_missing_day_no_mutation_and_sentinel": "passed"
+  },
+  "T02_T09": {
+    "counterexample_and_intersections": "passed"
+  }
+}

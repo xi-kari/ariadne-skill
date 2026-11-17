@@ -1,0 +1,81 @@
+{
+  "prefix": "/ariadne-skill/",
+  "checks": {
+    "404_1440": {
+      "scroll_width": 1440,
+      "width": 1440,
+      "responses": [
+        {
+          "url": "http://127.0.0.1:8766/ariadne-skill/missing/deep/page",
+          "status": 404
+        },
+        {
+          "url": "http://127.0.0.1:8766/ariadne-skill/assets/site.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:8766/ariadne-skill/assets/favicon.svg",
+          "status": 200
+        }
+      ],
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif",
+      "return_home": true
+    },
+    "404_320": {
+      "scroll_width": 320,
+      "width": 320,
+      "responses": [
+        {
+          "url": "http://127.0.0.1:8766/ariadne-skill/missing/deep/page",
+          "status": 404
+        },
+        {
+          "url": "http://127.0.0.1:8766/ariadne-skill/assets/site.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:8766/ariadne-skill/assets/favicon.svg",
+          "status": 200
+        }
+      ],
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif",
+      "return_home": true
+    },
+    "readme-hero.svg": {
+      "loaded": true
+    },
+    "lattice-kernel-map.svg": {
+      "loaded": true
+    },
+    "og-cover.svg": {
+      "loaded": true
+    },
+    "favicon.svg": {
+      "loaded": true
+    },
+    "table_keyboard_js_True": {
+      "before": 0,
+      "after": 40,
+      "scrolls": true,
+      "outline": "rgb(237, 172, 153) solid 3px"
+    },
+    "command_keyboard_js_True": {
+      "before": 0,
+      "after": 40,
+      "scrolls": true,
+      "outline": "rgb(237, 172, 153) solid 3px"
+    },
+    "table_keyboard_js_False": {
+      "before": 0,
+      "after": 40,
+      "scrolls": true,
+      "outline": "rgb(237, 172, 153) solid 3px"
+    },
+    "command_keyboard_js_False": {
+      "before": 0,
+      "after": 40,
+      "scrolls": true,
+      "outline": "rgb(237, 172, 153) solid 3px"
+    }
+  }
+}

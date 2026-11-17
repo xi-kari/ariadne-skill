@@ -1,22 +1,17 @@
-"""Validate one Ariadne Method Record file against the shipped schema and semantics.
+"""Validate optional legacy Ariadne Method Record 2.0/2.1 files.
 
-Ships inside the ariadne-skill package so any host with a Python runtime can run:
+These schemas remain available for existing machine records and explicit
+interoperability. Current Ariadne paths do not require this record format.
+This file is the single implementation used by installed and repository tools.
 
-    python scripts/validate_record.py <record.yaml> [--parent <record.yaml> ...]
+Usage: python scripts/validate_record.py <record.yaml> [--parent <record.yaml> ...]
+JSON uses the standard library; YAML needs PyYAML. Structural checking uses
+jsonschema when available and reports a limited subset otherwise. The strict
+programmatic interface requires exact parent context; the CLI reports omitted
+parent-dependent checks separately. No validator result establishes evidence,
+legitimacy, or authorization.
 
-- Structural validation uses the bundled JSON schema (jsonschema when installed,
-  a built-in structural subset otherwise, and the mode used is always reported).
-- Semantic validation mirrors the repository validator: lineage arithmetic,
-  ceiling algebra, raise-basis novelty, module-run and payload pairing,
-  supported-claim resolution, proposition-level dependency limits, transform
-  kind/status pairing, mechanism uniqueness, event sources, forecast links and
-  chronology, inquiry and design record identities, choice options and analytic recommendation, audit gate
-  order, and the IG6 strong-judgment binding. Non-root records need --parent context for the
-  parent-dependent checks; without it those checks are reported as skipped.
-- Records may be YAML (needs PyYAML) or JSON (standard library only).
-
-Exit code 0 means every requested check passed; 1 means findings; 2 means the
-record could not be read at all.
+Exit codes: 0 checks passed; 1 findings; 2 unreadable input.
 """
 from __future__ import annotations
 
@@ -26,6 +21,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Iterable
 
 SCHEMA_PATH = Path(__file__).resolve().parents[1] / "references" / "method-record.schema.json"
 RECORD_ID = re.compile(r"^ariadne:[A-Za-z0-9._:-]+$")
@@ -35,15 +31,18 @@ RFC3339_DATETIME = re.compile(
     r"(?P<fraction>\.\d+)?(?P<zone>[Zz]|[+-](?:[01]\d|2[0-3]):[0-5]\d)$"
 )
 CEILING_RANK = {"description_only": 0, "diagnostic_only": 1, "requirements_only": 2}
-TYPED_MODULES = {
-    "ariadne-human",
-    "ariadne-dynamics",
-    "ariadne-mechanism",
-    "ariadne-forecast",
-    "ariadne-choice",
-    "ariadne-audit",
-}
-
+METHOD_RECORD_EXAMPLE = re.compile(
+    r"<!--\s*method-record-example:start\s*-->\s*"
+    r"```yaml\s*(.*?)```\s*"
+    r"<!--\s*method-record-example:end\s*-->",
+    re.DOTALL,
+)
+METHOD_RECORD_LINEAGE_EXAMPLE = re.compile(
+    r"<!--\s*method-record-lineage-example:start\s*-->\s*"
+    r"```yaml\s*(.*?)```\s*"
+    r"<!--\s*method-record-lineage-example:end\s*-->",
+    re.DOTALL,
+)
 
 def load_record(path: Path):
     text = path.read_text(encoding="utf-8")
@@ -57,22 +56,6 @@ def load_record(path: Path):
             "or supply the record as .json"
         )
     return yaml.safe_load(text)
-
-
-def schema_errors(record: dict, schema: dict) -> tuple[list[str], str]:
-    try:
-        import jsonschema
-    except ModuleNotFoundError:
-        return _structural_subset_errors(record, schema), "structural-subset (jsonschema not installed)"
-    checker = jsonschema.FormatChecker()
-    checker.checks("date-time")(_is_rfc3339_datetime)
-    validator = jsonschema.Draft202012Validator(schema, format_checker=checker)
-    found = [
-        f"schema: {'/'.join(str(part) for part in error.absolute_path) or '<root>'}: {error.message}"
-        for error in validator.iter_errors(record)
-    ]
-    return found, "full JSON Schema (jsonschema)"
-
 
 def _is_rfc3339_datetime(instance: object) -> bool:
     """Match the repository's timezone, calendar, and leap-second checks."""
@@ -102,12 +85,35 @@ def _is_rfc3339_datetime(instance: object) -> bool:
             return False
     return True
 
-
 def _parse_forecast_time(value: str) -> datetime:
     """Normalize RFC 3339 UTC designators for Python 3.10 compatibility."""
     normalized = value[:-1] + "+00:00" if value.endswith(("Z", "z")) else value
     return datetime.fromisoformat(normalized)
 
+def method_record_validator(schema: dict | None = None):
+    """Build the complete validator for an explicitly selected legacy record."""
+    import jsonschema
+
+    if schema is None:
+        schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    checker = jsonschema.FormatChecker()
+    checker.checks("date-time")(_is_rfc3339_datetime)
+    return jsonschema.Draft202012Validator(schema, format_checker=checker)
+
+def validate_method_record(record: dict, schema: dict | None = None) -> None:
+    method_record_validator(schema).validate(record)
+
+def schema_errors(record: dict, schema: dict) -> tuple[list[str], str]:
+    try:
+        import jsonschema
+    except ModuleNotFoundError:
+        return _structural_subset_errors(record, schema), "structural-subset (jsonschema not installed)"
+    validator = method_record_validator(schema)
+    found = [
+        f"schema: {'/'.join(str(part) for part in error.absolute_path) or '<root>'}: {error.message}"
+        for error in validator.iter_errors(record)
+    ]
+    return found, "full JSON Schema (jsonschema)"
 
 def _structural_subset_errors(record: dict, schema: dict) -> list[str]:
     errors: list[str] = []
@@ -137,55 +143,98 @@ def _structural_subset_errors(record: dict, schema: dict) -> list[str]:
         errors.append("schema-subset: record_version must be an integer")
     return errors
 
+def extract_marked_method_records(text: str) -> list[dict]:
+    import yaml
 
-def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str], list[str]]:
+    records: list[dict] = []
+    for block in METHOD_RECORD_EXAMPLE.findall(text):
+        record = yaml.safe_load(block)
+        if not isinstance(record, dict):
+            raise ValueError("marked Method Record example is not a mapping")
+        records.append(record)
+    return records
+
+def extract_marked_method_record_lineages(text: str) -> list[list[dict]]:
+    import yaml
+
+    lineages: list[list[dict]] = []
+    for block in METHOD_RECORD_LINEAGE_EXAMPLE.findall(text):
+        records = yaml.safe_load(block)
+        if (
+            not isinstance(records, list)
+            or len(records) < 2
+            or not all(isinstance(record, dict) for record in records)
+        ):
+            raise ValueError("marked Method Record lineage example is not a list of record mappings")
+        lineages.append(records)
+    return lineages
+
+def _plain_ref(item: dict) -> dict:
+    return {"record_id": item["record_id"], "record_version": item["record_version"]}
+
+def validate_record_semantics(
+    record: dict,
+    parent_records: Iterable[dict] | None = None,
+) -> list[str]:
     errors: list[str] = []
-    skipped: list[str] = []
-    ref = {"record_id": record["record_id"], "record_version": record["record_version"]}
+    current_ref = {
+        "record_id": record["record_id"],
+        "record_version": record["record_version"],
+    }
+    current_key = (record["record_id"], record["record_version"])
     lineage = record["lineage_kind"]
-    parent_refs = record["parent_records"]
-    registry = None
-    if parents is not None:
-        registry = {(p["record_id"], p["record_version"]): p for p in parents}
-        for item in parent_refs:
-            if (item["record_id"], item["record_version"]) not in registry:
-                errors.append(f"unresolved parent record: {item['record_id']}@{item['record_version']}")
+    parents = record["parent_records"]
+    parent_keys = [(item["record_id"], item["record_version"]) for item in parents]
+
+    parent_registry: dict[tuple[str, int], dict] | None = None
+    if parent_records is not None:
+        parent_registry = {
+            (item["record_id"], item["record_version"]): item for item in parent_records
+        }
+        for parent_id, parent_version in parent_keys:
+            if (parent_id, parent_version) not in parent_registry:
+                errors.append(f"unresolved parent record: {parent_id}@{parent_version}")
     elif lineage != "root":
-        skipped.append("parent-dependent checks (raise novelty, input-ceiling match): supply --parent")
+        errors.append("non-root semantic validation requires exact parent-record context")
 
     if lineage == "root":
-        if record["parent_record_id"] is not None or parent_refs:
+        if record["parent_record_id"] is not None or parents:
             errors.append("root record must have no parents")
         if record["record_version"] != 1:
             errors.append("root record_version must equal one")
         if record["output_ceiling"] != "description_only":
             errors.append("root record output_ceiling must be description_only")
     elif lineage == "linear":
-        if len(parent_refs) != 1 or record["parent_record_id"] != parent_refs[0]["record_id"]:
+        if len(parents) != 1 or record["parent_record_id"] != parents[0]["record_id"]:
             errors.append("linear parent_record_id must identify the sole parent_records entry")
-        if len(parent_refs) == 1 and record["record_version"] != parent_refs[0]["record_version"] + 1:
+        if len(parents) == 1 and record["record_version"] != parents[0]["record_version"] + 1:
             errors.append("linear record_version must equal sole parent version plus one")
     elif lineage == "merge":
-        ordered = sorted(parent_refs, key=lambda p: (p["record_id"], p["record_version"]))
-        if parent_refs != ordered:
+        expected = sorted(parents, key=lambda item: (item["record_id"], item["record_version"]))
+        if parents != expected:
             errors.append("merge parent_records must be sorted by record_id then version")
-        if len(parent_refs) < 2:
-            errors.append("merge needs at least two parents")
-        elif record["record_version"] != max(p["record_version"] for p in parent_refs) + 1:
+        if parents and record["record_version"] != max(
+            item["record_version"] for item in parents
+        ) + 1:
             errors.append("merge record_version must equal highest parent version plus one")
 
-    for item in parent_refs:
-        if item["record_version"] >= record["record_version"]:
-            errors.append(f"parent version must precede current record: {item['record_id']}")
-        if item["record_id"] == record["record_id"] and item["record_version"] == record["record_version"]:
-            errors.append("record may not identify itself as a parent")
+    if current_key in parent_keys:
+        errors.append("record may not identify itself as a parent")
+    for parent_id, parent_version in parent_keys:
+        if parent_version >= record["record_version"]:
+            errors.append(f"parent version must precede current record: {parent_id}@{parent_version}")
 
     transition = record["ceiling_transition"]
-    operation, inputs, result = transition["operation"], transition["inputs"], transition["result"]
+    operation = transition["operation"]
+    inputs = transition["inputs"]
+    result = transition["result"]
     if result != record["output_ceiling"]:
         errors.append("ceiling transition result must equal output_ceiling")
-    if operation == "lower" and not str(transition.get("reason", "")).strip():
-        errors.append("lower ceiling transition requires a non-empty reason")
+    if operation == "lower":
+        lower_reason = transition.get("reason")
+        if not isinstance(lower_reason, str) or not lower_reason.strip():
+            errors.append("lower ceiling transition requires a non-empty reason")
+
     if lineage == "root" and operation != "root":
         errors.append("root lineage requires root ceiling operation")
     if lineage == "linear" and operation == "meet":
@@ -193,14 +242,18 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
     if lineage == "merge" and operation != "meet":
         errors.append("merge lineage requires meet ceiling operation")
     if lineage != "root":
-        plain = [{"record_id": i["record_id"], "record_version": i["record_version"]} for i in inputs]
-        if plain != parent_refs:
+        input_refs = [_plain_ref(item) for item in inputs]
+        if input_refs != parents:
             errors.append("ceiling inputs must match parent_records in canonical order")
-        if registry is not None:
+        if parent_registry is not None:
             for item in inputs:
-                parent = registry.get((item["record_id"], item["record_version"]))
+                key = (item["record_id"], item["record_version"])
+                parent = parent_registry.get(key)
                 if parent is not None and item["ceiling"] != parent["output_ceiling"]:
-                    errors.append(f"ceiling input does not match resolved parent output_ceiling: {item['record_id']}")
+                    errors.append(
+                        "ceiling input does not match resolved parent output_ceiling: "
+                        f"{key[0]}@{key[1]}"
+                    )
 
     if operation == "preserve" and inputs and result != inputs[0]["ceiling"]:
         errors.append("preserve must keep the input ceiling")
@@ -209,28 +262,50 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
     elif operation == "raise" and inputs:
         if CEILING_RANK[result] <= CEILING_RANK[inputs[0]["ceiling"]]:
             errors.append("raise must produce a strictly higher ceiling")
-        sources = set(record["evidence_cutoff"]["included_source_ids"])
-        rules = {entry["rule_id"]: entry for entry in record.get("rule_registry", [])}
-        seen = set()
+        source_ids = set(record["evidence_cutoff"]["included_source_ids"])
+        rule_entries = {
+            entry["rule_id"]: entry for entry in record.get("rule_registry", [])
+        }
+        rule_ids = set(rule_entries)
+        parent_source_ids: set[str] = set()
+        parent_rule_ids: set[str] = set()
+        if parent_registry is None:
+            errors.append("ceiling raise requires exact parent-record context")
+        else:
+            for key in parent_keys:
+                parent = parent_registry.get(key)
+                if parent is None:
+                    continue
+                parent_source_ids.update(parent["evidence_cutoff"]["included_source_ids"])
+                parent_rule_ids.update(
+                    entry["rule_id"] for entry in parent.get("rule_registry", [])
+                )
+        seen_basis: set[tuple[str, str]] = set()
         for basis in transition["basis"]:
-            key = (basis["basis_kind"], basis["basis_id"])
-            if key in seen:
+            basis_key = (basis["basis_kind"], basis["basis_id"])
+            if basis_key in seen_basis:
                 errors.append(f"ceiling raise basis is duplicated: {basis['basis_id']}")
-            seen.add(key)
-            pool = sources if basis["basis_kind"] == "external_evidence" else set(rules)
-            if basis["basis_id"] not in pool:
+            seen_basis.add(basis_key)
+            if basis["basis_kind"] == "external_evidence":
+                registry = source_ids
+                parent_registry_ids = parent_source_ids
+            else:
+                registry = rule_ids
+                parent_registry_ids = parent_rule_ids
+            if basis["basis_id"] not in registry:
                 errors.append(f"ceiling raise basis is not admitted: {basis['basis_id']}")
-            elif basis["basis_kind"] == "protocol_fulfillment" and rules[basis["basis_id"]]["rule_type"] != "protocol":
-                errors.append(f"ceiling protocol basis must reference a protocol rule: {basis['basis_id']}")
-            elif registry is not None:
-                parent_pool: set[str] = set()
-                for parent in registry.values():
-                    parent_pool.update(parent["evidence_cutoff"]["included_source_ids"])
-                    parent_pool.update(entry["rule_id"] for entry in parent.get("rule_registry", []))
-                if basis["basis_id"] in parent_pool:
-                    errors.append(f"ceiling raise basis is not new relative to parents: {basis['basis_id']}")
-        if registry is None:
-            skipped.append("raise novelty against parents: supply --parent")
+            elif (
+                basis["basis_kind"] == "protocol_fulfillment"
+                and rule_entries[basis["basis_id"]]["rule_type"] != "protocol"
+            ):
+                errors.append(
+                    "ceiling protocol basis must reference a protocol rule: "
+                    f"{basis['basis_id']}"
+                )
+            elif parent_registry is not None and basis["basis_id"] in parent_registry_ids:
+                errors.append(
+                    f"ceiling raise basis is not new relative to parents: {basis['basis_id']}"
+                )
     elif operation == "meet" and inputs:
         expected = min(inputs, key=lambda item: CEILING_RANK[item["ceiling"]])["ceiling"]
         if result != expected:
@@ -240,58 +315,76 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
     if len(claim_ids) != len(set(claim_ids)):
         errors.append("claim IDs must be unique")
     errors.extend(methodology_extension_errors(record))
-    admitted = set(record["evidence_cutoff"]["included_source_ids"])
-    rule_ids = [entry["rule_id"] for entry in record.get("rule_registry", [])]
-    if len(rule_ids) != len(set(rule_ids)):
+    rule_ids_list = [entry["rule_id"] for entry in record.get("rule_registry", [])]
+    if len(rule_ids_list) != len(set(rule_ids_list)):
         errors.append("rule registry IDs must be unique")
-    declared_rules = set(rule_ids)
-    earlier: dict[str, str] = {}
+    admitted_sources = set(record["evidence_cutoff"]["included_source_ids"])
+    declared_rules = set(rule_ids_list)
+    seen_claims: dict[str, str] = {}
     for claim in record["claim_ledger"]:
         if claim["status"] == "supported":
             for support_id in claim["support_ids"]:
-                if support_id not in admitted and support_id not in earlier:
-                    errors.append(f"supported claim {claim['claim_id']} has unresolved support_id: {support_id}")
-                elif support_id in earlier and earlier[support_id] not in {"observed", "supported"}:
-                    errors.append(f"supported claim {claim['claim_id']} references non-supporting claim: {support_id}")
+                if support_id not in admitted_sources and support_id not in seen_claims:
+                    errors.append(
+                        f"supported claim {claim['claim_id']} has unresolved support_id: {support_id}"
+                    )
+                elif (
+                    support_id in seen_claims
+                    and seen_claims[support_id] not in {"observed", "supported"}
+                ):
+                    errors.append(
+                        f"supported claim {claim['claim_id']} references non-supporting claim: {support_id}"
+                    )
             for rule_id in claim["support_rule_ids"]:
                 if rule_id not in declared_rules:
-                    errors.append(f"supported claim {claim['claim_id']} has unresolved support_rule_id: {rule_id}")
-        earlier[claim["claim_id"]] = claim["status"]
+                    errors.append(
+                        f"supported claim {claim['claim_id']} has unresolved support_rule_id: {rule_id}"
+                    )
+        seen_claims[claim["claim_id"]] = claim["status"]
     errors.extend(claim_dependency_errors(record))
-    scope = record["scale_scope"]
-    if (scope["transform_kind"] == "none") != (scope["transform_status"] == "not_needed"):
-        errors.append("scale_scope transform_kind none must pair exactly with transform_status not_needed")
+    errors.extend(scale_scope_errors(record))
 
-    completed = [run for run in record["module_runs"] if run["status"] == "completed"]
-    if not any(run["output_record"] == ref for run in completed):
+    completed_runs = [run for run in record["module_runs"] if run["status"] == "completed"]
+    if not any(run["output_record"] == current_ref for run in completed_runs):
         errors.append("a completed module run must identify the current output record")
-    for run in completed:
-        if run["output_record"] != ref:
+    for run in completed_runs:
+        if run["output_record"] != current_ref:
             errors.append(f"completed {run['module']} run must output the current record")
         if lineage == "root" and run["input_records"]:
             errors.append("root module inputs must be empty")
-        elif lineage == "linear" and run["input_records"] != parent_refs:
+        elif lineage == "linear" and run["input_records"] != parents:
             errors.append("linear module inputs must equal the sole parent record")
-        elif lineage == "merge" and run["input_records"] != parent_refs:
-            errors.append("merge completed module inputs must equal all canonical parent records")
     if lineage == "merge":
-        audits = [run for run in completed if run["module"] == "ariadne-audit"]
-        if not audits:
-            errors.append("merge requires a completed ariadne-audit run over all canonical parents")
+        if any(run["input_records"] != parents for run in completed_runs):
+            errors.append("merge completed module inputs must equal all canonical parent records")
+        audit_runs = [run for run in completed_runs if run["module"] == "ariadne-audit"]
+        if not audit_runs or any(run["input_records"] != parents for run in audit_runs):
+            errors.append("merge audit inputs must equal all canonical parent records")
 
     payload_modules = [payload["module"] for payload in record["module_payloads"]]
     if len(payload_modules) != len(set(payload_modules)):
         errors.append("module_payloads may contain at most one payload per module")
-    completed_modules = {run["module"] for run in completed}
-    for module in sorted((completed_modules & TYPED_MODULES) - set(payload_modules)):
-        errors.append(f"completed {module} run requires its typed module payload")
+    typed_modules = {
+        "ariadne-human",
+        "ariadne-dynamics",
+        "ariadne-mechanism",
+        "ariadne-forecast",
+        "ariadne-choice",
+        "ariadne-audit",
+    }
+    completed_modules = {run["module"] for run in completed_runs}
+    for module in sorted(completed_modules & typed_modules):
+        if module not in payload_modules:
+            errors.append(f"completed {module} run requires its typed module payload")
     for module in sorted(set(payload_modules) - completed_modules):
         errors.append(f"{module} payload requires a matching completed module run")
 
-    payloads = {payload["module"]: payload["payload"] for payload in record["module_payloads"]}
-    mechanism = payloads.get("ariadne-mechanism")
-    if mechanism is not None:
-        candidates = mechanism["candidates"]
+    payload_by_module = {
+        payload["module"]: payload["payload"] for payload in record["module_payloads"]
+    }
+    mechanism_payload = payload_by_module.get("ariadne-mechanism")
+    if mechanism_payload is not None:
+        candidates = mechanism_payload["candidates"]
         candidate_ids = [candidate["mechanism_id"] for candidate in candidates]
         if len(candidate_ids) != len(set(candidate_ids)):
             errors.append("mechanism candidate IDs must be unique")
@@ -307,24 +400,32 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
         if len(signatures) != len(set(signatures)):
             errors.append("mechanism candidates must be distinguishable on their required tests")
 
-    dynamics = payloads.get("ariadne-dynamics")
-    if dynamics is not None:
-        for event in dynamics["events"]:
+    dynamics_payload = payload_by_module.get("ariadne-dynamics")
+    if dynamics_payload is not None:
+        for event in dynamics_payload["events"]:
             for source_id in event["source_ids"]:
-                if source_id not in admitted:
+                if source_id not in admitted_sources:
                     errors.append(
                         f"dynamics event {event['event_id']} has unresolved source_id: {source_id}"
                     )
 
-    forecast = payloads.get("ariadne-forecast")
-    if forecast is not None:
-        preregistration = forecast["preregistration"]
-        linked = preregistration if preregistration is not None else forecast["post_hoc_reconstruction"]
+    forecast_payload = payload_by_module.get("ariadne-forecast")
+    if forecast_payload is not None:
+        preregistration = forecast_payload["preregistration"]
+        linked = (
+            preregistration
+            if preregistration is not None
+            else forecast_payload["post_hoc_reconstruction"]
+        )
         if linked is not None and (
             linked["record_id"] != record["record_id"]
             or linked["record_version"] != record["record_version"]
         ):
-            label = "forecast preregistration" if preregistration is not None else "forecast post-hoc reconstruction"
+            label = (
+                "forecast preregistration"
+                if forecast_payload["preregistration"] is not None
+                else "forecast post-hoc reconstruction"
+            )
             errors.append(f"{label} must link the current record_id and record_version")
         if preregistration is not None:
             try:
@@ -343,15 +444,35 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
                     "baseline <= cutoff <= start <= deadline < writeback"
                 )
 
-    choice = payloads.get("ariadne-choice")
-    if choice is not None:
-        errors.extend(choice_payload_errors(choice, record["output_ceiling"], record))
-    audit = payloads.get("ariadne-audit")
-    if audit is not None:
-        errors.extend(audit_payload_errors(audit, record["output_ceiling"], transition["operation"]))
+    choice_payload = payload_by_module.get("ariadne-choice")
+    if choice_payload is not None:
+        errors.extend(choice_payload_errors(choice_payload, record["output_ceiling"], record))
 
-    return errors, skipped
-
+    audit_payload = payload_by_module.get("ariadne-audit")
+    if audit_payload is not None:
+        errors.extend(strong_judgment_errors(audit_payload))
+        register = audit_payload["gate_register"]
+        any_gate_failed = False
+        for gate_ids, gate_results in (
+            (("IT1", "IT2", "IT3", "IT4"), register["transformations"]),
+            (("IG1", "IG2", "IG3", "IG4", "IG5", "IG6", "IG7"), register["main_gates"]),
+        ):
+            failed_gate: str | None = None
+            for gate_id in gate_ids:
+                status = gate_results[gate_id]["status"]
+                if failed_gate is not None and status != "not_run":
+                    errors.append(f"{gate_id} must be not_run after {failed_gate} failed")
+                if failed_gate is None and status == "failed":
+                    failed_gate = gate_id
+                    any_gate_failed = True
+        if any_gate_failed and operation == "raise":
+            errors.append("audit gate failure forbids ceiling raise")
+        if (
+            register["transformations"]["IT1"]["status"] == "failed"
+            or register["main_gates"]["IG1"]["status"] == "failed"
+        ) and record["output_ceiling"] != "description_only":
+            errors.append("IT1 or IG1 failure requires output_ceiling description_only")
+    return errors
 
 def methodology_extension_errors(record: dict) -> list[str]:
     """Check references and identity in optional inquiry and design records."""
@@ -372,8 +493,8 @@ def methodology_extension_errors(record: dict) -> list[str]:
         errors.append("design candidate IDs must be unique")
     return errors
 
-
 def claim_dependency_errors(record: dict) -> list[str]:
+    """Proposition-level downgrade: a claim inherits the limits of what it depends on."""
     errors: list[str] = []
     record_rank = CEILING_RANK[record["output_ceiling"]]
     earlier: dict[str, dict] = {}
@@ -385,28 +506,53 @@ def claim_dependency_errors(record: dict) -> list[str]:
         for dependency in claim.get("depends_on", []):
             parent = earlier.get(dependency)
             if parent is None:
-                errors.append(f"claim {claim_id} depends_on must name an earlier claim in this record: {dependency}")
+                errors.append(
+                    f"claim {claim_id} depends_on must name an earlier claim in this record: {dependency}"
+                )
                 continue
-            if claim["status"] == "supported" and parent["status"] in {"contradicted", "withdrawn", "retired"}:
-                errors.append(f"claim {claim_id} cannot stay supported on a {parent['status']} dependency: {dependency}")
+            if claim["status"] == "supported" and parent["status"] in {
+                "contradicted",
+                "withdrawn",
+                "retired",
+            }:
+                errors.append(
+                    f"claim {claim_id} cannot stay supported on a {parent['status']} dependency: {dependency}"
+                )
             parent_ceiling = parent.get("ceiling")
-            if own is not None and parent_ceiling is not None and CEILING_RANK[own] > CEILING_RANK[parent_ceiling]:
-                errors.append(f"claim {claim_id} ceiling exceeds the ceiling of its dependency {dependency}")
+            if (
+                own is not None
+                and parent_ceiling is not None
+                and CEILING_RANK[own] > CEILING_RANK[parent_ceiling]
+            ):
+                errors.append(
+                    f"claim {claim_id} ceiling exceeds the ceiling of its dependency {dependency}"
+                )
         earlier[claim_id] = claim
     return errors
 
+def scale_scope_errors(record: dict) -> list[str]:
+    scope = record["scale_scope"]
+    kind = scope["transform_kind"]
+    status = scope["transform_status"]
+    if (kind == "none") != (status == "not_needed"):
+        return ["scale_scope transform_kind none must pair exactly with transform_status not_needed"]
+    return []
 
 def choice_payload_errors(payload: dict, output_ceiling: str, record: dict | None = None) -> list[str]:
     errors: list[str] = []
     option_ids = [option["option_id"] for option in payload["options"]]
     if len(option_ids) != len(set(option_ids)):
         errors.append("choice option_id values must be unique")
-    if sum(option["kind"] == "no_action" for option in payload["options"]) != 1:
+    no_action = [option for option in payload["options"] if option["kind"] == "no_action"]
+    if len(no_action) != 1:
         errors.append("choice options must contain exactly one no_action option")
     recommendation = payload["analytic_recommendation"]
     if recommendation is not None:
         if recommendation["option_id"] not in option_ids:
-            errors.append(f"analytic recommendation must name a registered option_id: {recommendation['option_id']}")
+            errors.append(
+                "analytic recommendation must name a registered option_id: "
+                f"{recommendation['option_id']}"
+            )
         if output_ceiling != "requirements_only":
             errors.append("an analytic recommendation requires output_ceiling requirements_only")
         if record is not None:
@@ -421,45 +567,39 @@ def choice_payload_errors(payload: dict, output_ceiling: str, record: dict | Non
                     )
     return errors
 
-
-def audit_payload_errors(payload: dict, output_ceiling: str, operation: str) -> list[str]:
+def strong_judgment_errors(payload: dict) -> list[str]:
     errors: list[str] = []
-    register = payload["gate_register"]
-    any_failed = False
-    for gate_ids, results in (
-        (("IT1", "IT2", "IT3", "IT4"), register["transformations"]),
-        (("IG1", "IG2", "IG3", "IG4", "IG5", "IG6", "IG7"), register["main_gates"]),
-    ):
-        failed_gate = None
-        for gate_id in gate_ids:
-            status = results[gate_id]["status"]
-            if failed_gate is not None and status != "not_run":
-                errors.append(f"{gate_id} must be not_run after {failed_gate} failed")
-            if failed_gate is None and status == "failed":
-                failed_gate = gate_id
-                any_failed = True
-    if any_failed and operation == "raise":
-        errors.append("audit gate failure forbids ceiling raise")
-    if (
-        register["transformations"]["IT1"]["status"] == "failed"
-        or register["main_gates"]["IG1"]["status"] == "failed"
-    ) and output_ceiling != "description_only":
-        errors.append("IT1 or IG1 failure requires output_ceiling description_only")
-    ig6 = register["main_gates"]["IG6"]["status"]
+    ig6 = payload["gate_register"]["main_gates"]["IG6"]["status"]
     strong = payload["strong_judgment"]
     components = strong["components"]
     if ig6 == "passed":
         if strong["status"] != "triggered":
             errors.append("IG6 passed requires a triggered strong-judgment register")
-        failing = sorted(code for code, result in components.items() if result["status"] != "passed")
+        failing = [code for code, result in components.items() if result["status"] != "passed"]
         if failing:
-            errors.append("IG6 passed requires SJ1-SJ8 all passed; not passed: " + ", ".join(failing))
+            errors.append(
+                "IG6 passed requires SJ1-SJ8 all passed; not passed: " + ", ".join(sorted(failing))
+            )
     if ig6 == "not_applicable" and strong["status"] != "not_triggered":
         errors.append("IG6 not_applicable requires strong_judgment status not_triggered with a reason")
-    if strong["status"] == "not_triggered" and any(result["status"] != "not_applicable" for result in components.values()):
+    if strong["status"] == "not_triggered" and any(
+        result["status"] != "not_applicable" for result in components.values()
+    ):
         errors.append("an untriggered strong-judgment register must mark SJ1-SJ8 not_applicable")
     return errors
 
+def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str], list[str]]:
+    """Adapt the shared strict checks to the CLI's explicit partial-check mode."""
+    errors = validate_record_semantics(record, parents)
+    skipped: list[str] = []
+    if parents is None and record["lineage_kind"] != "root":
+        missing_context = {
+            "non-root semantic validation requires exact parent-record context",
+            "ceiling raise requires exact parent-record context",
+        }
+        errors = [error for error in errors if error not in missing_context]
+        skipped.append("parent-dependent checks (raise novelty, input-ceiling match): supply --parent")
+    return errors, skipped
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -501,7 +641,6 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     print("PASS: record satisfies the schema and semantic checks that ran")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

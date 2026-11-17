@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    "response.md",
+    "one_page_arrangement.md",
+    "one_page_arrangement.html",
+    "one_page_arrangement.pdf"
+  ],
+  "saved_and_read_back": [
+    "response.md",
+    "one_page_arrangement.md",
+    "one_page_arrangement.pdf"
+  ],
+  "coverage_checked": {
+    "half_days": 4,
+    "weekday_group": 3,
+    "night_shift_group": 3
+  },
+  "pdf_pages": 1,
+  "pdf_text_readback": "pdf_readback.txt",
+  "pdf_visual_inspection": "one_page_preview.png",
+  "pdf_generation": {
+    "first_attempt": "Chromium headless did not produce PDF; terminated its process",
+    "final": "build_pdf.py using ReportLab; pdfinfo reported one A4 page; PyMuPDF extracted text and rendered preview"
+  },
+  "real_schedule_published": false
+}

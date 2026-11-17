@@ -6,6 +6,8 @@ import json
 import shutil
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,6 +43,33 @@ def _copied_skills_sandbox(tmp_path: Path) -> Path:
 def test_missing_relative_target_is_rejected(tmp_path: Path) -> None:
     (tmp_path / "README.md").write_text("[missing](docs/missing.md)\n", encoding="utf-8")
     assert "missing-target" in _codes(tmp_path)
+
+
+def test_readable_binary_attachment_without_fragment_is_a_valid_link(tmp_path: Path) -> None:
+    (tmp_path / "report.pdf").write_bytes(b"%PDF-1.7\n%\xff\xfe\x00\n")
+    (tmp_path / "README.md").write_text("[Report](report.pdf)\n", encoding="utf-8")
+    assert _validator()(tmp_path) == []
+
+
+def test_binary_attachment_cannot_satisfy_a_text_anchor(tmp_path: Path) -> None:
+    (tmp_path / "report.pdf").write_bytes(b"%PDF-1.7\n%\xff\xfe\x00\n")
+    (tmp_path / "README.md").write_text("[Section](report.pdf#section)\n", encoding="utf-8")
+    assert "unreadable-target" in _codes(tmp_path)
+
+
+def test_unreadable_binary_attachment_is_rejected(tmp_path: Path, monkeypatch) -> None:
+    attachment = tmp_path / "report.pdf"
+    attachment.write_bytes(b"%PDF-1.7\n%\xff\xfe\x00\n")
+    (tmp_path / "README.md").write_text("[Report](report.pdf)\n", encoding="utf-8")
+    original_open = Path.open
+
+    def deny_attachment(path, *args, **kwargs):
+        if path == attachment:
+            raise PermissionError("attachment cannot be read")
+        return original_open(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "open", deny_attachment)
+    assert "unreadable-target" in _codes(tmp_path)
 
 
 def test_missing_explicit_anchor_is_rejected(tmp_path: Path) -> None:
@@ -158,6 +187,61 @@ def test_generated_site_asset_resolves_to_shared_source(tmp_path: Path) -> None:
     assert _validator()(tmp_path) == []
 
 
+def test_project_site_root_urls_resolve_at_any_page_depth(tmp_path: Path) -> None:
+    (tmp_path / "site/deep").mkdir(parents=True)
+    (tmp_path / "site/assets").mkdir()
+    (tmp_path / "docs/assets").mkdir(parents=True)
+    (tmp_path / "site/index.html").write_text('<h1 id="top">Ariadne</h1>\n', encoding="utf-8")
+    (tmp_path / "site/assets/site.css").write_text("body { color: black; }\n", encoding="utf-8")
+    (tmp_path / "docs/assets/lattice-kernel-map.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg"><title>Map</title></svg>\n', encoding="utf-8"
+    )
+    (tmp_path / "site/deep/404.html").write_text(
+        '<a href="/ariadne-skill/#top">Home</a>'
+        '<link rel="stylesheet" href="/ariadne-skill/assets/site.css">'
+        '<img src="/ariadne-skill/assets/lattice-kernel-map.svg" alt="Map">\n', encoding="utf-8"
+    )
+    assert _validator()(tmp_path) == []
+
+
+@pytest.mark.parametrize("url", [
+    "/other/index.html", "/ariadne-skill-other/index.html",
+    "/ariadne-skill/../README.md", "/ariadne-skill/%2e%2e/README.md",
+    "/ariadne-skill/assets/../../README.md", "/ariadne-skill/assets%5c..%5cREADME.md",
+])
+def test_project_site_mapping_rejects_other_roots_and_traversal(tmp_path: Path, url: str) -> None:
+    (tmp_path / "site").mkdir()
+    (tmp_path / "README.md").write_text("Private repository file.\n", encoding="utf-8")
+    (tmp_path / "site/404.html").write_text(f'<a href="{url}">Bad</a>\n', encoding="utf-8")
+    assert "path-escape" in _codes(tmp_path)
+
+
+def test_project_site_mapping_does_not_apply_to_repository_markdown(tmp_path: Path) -> None:
+    (tmp_path / "site").mkdir()
+    (tmp_path / "site/index.html").write_text("<h1>Ariadne</h1>\n", encoding="utf-8")
+    (tmp_path / "README.md").write_text("[Home](/ariadne-skill/)\n", encoding="utf-8")
+    assert "path-escape" in _codes(tmp_path)
+
+
+def test_site_absolute_filesystem_path_is_not_a_project_url(tmp_path: Path) -> None:
+    (tmp_path / "site").mkdir()
+    target = tmp_path / "site/index.html"
+    target.write_text("<h1>Ariadne</h1>\n", encoding="utf-8")
+    (tmp_path / "site/404.html").write_text(f'<a href="{target}">Wrong root</a>\n', encoding="utf-8")
+    assert "path-escape" in _codes(tmp_path)
+
+
+def test_project_site_mapping_rejects_symlink_outside_site(tmp_path: Path) -> None:
+    (tmp_path / "site").mkdir()
+    (tmp_path / "README.md").write_text("Not a site resource.\n", encoding="utf-8")
+    try:
+        (tmp_path / "site/leaked.md").symlink_to(tmp_path / "README.md")
+    except OSError as error:
+        pytest.skip(f"symlink creation is unavailable: {error}")
+    (tmp_path / "site/404.html").write_text('<a href="/ariadne-skill/leaked.md">Bad</a>\n', encoding="utf-8")
+    assert "path-escape" in _codes(tmp_path)
+
+
 def test_link_that_escapes_repository_is_rejected(tmp_path: Path) -> None:
     (tmp_path / "README.md").write_text("[outside](../outside.md)\n", encoding="utf-8")
     assert "path-escape" in _codes(tmp_path)
@@ -196,7 +280,7 @@ def test_repository_method_content_satisfies_its_own_floors() -> None:
 def test_hollowed_reference_method_text_is_rejected(tmp_path: Path) -> None:
     """Catches the degradation probe that keeps headings while gutting method text."""
     sandbox = _copied_skills_sandbox(tmp_path)
-    target = sandbox / "skills" / "ariadne-mechanism" / "references" / "mechanism-contracts.md"
+    target = sandbox / "skills" / "ariadne-skill" / "references" / "library" / "mechanism-contracts.md"
     headings_only = "\n".join(
         line for line in target.read_text(encoding="utf-8").splitlines() if line.startswith("#")
     )
@@ -210,7 +294,7 @@ def test_hollowed_reference_method_text_is_rejected(tmp_path: Path) -> None:
 def test_stubbed_skill_body_is_rejected(tmp_path: Path) -> None:
     """Catches a SKILL.md body replaced by a stub while frontmatter stays valid."""
     sandbox = _copied_skills_sandbox(tmp_path)
-    target = sandbox / "skills" / "ariadne-mechanism" / "SKILL.md"
+    target = sandbox / "skills" / "ariadne-skill" / "SKILL.md"
     text = target.read_text(encoding="utf-8")
     frontmatter_end = text.index("\n---", 3) + len("\n---")
     target.write_text(text[:frontmatter_end] + "\n\nStub body.\n", encoding="utf-8")
@@ -223,7 +307,7 @@ def test_stubbed_skill_body_is_rejected(tmp_path: Path) -> None:
 def test_single_character_card_values_are_rejected(tmp_path: Path) -> None:
     """Catches the degradation probe that rewrites card values while keeping key shape."""
     sandbox = _copied_skills_sandbox(tmp_path)
-    cards_path = sandbox / "skills" / "ariadne-human" / "references" / "human-variable-cards.json"
+    cards_path = sandbox / "skills" / "ariadne-skill" / "references" / "library" / "human-variable-cards.json"
     cards = json.loads(cards_path.read_text(encoding="utf-8"))
 
     def degrade(node: object) -> object:
@@ -245,7 +329,7 @@ def test_single_character_card_values_are_rejected(tmp_path: Path) -> None:
 
 def test_malformed_state_prototype_register_is_rejected(tmp_path: Path) -> None:
     sandbox = tmp_path / "repository"
-    references = sandbox / "skills" / "ariadne-human" / "references"
+    references = sandbox / "skills" / "ariadne-skill" / "references" / "library"
     references.mkdir(parents=True)
     (references / "state-prototypes.json").write_text(
         json.dumps({"prototypes": [{"id": "S0"}], "nonlinear_paths": []}) + "\n",
@@ -256,7 +340,7 @@ def test_malformed_state_prototype_register_is_rejected(tmp_path: Path) -> None:
 
 def test_malformed_intervention_level_register_is_rejected(tmp_path: Path) -> None:
     sandbox = tmp_path / "repository"
-    references = sandbox / "skills" / "ariadne-choice" / "references"
+    references = sandbox / "skills" / "ariadne-skill" / "references" / "library"
     references.mkdir(parents=True)
     (references / "intervention-levels.json").write_text(
         json.dumps({"levels": [{"id": "T0"}, {"id": "T9"}]}) + "\n",
@@ -268,10 +352,9 @@ def test_malformed_intervention_level_register_is_rejected(tmp_path: Path) -> No
 def test_non_object_card_register_is_rejected(tmp_path: Path) -> None:
     """Catches the degradation probe that replaces a whole card register with []."""
     sandbox = tmp_path / "repository"
-    human_references = sandbox / "skills" / "ariadne-human" / "references"
-    choice_references = sandbox / "skills" / "ariadne-choice" / "references"
+    human_references = sandbox / "skills" / "ariadne-skill" / "references" / "library"
+    choice_references = sandbox / "skills" / "ariadne-skill" / "references" / "library"
     human_references.mkdir(parents=True)
-    choice_references.mkdir(parents=True)
     (human_references / "state-prototypes.json").write_text("[]\n", encoding="utf-8")
     (choice_references / "intervention-levels.json").write_text("[]\n", encoding="utf-8")
 

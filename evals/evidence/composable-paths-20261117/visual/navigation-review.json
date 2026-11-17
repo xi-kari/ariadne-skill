@@ -1,0 +1,38 @@
+{
+  "1440": {
+    "navigation": {
+      "possibilities": true,
+      "example": true,
+      "continue": true,
+      "install": true
+    },
+    "art_nonoverlap": {
+      "question_before_result": true,
+      "caption_before_continuation": true
+    }
+  },
+  "390": {
+    "navigation": {
+      "possibilities": true,
+      "example": true,
+      "continue": true,
+      "install": true
+    },
+    "art_nonoverlap": {
+      "question_before_result": true,
+      "caption_before_continuation": true
+    }
+  },
+  "320": {
+    "navigation": {
+      "possibilities": true,
+      "example": true,
+      "continue": true,
+      "install": true
+    },
+    "art_nonoverlap": {
+      "question_before_result": true,
+      "caption_before_continuation": true
+    }
+  }
+}

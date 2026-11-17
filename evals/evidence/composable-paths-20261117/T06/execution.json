@@ -1,0 +1,34 @@
+[
+  {
+    "stage": "before_fix",
+    "tool": "exec_command",
+    "cmd": "python - <<'PY'\nimport copy\nfrom pathlib import Path\nimport unittest\n\nnamespace = {}\nexec(compile(Path('allocator.py').read_text(encoding='utf-8'), 'allocator.py', 'exec'), namespace)\nallocate = namespace['allocate']\n\nclass AllocateTests(unittest.TestCase):\n    def test_available_person_instead_of_fixed_A(self):\n        self.assertEqual(allocate('周一', {'周一': ['B']}), ['B'])\n\n    def test_first_person_in_alphabetical_order(self):\n        self.assertEqual(allocate('周一', {'周一': ['D', 'B', 'C']}), ['B'])\n\n    def test_empty_availability(self):\n        self.assertEqual(allocate('周一', {'周一': []}), [])\n\n    def test_requested_day_only(self):\n        self.assertEqual(allocate('周二', {'周一': ['A'], '周二': ['C', 'B']}), ['B'])\n\n    def test_A_selected_when_available_and_first(self):\n        self.assertEqual(allocate('周一', {'周一': ['C', 'A', 'B']}), ['A'])\n\n    def test_does_not_change_input(self):\n        availability = {'周一': ['D', 'B', 'C'], '周二': ['A']}\n        before = copy.deepcopy(availability)\n        allocate('周一', availability)\n        self.assertEqual(availability, before)\n\n    def test_greeting_preserved(self):\n        self.assertEqual(namespace['greeting']('Lin'), 'Hello, Lin!')\n\nunittest.main(verbosity=2)\nPY",
+    "workdir": "/workspace/ariadne-behavior-runs/T06",
+    "result": {
+      "chunk_id": "57ad6e",
+      "wall_time_seconds": 0.000030254,
+      "exit_code": 1,
+      "original_token_count": 649,
+      "output": "test_A_selected_when_available_and_first (__main__.AllocateTests.test_A_selected_when_available_and_first) ... ok\ntest_available_person_instead_of_fixed_A (__main__.AllocateTests.test_available_person_instead_of_fixed_A) ... FAIL\ntest_does_not_change_input (__main__.AllocateTests.test_does_not_change_input) ... ok\ntest_empty_availability (__main__.AllocateTests.test_empty_availability) ... FAIL\ntest_first_person_in_alphabetical_order (__main__.AllocateTests.test_first_person_in_alphabetical_order) ... FAIL\ntest_greeting_preserved (__main__.AllocateTests.test_greeting_preserved) ... ok\ntest_requested_day_only (__main__.AllocateTests.test_requested_day_only) ... FAIL\n\n======================================================================\nFAIL: test_available_person_instead_of_fixed_A (__main__.AllocateTests.test_available_person_instead_of_fixed_A)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<stdin>\", line 11, in test_available_person_instead_of_fixed_A\nAssertionError: Lists differ: ['A'] != ['B']\n\nFirst differing element 0:\n'A'\n'B'\n\n- ['A']\n?   ^\n\n+ ['B']\n?   ^\n\n\n======================================================================\nFAIL: test_empty_availability (__main__.AllocateTests.test_empty_availability)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<stdin>\", line 17, in test_empty_availability\nAssertionError: Lists differ: ['A'] != []\n\nFirst list contains 1 additional elements.\nFirst extra element 0:\n'A'\n\n- ['A']\n+ []\n\n======================================================================\nFAIL: test_first_person_in_alphabetical_order (__main__.AllocateTests.test_first_person_in_alphabetical_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<stdin>\", line 14, in test_first_person_in_alphabetical_order\nAssertionError: Lists differ: ['A'] != ['B']\n\nFirst differing element 0:\n'A'\n'B'\n\n- ['A']\n?   ^\n\n+ ['B']\n?   ^\n\n\n======================================================================\nFAIL: test_requested_day_only (__main__.AllocateTests.test_requested_day_only)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<stdin>\", line 20, in test_requested_day_only\nAssertionError: Lists differ: ['A'] != ['B']\n\nFirst differing element 0:\n'A'\n'B'\n\n- ['A']\n?   ^\n\n+ ['B']\n?   ^\n\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nFAILED (failures=4)\n"
+    }
+  },
+  {
+    "stage": "fix",
+    "tool": "apply_patch",
+    "patch": "*** Begin Patch\n*** Update File: /workspace/ariadne-behavior-runs/T06/allocator.py\n@@\n def allocate(day, availability):\n-    return [\"A\"]\n+    return sorted(availability.get(day, []))[:1]\n*** End Patch",
+    "result": {}
+  },
+  {
+    "stage": "after_fix",
+    "tool": "exec_command",
+    "cmd": "python - <<'PY'\nimport copy\nfrom pathlib import Path\nimport unittest\n\nnamespace = {}\nexec(compile(Path('allocator.py').read_text(encoding='utf-8'), 'allocator.py', 'exec'), namespace)\nallocate = namespace['allocate']\n\nclass AllocateTests(unittest.TestCase):\n    def test_available_person_instead_of_fixed_A(self):\n        self.assertEqual(allocate('周一', {'周一': ['B']}), ['B'])\n\n    def test_first_person_in_alphabetical_order(self):\n        self.assertEqual(allocate('周一', {'周一': ['D', 'B', 'C']}), ['B'])\n\n    def test_empty_availability(self):\n        self.assertEqual(allocate('周一', {'周一': []}), [])\n\n    def test_requested_day_only(self):\n        self.assertEqual(allocate('周二', {'周一': ['A'], '周二': ['C', 'B']}), ['B'])\n\n    def test_A_selected_when_available_and_first(self):\n        self.assertEqual(allocate('周一', {'周一': ['C', 'A', 'B']}), ['A'])\n\n    def test_does_not_change_input(self):\n        availability = {'周一': ['D', 'B', 'C'], '周二': ['A']}\n        before = copy.deepcopy(availability)\n        allocate('周一', availability)\n        self.assertEqual(availability, before)\n\n    def test_greeting_preserved(self):\n        self.assertEqual(namespace['greeting']('Lin'), 'Hello, Lin!')\n\nunittest.main(verbosity=2)\nPY",
+    "workdir": "/workspace/ariadne-behavior-runs/T06",
+    "result": {
+      "chunk_id": "eb13e7",
+      "wall_time_seconds": 0.000024086,
+      "exit_code": 0,
+      "original_token_count": 191,
+      "output": "test_A_selected_when_available_and_first (__main__.AllocateTests.test_A_selected_when_available_and_first) ... ok\ntest_available_person_instead_of_fixed_A (__main__.AllocateTests.test_available_person_instead_of_fixed_A) ... ok\ntest_does_not_change_input (__main__.AllocateTests.test_does_not_change_input) ... ok\ntest_empty_availability (__main__.AllocateTests.test_empty_availability) ... ok\ntest_first_person_in_alphabetical_order (__main__.AllocateTests.test_first_person_in_alphabetical_order) ... ok\ntest_greeting_preserved (__main__.AllocateTests.test_greeting_preserved) ... ok\ntest_requested_day_only (__main__.AllocateTests.test_requested_day_only) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.000s\n\nOK\n"
+    }
+  }
+]

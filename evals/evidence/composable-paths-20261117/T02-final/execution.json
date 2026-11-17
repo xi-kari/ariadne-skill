@@ -1,0 +1,127 @@
+{
+  "task": "T02-final",
+  "case_status": "synthetic",
+  "record_scope": "本任务相关实际操作。相同 session_operation_id 的共享技能读取仅执行过一次，并在两个任务日志中重复引用。文字结果为实际输出的摘要，不表示完整输出逐字存档。",
+  "operations": [
+    {
+      "session_operation_id": 1,
+      "kind": "read",
+      "command": "cat /workspace/ariadne-behavior-runs/skill-final/SKILL.md",
+      "cwd": "/workspace",
+      "exit_code": 0,
+      "result": "已读取冻结技能入口。"
+    },
+    {
+      "session_operation_id": 2,
+      "kind": "read",
+      "command": "cat prompt.txt",
+      "cwd": "/workspace/ariadne-behavior-runs/T02-final",
+      "exit_code": 0,
+      "result": "已读取本任务的合成案例请求；未将其视为现实观测。"
+    },
+    {
+      "session_operation_id": 3,
+      "kind": "read",
+      "command": "cat /workspace/ariadne-behavior-runs/skill-final/references/kernel.md",
+      "cwd": "/workspace",
+      "exit_code": 0,
+      "result": "已读取 Kernel。"
+    },
+    {
+      "session_operation_id": 4,
+      "kind": "read",
+      "command": "cat paths/understand.md paths/project.md references/library/evidence-contracts.md references/library/representation-and-closure.md",
+      "cwd": "/workspace/ariadne-behavior-runs/skill-final",
+      "exit_code": 0,
+      "result": "工具输出发生截断；实际看到 Understand、Project 大部分内容、Representation and Closure，以及 Evidence 的部分内容。后续对需要的缺口进行了定向读取。"
+    },
+    {
+      "session_operation_id": 5,
+      "kind": "read",
+      "command": "cat references/responsibility.md",
+      "cwd": "/workspace/ariadne-behavior-runs/skill-final",
+      "exit_code": 0,
+      "result": "已读取责任、证据身份与结论依赖的说明。"
+    },
+    {
+      "session_operation_id": 6,
+      "kind": "read",
+      "command": "rg -n 'total|causal|mechanism|effect|^##' references/library/evidence-contracts.md",
+      "cwd": "/workspace/ariadne-behavior-runs/skill-final",
+      "exit_code": 0,
+      "result": "已检索因果效应、机制、整体效应与证据依赖相关行。"
+    },
+    {
+      "session_operation_id": 7,
+      "kind": "read",
+      "command": "tail -n 12 paths/project.md",
+      "cwd": "/workspace/ariadne-behavior-runs/skill-final",
+      "exit_code": 0,
+      "result": "已读取 Project 尾部的失效边界与停止条件。"
+    },
+    {
+      "session_operation_id": 8,
+      "kind": "read",
+      "command": "sed -n '56,72p;95,108p' references/library/evidence-contracts.md",
+      "cwd": "/workspace/ariadne-behavior-runs/skill-final",
+      "exit_code": 0,
+      "result": "已读取证据链及局部效应与整体效应的相关完整段落。"
+    },
+    {
+      "session_operation_id": 9,
+      "kind": "calculate",
+      "command": "python - <<'PY'\nfrom fractions import Fraction\nrows=[(1,1,Fraction(2,10)),(1,0,Fraction(3,10)),(0,1,Fraction(3,10)),(0,0,Fraction(2,10))]\nfirst=sum(u*p for u,v,p in rows)\nsecond=sum(v*p for u,v,p in rows)\ntotal=sum(u*v*p for u,v,p in rows)\nprint({'first_edge':str(first),'second_edge':str(second),'chain_total':str(total),'product_of_means':str(first*second),'covariance':str(total-first*second)})\nassert (first,second,total)==(Fraction(1,2),Fraction(1,2),Fraction(1,5))\nPY",
+      "cwd": "/workspace/ariadne-behavior-runs/T02-final",
+      "exit_code": 0,
+      "result": {
+        "first_edge": "1/2",
+        "second_edge": "1/2",
+        "chain_total": "1/5",
+        "product_of_means": "1/4",
+        "covariance": "-1/20"
+      }
+    },
+    {
+      "session_operation_id": 10,
+      "kind": "write",
+      "tool": "apply_patch",
+      "path": "/workspace/ariadne-behavior-runs/T02-final/response.md",
+      "result": "工具实际新增了中文回答；返回 {}。没有修改冻结技能。"
+    },
+    {
+      "session_operation_id": 11,
+      "kind": "read",
+      "command": "cat response.md",
+      "cwd": "/workspace/ariadne-behavior-runs/T02-final",
+      "exit_code": 0,
+      "result": "已完整读回初稿；发现行内数学定界符缺失起始反斜杠，T02 另有多余加号。"
+    },
+    {
+      "session_operation_id": 12,
+      "kind": "read_write",
+      "tool": "exec_command",
+      "cwd": "/workspace/ariadne-behavior-runs/T02-final",
+      "command": "python - <<'PY'\nfrom pathlib import Path\nimport re\nfor task in ['T02-final','T07-final']:\n    p=Path('/workspace/ariadne-behavior-runs')/task/'response.md'\n    s=p.read_text()\n    s,n=re.subn(r'(?<!\\\\)\\(([^()\\n]+)\\\\\\)',lambda m:'\\\\('+m.group(1)+'\\\\)',s)\n    s=s.replace('整体效应为：+\\n','整体效应为：\\n\\n')\n    p.write_text(s)\n    print(task, 'inline_math_delimiters_fixed', n, 'characters', len(s))\nPY",
+      "exit_code": 0,
+      "stdout": "T02-final inline_math_delimiters_fixed 19 characters 1416\nT07-final inline_math_delimiters_fixed 2 characters 765\n"
+    },
+    {
+      "session_operation_id": 13,
+      "kind": "read_check",
+      "command": "python finalize.py",
+      "cwd": "/workspace/ariadne-behavior-runs/T02-final",
+      "exit_code": 0,
+      "result": {
+        "response_characters": 1416,
+        "response_sha256": "203a7b7f074c2f871377591b959b1df8aad30a56760d4bdbe5a4ef734be058e2",
+        "inline_math_pairs": 19,
+        "display_math_pairs": 4,
+        "delimiter_checks_passed": true
+      }
+    }
+  ],
+  "log_write": {
+    "command": "python finalize.py",
+    "path": "/workspace/ariadne-behavior-runs/T02-final/execution.json"
+  }
+}

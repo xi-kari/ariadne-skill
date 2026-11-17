@@ -11,18 +11,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 
-EXPECTED_SKILLS = (
-    "ariadne-skill",
-    "ariadne-framing",
-    "ariadne-evidence",
-    "ariadne-scale",
-    "ariadne-mechanism",
-    "ariadne-human",
-    "ariadne-dynamics",
-    "ariadne-forecast",
-    "ariadne-choice",
-    "ariadne-audit",
-)
+EXPECTED_SKILLS = ("ariadne-skill",)
 
 # adapters/compatibility.json is the single source of truth for the host
 # matrix. This validator checks its structure and invariants and reconciles the
@@ -39,16 +28,11 @@ HOST_REQUIRED_FIELDS = (
 COMPATIBILITY_LEVELS = {"native-agent-skills", "directory-compatible-subset"}
 SUBSET_COMPATIBILITY = "directory-compatible-subset"
 EXPECTED_REPO_SLUG = "xi-kari/ariadne-skill"
-# README documents only the default complete bundle; the compatibility guide
-# may additionally document registered partial-install degradation modes.
-INSTALL_DOCUMENT_RULES = {
-    "README.md": "complete-bundle-only",
-    "docs/agent-compatibility.md": "registered-skills",
-}
+INSTALL_DOCUMENTS = ("README.md", "docs/agent-compatibility.md")
 
 UNIVERSAL_SMOKE_CHECKS = {
-    "json-references",
-    "peer-routing",
+    "resource-loading",
+    "path-routing",
     "context-growth",
 }
 VERIFICATION_STATUSES = {"unverified", "smoke-passed"}
@@ -172,6 +156,7 @@ def _extract_install_commands(text: str) -> list[dict[str, object]]:
             "repo": tokens[3] if len(tokens) > 3 else None,
             "skills": [],
             "adapters": [],
+            "copy": "--copy" in tokens,
         }
         for index, token in enumerate(tokens[:-1]):
             if token == "--skill":
@@ -189,7 +174,7 @@ def _validate_install_documents(
     native_host_ids: list[str],
 ) -> list[str]:
     errors: list[str] = []
-    for relative, rule in INSTALL_DOCUMENT_RULES.items():
+    for relative in INSTALL_DOCUMENTS:
         path = repo_root / relative
         try:
             text = path.read_text(encoding="utf-8")
@@ -209,31 +194,28 @@ def _validate_install_documents(
                     f" instead of {EXPECTED_REPO_SLUG}"
                 )
             skills = command["skills"]
-            if not skills:
-                errors.append(f"{relative} install command does not pin --skill")
-            for skill in skills:
-                if rule == "complete-bundle-only" and skill != "*":
-                    errors.append(
-                        f"{relative} install command must install the complete bundle,"
-                        f" not {skill!r}"
-                    )
-                elif skill != "*" and skill not in manifest_skills:
-                    errors.append(
-                        f"{relative} install command names unregistered skill {skill!r}"
-                    )
+            if skills != manifest_skills:
+                errors.append(
+                    f"{relative} install command must install the complete bundle"
+                    f" with --skill ariadne-skill, not {skills!r}"
+                )
+            if not command["copy"]:
+                errors.append(f"{relative} install command must use --copy")
             adapters = command["adapters"]
-            if len(adapters) != len(set(adapters)) or not set(adapters) <= set(host_ids):
+            if not adapters:
+                errors.append(f"{relative} install command must select a native-agent-skills host")
+            elif len(adapters) != len(set(adapters)) or not set(adapters) <= set(host_ids):
                 errors.append(
                     f"{relative} install command adapters are not registered manifest hosts:"
                     f" {adapters}"
                 )
-            elif not set(native_host_ids) <= set(adapters):
+            elif not set(adapters) <= set(native_host_ids):
                 errors.append(
-                    f"{relative} install command must include every native-agent-skills host:"
+                    f"{relative} default install commands may select only native-agent-skills hosts:"
                     f" {adapters}"
                 )
-        if not any("*" in command["skills"] for command in commands):
-            errors.append(f"{relative} must document the complete-bundle install command")
+        if not any(command["skills"] == manifest_skills for command in commands):
+            errors.append(f"{relative} must document the complete single-package install command")
     return errors
 
 
@@ -302,14 +284,8 @@ def validate_adapters(repo_root: Path) -> list[str]:
         if not _is_https_url(manifest.get(field)):
             errors.append(f"adapter manifest {field} must be HTTPS")
 
-    fallback = manifest.get("router_only_degradation")
-    expected_fallback = {
-        "installed_skills": ["ariadne-skill"],
-        "missing_peer_status": "module_unavailable",
-        "semantic_equivalence": False,
-    }
-    if fallback != expected_fallback:
-        errors.append("adapter manifest router-only degradation is invalid")
+    if "router_only_degradation" in manifest:
+        errors.append("single-package installation must not declare router-only degradation")
 
     manifest_skills = manifest.get("skills")
     if not _has_exact_unique_members(manifest_skills, EXPECTED_SKILLS):

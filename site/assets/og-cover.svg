@@ -1,57 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title">
-  <title id="og-title">Ariadne · Lattice Kernel：一套让 AI Agent 思考和处理复杂问题的方法论集群。米白图纸上，一条红色直角走线穿过十个格点节点，右下盖「无授权」红章。</title>
-  <defs>
-    <pattern id="og-grid" width="72" height="72" patternUnits="userSpaceOnUse">
-      <path d="M72 0H0V72" fill="none" stroke="#B4C9DA" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect width="1200" height="630" fill="#F5F2E9"/>
-  <rect x="13" y="13" width="1174" height="604" fill="url(#og-grid)"/>
-  <rect x="12" y="12" width="1176" height="606" fill="none" stroke="#1B1A17" stroke-width="2"/>
-  <rect x="19" y="19" width="1162" height="592" fill="none" stroke="#1B1A17" stroke-width="1"/>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace">
-    <text x="52" y="92" font-size="16" letter-spacing="4" fill="#2E5F8A">LATTICE KERNEL · METHOD SHEET SET 00-07</text>
-    <text x="46" y="222" font-size="118" font-weight="500" letter-spacing="6" fill="#1B1A17">ARIADNE</text>
-    <line x1="52" y1="258" x2="170" y2="258" stroke="#2E5F8A" stroke-width="1"/>
-    <text x="182" y="263" font-size="15" letter-spacing="1" fill="#2E5F8A">1 ROUTER + 9 MODULES</text>
-    <line x1="420" y1="258" x2="640" y2="258" stroke="#2E5F8A" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title og-desc">
+  <title id="og-title">Ariadne：把复杂问题，做成有据的成果</title>
+  <desc id="og-desc">暖白背景、墨色字与朱红色线索。问题经由可组合的方法成为成果，再沿着新材料继续。</desc>
+  <rect width="1200" height="630" fill="#f7f4ed"/>
+  <text x="66" y="126" font-family="Georgia, 'Times New Roman', serif" font-size="77" letter-spacing="-5" fill="#24251f">ariadne<tspan fill="#ad3827">.</tspan></text>
+  <g font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="58" font-weight="500">
+    <text x="66" y="260" fill="#24251f">把复杂问题，</text>
+    <text x="66" y="350" fill="#ad3827">做成有据的成果。</text>
   </g>
-  <text x="50" y="330" font-family="'STFangsong', 'FangSong', 'FangSong_GB2312', 'Noto Serif CJK SC', 'Songti SC', SimSun, serif" font-size="40" fill="#1B1A17">一套让 AI Agent 思考和处理复杂问题的方法论集群</text>
-  <text x="52" y="376" font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#5B5850">十个方法论 Skill · 五种协作方式 · 三档输出上限 · 边界始终可见</text>
-  <g>
-    <polyline points="130,470 470,470 470,522 250,522" fill="none" stroke="#B03A2E" stroke-width="2.5"/>
-    <g fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5">
-      <circle cx="130" cy="470" r="9"/>
-      <circle cx="250" cy="470" r="7"/>
-      <circle cx="360" cy="470" r="7"/>
-      <circle cx="470" cy="470" r="7"/>
-      <circle cx="470" cy="522" r="7"/>
-      <circle cx="360" cy="522" r="7"/>
-      <circle cx="250" cy="522" r="7"/>
-    </g>
-    <circle cx="130" cy="470" r="4" fill="#B03A2E"/>
-  </g>
-  <g transform="rotate(-8 1000 470)">
-    <circle cx="1000" cy="470" r="74" fill="none" stroke="#B03A2E" stroke-width="3"/>
-    <circle cx="1000" cy="470" r="64" fill="none" stroke="#B03A2E" stroke-width="1.5"/>
-    <text x="1000" y="462" font-family="'STFangsong', 'FangSong', 'FangSong_GB2312', 'Noto Serif CJK SC', 'Songti SC', SimSun, serif" font-size="32" fill="#B03A2E" text-anchor="middle">无授权</text>
-    <line x1="952" y1="476" x2="1048" y2="476" stroke="#B03A2E" stroke-width="1"/>
-    <text x="1000" y="496" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" letter-spacing="1" fill="#B03A2E" text-anchor="middle">AUTHORIZATION</text>
-    <text x="1000" y="512" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" letter-spacing="1" fill="#B03A2E" text-anchor="middle">EFFECT: NONE</text>
-  </g>
-  <line x1="12" y1="562" x2="1188" y2="562" stroke="#1B1A17" stroke-width="2"/>
-  <line x1="560" y1="562" x2="560" y2="611" stroke="#1B1A17" stroke-width="1"/>
-  <line x1="880" y1="562" x2="880" y2="611" stroke="#1B1A17" stroke-width="1"/>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace">
-    <g font-size="11" letter-spacing="1.5" fill="#2E5F8A">
-      <text x="36" y="584">PROJECT</text>
-      <text x="580" y="584">CHANNEL</text>
-      <text x="900" y="584">AUTHORIZATION_EFFECT</text>
-    </g>
-    <g font-size="15" fill="#1B1A17">
-      <text x="36" y="604">ARIADNE · LATTICE KERNEL</text>
-      <text x="580" y="604">ROLLING-MAIN · MIT</text>
-      <text x="900" y="604" fill="#B03A2E">NONE</text>
+  <text x="70" y="422" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#65675e">一个入口。按任务组合。交付之后，还能继续。</text>
+  <path d="M75 504H549C628 504 565 108 665 108H1033C1151 108 1148 492 1049 492H747C670 492 701 572 777 572H1121" fill="none" stroke="#ad3827" stroke-width="2.5"/>
+  <circle cx="75" cy="504" r="6" fill="#ad3827"/><circle cx="1121" cy="572" r="6" fill="#ad3827"/>
+  <g transform="rotate(4 909 290)">
+    <rect x="755" y="176" width="300" height="252" fill="#deded0" opacity=".35" transform="translate(12 12)"/>
+    <rect x="755" y="176" width="300" height="252" fill="#fffdf8" stroke="#d9d7cc"/>
+    <g font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+      <text x="781" y="215" font-size="13" fill="#65675e">一条可以继续的工作线</text>
+      <path d="M781 231H1029" stroke="#d9d7cc"/>
+      <text x="781" y="285" font-size="29" fill="#24251f">从问题出发。</text>
+      <text x="781" y="334" font-size="29" fill="#24251f">让成果落地。</text>
+      <text x="781" y="391" font-size="16" fill="#ad3827">接着新的证据，继续。</text>
     </g>
   </g>
+  <text x="70" y="577" font-family="ui-monospace, Consolas, monospace" font-size="12" letter-spacing="2" fill="#65675e">ARIADNE / LATTICE KERNEL</text>
 </svg>

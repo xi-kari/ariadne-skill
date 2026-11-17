@@ -9,17 +9,17 @@ Copy this template to `evals/host-smoke-<host>-<date>.md` when running the unive
 - Install target path confirmed:
 - Date (`last_verified` value):
 
-## Check 1: json-references
+## Check 1: resource-loading
 
-Prompt the host to read one JSON reference through the skill (for example the `toc` of `human-variable-cards.json`). Paste the command or prompt and the relevant output lines. Pass condition: the host resolves the file from the installed skill directory without inlining the whole file.
+Prompt the host to read a selected library resource through the installed package (for example `field_order` in `references/library/human-variable-cards.json`). Paste the command or prompt and the relevant output lines. Pass condition: the host resolves the file from the installed skill directory without inlining the whole file.
 
-## Check 2: peer-routing
+## Check 2: path-routing
 
-Prompt the router with a multi-facet request and one peer intentionally uninstalled. Paste the produced module-run entries. Pass condition: the missing peer appears as `not_run` with reason `module_unavailable`, and the router does not execute the peer's responsibility inline.
+Give the single Ariadne entry a request that needs more than one kind of work. Paste the selected internal paths and their actual outputs. Pass condition: the host reads the necessary `paths/` and shared references, composes their responsibilities, and returns the requested result without requiring unavailable peer Skills or a universal legacy record. Also verify that a missing internal resource is reported as an incomplete installation rather than silently invented.
 
 ## Check 3: context-growth
 
-Ask a trivial question with the suite installed. Paste evidence of what was loaded (host trace, token report, or the visible answer path). Pass condition: only the relevant SKILL.md enters context; references load only when the run's declared depth requires them.
+Ask a trivial question with the single package installed. Paste evidence of what was loaded (host trace, token report, or the visible answer path). Pass condition: the entry selects proportionate work; only relevant paths and references are loaded, and a simple answer does not trigger the deep library or a mandatory legacy record.
 
 ## Verdict
 

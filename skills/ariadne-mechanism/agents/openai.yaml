@@ -1,7 +1,0 @@
-interface:
-  display_name: "Ariadne Mechanism"
-  short_description: "Explain why via competing mechanisms that beat a baseline"
-  default_prompt: "Use $ariadne-mechanism to compare mechanisms, channels, baselines, falsifiers, and residuals."
-
-policy:
-  allow_implicit_invocation: true
