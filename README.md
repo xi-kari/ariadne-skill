@@ -74,7 +74,7 @@ npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex
 
 这是项目级安装，`--copy` 也适用于不使用符号链接的 Windows 环境。其他宿主、发现路径与验证方式见[兼容与安装说明](docs/agent-compatibility.md)。不需要分别安装能力路径。
 
-> **版本提示：** 单入口改造见 [PR #11](https://github.com/xi-kari/ariadne-skill/pull/11)。上面的命令跟随 `main`；合并前取得的仍以主分支实际内容为准。稳定标签 `v2.0.0` 对应旧版十入口架构与 Method Record 2.0，不能用它复现本页的新架构。
+> **版本提示：** 上面的安装命令跟随 `main`。单入口架构的变更记录见 [PR #11](https://github.com/xi-kari/ariadne-skill/pull/11)。稳定标签 `v2.0.0` 对应旧版十入口架构与 Method Record 2.0；需要当前架构时请使用 `main`，旧记录迁移见[迁移说明](docs/migration.md)。
 
 在 Codex 中显式调用：
 
@@ -100,7 +100,7 @@ $ariadne-skill 这是当前方案和两份新材料。
 
 方法可以组织判断，不能代替对象证据、专业判断或当事人的决定权。`authorization_effect: none` 表示方法不签发权限；已有有效授权由宿主工作流据实使用。候选、模拟、工具回执和软件检查各自只证明其实际检验的事项。
 
-本次开发版另外实际运行了九个合成任务，包含跨回合修订、代码修复、设计交付和前瞻登记；结果、成品、副本哈希及测试限制见[验证记录](evals/evidence/composable-paths-20261117/REPORT.md)。这些会话内行为测试不替代各宿主的安装与发现实测。
+本次架构验证另外实际运行了九个合成任务，包含跨回合修订、代码修复、设计交付和前瞻登记；结果、成品、副本哈希及测试限制见[验证记录](evals/evidence/composable-paths-20261117/REPORT.md)。这些会话内行为测试不替代各宿主的安装与发现实测。
 
 工程检查用于核对资源、链接、格式、兼容层与构建一致性，不证明方法优于其他方法，也不把教学例当实效证据：
 
