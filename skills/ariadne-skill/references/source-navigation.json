@@ -3,9 +3,10 @@
   "source_identity": {
     "title": "Xikari-条件结构与转化论",
     "author": "Xikari",
-    "date": "2026-10",
-    "source_identity": "manuscript-20261017-18a7cc167faa",
-    "sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
+    "date": "2026-11-16",
+    "theory_version": "v2",
+    "source_identity": "manuscript-v2-20261116-6ef2e508474d",
+    "sha256": "6ef2e508474d4ac1ad07d7e4e068955342c405b5f680afcfc40d68cca3d0149c",
     "anchor_rule": "Ariadne cites the source by part and section number (for example §4.5 or Appendix C.12); an anchor names where to re-read the governing text, never a replacement for it.",
     "derived_status": "derived_candidate_not_author_confirmed",
     "derived_status_rule": "Ariadne's modules are method and retrieval entries organized from the source. They keep candidate status, add no second theory beside the source, and do not claim item-by-item author confirmation; when an entry and the source disagree, the source governs and the entry is corrected (source §16.20.1)."

@@ -1,29 +1,34 @@
 ---
 name: ariadne-skill
-description: "Coordinate a structured multi-angle analysis of a complex real-world question: frame the object and task, freeze evidence, route only the needed peer modules, downgrade claim by claim, and merge into one bounded, inspectable record with a complete plain-language analysis and, for choices, a premised recommendation for deliberation. Use when a question mixes explanation, prediction, and action, spans people, evidence, and decisions, or the user asks for a systematic, thorough, multi-angle, or auditable analysis. 适用于：系统分析、全面评估、多角度复盘、复杂问题怎么看或该不该做。"
+description: "Handle a complex question or design: frame or reopen the task, establish evidence, route needed peers, generate traceable candidates, compare and judge within the evidence, then deliver the complete analysis or requested artifact. For choices, give a recommendation under explicit premises and keep real authorization separate. Use when a question mixes explanation, prediction, and action, spans people, evidence, and decisions, or the user asks for a systematic, thorough, multi-angle, or auditable analysis. 适用于：系统分析、全面评估、多角度复盘、复杂问题怎么看或该不该做。"
 license: MIT
 metadata:
-  record_schema: "2.0"
+  record_schema: "2.1"
 ---
 
 # Ariadne
 
 ## Core promise
 
-Turn a complex request into a bounded, inspectable method run. Start from the concrete difference that needs explaining or deciding, declare the task together with its representation, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, lower each conclusion only as far as its own dependencies require, and deliver the complete analysis at its supported ceiling.
+Turn a complex request into a complete, bounded result with inspectable reasoning. Start from the concrete difference that needs explaining or deciding, declare the task together with its representation, freeze the candidate object and evidence cutoff, route only the needed modules, preserve disagreements and unknowns, lower each conclusion only as far as its own dependencies require, and deliver the complete analysis at its supported ceiling.
 
-Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis. For a generative or build request (write, design, implement, create), run only its judgment core as `synthesis_design` - frozen constraints, compared candidate designs, a bounded proposal - and hand the construction back to the host's normal workflow; a request with no judgment core is out of scope. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority. A shorter adequate domain method may answer alone; Ariadne then adds only source and boundary checks.
+Ariadne covers judgment-type outputs: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, and design synthesis. For a generative or build request (write, design, implement, create), use `synthesis_design` for its judgment core and traceable candidate generation, then continue through the host workflow to complete and verify the requested artifact within the user's existing authorization. With no substantive judgment core, ordinary construction can proceed directly without a method run. Do not use Ariadne as an ontology, truth engine, personality judge, clinical tool, value selector, or authorization authority. A shorter adequate domain method may answer alone; Ariadne then adds only source and boundary checks.
 
 Ariadne's entries are method and retrieval entries derived from its source theory, with candidate status; where an entry and the source disagree, the source governs.
+
+## Working method
+
+Use seven operations as dependencies require: pose or reopen the question, represent the task, establish support, connect judgments, generate and derive candidates, compare and judge, then deliver and revise. Read [Working method](references/methodology.md) for this operational distillation and its source anchors. It is the method entry for a first substantive run; the detailed kernel supplies the limits. Preserve successful local findings, make clear supported judgments, and continue useful independent work when a dependent claim is blocked.
 
 ## Required references
 
 Read by declared depth instead of all at once. Depth levels L0-L3 are defined in the routing reference: L0 direct bounded answer, L1 light description and probing questions, L2 standard reviewable judgment, L3 high-responsibility strong-judgment candidate set by use and foreseeable impact.
 
 - L0: no reference read is required beyond this file.
-- L1: read [Lattice Kernel](references/lattice-kernel.md) - invariants, claim roles, connection conditions, history routes, missing states, ceilings, and the coding family index - and copy the record shape from the [L1 record template](references/l1-record-template.md).
+- L1: read [Lattice Kernel](references/lattice-kernel.md) - invariants, claim roles, connection conditions, history routes, missing states, ceilings, and the coding family index - and, when a machine record is useful or requested, copy its shape from the [L1 record template](references/l1-record-template.md). Ordinary light work can keep the task, evidence, judgment and boundary in concise prose.
 - L2: add [Method Record](references/method-record.md) - shared record, task profile, proposition-level dependencies, carrier, lineage, ceilings, raise rules, typed payloads, and presentation.
 - Full pass or L3: add [Routing](references/routing.md) - intake, depth selection by use, module map, routing algorithm, retrieval order, restarts, and stop-loss.
+- Generative or build work: add [Generative workflow](references/generative-workflow.md) for starting points, derivation, candidates, checks and artifact completion.
 - Clustered execution, merging, or continuing an earlier run: add [Clustering](references/clustering.md) - lane admission, merge rules, per-proposition stop table, continuation events, host orchestration mapping, and the merge lineage example.
 - Only when a source code or term is ambiguous, dual-text work is in scope, or the source identity must be checked: consult [Source navigation](references/source-navigation.json) - source SHA-256 and derived status, Appendix B numbering ownership, body-only codes, the nine governance invariants, the six kernel layers, the C.4 dual-text difference rule, the C.5 cross-scale proof heuristic, and the D.01-D.32 domain-atlas route.
 
@@ -32,16 +37,16 @@ Validate every emitted record by running the shipped validator, `python scripts/
 ## Full-pass workflow
 
 1. Restate the user's real-world question without Ariadne vocabulary, and name the difference that needs explaining, deciding, or protecting.
-2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, synthesis design. Keep the outputs separate; each extra output adds its own conditions. If none fits, declare out of scope as promised above.
-3. Select depth by intended and foreseeable use. L0: answer directly with a one-line boundary declaration; no module run, no record. L1: run framing plus the one relevant module and emit a compact record from the template. Only L2 and above continue with the full workflow below. When in doubt between L0 and L1, use L1.
-4. Run `ariadne-framing`. Freeze the candidate object, task profile (target query, horizon, environment, allowed operations, error tolerance), boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
+2. Classify it as one or more of: explanation, diagnosis, dynamic derivation, conditional forecast, finite choice, intervention review, governance review, synthesis design. Keep the outputs separate; each extra output adds its own conditions. If no substantive judgment is needed, finish the ordinary task through the host workflow.
+3. Select depth by intended and foreseeable use. L0: answer directly with a one-line boundary declaration; no module run, no record. L1: use framing plus the relevant method; emit the compact machine record only when it helps continuation, checking, or the user requests it. Only L2 and above continue with the full workflow below. When in doubt between L0 and L1, use L1.
+4. Run `ariadne-framing`. Reopen the question when its target, members, losses or assumed constraints are disputed; retain the original question, disposition and results. Freeze the candidate object, task profile (target query, horizon, environment, allowed operations, error tolerance), boundary, variables, interfaces, time window, scale profile, identity criterion, and unresolved fields.
 5. Run `ariadne-evidence`. Freeze the evidence cutoff; separate source, material, observation, evidence, counterevidence, judgment, and authorization; register claim roles and `depends_on` links.
 6. Select the minimum adequate module set. Do not retain a module merely because it is available. Resolve an ambiguous code family through the coding family index in the Lattice Kernel or through `source-navigation.json`. When the user has supplied two source contract texts, apply the C.4 dual-text difference rule; otherwise mark dual-text work `not_applicable`. Route any cross-scale bridge proof to `ariadne-scale` (C.5).
 7. After framing and evidence are frozen, run independent scale, mechanism, or human-domain lanes in parallel when the runtime supports it (see the host orchestration mapping in Clustering). Otherwise run the same lanes sequentially.
 8. Run dynamics only for event propagation or path derivation. Run forecast only for a dated, evaluable future claim. Run choice for option comparison and every action request. Run audit for high-impact use and as the merger of clustered records.
 9. Merge child records without averaging conflicts; record irreducible disagreements as named `conflicts` entries. Preserve every parent ID/version, module input/output reference, claim dependency, and claim-level ceiling; apply the deterministic ceiling meet and keep `authorization_effect: none`.
-10. For an action request at L2 or above, emit the typed choice card: facts, explicit values, structured options with exactly one no-action option, jurisdiction, authorization, stop conditions, rollback plan, and an analytic recommendation or an explicit `null` naming what blocks it. An action request that meets every L1 condition may compress the all-unknown card into a single declaration line, as the routing reference specifies.
-11. Deliver the complete plain-language analysis first: current judgment and scope, evidence, every substantive path compared, unknowns and reverse conditions, the ceiling, and, for choices, the recommendation with its premises, costs, objections, and change conditions. Compress only when the user asks for brevity. Add the Method Record when it improves checking, continuation, challenge, or writeback.
+10. For `synthesis_design`, follow the generative workflow: construct traceable candidates, compare them under explicit criteria, then complete and check the requested artifact through the host tools. For an action request at L2 or above, emit the typed choice card: facts, explicit values, structured options with exactly one no-action option, jurisdiction, authorization, stop conditions, rollback plan, and an analytic recommendation or an explicit `null` naming what blocks it. An action request that meets every L1 condition may compress the card into a short declaration preserving supplied facts, values, options and existing authorization; mark only actual gaps unknown, as the routing reference specifies.
+11. Deliver the complete plain-language analysis first: current judgment and scope, evidence, every substantive path compared, unknowns and reverse conditions, the ceiling, and, for choices, the recommendation with its premises, costs, objections, and change conditions. Compress only when the user asks for brevity. Add the Method Record when it improves checking, continuation, challenge, or writeback. A draft or build request also receives the actual artifact and its endpoint verification.
 
 ## Module dispatch
 
@@ -69,8 +74,8 @@ Parallelize only after the object record and evidence cutoff are identical acros
 
 Default to two layers:
 
-1. **Complete analysis:** current bounded judgment and scope, supporting evidence, every substantive alternative or path actually compared, uncertainty and what would change the judgment, and the safest next information or option; for choices, the analytic recommendation for deliberation with its normative premises, reasons, costs, objections, and change conditions, stated as not yet adopted or authorized.
-2. **Method record:** request type, object and task profile, evidence cutoff, scale scope and transformation kind, claim ledger with dependencies, counterevidence, conflicts, module runs, output ceiling, and next modules.
+1. **Complete analysis:** current bounded judgment and scope, supporting evidence, every substantive alternative or path actually compared, uncertainty and what would change the judgment, and the safest next information or option; for choices, the analytic recommendation for deliberation with its normative premises, reasons, costs, objections, and change conditions, with the actual external adoption and authorization state kept separate; the recommendation itself creates neither.
+2. **Method record when needed:** request type, object and task profile, evidence cutoff, scale scope and transformation kind, claim ledger with dependencies, counterevidence, conflicts, module runs, output ceiling, and next modules.
 
 Shorten the visible analysis only when the user asks; never drop a substantive comparison because it is a minor branch. For forecasts, high-impact judgments, public claims, automated use, or real-world choices, expose the fields needed for failure, appeal, rollback, and writeback.
 
@@ -102,7 +107,7 @@ Lower the propositions that depend on any of these, and only those, unless the f
 - Forecast inputs were not frozen before the outcome.
 - The request asks facts or predictions to manufacture values, jurisdiction, or authorization.
 - A high-impact output lacks contestability, stopping, correction, or rollback.
-- The stop-loss in the routing reference fires: projected record work is disproportionate to the stakes, or two consecutive module runs left the conclusion unchanged.
+- The stop-loss in the routing reference fires: projected record work is disproportionate to the stakes, with an explained budget and the remaining valuable work named. An unchanged headline alone is not a stopping reason.
 
 A failure of the shared source, a common premise, the object boundary, or the task's lawful use blocks every dependent output. Renaming or splitting a claim never restores its ceiling. Downgrade is a valid result: return a candidate analysis, evidence request, scenario set, requirements handoff, recommendation for deliberation, or explicit non-action state.
 
@@ -136,5 +141,5 @@ The result is a conditional comparison with a recommendation for deliberation, n
 | Lower everything when one bridge breaks | Lower only the claims that depend on it; keep independently supported findings. |
 | Return a question list when a supported choice analysis exists | Register the premises and give the analytic recommendation as deliberation only. |
 | Shorten the analysis by dropping paths that do not change the headline | Deliver every substantive comparison unless the user asks for brevity. |
-| Let a later module repair an earlier broken gate | Restart from the earliest changed object, task, evidence, scale, or purpose, within the two-restarts-per-dependency budget. |
+| Let a later module repair an earlier broken gate | Restart from the earliest changed object, task, evidence, scale, or purpose, preserving the old result and explaining any practical work budget. |
 | Turn requirements or recommendations into instructions | Keep `authorization_effect: none` and identify the external decision process. |

@@ -3,7 +3,7 @@ name: ariadne-dynamics
 description: "Derive conditional event paths from a frozen state: propagation along declared channels, clocks, thresholds, feedback, branch graphs, actor choice and update, counterfactual and recursive simulation, and stopping conditions. Use when events, cascades, or institutional transitions need bounded path derivation; for a dated, evaluable future claim use ariadne-forecast instead. For a multi-module pass, start with ariadne-skill. 适用于：接下来会怎么发展、事件传播推演、条件分支与级联、反事实模拟。"
 license: MIT
 metadata:
-  record_schema: "2.0"
+  record_schema: "2.1"
 ---
 
 # Ariadne Dynamics
@@ -11,6 +11,10 @@ metadata:
 ## Overview
 
 Derive conditional event paths from a frozen state. Preserve event fact status, the difference between records and the states they point to, mechanism provenance, asynchronous clocks, branches, residuals, and the rule that simulation depth never creates evidence. Record actions that actually happened, authorized or not, as facts; never treat a simulated or proposed action as one.
+
+## Record mode
+
+For low-impact, reversible work, a concise task, evidence, finding and boundary statement can be sufficient. The machine-record instructions below apply when a structured record is selected, requested or needed for handoff; they do not require twenty fields before an ordinary answer. Preserve known facts and existing authorization, marking only actual gaps unknown. Formal forecast registration and safeguards for consequential use remain required by their own contracts; brevity does not waive them.
 
 ## Standalone Contract
 
@@ -28,7 +32,7 @@ Set `authorization_effect` to `none`. A module run preserves or lowers its paren
 6. At each step, identify the actions actually available and excluded, and keep capability, belief, willingness, and actual action apart. Without material to fix an actor's choice, keep several conditional paths instead of choosing for them.
 7. Build a directed acyclic path graph. Time-expand feedback loops, keep mutually exclusive and parallel paths distinct, merge only under explicit equivalence conditions, and retain fact, mechanism, choice, and disturbance uncertainty separately. Record cascades channel by channel; a larger cascade is not a more important one.
 8. Run scenarios, counterfactuals, or simulations only with explicit rules and comparable conditions. Preserve parent lineage and inherited unknowns for every recursive re-entry, and report flip conditions when reasonable mechanisms disagree.
-9. Use three orders as the default exploratory recursion ceiling. Keep the principal path, strongest competitor, low-probability high-consequence path, and residual exit. Apply declared pruning and early-stop rules.
+9. Use three orders as the default exploratory recursion ceiling. Assess the principal path, reasonable competitors, material-supported high-consequence branches and residual exit for applicability; these are not mandatory path counts. Keep a branch when the material supports it and it could change the judgment or protection, and state why a category has no reasonable candidate. Apply declared pruning and early-stop rules.
 10. Return the frozen snapshot, event status, assumptions, path graph, clocks, conditions, support states, early and reverse signals, residuals, variable candidates, stop record, and writeback plan. Preserve unranked branches when evidence cannot compare them.
 
 Stop when identity or scale fails, a key event or channel is unresolved, branches lack discriminating signals, sensitivity or residuals exceed the use threshold, a deeper order adds no value over a shallower run or simple baseline, privacy or safety costs dominate, or the request crosses prediction or authorization boundaries; downgrade only the affected propositions unless a shared premise fails. Route preregistered future claims to `ariadne-forecast` and action questions onward without answering them here.

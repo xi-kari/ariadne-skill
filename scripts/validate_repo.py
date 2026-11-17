@@ -25,6 +25,8 @@ EXPECTED_REFERENCES = {
         "method-record.schema.json",
         "source-navigation.json",
         "l1-record-template.md",
+        "methodology.md",
+        "generative-workflow.md",
     },
     "ariadne-framing": {"object-contract.md", "domain-atlas.md"},
     "ariadne-evidence": {"evidence-contracts.md"},
@@ -37,7 +39,8 @@ EXPECTED_REFERENCES = {
     "ariadne-audit": {"gates-core.md", "governance-lifecycle.md", "application-contracts.json"},
 }
 REQUIRED_FRONTMATTER_KEYS = {"name", "description"}
-EXPECTED_RECORD_SCHEMA_VERSION = "2.0"
+EXPECTED_RECORD_SCHEMA_VERSION = "2.1"
+SUPPORTED_RECORD_SCHEMA_VERSIONS = {"2.0", "2.1"}
 SKILL_NAME_PATTERN = re.compile(r"[a-z][a-z0-9-]{0,63}")
 DESCRIPTION_MAX_CHARS = 1024
 DESCRIPTION_TOTAL_BUDGET = 5000
@@ -181,7 +184,7 @@ EXPECTED_C5_APPLICABILITY = {
     "admissible_output": ["testable_bridge_requirements", "bounded_candidate"],
     "prohibited_output": ["cross_domain_theorem", "empirical_transfer_without_conditions"],
 }
-EXPECTED_SOURCE_SHA256 = "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6"
+EXPECTED_SOURCE_SHA256 = "6ef2e508474d4ac1ad07d7e4e068955342c405b5f680afcfc40d68cca3d0149c"
 EXPECTED_DERIVED_STATUS = "derived_candidate_not_author_confirmed"
 EXPECTED_GOVERNANCE_INVARIANTS = (
     "SHOU-1",
@@ -273,6 +276,12 @@ def method_record_validator(schema: dict | None = None) -> jsonschema.Draft20201
 
 def validate_method_record(record: dict, schema: dict | None = None) -> None:
     method_record_validator(schema).validate(record)
+
+
+def _parse_forecast_time(value: str) -> datetime:
+    """Parse schema-checked RFC 3339 UTC designators on every supported Python."""
+    normalized = value[:-1] + "+00:00" if value.endswith(("Z", "z")) else value
+    return datetime.fromisoformat(normalized)
 
 
 def _numbering_probe_resolves(code: str, owner: str) -> bool:
@@ -665,6 +674,7 @@ def validate_record_semantics(
     claim_ids = [claim["claim_id"] for claim in record["claim_ledger"]]
     if len(claim_ids) != len(set(claim_ids)):
         errors.append("claim IDs must be unique")
+    errors.extend(methodology_extension_errors(record))
     rule_ids_list = [entry["rule_id"] for entry in record.get("rule_registry", [])]
     if len(rule_ids_list) != len(set(rule_ids_list)):
         errors.append("rule registry IDs must be unique")
@@ -780,11 +790,11 @@ def validate_record_semantics(
         if preregistration is not None:
             try:
                 chronology = (
-                    datetime.fromisoformat(preregistration["baseline_time"])
-                    <= datetime.fromisoformat(preregistration["input_cutoff"])
-                    <= datetime.fromisoformat(preregistration["horizon"]["start"])
-                    <= datetime.fromisoformat(preregistration["horizon"]["deadline"])
-                    < datetime.fromisoformat(preregistration["result_writeback"]["due_at"])
+                    _parse_forecast_time(preregistration["baseline_time"])
+                    <= _parse_forecast_time(preregistration["input_cutoff"])
+                    <= _parse_forecast_time(preregistration["horizon"]["start"])
+                    <= _parse_forecast_time(preregistration["horizon"]["deadline"])
+                    < _parse_forecast_time(preregistration["result_writeback"]["due_at"])
                 )
             except ValueError:
                 chronology = False
@@ -822,6 +832,26 @@ def validate_record_semantics(
             or register["main_gates"]["IG1"]["status"] == "failed"
         ) and record["output_ceiling"] != "description_only":
             errors.append("IT1 or IG1 failure requires output_ceiling description_only")
+    return errors
+
+
+def methodology_extension_errors(record: dict) -> list[str]:
+    """Check references and identity in optional inquiry and design records."""
+    errors: list[str] = []
+    claim_ids = {claim["claim_id"] for claim in record["claim_ledger"]}
+    reopenings = record.get("problem_reopenings", [])
+    reopening_ids = [item["reopening_id"] for item in reopenings]
+    if len(reopening_ids) != len(set(reopening_ids)):
+        errors.append("problem reopening IDs must be unique")
+    for item in reopenings:
+        for claim_id in item["affected_claim_ids"]:
+            if claim_id not in claim_ids:
+                errors.append(
+                    f"problem reopening {item['reopening_id']} has unresolved affected_claim_id: {claim_id}"
+                )
+    candidate_ids = [item["candidate_id"] for item in record.get("design_candidates", [])]
+    if len(candidate_ids) != len(set(candidate_ids)):
+        errors.append("design candidate IDs must be unique")
     return errors
 
 
@@ -1088,11 +1118,13 @@ def collect_errors() -> list[str]:
         errors.append(f"method record schema invalid: {exc}")
     else:
         declared = schema.get("properties", {}).get("schema_version", {})
-        declared_version = declared.get("const") or next(iter(declared.get("enum", [])), None)
-        if declared_version != EXPECTED_RECORD_SCHEMA_VERSION:
+        declared_versions = set(declared.get("enum", []))
+        if "const" in declared:
+            declared_versions.add(declared["const"])
+        if declared_versions != SUPPORTED_RECORD_SCHEMA_VERSIONS:
             errors.append(
-                "schema_version pinned by the schema differs from the frontmatter contract: "
-                f"{declared_version!r}"
+                "schema_version support differs from the current and legacy record contract: "
+                f"{sorted(declared_versions)!r}"
             )
         schema_copy_path = SKILLS_ROOT / "ariadne-skill" / "references" / "method-record.schema.json"
         if not schema_copy_path.is_file():

@@ -40,7 +40,8 @@ Skills directory (web chat UIs, custom instructions, plain system prompts).
 Reading rules for this form:
 
 - "Run `ariadne-x`" means: apply that module's section in this document.
-- Paths like `references/...` name deep-dive files in the source repository
+- The Working method and Generative workflow appendices are included below.
+  Other paths like `references/...` name deep-dive files in the source repository
   (https://github.com/xi-kari/ariadne-skill); they are not inlined here. Work
   from each section's own text and mark anything that would need a reference
   file as `unknown` instead of guessing its content.
@@ -97,9 +98,24 @@ def _field_appendix() -> str:
     return f"## Appendix: Method Record fields\n\n{body}\n"
 
 
+def _method_appendix(filename: str, title: str) -> str:
+    text = (ROOT / "skills" / "ariadne-skill" / "references" / filename).read_text(
+        encoding="utf-8"
+    )
+    body = _demote_headings("\n".join(text.splitlines()[1:]).strip("\n"))
+    body = re.sub(
+        r"\[([^\]]+)\]\(([^):]+\.json|[^):]+\.md)\)",
+        r"\1 (`\2` in the source repository)",
+        body,
+    )
+    return f"## Appendix: {title}\n\n{body}\n"
+
+
 def build_bundle() -> str:
     sections = [PREAMBLE.strip("\n") + "\n"]
     sections.extend(_skill_section(name) for name in ORDER)
+    sections.append(_method_appendix("methodology.md", "Working method"))
+    sections.append(_method_appendix("generative-workflow.md", "Generative workflow"))
     sections.append(_field_appendix())
     return "\n".join(sections)
 

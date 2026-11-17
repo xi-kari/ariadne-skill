@@ -1,6 +1,6 @@
 # Lattice Kernel Source Coverage
 
-Primary source: 《Xikari-条件结构与转化论》 (*Conditions, Structures, and Transformations*, Xikari, October 2026), SHA-256 `18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6`, source identity `manuscript-20261017-18a7cc167faa`.
+Primary source: 《Xikari-条件结构与转化论》 (*Conditions, Structures, and Transformations*, Xikari, v2, 2026-11-16), SHA-256 `6ef2e508474d4ac1ad07d7e4e068955342c405b5f680afcfc40d68cca3d0149c`, source identity `manuscript-v2-20261116-6ef2e508474d`.
 
 The source text is not included in this public repository. This map assigns every source area to an installable Ariadne owner and records the methodology that must be distilled, not copied wholesale. Ariadne is a derived set of method and retrieval entries: it keeps candidate status, is not confirmed by the author item by item, and does not set up a separate author theory (source §16.20.1).
 
@@ -30,3 +30,20 @@ The source text is not included in this public repository. This map assigns ever
 ## Coverage rule
 
 Each row must be represented in the named Skill body or its direct reference. A complete row means the method, admissible output, failure boundary, and next handoff are present. Mentioning a term without those four elements does not count as coverage.
+
+## Operational distillation
+
+The active entry is `skills/ariadne-skill/references/methodology.md`: pose/reopen, represent, establish, connect, generate/derive, compare/judge, deliver/revise. It preserves task-relative knowledge and the source's separate explanation, derivation, conditional-forecast and finite-choice outputs. The sequence is an Ariadne workflow, not an additional source theorem.
+
+| Source responsibility | Active implementation |
+|---|---|
+| §2.14 problem reopening | framing, router, optional `problem_reopenings` in schema 2.1 |
+| §2.4.3 status/understanding/realization/justification | evidence contracts and working method |
+| §4.8.4 and DS11 material-supported competition | mechanism/human payloads with a documented `competition_search` exception |
+| §6.10.1 four condition questions | mechanism contracts and human-domain persistence/reproduction work |
+| §7.3.9 time burden and §7.6.1 capability feedback | human-domain reference |
+| Part 14 introduction and §14.4.1, §14.8–14.9.1 | choice, human and audit: substantive safeguards, proportionate affected positions, finite recommendations with residual claims |
+| §4.17–4.19, §6.14, §11, §12.8, §13.8, §16.9 | `generative-workflow.md`: derived candidate-generation composition, not a fifth source output |
+| §13.11.2 and §16.7 | artifact endpoint verification; task-specific stopping rather than a universal two-module limit |
+
+Theory version v2, Method Record version 2.1, software release identity and the version actually consumed by a run remain separate. Legacy 2.0 records retain their original contract; new optional fields and relaxed candidate cardinality require 2.1. Validator passes establish record consistency, not source fidelity or empirical usefulness.

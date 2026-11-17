@@ -15,7 +15,7 @@
 ## 变更边界
 
 - skills/ 是十个 Ariadne Skills 的唯一方法论来源，不得创建宿主镜像或复制合同。
-- 方法内容依据《Xikari-条件结构与转化论》（SHA-256 `18a7cc16…aeee6`）；新增或修改的方法条目应标注原文锚点（§），并保持“派生候选、非作者逐条确认”的身份。方法论争议请指出原文条款。
+- 方法内容依据《Xikari-条件结构与转化论》v2（2026-11-16；SHA-256 `6ef2e508…0149c`）；新增或修改的方法条目应标注原文锚点（§），并保持“派生候选、非作者逐条确认”的身份。方法论争议请指出原文条款。
 - 修改 Method Record schema 时，同步 `schemas/method-record.schema.json` 与 `skills/ariadne-skill/references/method-record.schema.json`（须字节一致），并同步 `scripts/validate_repo.py` 与 `skills/ariadne-skill/scripts/validate_record.py` 的语义规则。
 - 保持 Ariadne、ariadne-skill 和 Lattice Kernel 的固定身份，不引入 CrossFrame 或其他仓库的合同。
 - authorization_effect 必须保持 none；工具输出不构成事实确认、价值选择或行动授权。

@@ -205,14 +205,14 @@ Apply the invariant: generate broadly, assign state strictly, never let evidence
 
 Before every re-entry, record current order, parent run, parent path and node, simulated start time, current and cumulative windows, model version, inherited assumptions, added conditions, preserved and changed fields, collapsed and omitted information, added unknowns, target effective variables, residuals, identity status, return path, and stop reason. Never rewrite a simulated start as present reality.
 
-At every order retain at least:
+At each order assess these categories for applicability (§11.9.3), retaining material-supported branches that could change the judgment or protection:
 
 - the current principal path;
 - the strongest competing path;
 - a low-probability high-consequence path;
 - a residual exit.
 
-Create branches only from explicit conditions, mechanism differences, actor choices, disturbances, or typed unknowns. Merge branches only when object identity holds, key states are equivalent within preregistered tolerance, historical differences do not alter later transitions, and later actions and constraints match. Declare pruning before expansion; preserve every pruned branch, reason, possible probability mass, and harm level. Keeping a high-consequence branch means it needs study or preparation, not that its probability is known; do not invent events to fill a category. Never prune a high-consequence branch solely for low probability.
+These categories are not a quota. Explain a missing category without inventing an event or probability. Create branches only from explicit conditions, mechanism differences, actor choices, disturbances, or typed unknowns. Merge branches only when object identity holds, key states are equivalent within preregistered tolerance, historical differences do not alter later transitions, and later actions and constraints match. Declare pruning before expansion; preserve every pruned branch, reason, possible probability mass, and harm level. Keeping a high-consequence branch means it needs study or preparation, not that its probability is known; do not invent events to fill a category. Never prune a high-consequence branch solely for low probability.
 
 Stop or downgrade recursion when object or scale identity fails; a key inherited assumption cannot be carried; the transition leaves the mechanism's domain; the re-entry interface does not close; branches explode without distinguishing signals; small changes reverse results broadly; residuals exceed the use threshold; a deeper order adds no value over the shallower order or simple baseline; the run exceeds a calibrated window; rights or authorization boundaries arise; or the third-order ceiling is reached. State what remains sayable and what is no longer supported.
 

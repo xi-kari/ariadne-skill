@@ -33,7 +33,7 @@ npx skills add xi-kari/ariadne-skill --skill '*' --copy --global -a codex -a cla
 
 Windows 示例固定使用 `--copy`，不依赖符号链接权限。运行安装命令前应检查来源；运行后应使用目标宿主的 Skill 列表或发现界面确认十个名称全部出现。
 
-仓库目前没有稳定 tag。以上 GitHub 简写跟随默认分支 `main`，属于滚动安装，不是可复现的固定版本。更新前应查看仓库差异；需要可复现输入时，先固定经人工确认的提交，再从该提交安装。
+仓库已有稳定 tag `v2.0.0`（record schema 2.0，2026-10 理论来源），可用 `xi-kari/ariadne-skill@v2.0.0` 固定安装。当前方法文件采用 schema 2.1 与理论 v2（2026-11-16），本次改造不发布新 tag。以上不带版本的 GitHub 简写跟随默认分支 `main`，属于滚动安装；需要复现当前方法文件时，应固定实际审阅的提交。理论版本、记录 schema 与软件 tag 分别登记。
 
 ## 六宿主矩阵
 
@@ -105,7 +105,7 @@ python -X utf8 -B scripts/validate_adapters.py
 
 ## 单文件捆绑版
 
-没有 Agent Skills 目录的宿主（网页版 ChatGPT/Gemini/Claude、自定义 GPT、纯系统提示场景）使用 `dist/ariadne-bundle.md`：由 `scripts/build_bundle.py` 按依赖序拼接十个 SKILL.md 正文生成，附方法记录字段清单与人工校验清单；CI 以 `--check` 校验它与 skills/ 永不漂移。该形态没有渐进加载与 peer 派发，整份文本一次性进入上下文（约 78KB），适合长上下文模型或手工节选。
+没有 Agent Skills 目录的宿主（网页版 ChatGPT/Gemini/Claude、自定义 GPT、纯系统提示场景）使用 `dist/ariadne-bundle.md`：由 `scripts/build_bundle.py` 按依赖序拼接十个 SKILL.md 正文生成，附 Working method、Generative workflow、方法记录字段清单与人工校验清单；CI 以 `--check` 校验它与 skills/ 永不漂移。该形态没有渐进加载与 peer 派发，整份文本一次性进入上下文（大小随内容变化，以生成文件为准），适合长上下文模型或手工节选。
 
 ## Router-only 交付物
 

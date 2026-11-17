@@ -44,7 +44,7 @@ The source names four outputs, each with its own boundary (§1.1): explanation d
 | `finite_choice` | Compare action, delay, probing, exit, and no action | Require explicit norms; an analytic recommendation is for deliberation only |
 | `intervention_review` | Review a proposed real-world intervention | Require protection, stopping, rollback, and remedy later |
 | `governance_review` | Review rules, public claims, or methodology governance | Require challenge, appeal, downgrade, and retirement later |
-| `synthesis_design` | Produce a design or plan whose core is a judgment | Constraints and comparison only; construction and adoption return to the host |
+| `synthesis_design` | Produce a design or plan whose core is a judgment | Traceable candidates and comparison; continue construction and verification in the host under existing authorization, with adoption separately qualified |
 
 If one request contains several rows, split it or declare an explicit order. An explanation does not inherit forecast status, a forecast does not inherit authorization, and an opinion, option comparison, or draft rule does not by itself acquire power to bind others. When such an output is in fact used for handling, eligibility, resources, or another high-impact decision, review it by that foreseeable use; the label "suggestion" never lowers responsibility. Judge results item by item: a real local improvement stays recorded while other outcomes need their own evidence.
 
@@ -276,3 +276,7 @@ authorization_effect: none
 <!-- method-record-example:end -->
 
 This frame permits an evidence audit of reporting and incident measures. It does not diagnose the cause of the increase, evaluate the camera proposal, or authorize cameras.
+
+## Question reopening
+
+A task is not beyond challenge because its initial fields were frozen (§2.14). Reopen when the target, included members, definition of loss, omitted alternatives or a supposedly fixed constraint prevents an adequate answer. Keep the original question and results; identify the proposer, reason, reasoned disposition, old/new relation (replace, parallel or refine), affected claims and inherited findings. The optional schema 2.1 `problem_reopenings` field carries these distinctions across agents. A new question may support useful work without rescuing a failed old test. Keep authorization and consequential adoption separate from agreement to investigate a new question.

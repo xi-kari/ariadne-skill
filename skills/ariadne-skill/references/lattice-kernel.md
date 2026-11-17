@@ -18,11 +18,11 @@
 
 ## Purpose and source binding
 
-The Lattice Kernel is the common discipline behind every Ariadne module. It makes reasoning traceable without treating form completion as truth. Its core movement is:
+The Lattice Kernel is the common discipline behind every Ariadne module. It makes reasoning traceable without treating form completion as truth. Its operational entry is [methodology.md](methodology.md); its core movement is:
 
-> name the difference to explain -> declare task and representation together -> declare the candidate object -> freeze evidence -> audit scale, mechanism, and human positions -> derive paths -> register forecasts -> compare choices and, under explicit premises, recommend for deliberation -> govern use, correction, and writeback
+> pose or reopen the question -> declare task, representation and candidate object -> establish evidence -> check connections -> generate and derive candidates -> compare and judge -> deliver, verify and revise
 
-Each arrow is a gate, not an automatic implication. A gate that fails stops only the judgments that depend on it.
+Each arrow adds the conditions needed by the next claimed result; not every task traverses every arrow. A gate that fails stops only the judgments that depend on it.
 
 Source binding: the kernel distills the method of *Xikari-条件结构与转化论* (source SHA-256 pinned in `source-navigation.json`). Every Ariadne entry is a derived method and retrieval entry with candidate status. It is not an author-confirmed item, does not add a second theory beside the source, and loses authority wherever it misreads the source text; when an entry and the source disagree, the source governs and the entry is corrected (source §16.20.1, §16.15).
 
@@ -30,7 +30,7 @@ Source binding: the kernel distills the method of *Xikari-条件结构与转化�
 
 ### 1. Start from the difference, not the vocabulary
 
-Begin with a concrete puzzle in plain words: which difference needs explaining, deciding, or protecting. Structure, psychology, interest, culture, power, or technology never earns final-cause status by name. A shorter adequate domain method is allowed to answer alone; Ariadne then contributes only source and boundary checks (source §1.3, §1.10, §16.15, Appendix D.01).
+Begin with a concrete puzzle in plain words: which difference needs explaining, deciding, or protecting. Structure, psychology, interest, culture, power, or technology never earns final-cause status by name. Understanding may be the endpoint. Reopen a task when its target, membership, losses or assumed constraints exclude a material question; preserve the original results and the reasoned disposition (§2.14). A shorter adequate domain method is allowed to answer alone; Ariadne then contributes only source and boundary checks (source §1.3, §1.10, §16.15, Appendix D.01).
 
 ### 2. Declare task and representation together
 
@@ -78,7 +78,7 @@ Facts, predictions, formal feasibility, and technical capability never produce v
 
 ### 13. Downgrade proposition by proposition
 
-A missing field, failed gate, or broken bridge lowers only the propositions that depend on it. Judgments with independent support keep their status; a failure of a global source, a shared premise, the object boundary, or the task's lawful use blocks every dependent output. Renaming, splitting, or opening a new branch never restores a lowered ceiling (source §2.9, §13.1, §13.3, §16.25).
+A missing field, failed gate, or broken bridge lowers only the propositions that depend on it. Judgments with independent support keep their status; a failure of a global source, a shared premise, the object boundary, or the task's lawful use blocks every dependent output. Renaming, splitting, or opening a new branch never restores a lowered ceiling (source §2.9, §13.1, §13.3, §16.24).
 
 ### 14. Keep AI in the analysis layer
 
@@ -101,7 +101,7 @@ The source separates four outputs and four tasks. Ariadne's request types map on
 | `finite_choice` | Output: finite choice; task: normative choice | How do action, delay, probing, exit, maintaining, and no action compare? | Explicit norms, distribution, protection floor, and either an analytic recommendation for deliberation or a requirements handoff; never permission. |
 | `intervention_review` | Task: intervention | Does a proposed action stay inside its authority, reversibility, and protection ceiling? | Requirements, prohibitions, stop, appeal, rollback, and the T0-T4 task type; only consumes existing authorization. |
 | `governance_review` | Part 16 | Should a claim, process, model, or framework be restricted, paused, replaced, or retired? | Contestability, writeback, downgrade, replacement, retirement. |
-| `synthesis_design` | AI drafting role (source §13.8, §16.9) | Which bounded design or plan fits the frozen constraints? | Constraint record, compared candidates including keep-current, and a bounded proposal returned to the host workflow; Ariadne never builds or executes. |
+| `synthesis_design` | AI drafting role (source §13.8, §16.9) | Which bounded design or plan fits the frozen constraints? | Traceable candidates, explicit criteria and a completed artifact through the host workflow; the method itself grants no authority to adopt or execute. |
 
 The fixed task chain is explanation -> diagnosis -> normative choice -> intervention. Each link adds conditions; none is crossed by vocabulary. An explanation can stand while prediction stays hard; a forecast can be accurate while an action stays unjustified; a recommendation can be worth deliberating while execution stays unauthorized (source §1.1, §1.4, §15.1).
 
@@ -146,6 +146,8 @@ Keep these as separate records, each with its own conversion reason:
 `source -> material -> observation record -> evidence -> counterevidence -> judgment -> action authorization`
 
 A genuine source can carry a weak interpretation. Evidence can support association without causality. A causal conclusion can remain normatively silent. A value judgment can exist without jurisdiction or authorization. Absence and silence are not counterevidence by default; non-observation is not nonexistence (source §2.5).
+
+Constituted status, participant understanding, actual realization and normative justification are separate responsibilities (§2.4.3). A rule can establish a right while delivery fails; an observed effect cannot alone establish legitimacy.
 
 Bridges register what could break them before any strong use:
 
@@ -200,7 +202,7 @@ When a key variable is unknown, an inapplicability condition is unhandled, a cor
 
 ## Output ceilings and publication
 
-The ceilings form the closed total order `description_only < diagnostic_only < requirements_only`. Each higher ceiling includes everything below it. Every level keeps `can_authorize = false` and `can_execute = false` (source §13.9).
+The ceilings form the closed total order `description_only < diagnostic_only < requirements_only`. Each higher ceiling includes everything below it. Every level keeps `can_authorize = false` and `can_execute = false` (source §13.9): the method grants no authority. These flags do not prohibit the host from completing an ordinary task already authorized by the user. The ceilings govern analytic claims and consequential recommendations, not whether a requested artifact may be written.
 
 | Ceiling | May produce | May not produce |
 |---|---|---|
@@ -208,7 +210,7 @@ The ceilings form the closed total order `description_only < diagnostic_only < r
 | `diagnostic_only` | Description plus comparative mechanisms, bounded diagnosis, conditional paths, and eligible forecast evaluation | Normative requirements, recommendation, instruction, authorization |
 | `requirements_only` | Description and diagnosis plus the conditions an external choice or authorization process would need and, when explicit normative premises, the protection floor, affected positions, and a no-action option are registered, an analytic recommendation for deliberation with reasons, costs, objections, and change conditions | Adoption, permission, instruction in imperative voice, execution, or any self-reported authorization |
 
-Every root record starts at `description_only`; a higher ceiling is never an initial value. A child takes the minimum of the inherited ceiling and the module's local ceiling. A module run never raises the ceiling. A `lower` records its reason. A child may raise only after admitting new external evidence or recording fulfillment of a declared protocol, registered as a basis ID new relative to every parent; when the lineage was lowered before, state how the basis resolves that reason. A merge takes the minimum parent ceiling. More modules, votes, simulations, or confident prose never raise it.
+Every root record starts at `description_only`; a higher ceiling is never an initial value. A child takes the minimum of the inherited ceiling and the module's local ceiling. A module run never raises the ceiling. A `lower` records its reason. A child may raise only after admitting new external evidence or recording fulfillment of a declared protocol, registered as a basis ID new relative to every parent; when the lineage was lowered before, state how the basis resolves that reason. A merge takes the minimum parent ceiling for the combined product; independent lane findings remain available in their original records and may be delivered separately at their own supported level. More modules, votes, simulations, or confident prose never raise it.
 
 Publication default (source §12.16): lead with the current judgment and its scope, then give the complete analysis that was actually performed: conditions, evidence, every substantive path comparison, each path's conditions, early and reverse signals, expression strength, pauses, and next review. Do not drop substantive analysis because it is a minor branch or does not change the headline; do not hide conditions in footnotes; do not let "the model thinks" replace evidential responsibility. Compress the visible answer only when the user asks for brevity, and keep the full analysis available for continuation.
 

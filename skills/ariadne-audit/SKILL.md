@@ -3,7 +3,7 @@ name: ariadne-audit
 description: "Gate high-impact use of completed Ariadne records: transformation and main gates, the strong-judgment register by actual use, AI tool-chain endpoints, appeal, rollback, downgrade, withdrawal, and the merge point for clustered runs. Use when conclusions face public, automated, institutional, or hard-to-reverse use, or clustered records must be merged with conflicts kept. For a multi-module pass, start with ariadne-skill. 适用于：结论公开或上线前的审查、能不能这么用、申诉与回滚、集群合并终审。"
 license: MIT
 metadata:
-  record_schema: "2.0"
+  record_schema: "2.1"
 ---
 
 # Ariadne Audit
@@ -11,6 +11,8 @@ metadata:
 ## Overview
 
 Audit whether a bounded methodology record may retain its current judgment and use ceiling. Treat completed forms, fluent prose, automated scores, internal tests, and framework consistency as process artifacts, never as proof of reality, safety, consent, effectiveness, or authorization. Whether a judgment is strong is set by its actual and foreseeable use, never by tone or length, and renaming an output never lowers its responsibility.
+
+Audit v2's argument principles, substantive adoption safeguards and Ariadne record format separately. Exact field counts validate this implementation's record; independently verified equivalent safeguards may use another format. Preserve independently established domain findings and lawful duties. Derived methods remain candidates, and neither a full reading nor a validator pass certifies understanding or author approval.
 
 ## Route the Audit
 
@@ -21,15 +23,19 @@ Audit whether a bounded methodology record may retain its current judgment and u
 
 ## Run the Audit
 
-1. Freeze the audit subject, version, owner, object contract, scale, evidence cutoff, intended use, affected and low-power positions, challenge path, and current output ceiling.
+1. Freeze the audit subject, version, owner, object contract, scale, evidence cutoff, intended use, affected and low-power positions, challenge path, and current output ceiling. Audit the identification boundary: all direct, known or pointed-out low-power, and domain-required positions are mandatory; further effects use the proportionate, challengeable search in §14.4.1. Distinguish an unknown that could defeat protection or option comparison from one that can be monitored. A request to reopen the frozen question receives reasons and disposition while the original question and result remain.
 2. Run IT1-IT4 in order: structure to observable signal, signal to evidence strength, evidence to judgment level, and judgment to action requirements and ceiling. On failure, mark every later transformation `not_run`. An IT1 failure fixes `output_ceiling: description_only`; describe missing requirements or a protective pause without issuing requirements. Downstream claims sharing the gap stay lowered whatever they are renamed or split into; independently grounded claims keep their level.
 3. Run IG1-IG7 in order as the only main gate flow: object, evidence trace, affected positions, power and anti-retaliation, mediation and reflexivity, strong-judgment procedure, and action ceiling. Mark every gate after the first failure `not_run`. An IG1 failure fixes `output_ceiling: description_only`; do not let later paperwork repair or elevate it.
 4. Expand with FG1-FG5 (the five expansion gates: object, evidence, scale, responsibility, and observation) and DS01-DS13 (the thirteen diagnostic steps: problem entry, object and boundary, signal layers, observation participation, dominant constraint, state and window, core structure, protected variables, carrying and repayment, hazard and boundary type, competing mechanisms, branch outlook, and output and writeback) when the object is complex, high-responsibility, or highly reflexive. Treat the expansion as evidence for the main gates, not a competing approval flow.
 5. Decide whether the strong-judgment condition is triggered by use: handling, eligibility, rights, resource allocation, material effects on a specific subject's reputation or public memory, or embedding in automated, organizational, or institutional decisions. Record the `strong_judgment` register with its reason; when not triggered, mark IG6 `not_applicable` and SJ1-SJ8 `not_applicable`. Require SJ1-SJ8 (the strong-judgment eight: reverse conditions, repair window, evidence requirements, appeal entry, anti-retaliation, evidence supplementation, external-review trigger, and rollback and writeback) for every L3 judgment (the highest of the L1-L3 responsibility levels) that can affect disposition, qualification, reputation, resources, rights, public memory, or automated or institutional use. If any component fails, fail IG6 and downgrade the output. SJ4-SJ8 re-verify the choice-level PF bindings; SJ1-SJ3 are the audit-specific increment, as the gates reference maps them.
 6. Add DF1-DF9 (the nine dynamic gates: fact freeze, joint object, channels and clocks, mechanism propagation, path branching, forecast registration, normative choice, authorization and execution, and result writeback) when the record includes dynamic derivation, conditional forecast, finite choice, or intervention. Do not let the dynamic gates bypass the seven main gates.
 7. Apply the AI boundary. Expect AI to compare mechanisms, form refutable judgments, recommend options, and draft complete texts where evidence and explicit premises allow; mark model-generated variables and paths as candidates; require source disclosure, missing-material disclosure, a responsible human, allowed and prohibited uses, uncertainty, review, appeal, and withdrawal. Check sources, quotations, passage support, and world facts separately; record suggestion, tool request, execution, external state, and consequence separately, and verify the task's real endpoint. Block any promotion from `candidate` to `observed`, from `simulated` to real, or from forecast to authorization without external evidence.
-8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback with separately registered text, theory, contract, software, and run versions, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Keep derived method entries, Ariadne included, in candidate status. Require an externally verifiable approval for an applied governance change, and make sure people can protect themselves, record facts, and seek support without learning the framework.
+8. Audit governance: preserve dissent, anti-retaliation, external review, authoritative version writeback with separately registered text, theory, contract, software, and run versions, downgrade, suspension, publication blocking, withdrawal, replacement, rollback, remedy, and retirement. Distinguish dissent, unanswered material reasons, and protection failure; a reasoned decision may properly remain unchanged. Check proposal response separately from agenda change and independent challenge to final authority. Keep derived entries in candidate status. Require externally verifiable approval for an applied governance change and ensure people can obtain support without learning the framework or completing its cards. When all feasible options leave loss, retain the finite recommendation, unmet claims and continuing duties; do not demand a fictional lossless outcome.
 9. Return findings, failed or not-run gates, affected claims, the lowered output ceiling, and a typed contestability payload with a reachable owner, deadline, retained original record, downstream correction target, rollback recovery target, and remedy. Keep `authorization_effect` equal to `none`.
+
+## Record mode
+
+For low-impact, reversible work, a concise task, evidence, finding and boundary statement can be sufficient. The machine-record instructions below apply when a structured record is selected, requested or needed for handoff; they do not require twenty fields before an ordinary answer. Preserve known facts and existing authorization, marking only actual gaps unknown. Formal forecast registration and safeguards for consequential use remain required by their own contracts; brevity does not waive them.
 
 ## Method Record
 
@@ -78,7 +84,7 @@ Peer unavailable -> not_run/module_unavailable, outputs unknown, ceiling preserv
 - **Calling a named reviewer independent:** Resolve canonical identity and material conflicts; require real access and veto power.
 - **Offering an appeal that cannot change anything:** Treat it as no appeal and block high-impact use.
 - **Calling a new version rollback:** Restore state, records, downstream effects, remedies, and residual-harm tracking.
-- **Archiving counterexamples without consequences:** Bind them to text, process, ceiling, and lifecycle changes.
+- **Archiving counterexamples without review:** Record a reasoned disposition and make each warranted text, process, ceiling or lifecycle correction; do not change a correct claim merely to display responsiveness.
 - **Letting AI verify itself:** Require external evidence and accountable human review; several models repeating one source are one source.
 - **Upgrading by tone or downgrading by label:** Decide strong judgment by use; calling it commentary or a draft changes nothing.
 - **Calling a sampled review author confirmation:** Derived entries stay candidates until the source text itself carries them.

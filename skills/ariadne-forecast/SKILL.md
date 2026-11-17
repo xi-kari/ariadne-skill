@@ -3,7 +3,7 @@ name: ariadne-forecast
 description: "Register future claims that can visibly fail: frozen target, deadline, inputs, simple baseline, recursion order, response regime, calibration, early and reverse signals, failure semantics, and result writeback. Use when a future judgment has a target and deadline and must be evaluable; for undated path exploration use ariadne-dynamics, and when the forecast feeds a real decision, follow with ariadne-choice. For a multi-module pass, start with ariadne-skill. 适用于：立一个可验证的预测、这个预测靠不靠谱、基线与校准、失败判定与回写。"
 license: MIT
 metadata:
-  record_schema: "2.0"
+  record_schema: "2.1"
 ---
 
 # Ariadne Forecast
@@ -24,7 +24,7 @@ Register future-facing claims before outcomes appear, then evaluate them against
 
 1. Freeze the object contract and task profile, scale scope, evidence cutoff, input cutoff, target, outcome rule, horizon, allowed error, observation source, and model version. Mark an unstable object or target as a contract failure.
 2. Register a fair simple baseline under the same target, horizon, cutoff, information set, budget, and evaluation rule. State separately what added information, computation, and structure contribute; add mechanisms or circles only when they can earn specified out-of-sample incremental value.
-3. Enumerate mutually exclusive, parallel, and incomparable paths. Keep every model-proposed variable `candidate` until external evidence supports it. Record the recursion stage (0 when there is no re-entry).
+3. Enumerate the material-supported mutually exclusive, parallel or incomparable paths that matter to the judgment. These are categories, not a quantity requirement. In schema 2.1, a single candidate mechanism or path requires `competition_search` with `search_scope`, `reason_no_alternative` and `failure_conditions`; it still needs affirmative evidence and a fair simple baseline. Keep every model-proposed variable `candidate` until external evidence supports it. Record the recursion stage (0 when there is no re-entry).
 4. Choose the expression the evidence supports: probability or interval, ordered support, conditional direction, or unknown. Keep real probability, actors' beliefs, decision weights, model path rankings, and computation priorities apart; model sampling frequencies are never real probabilities, and no number is invented from prose or model confidence.
 5. Preregister the calibration metric, evaluation rule, response regime, early signals, reverse signals, review triggers, pause conditions, retirement conditions, and append-only writeback plan. Measure warning clocks to the point where the last affected person can complete protection.
 6. At the deadline, assign exactly one result state: `supported`, `not_supported`, `unresolved`, `target_invalid`, or `not_evaluable`. Evaluate recursive orders separately against their own simpler baselines, and answer separately how the forecast scored, what publication or action changed, and whether adopting the forecast and response is appropriate.

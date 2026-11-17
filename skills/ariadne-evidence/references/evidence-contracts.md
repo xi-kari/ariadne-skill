@@ -412,3 +412,7 @@ These virtual instances describe a fictional multi-layer transport model that ci
 | m4 / G4a | Micro-to-aggregate mapping M with frozen retained and excluded variables | `conditional_information_gain` | Excluded local timing adds no above-threshold conditional information given the aggregate variables | The increment stays below threshold, or the criterion is switched to prediction, intervention, or G4b conversion after results |
 
 The four instances feed one another follow-up questions but never substitute for one another: m1 passing does not guarantee m2's channel effect, m2 passing does not guarantee m3's history increment, and m3 passing does not guarantee m4's closure failure. If m3 fails, the backlog's carried effect through the current queue is still an open carried-route question, not a refuted one.
+
+## Constitutive, interpretive, realization and normative claims
+
+Separate four responsibilities when a rule, status or institution is involved (§2.4.3): whether the applicable rule constitutes a status, how participants understand it, whether its promised function is actually realized, and whether the arrangement is justified. Each can have a different answer and needs appropriate material. A valid eligibility rule can establish a right before payment arrives; a payment record does not establish understanding or legitimacy. Do not demand a causal experiment to answer a determinate textual or legal-status question, or use that answer as proof of implementation. Preserve the bounded result and audit only the missing bridge.

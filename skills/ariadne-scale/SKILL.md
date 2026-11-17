@@ -3,7 +3,7 @@ name: ariadne-scale
 description: "Audit what survives a move between scales, circles, representations, or vocabularies: what is preserved, changed, collapsed, lost, or incomparable, and whether a coarser representation still answers the task, closes over time, survives allowed actions, and joins with other steps. Use when reasoning crosses individual and collective levels, local and global scopes, short and long windows, or domains. For a multi-module pass, start with ariadne-skill. 适用于：个体结论能否推到群体、试点能否推广、换个说法丢了什么、汇总够不够用。"
 license: MIT
 metadata:
-  record_schema: "2.0"
+  record_schema: "2.1"
 ---
 
 # Ariadne Scale
@@ -11,6 +11,10 @@ metadata:
 ## Overview
 
 Audit what happens when an object, observation, claim, or action moves between scale profiles, circles, representations, or vocabularies. Register what is preserved, changed, collapsed, lost, uncertain, and non-transferable instead of treating a shared label as a bridge. Judge every representation against the declared task: never presume a move is lossless, and never presume it must lose what the task needs.
+
+## Record mode
+
+For low-impact, reversible work, a concise task, evidence, finding and boundary statement can be sufficient. The machine-record instructions below apply when a structured record is selected, requested or needed for handoff; they do not require twenty fields before an ordinary answer. Preserve known facts and existing authorization, marking only actual gaps unknown. Formal forecast registration and safeguards for consequential use remain required by their own contracts; brevity does not waive them.
 
 ## Procedure
 

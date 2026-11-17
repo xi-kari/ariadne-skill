@@ -1,6 +1,6 @@
 {
-  "source": "Appendix A of Xikari, Conditions, Structures, and Transformations (Xikari-条件结构与转化论), 2026-10",
-  "source_sha256": "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6",
+  "source": "Appendix A of Xikari, Conditions, Structures, and Transformations (Xikari-条件结构与转化论), v2, 2026-11-16",
+  "source_sha256": "6ef2e508474d4ac1ad07d7e4e068955342c405b5f680afcfc40d68cca3d0149c",
   "language": "zh-Hans card bodies with English field names",
   "toc": [
     {
@@ -99,7 +99,7 @@
       "pause_condition": "对象、边界、尺度、时间窗或同一性不足以支持所选路由；申请G1正式支持时，相应零模型或实例合同不完整",
       "allowed_inference": [
         "R0可登记候选对象、边界争议与有限描述引用",
-        "只在G1-instance预注册对象、尺度、窗口、结果与外推单位内登记其增益所支持的有限有效结构域及识别强度"
+        "只在G1-instance预注册对象、尺度、窗口、结果与外推单位内登记其增益所支持的有限有效结构域及分组增益支持强度"
       ],
       "prohibited_leap": [
         "命名即客观共同体",
@@ -117,7 +117,7 @@
       ],
       "action_ceiling": "本变量只生成候选结构域、边界争议与补证需求描述，不授权纳入、排除或处置；任何现实调整须另过C12、运行时显式N前提、J授权与O程序",
       "appeal": "依appeal_and_rollback_rule，成员与受影响位置可经安全可达、反报复通道挑战边界、代表性和同一性判据，并触发与原命名或决策链独立的复核",
-      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销结构域登记、移除其对下游对象范围的效力并恢复为材料集合，保留版本与完成验证",
+      "rollback": "依appeal_and_rollback_rule，获准回滚时，由指定责任人在规定时限内实际撤销结构域登记、移除其对下游对象范围的效力并退回候选分组，另有依据的对象事实不随之撤销，保留版本与完成验证",
       "scale_profile": "SP=<A,X,T,O,C,R,I,N,J>；A=聚合层次：关系或事件单元、候选成员总体、边界内外分布及分组规则；X=空间范围：共同场所、组织边界、数字平台与跨域外部环境；T=时间跨度：识别窗口、成员变动周期与边界历史；O=组织层级：角色、团队、组织、制度至治理生态；C=因果层次：原始事件、互动机制、中观关系结构、制度与系统条件；R=观察分辨率：原始互动、事件序列、成员个案、边界分布、指标与摘要，并登记压缩损失；I=影响范围：直接成员、被排除者、间接受影响者、二阶外溢、跨域与代际位置；N=网络拓扑范围：成员关系、边界连接、孤立点与跨域桥接；J=管辖与授权范围：对象命名、边界采用及后续处置分别登记授权；不适用轴须登记not_applicable理由",
       "effective_object": "由D0声明的候选对象；只有通过预注册G1-instance相对匹配N0的阈值检验后，才在该实例范围登记为有限有效结构域",
       "state": [
@@ -130,7 +130,7 @@
         "边界内外关系密度与约束差异",
         "成员进入、退出与被排除记录",
         "共同问题、资源通道或制度规则的重复共现",
-        "改变分组规则后对象识别是否稳定"
+        "改变分组规则后分组增益是否稳定"
       ],
       "evidence": [
         "D0候选对象与同一性记录",
@@ -165,7 +165,7 @@
         "边界外成本承担者"
       ],
       "normative_status": "描述性H-World接口，不产生正当性",
-      "judgment_ceiling": "只有G1-instance通过时，且仅限预注册对象、尺度、窗口、结果与外推单位，才可登记解释级有限有效对象；否则仅为候选对象或材料集合",
+      "judgment_ceiling": "只有G1-instance通过时，且仅限预注册对象、尺度、窗口、结果与外推单位，才可登记解释级有限有效结构域；否则不登记分组增益支持，候选对象引用和另有依据的对象事实照常保留",
       "required_scale_additions": [
         "单位与总体",
         "代表性",
@@ -212,7 +212,7 @@
           "additional_protocol_requires": [
             "E4"
           ],
-          "allowed_conclusion": "登记该实例范围内的有限有效结构域、对象识别强度、边界可信度和适用窗。",
+          "allowed_conclusion": "登记该实例范围内的有限有效结构域、分组增益支持强度、该增益对已测试边界扰动的稳健性和适用窗。",
           "result_ceiling": "只限预注册SP/T/K与generalization_unit；不得作终极本体、统一意志或授权判断。"
         }
       ]

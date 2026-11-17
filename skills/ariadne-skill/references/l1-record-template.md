@@ -7,7 +7,7 @@ The single copy-ready template for the L1 compact profile defined in [method-rec
 <!-- method-record-example:start -->
 ```yaml
 record_id: ariadne:quick-check:root:v1
-schema_version: '2.0'
+schema_version: '2.1'
 record_version: 1
 lineage_kind: root
 parent_record_id: null
@@ -76,7 +76,7 @@ Prefer running the shipped validator: `python scripts/validate_record.py <record
 
 1. All twenty top-level fields above are present; none renamed, none added.
 2. `record_id` matches `ariadne:<case>:<module|merge|root>:v<N>`; the case slug contains no colon.
-3. `schema_version` is `'2.0'`; `record_version` is an integer.
+3. `schema_version` is `'2.1'` (legacy `'2.0'` remains readable); `record_version` is an integer.
 4. Lineage is consistent: `root` has null `parent_record_id`, empty `parent_records`, version 1, ceiling `description_only`, operation `root`. `linear` has exactly one parent, version = parent version + 1. `merge` has two or more parents sorted by ID then version, version = highest parent version + 1, operation `meet`.
 5. `object_contract` carries all nine subfields (`boundary`, `state_variables`, `relations_or_transitions`, `interfaces`, `time_window`, `scale_profile`, `identity_criterion`, `task_profile`, `status`); `scale_profile` names at least one axis; `task_profile` names the target query, horizon, environment, allowed operations, and error tolerance.
 6. `scale_scope.transform_kind` is `none` exactly when `transform_status` is `not_needed`.

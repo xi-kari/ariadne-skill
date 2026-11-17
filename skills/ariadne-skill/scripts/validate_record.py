@@ -9,7 +9,8 @@ Ships inside the ariadne-skill package so any host with a Python runtime can run
 - Semantic validation mirrors the repository validator: lineage arithmetic,
   ceiling algebra, raise-basis novelty, module-run and payload pairing,
   supported-claim resolution, proposition-level dependency limits, transform
-  kind/status pairing, choice options and analytic recommendation, audit gate
+  kind/status pairing, mechanism uniqueness, event sources, forecast links and
+  chronology, inquiry and design record identities, choice options and analytic recommendation, audit gate
   order, and the IG6 strong-judgment binding. Non-root records need --parent context for the
   parent-dependent checks; without it those checks are reported as skipped.
 - Records may be YAML (needs PyYAML) or JSON (standard library only).
@@ -23,10 +24,16 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 SCHEMA_PATH = Path(__file__).resolve().parents[1] / "references" / "method-record.schema.json"
 RECORD_ID = re.compile(r"^ariadne:[A-Za-z0-9._:-]+$")
+RFC3339_DATETIME = re.compile(
+    r"^(?P<date>\d{4}-\d{2}-\d{2})[Tt]"
+    r"(?P<hour>[01]\d|2[0-3]):(?P<minute>[0-5]\d):(?P<second>[0-5]\d|60)"
+    r"(?P<fraction>\.\d+)?(?P<zone>[Zz]|[+-](?:[01]\d|2[0-3]):[0-5]\d)$"
+)
 CEILING_RANK = {"description_only": 0, "diagnostic_only": 1, "requirements_only": 2}
 TYPED_MODULES = {
     "ariadne-human",
@@ -57,12 +64,49 @@ def schema_errors(record: dict, schema: dict) -> tuple[list[str], str]:
         import jsonschema
     except ModuleNotFoundError:
         return _structural_subset_errors(record, schema), "structural-subset (jsonschema not installed)"
-    validator = jsonschema.Draft202012Validator(schema)
+    checker = jsonschema.FormatChecker()
+    checker.checks("date-time")(_is_rfc3339_datetime)
+    validator = jsonschema.Draft202012Validator(schema, format_checker=checker)
     found = [
         f"schema: {'/'.join(str(part) for part in error.absolute_path) or '<root>'}: {error.message}"
         for error in validator.iter_errors(record)
     ]
     return found, "full JSON Schema (jsonschema)"
+
+
+def _is_rfc3339_datetime(instance: object) -> bool:
+    """Match the repository's timezone, calendar, and leap-second checks."""
+    if not isinstance(instance, str):
+        return True
+    match = RFC3339_DATETIME.fullmatch(instance)
+    if match is None:
+        return False
+    second = match.group("second")
+    normalized_second = "59" if second == "60" else second
+    zone = match.group("zone")
+    normalized_zone = "+00:00" if zone in {"Z", "z"} else zone
+    normalized = (
+        f"{match.group('date')}T{match.group('hour')}:{match.group('minute')}:"
+        f"{normalized_second}{match.group('fraction') or ''}{normalized_zone}"
+    )
+    try:
+        parsed = datetime.fromisoformat(normalized)
+    except ValueError:
+        return False
+    if second == "60":
+        utc = parsed.astimezone(timezone.utc)
+        if (utc.month, utc.day, utc.hour, utc.minute) not in {
+            (6, 30, 23, 59),
+            (12, 31, 23, 59),
+        }:
+            return False
+    return True
+
+
+def _parse_forecast_time(value: str) -> datetime:
+    """Normalize RFC 3339 UTC designators for Python 3.10 compatibility."""
+    normalized = value[:-1] + "+00:00" if value.endswith(("Z", "z")) else value
+    return datetime.fromisoformat(normalized)
 
 
 def _structural_subset_errors(record: dict, schema: dict) -> list[str]:
@@ -195,8 +239,12 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
     claim_ids = [claim["claim_id"] for claim in record["claim_ledger"]]
     if len(claim_ids) != len(set(claim_ids)):
         errors.append("claim IDs must be unique")
+    errors.extend(methodology_extension_errors(record))
     admitted = set(record["evidence_cutoff"]["included_source_ids"])
-    declared_rules = {entry["rule_id"] for entry in record.get("rule_registry", [])}
+    rule_ids = [entry["rule_id"] for entry in record.get("rule_registry", [])]
+    if len(rule_ids) != len(set(rule_ids)):
+        errors.append("rule registry IDs must be unique")
+    declared_rules = set(rule_ids)
     earlier: dict[str, str] = {}
     for claim in record["claim_ledger"]:
         if claim["status"] == "supported":
@@ -241,6 +289,60 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
         errors.append(f"{module} payload requires a matching completed module run")
 
     payloads = {payload["module"]: payload["payload"] for payload in record["module_payloads"]}
+    mechanism = payloads.get("ariadne-mechanism")
+    if mechanism is not None:
+        candidates = mechanism["candidates"]
+        candidate_ids = [candidate["mechanism_id"] for candidate in candidates]
+        if len(candidate_ids) != len(set(candidate_ids)):
+            errors.append("mechanism candidate IDs must be unique")
+        signatures = [
+            (
+                candidate["channel_observation"].strip().casefold(),
+                candidate["discriminating_prediction"].strip().casefold(),
+                candidate["reverse_or_falsifier"].strip().casefold(),
+                candidate["residual_comparison_rule"].strip().casefold(),
+            )
+            for candidate in candidates
+        ]
+        if len(signatures) != len(set(signatures)):
+            errors.append("mechanism candidates must be distinguishable on their required tests")
+
+    dynamics = payloads.get("ariadne-dynamics")
+    if dynamics is not None:
+        for event in dynamics["events"]:
+            for source_id in event["source_ids"]:
+                if source_id not in admitted:
+                    errors.append(
+                        f"dynamics event {event['event_id']} has unresolved source_id: {source_id}"
+                    )
+
+    forecast = payloads.get("ariadne-forecast")
+    if forecast is not None:
+        preregistration = forecast["preregistration"]
+        linked = preregistration if preregistration is not None else forecast["post_hoc_reconstruction"]
+        if linked is not None and (
+            linked["record_id"] != record["record_id"]
+            or linked["record_version"] != record["record_version"]
+        ):
+            label = "forecast preregistration" if preregistration is not None else "forecast post-hoc reconstruction"
+            errors.append(f"{label} must link the current record_id and record_version")
+        if preregistration is not None:
+            try:
+                chronology = (
+                    _parse_forecast_time(preregistration["baseline_time"])
+                    <= _parse_forecast_time(preregistration["input_cutoff"])
+                    <= _parse_forecast_time(preregistration["horizon"]["start"])
+                    <= _parse_forecast_time(preregistration["horizon"]["deadline"])
+                    < _parse_forecast_time(preregistration["result_writeback"]["due_at"])
+                )
+            except ValueError:
+                chronology = False
+            if not chronology:
+                errors.append(
+                    "forecast preregistration chronology must satisfy "
+                    "baseline <= cutoff <= start <= deadline < writeback"
+                )
+
     choice = payloads.get("ariadne-choice")
     if choice is not None:
         errors.extend(choice_payload_errors(choice, record["output_ceiling"], record))
@@ -249,6 +351,26 @@ def semantic_errors(record: dict, parents: list[dict] | None) -> tuple[list[str]
         errors.extend(audit_payload_errors(audit, record["output_ceiling"], transition["operation"]))
 
     return errors, skipped
+
+
+def methodology_extension_errors(record: dict) -> list[str]:
+    """Check references and identity in optional inquiry and design records."""
+    errors: list[str] = []
+    claim_ids = {claim["claim_id"] for claim in record["claim_ledger"]}
+    reopenings = record.get("problem_reopenings", [])
+    reopening_ids = [item["reopening_id"] for item in reopenings]
+    if len(reopening_ids) != len(set(reopening_ids)):
+        errors.append("problem reopening IDs must be unique")
+    for item in reopenings:
+        for claim_id in item["affected_claim_ids"]:
+            if claim_id not in claim_ids:
+                errors.append(
+                    f"problem reopening {item['reopening_id']} has unresolved affected_claim_id: {claim_id}"
+                )
+    candidate_ids = [item["candidate_id"] for item in record.get("design_candidates", [])]
+    if len(candidate_ids) != len(set(candidate_ids)):
+        errors.append("design candidate IDs must be unique")
+    return errors
 
 
 def claim_dependency_errors(record: dict) -> list[str]:
@@ -364,8 +486,11 @@ def main(argv: list[str] | None = None) -> int:
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     findings, mode = schema_errors(record, schema)
     print(f"structural check: {mode}")
-    semantic, skipped = semantic_errors(record, parents)
-    findings.extend(semantic)
+    if findings:
+        skipped = ["semantic checks: record structure is invalid"]
+    else:
+        semantic, skipped = semantic_errors(record, parents)
+        findings.extend(semantic)
 
     for note in skipped:
         print(f"skipped: {note}")

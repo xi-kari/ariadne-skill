@@ -42,7 +42,7 @@ Treat IG1-IG7 as the only main flow, run in the order of the specific propositio
 |---|---|---|---|
 | IG1 | Valid object | Do boundary, nine-axis scale, time, identity criterion, and use support this judgment? | Redefine the object, mark scale unknown, or review object conversion. |
 | IG2 | Evidence trace | Can every source, material, observation, evidence item, counterexample, case, and judgment be traced without level collapse? | Return material organization, candidate question, or hypothesis. |
-| IG3 | Affected positions | Are direct, indirect, second-order, cross-domain, and cross-time positions recorded? | Complete impact accounting; pause strong judgment and high-impact use. |
+| IG3 | Affected positions | Are all direct, known or pointed-out low-power, and domain-required positions listed, with a proportionate, challengeable search of further effects (§14.4.1)? | Complete the material gap; pause only the dependent strong judgment or adoption, retain other unknowns with monitoring. |
 | IG4 | Power and anti-retaliation | Can low-power positions safely add evidence, rebut, refuse, stop, appeal, and exit? | Make no adverse inference from silence; lower publication and judgment levels. |
 | IG5 | Mediation and reflexivity | Do metrics, platforms, AI, publicity, or diagnosis change the evidence or object? | Represent a conditional state transition and stop uncontrolled recursive observation for every audited object, including the Stage-6 operation and observation-recursion cap in section 13 for confirmed S6 collectives. |
 | IG6 | Strong-judgment procedure | Does every proposition that its use and foreseeable impact make a strong judgment submit SJ1-SJ8 in full? Public dissemination raises scrutiny but does not alone make every output strong. | The strong judgment and its high-impact use stop; keep an internal hypothesis, open assertion, or candidate mechanism; independently grounded comparative judgments whose use complies are reviewed separately. |
@@ -51,6 +51,8 @@ Treat IG1-IG7 as the only main flow, run in the order of the specific propositio
 After a failed gate, mark later gates `not_run`; do not self-report them as passed. **IG6 applicability rule:** a normal L1 or L2 record may mark IG6 `not_applicable` only with a concrete reason why the strong-judgment condition is not triggered, and this does not block IG7; IG6 `passed` binds all eight SJ items as individually `passed` in the same run. A "checked" string or empty reason never substitutes. In the Method Record this is the typed audit payload's `strong_judgment` register: `not_triggered` with a reason and all SJ items `not_applicable` when IG6 is `not_applicable`; `triggered` with every SJ item `passed` when IG6 is `passed`; and a triggered register with any failed SJ item never accompanies a passed IG6.
 
 Passing all seven gates means only that the record doors are complete. It does not prove a claim, select a value, or authorize action; IG7 records whether external normative and authorization layers exist and is never written as "authorized".
+
+For IG3, distinguish a grounded unknown that could change protection or option comparison from an unknown that needs monitoring and reopening. Record searched channels, consulted positions, the stopping boundary and its reasons. The beneficiary of a narrow boundary cannot settle it alone; high-impact or conflicted cases need independent review. Newly discovered positions retain equal appeal, correction and remedy. No action and existing arrangements receive the same scrutiny, and remote uncertainty does not delay protection against known harm. If a challenge concerns the original target, membership, loss definition or supposedly fixed constraint, use the question-reopening procedure (§2.14) while retaining the earlier result.
 
 ## 4. Expand With Five Gates and Thirteen Steps
 
@@ -170,7 +172,7 @@ When auditing an AI-assisted governance artifact, check for original fact record
 
 ## 9. Audit Intervention and Applications
 
-Verify the chain `explanation -> diagnosis -> normative choice -> intervention`. Require an externally existing choice, one selected action, all ten C12 components, explicit runtime N premises, O1-O4, all PF bindings, and one current atomic J authorization covering the same subject, object, action, territory, and entire period.
+Verify the chain `explanation -> diagnosis -> normative choice -> intervention`. For Ariadne's formal adoption record, require an externally existing choice, one selected action, all ten C12 components, explicit runtime N premises, O1-O4, all PF bindings, and one current atomic J authorization covering the same subject, object, action, territory, and entire period. Keep the Part 14 distinction between argument principles, substantive safeguards and this record format: a different implementation can carry equivalent protection, traceability and review after independent verification. A missing Ariadne field prevents its formal endorsement; missing substantive protection or authority prevents the dependent adoption. Neither finding erases independently authorized duties or already established domain knowledge.
 
 Treat T0-T4 as task types rather than maturity ranks or required sequence:
 
@@ -185,7 +187,7 @@ For every T type, verify entry conditions, allowed and prohibited acts, evidence
 Before a relationship, family, organization, platform, institution, public-opinion, space, emergency, or ultra-large application, require:
 
 - a D0 object, `SP=<A,X,T,O,C,R,I,N,J>`, identity criterion, time, and sources;
-- all affected, low-power, weak-signal, and unable-to-exit positions;
+- all direct, known or pointed-out low-power, and domain-required weak-signal or unable-to-exit positions, plus further positions identified under the §14.4.1 boundary;
 - the seven main gates and full protection floor;
 - domain evidence coverage, source gaps, and the exact downgrade effect of each gap, chosen from the closed list in the application contracts' `common_rule` (never `none` or `ignore`), propagated claim by claim; partial coverage only lowers the ceiling and never voids independently grounded argument evaluation, procedural criticism, or conditional recommendations under explicit premises;
 - a bounded diagnosis and action ceiling;
@@ -193,9 +195,11 @@ Before a relationship, family, organization, platform, institution, public-opini
 - a candidate T type only;
 - for real action, the full external choice, authorization, correction, and state-log chain.
 
-For real action, attach the complete 17-field choice record wrapper and bind it field by field to the structured `selected_action`, the C12 bridge, explicit runtime N premises, O1-O4, the unique atomic J authorization, stop, anonymous or proxy appeal, anti-retaliation monitoring, rollback, and the execution state log. Resolve every evidence, position, channel, and owner reference, including in diagnosis-only module records, to the runtime registry: a `GHOST`, `none`, `self`, or `self:*` summary never replaces an external record, and the appeal, independent-review, and rollback owners must not be the deciding subject.
+When real action is represented by Ariadne's formal format, attach the complete 17-field choice record wrapper and bind it field by field to the structured `selected_action`, the C12 bridge, explicit runtime N premises, O1-O4, the unique atomic J authorization, stop, anonymous or proxy appeal, anti-retaliation monitoring, rollback, and the execution state log. Resolve every evidence, position, channel, and owner reference, including in diagnosis-only module records, to the runtime registry: a `GHOST`, `none`, `self`, or `self:*` summary never replaces an external record, and the appeal, independent-review, and rollback owners must not be the deciding subject. A separately verified equivalent external implementation retains its own format and authority; do not claim Ariadne schema validation for it.
 
 Treat a missing field as a reading aid only, never as a real-world disposition record. In emergencies, do not delay valid professional rescue authority; confine Ariadne to facts, risks, minimum protection, and later review unless an external rule grants a specific action.
+
+Audit **protection versus outcomes** explicitly (§14.8): existing protections remain or strengthen, while losses in resources, opportunities or life outcomes require separate normative reasons. Treat a disputed classification as protection pending review. If all feasible options leave legitimate claims unmet (§14.9.1), assess the finite recommendation, stated decision rule and its proposer/adopter, retained loss bearers, continuing duties and reassessment. Verify that scarcity and excluded options are real and challengeable. A valid recommendation is not an adopted choice; unresolved nonwaivable-protection conflict never becomes Ariadne `authorized`, even when external lawful or emergency responsibilities require an accountable decision.
 
 ## Worked Example: AI Workforce Risk Score
 

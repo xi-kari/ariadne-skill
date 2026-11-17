@@ -3,7 +3,7 @@ name: ariadne-evidence
 description: "Grade how far existing materials support each claim: freeze an evidence cutoff, keep source, material, observation, evidence, counterevidence, judgment, and authorization apart, and downgrade claim by claim. Use when claims, citations, measures, causal chains, or analogies need support grading, competing explanations, independence checks, and counterevidence. For a multi-module pass, start with ariadne-skill. 适用于：证据够不够、来源核查、这个结论站得住吗、因果与类比检查、反证清点。"
 license: MIT
 metadata:
-  record_schema: "2.0"
+  record_schema: "2.1"
 ---
 
 # Ariadne Evidence
@@ -11,6 +11,10 @@ metadata:
 ## Overview
 
 Audit how far the available record supports each claim, and only that claim. Preserve the chain from source to material, observation, evidence, counterevidence, judgment, and external authorization without letting one level impersonate the next. Domain studies, archives, testimony, proofs, and texts keep the standing their own design gives them; a gap lowers only the claims that depend on it.
+
+## Record mode
+
+For low-impact, reversible work, a concise task, evidence, finding and boundary statement can be sufficient. The machine-record instructions below apply when a structured record is selected, requested or needed for handoff; they do not require twenty fields before an ordinary answer. Preserve known facts and existing authorization, marking only actual gaps unknown. Formal forecast registration and safeguards for consequential use remain required by their own contracts; brevity does not waive them.
 
 ## Procedure
 

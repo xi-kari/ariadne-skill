@@ -15,7 +15,7 @@ Intake, depth selection, the module map, the routing algorithm, and the restart 
 
 ## Sequential execution
 
-Use the dependency order and the two-restarts-per-dependency budget defined in [routing.md](routing.md). Each module creates a linear child with one parent reference. Its module run copies that reference into `input_records` and names the child in `output_record`. A later module inherits every unresolved unknown, loss, and residual from its parent; choosing one branch narrows the conditions but does not remove uncertainty that only new material could remove (source §11.9.2).
+Use the dependency order and the dependency-specific reopening and work-budget rules defined in [routing.md](routing.md). Each module creates a linear child with one parent reference. Its module run copies that reference into `input_records` and names the child in `output_record`. A later module inherits every unresolved unknown, loss, and residual from its parent; choosing one branch narrows the conditions but does not remove uncertainty that only new material could remove (source §11.9.2).
 
 ## Clustered execution
 
@@ -39,12 +39,13 @@ Parallel lanes that read shared state are independent; lanes that would write th
 
 ## Continuous execution
 
-Treat a follow-up as one of five events:
+Treat a follow-up as a continuation event:
 
 | Event | Record action |
 |---|---|
 | New evidence within same object, task, and purpose | Create child version from evidence onward. |
 | Changed object, boundary, task, scale, identity, affected positions, or purpose | Restart from the earliest affected module with a new lineage or explicit fork. |
+| Question itself challenged | Record proposer, omission or disputed constraint, reasoned disposition, old/new relation and affected dependencies; keep prior results, then restart only those dependencies. |
 | Outcome arrives for a forecast | Preserve the forecast; append result, calibration, and writeback in a child. |
 | Real feedback arrives after a derivation or choice | First check its source and event identity; then compare the original path, the competing path, and the simple baseline, and classify the gap as a fact error, mechanism error, different actor choice, execution deviation, or external change. Only a changed state, parameter, mechanism range, or path counts as learning (source §11.13). |
 | External choice or authorization arrives | Link its external identifier; keep Ariadne's authorization effect as none. |
@@ -59,7 +60,7 @@ Never rewrite the parent record to make a later result appear expected, and neve
 4. Apply the ceiling `meet`: `description_only < diagnostic_only < requirements_only`, so the result is the minimum ranked parent ceiling. A merge never raises.
 5. Mark a missing required lane `not_run`, not `passed`.
 6. Keep external authorization references outside empirical claim support.
-7. Preserve lane provenance per conclusion: a merged claim keeps its own `ceiling` and its `depends_on` links. The record-level `meet` still bounds every cross-lane or action-facing conclusion, but the human-facing answer presents each lane-local finding at its own ceiling instead of flattening all findings to the merged minimum.
+7. Preserve lane provenance per conclusion: a claim copied into the merged record keeps its `depends_on` links and cannot exceed the merge ceiling. Preserve the original lane record and its claim ceiling separately. The record-level `meet` still bounds every cross-lane or action-facing conclusion, but the human-facing answer presents each lane-local finding at its own ceiling instead of flattening all findings to the merged minimum.
 8. Count independence by what supports the claim: lanes that reanalyze the same data, cite the same original, or repeat the same source are one lineage, not several confirmations (source §2.7.2).
 
 ## Stop rules

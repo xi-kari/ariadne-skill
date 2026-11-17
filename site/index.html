@@ -45,7 +45,7 @@
           <h1 id="hero-title">ARIADNE</h1>
           <p class="dim" aria-hidden="true"><span>1 ROUTER + 9 MODULES</span></p>
           <p class="hero-lead">一套让 AI Agent 思考和处理复杂问题的方法论集群。</p>
-          <p class="hero-note">名字来自阿里阿德涅之线：在复杂问题的迷宫里，留下一条可以回溯、可以检查的线。先定界、再证据，模块按需进入，结论止步于受支持的输出上限。</p>
+          <p class="hero-note">名字来自阿里阿德涅之线：在复杂问题的迷宫里，留下一条可以回溯、可以检查的线。从问题与证据出发，按需解释、生成和比较，完成成果并核验终点。</p>
           <p class="hero-actions">
             <a class="btn btn-primary" href="#map">查看方法地图</a>
             <a class="btn" href="#install">安装完整套件</a>
@@ -125,15 +125,15 @@
         <div class="split">
           <div class="prose">
             <h3>Ariadne 是什么</h3>
-            <p>Ariadne 是一个独立的方法论 Skill 集群。它把复杂请求整理成有边界、可追踪、可续接的方法运行：先说明现实问题，再冻结候选对象与证据截止点，只调用足够的模块，并把冲突、未知和证据上限原样保留下来。</p>
-            <p>它既可由总路由协调，也允许九个模块被单独点名。模块数量不会制造证据，流程完成也不会制造授权。降级、暂停与明确不行动，都是正常的方法结果。</p>
+            <p>Ariadne 是一个独立的方法论 Skill 集群，依据《Xikari-条件结构与转化论》v2（2026-11-16）重新提炼，保持派生候选身份。它先明确问题与交付终点，按需建立表示、核对证据、解释关系、生成和比较候选，再完成所需成果。目标、成员、损失或约束有实质遗漏时，可以说明理由后重开问题，并保留旧结果。</p>
+            <p>它既可由总路由协调，也允许九个模块被单独点名。方法本身不产生权限；宿主可以依据用户已有的有效授权继续构建、保存和核验成果。模块数量与流程完成不证明现实效果；证据不足时保留具体未知和有独立依据的判断。</p>
           </div>
           <table class="neg-table">
             <caption>边界 Boundary · Ariadne 不是什么</caption>
             <tbody>
               <tr><th scope="row">N-1</th><td>不是关于世界本身的本体论，也不是真理引擎。</td></tr>
               <tr><th scope="row">N-2</th><td>不是人格裁判或临床工具，不给人固定标签。</td></tr>
-              <tr><th scope="row">N-3</th><td>不替主体选择价值，也不把预测写成命令。</td></tr>
+              <tr><th scope="row">N-3</th><td>不替有资格的主体作有约束力的价值决定，也不把预测写成命令。</td></tr>
               <tr><th scope="row">N-4</th><td>不是现实行动、资源处分或公共权力的授权机关。</td></tr>
             </tbody>
           </table>
@@ -149,7 +149,7 @@
       </div>
       <div class="sheet-body">
         <h2 class="sheet-title" id="t-map">一张按需展开的方法地图。</h2>
-        <p class="sheet-lead">Lattice Kernel 规定对象、证据、缺失状态、谱系与输出上限；具体模块只处理自己负责的判断环节。不要求每个任务把全部模块跑一遍。</p>
+        <p class="sheet-lead">Lattice Kernel 把工作组织为提问与重开、表示、取证、连接、生成与推演、比较与判断、交付与修订。具体模块按真实依赖进入；这些操作可以反复接续，不要求每个任务把全部模块跑一遍。</p>
         <figure class="map-fig">
           <img src="assets/lattice-kernel-map.svg" alt="Lattice Kernel 方法地图：总路由冻结对象与证据后，尺度、机制、人类领域可并行；动态、前瞻、选择按需进入；审计合并，上限取最小、冲突具名保留">
           <figcaption>对象与证据冻结后，尺度、机制与人类领域可以并行；动态、前瞻、选择与审计只在任务真正需要时进入。</figcaption>
@@ -160,8 +160,8 @@
             <li><strong>总路由</strong>分类请求，选择最小充分模块集。</li>
             <li><strong>共同冻结</strong>由 <code>ariadne-framing</code> 与 <code>ariadne-evidence</code> 固定候选对象和证据截止点。</li>
             <li><strong>可并行分析</strong><code>ariadne-scale</code>、<code>ariadne-mechanism</code>、<code>ariadne-human</code> 在共享冻结记录上独立工作。</li>
-            <li><strong>按需进入</strong>路径推演、可检验前瞻和有限选择各自保持边界。</li>
-            <li><strong>合并与治理</strong><code>ariadne-audit</code> 保留冲突，按最低输出上限合并并检查停止、申诉和回滚。</li>
+            <li><strong>按需进入</strong>路径推演、可检验前瞻、候选生成和有限选择各自保持边界；生成由总路由组织现有模块。</li>
+            <li><strong>合并与交付</strong><code>ariadne-audit</code> 按需检查用途与边界，合并记录保留冲突；宿主继续完成已授权的成果，并核验保存、运行或外部记录等实际终点。</li>
           </ol>
         </div>
       </div>
@@ -188,9 +188,9 @@
               <p class="bom-title"><span class="bom-name">方法论总控</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-skill/SKILL.md">ariadne-skill ↗</a></p>
               <p class="bom-lead">把复杂请求变成有边界、可检查的方法运行：分类输出，冻结对象与证据，按需路由九个平级模块并合并结果。</p>
               <dl class="bom-fields">
-                <div><dt>可以完成</dt><dd>冻结对象与证据、选择最小模块集、协调顺序或并行工作、保留冲突并合并 Method Record。</dd></div>
+                <div><dt>可以完成</dt><dd>明确交付终点、组织问题重开与候选生成、选择充分的模块、协调顺序或并行工作、保留冲突并合并记录。</dd></div>
                 <div><dt>适合任务</dt><dd>同时涉及解释、机制、尺度、未来、选择或高影响审查的复合问题。</dd></div>
-                <div><dt>典型产出</dt><dd>一份先说人话的有界判断，以及可追踪的模块运行、证据截止点、未知项和下一步。</dd></div>
+                <div><dt>典型产出</dt><dd>一份有依据的判断或已完成的成果，以及必要的候选来路、证据、核验结果和接续位置。</dd></div>
                 <div class="bom-boundary"><dt>边界</dt><dd>不是本体论、真理引擎、价值选择器或授权机关；不会因模块更多而提高证据。</dd></div>
               </dl>
             </div>
@@ -207,7 +207,7 @@
               <p class="bom-title"><span class="bom-name">问题定界</span><a class="bom-code" href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-framing/SKILL.md">ariadne-framing ↗</a></p>
               <p class="bom-lead">在判断之前说明要解释的差异、所问的任务，以及究竟在分析什么：边界、变量、接口、时间、尺度和身份标准。</p>
               <dl class="bom-fields">
-                <div><dt>可以完成</dt><dd>分类请求，冻结任务（查询、期限、环境、允许操作、误差）与候选对象，打开领域图谱入口，分开描述、诊断、前瞻、选择和现实行动。</dd></div>
+                <div><dt>可以完成</dt><dd>分类请求，声明任务（查询、期限、环境、允许操作、误差）与候选对象；目标、成员、损失或约束有遗漏时，说明重开理由及新旧问题的关系。</dd></div>
                 <div><dt>适合任务</dt><dd>对象含糊、范围漂移、同词跨尺度，或用户把解释与行动混在一起的问题。</dd></div>
                 <div><dt>典型产出</dt><dd>候选对象陈述、未决边界选择，以及保留父记录的定界版 Method Record。</dd></div>
                 <div class="bom-boundary"><dt>边界</dt><dd>完整定界不证明对象真实稳定；止于 description_only，不输出诊断、建议或许可。</dd></div>
@@ -268,8 +268,8 @@
               <dl class="bom-fields">
                 <div><dt>可以完成</dt><dd>为候选机制登记时间路线、通道观察、区分性预测、反转条件、证伪标准和剩余误差。</dd></div>
                 <div><dt>适合任务</dt><dd>需要解释差异、负载、反馈、学习、阈值、选择或持续性的结构诊断。</dd></div>
-                <div><dt>典型产出</dt><dd>简单基线、至少两个完整候选机制、残差比较和可区分的下一项观察。</dd></div>
-                <div class="bom-boundary"><dt>边界</dt><dd>机制标签不是证据；少于两个完整候选时止于描述，不分配价值、责任或许可。</dd></div>
+                <div><dt>典型产出</dt><dd>简单基线、材料允许的合理候选机制、残差比较和能区分解释的下一项观察。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>没有合理竞争项时，说明检索范围、理由与失败条件；唯一候选仍须获得正面证据支持，不能由数量推定为真。机制判断不产生价值、责任或许可。</dd></div>
               </dl>
             </div>
           </li>
@@ -347,7 +347,7 @@
                 <div><dt>可以完成</dt><dd>分开事实与价值，比较后果、分布、可逆性和锁定，检查管辖、停止、申诉与回滚。</dd></div>
                 <div><dt>适合任务</dt><dd>个人选择、治理程序、试点、退出与资源受限且需要保留保护底线的决定。</dd></div>
                 <div><dt>典型产出</dt><dd>同基线选项卡、当前分析推荐及其代价与改判条件、价值冲突、受益与负担位置、外部授权缺口。</dd></div>
-                <div class="bom-boundary"><dt>边界</dt><dd>推荐只供审议，不替主体作有约束力的决定，不从沉默或未退出推定同意，不签署授权，也不执行选项。</dd></div>
+                <div class="bom-boundary"><dt>边界</dt><dd>推荐不替主体作有约束力的决定，不从沉默或未退出推定同意，也不签发权限。宿主依据已有有效授权执行时，仍须满足适用的保护、范围与终点核验要求。</dd></div>
               </dl>
             </div>
           </li>
@@ -387,7 +387,7 @@
           <li><span class="mode-no">M-01</span><h3 class="mode-name">单独</h3><p>直接调用一个模块，完成一个边界清楚的定界、证据、尺度或其他专项任务。</p></li>
           <li><span class="mode-no">M-02</span><h3 class="mode-name">连续</h3><p>当前一环的输出是后一环的真实输入时顺序执行，并保留父记录、版本和改变原因。</p></li>
           <li><span class="mode-no">M-03</span><h3 class="mode-name">集群</h3><p>对象与证据截止点一致后，让尺度、机制或人类领域独立工作；合并时不投票、不平均冲突。</p></li>
-          <li><span class="mode-no">M-04</span><h3 class="mode-name">持续</h3><p>通过追加式子记录接纳新证据、结果和反例；对象或用途改变时从最早受影响闸门重跑。</p></li>
+          <li><span class="mode-no">M-04</span><h3 class="mode-name">持续</h3><p>接纳新证据、结果和反例；问题重开时保留旧结果，从最早受影响的环节修订，继续完成有效的已授权工作。</p></li>
           <li><span class="mode-no">M-05</span><h3 class="mode-name">完整运行</h3><p>复杂或高影响任务由总路由组织完整方法流程，但仍只运行最小充分模块集。</p></li>
         </ol>
         <aside class="note-box">
@@ -404,13 +404,14 @@
       <div class="title-block sheet-tb">
         <div><span class="tb-label">图号 Sheet</span><span class="tb-value">ARIADNE-05</span></div>
         <div><span class="tb-label">图题 Title</span><span class="tb-value tb-zh">Method Record</span></div>
-        <div><span class="tb-label">依据 Basis</span><span class="tb-value">method-record.md · SCHEMA 1.2</span></div>
+        <div><span class="tb-label">依据 Basis</span><span class="tb-value">method-record.md · SCHEMA 2.1</span></div>
       </div>
       <div class="sheet-body">
         <h2 class="sheet-title" id="t-record">让一次推理可以被继续、质疑和降级。</h2>
-        <p class="sheet-lead">Method Record 不是结论包装，而是对象、证据、主张、谱系、未知项、模块运行与输出边界的共享记录。它是推理记录，不是现实数据库，也不是授权令牌。</p>
+        <p class="sheet-lead">Method Record 保存对象、证据、主张、谱系、未知项、模块运行与输出边界。新记录使用 schema 2.1，已有 2.0 记录仍可读取；2.1 可选记录问题重开与设计候选。普通任务可用相称的文字承接，前瞻登记和适用的保护要求仍须保留。下方为字段示意。</p>
         <div class="record-wrap">
           <dl class="record-form">
+            <div><dt>schema_version</dt><dd>2.1</dd></div>
             <div><dt>request_type</dt><dd>diagnosis</dd></div>
             <div><dt>object_status</dt><dd>candidate</dd></div>
             <div><dt>evidence_cutoff</dt><dd>2026-08-05</dd></div>
@@ -435,13 +436,13 @@
           <table class="ceiling-table">
             <thead><tr><th scope="col">输出上限</th><th scope="col">允许表达</th><th scope="col">仍然不允许</th></tr></thead>
             <tbody>
-              <tr><th scope="row"><span class="gauge gauge-1" aria-hidden="true"></span><code>description_only</code></th><td>描述候选对象、材料、未知项和需要补足的条件。</td><td><span class="ban" aria-hidden="true">✕</span>把对象存在、因果或行动写成已成立。</td></tr>
+              <tr><th scope="row"><span class="gauge gauge-1" aria-hidden="true"></span><code>description_only</code></th><td>描述候选对象、材料、未知项和需要补足的条件。</td><td><span class="ban" aria-hidden="true">✕</span>把候选对象、因果或行动资格写成已成立。</td></tr>
               <tr><th scope="row"><span class="gauge gauge-2" aria-hidden="true"></span><code>diagnostic_only</code></th><td>给出有边界的证据、机制、转换或缺陷判断。</td><td><span class="ban" aria-hidden="true">✕</span>把诊断自动升级为建议、处分或许可。</td></tr>
-              <tr><th scope="row"><span class="gauge gauge-3" aria-hidden="true"></span><code>requirements_only</code></th><td>列出外部选择、复核、纠正或撤回仍须满足的要求；有限选择可附明示前提的供审议分析推荐。</td><td><span class="ban" aria-hidden="true">✕</span>替外部主体完成价值选择、授权或执行。</td></tr>
+              <tr><th scope="row"><span class="gauge gauge-3" aria-hidden="true"></span><code>requirements_only</code></th><td>列出外部选择、复核、纠正或撤回仍须满足的要求；有限选择可附明示前提的供审议分析推荐。</td><td><span class="ban" aria-hidden="true">✕</span>把分析记录当成有约束力的决定、授权或执行凭据。</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="record-final">每条根记录从最低档起步，模块运行永不抬升上限，合并取有序最小值。无论完成多少模块，<code>authorization_effect</code> 恒为 <code>none</code>——方法不签发现实权限。</p>
+        <p class="record-final">根记录从最低档起步；只有新增的可解析证据或已履行协议，才能支持子记录按规则升档，模块运行本身不能升档。合并取有序最小值，独立结果仍可按各自支持范围交付。<code>authorization_effect</code> 恒为 <code>none</code>：方法不签发现实权限，宿主仍可完成用户已授权的任务。</p>
       </div>
     </section>
 
@@ -453,7 +454,7 @@
       </div>
       <div class="sheet-body">
         <h2 class="sheet-title" id="t-install">同一套权威 Skill，面向六种 Agent 宿主。</h2>
-        <p class="sheet-lead">默认安装完整十模块。稳定 tag v1.0.0 可用于可复现安装（xi-kari/ariadne-skill@v1.0.0）；以下命令跟随 main，属于滚动安装。Windows 使用复制模式，不依赖符号链接。兼容等级描述格式与发现位置，不代表已在每个宿主完成真实任务验证。</p>
+        <p class="sheet-lead">默认安装完整十模块。最新已有稳定 tag v2.0.0 对应 2026-10 理论来源与 schema 2.0，可用于复现该版（xi-kari/ariadne-skill@v2.0.0）；以下命令跟随 main，属于滚动安装。Windows 使用复制模式，不依赖符号链接。兼容等级描述格式与发现位置，不代表已在每个宿主完成真实任务验证。</p>
         <div class="table-wrap" role="region" tabindex="0" aria-label="六宿主兼容矩阵">
           <table class="host-table">
             <thead><tr><th scope="col">宿主</th><th scope="col">兼容等级</th><th scope="col">项目级发现路径</th><th scope="col">调用入口</th></tr></thead>
@@ -514,7 +515,7 @@
         <div class="src-grid">
           <div>
             <h3>权威内容</h3>
-            <p>十个 <code>skills/ariadne-*/</code> 目录是唯一方法论权威源。本站负责解释与导航，不成为第二套合同。遇到差异，以对应 Skill 与其直接 reference 为准。</p>
+            <p>十个 <code>skills/ariadne-*/</code> 目录是安装内容的统一来源。方法从《Xikari-条件结构与转化论》v2 提炼，保持派生候选身份；定义有冲突时以理论原文为准。本站负责解释与导航，完整操作见 <a href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-skill/references/methodology.md">方法论内核</a>与<a href="https://github.com/xi-kari/ariadne-skill/blob/main/skills/ariadne-skill/references/generative-workflow.md">生成与成果工作流</a>。</p>
             <ul class="ref-list">
               <li><span class="ref-no">REF-01</span><a href="https://github.com/xi-kari/ariadne-skill">GitHub 仓库</a><span class="ref-ext" aria-hidden="true">↗</span></li>
               <li><span class="ref-no">REF-02</span><a href="https://github.com/xi-kari/ariadne-skill/tree/main/skills">十个 Skill 合同</a><span class="ref-ext" aria-hidden="true">↗</span></li>
@@ -538,7 +539,7 @@
           </div>
         </div>
         <div class="sign-strip">
-          <div><span class="sign-label">方法记录</span><span class="sign-value">METHOD RECORD · SCHEMA 1.2</span></div>
+          <div><span class="sign-label">方法记录</span><span class="sign-value">METHOD RECORD · SCHEMA 2.1</span></div>
           <div><span class="sign-label">证据上限</span><span class="sign-value">不因一致或重复上升</span></div>
           <div><span class="sign-label">边界保留</span><span class="sign-value">冲突具名 · 未知累积</span></div>
           <div><span class="sign-label">授权效力 authorization_effect</span><span class="sign-value"><span class="sign-seal">NONE</span></span></div>

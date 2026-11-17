@@ -101,7 +101,7 @@ For every candidate CM, record:
 2. Formal inferential dependencies separately from protocol gates.
 3. Enabling conditions, typed variables, mechanism chain, direction, timing, threshold, measured dimensions, and temporal route.
 4. Minimum external evidence and eligible instance references.
-5. Complexity-matched simple baseline and at least two competing mechanisms for every causal or analogy route when the material allows them; otherwise the search range and failure conditions.
+5. Complexity-matched simple baseline and the reasonable competing mechanisms permitted by the material. A single complete candidate needs `competition_search` with `search_scope`, `reason_no_alternative` and `failure_conditions`; no invented second candidate and no automatic support from a lack of competitors.
 6. For every candidate: a channel observation, discriminating prediction, reverse condition or falsifier, and a residual comparison rule under the same cutoff and baseline.
 7. Blocking, substitution, or no-channel counterfactual; counterexamples, failure boundary, output ceiling, and next discriminating observation.
 
@@ -198,3 +198,7 @@ The receipt alone supports only signal arrival. Add a CM-FEEDBACK candidate (`te
 If the field changes but no execution record exists, distinguish effective feedback from C11 institutional writeback. If execution occurs, record receipt, field change, execution, and duration separately. Do not call the organization learning yet. Add a CM-LEARNING-carried candidate (`temporal_route: carried_history`) only after a retained rule or state update enters repeated later cases and changes a predefined task result against the baseline; add CM-LEARNING-history only with an eligible G3-instance showing gain beyond the current rule state.
 
 Record the result as follows: put the receipt and any field-version evidence in `claim_ledger`; put blocked-channel comparison, execution, retention, repeated-round evidence, and the competing instruction in `unknowns_and_counterevidence`; set `output_ceiling: diagnostic_only`; recommend evidence repair or human-domain writeback analysis only if needed; and set `authorization_effect: none`. The result may distinguish arrival, feedback, writeback, and a learning candidate. It cannot certify institutional legitimacy, assign blame, require a remedy, or authorize a rule change.
+
+## Formation, maintenance, recovery and reproduction
+
+These are different condition questions (§6.10.1): how an arrangement arose, what currently sustains it, what restores a stated function after disruption, and what allows it to be produced elsewhere or in a later cycle. Replication failure may concern a defective design, implementation departure, absent enabling conditions or a treatment changed by scale. Identify the actual version, conditions and evidence for each explanation. Do not invent a requirement after the outcome to rescue a failed test; preserve the original failure and register a new conditional candidate. A successful supported recovery remains real without proving unsupported independence or broad reproduction.

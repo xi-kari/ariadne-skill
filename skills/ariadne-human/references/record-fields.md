@@ -1,13 +1,13 @@
 # Method Record Field List
 
-This module can be installed alone. The full machine-checkable schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; when that file is readable in your installation, validate against it (the router also ships `scripts/validate_record.py`). When this module runs standalone and the schema is not readable, produce a compact YAML record with exactly the twenty required fields below and add `schema_unavailable` to `unknowns_and_counterevidence.unknowns`; do not guess additional fields and do not claim the record was schema-validated.
+This module can be installed alone. Use a plain-language answer for a light task unless a structured record is requested or needed for checking and continuation. The full machine-checkable schema ships with the suite router at `ariadne-skill/references/method-record.schema.json`; when that file is readable in your installation, validate any emitted record against it (the router also ships `scripts/validate_record.py`). If a record is needed while the schema is unreadable, use the twenty required fields below, add `schema_unavailable` to `unknowns_and_counterevidence.unknowns`, and retain only the documented payload fields. Do not guess additional fields or claim schema validation. Formal forecast registration remains required before outcomes.
 
 ## The twenty required fields
 
 | Field | Constraint |
 |---|---|
 | `record_id` | `ariadne:<case>:<module\|merge\|root>:v<N>`; case slug without colons. |
-| `schema_version` | The string `'2.0'`. |
+| `schema_version` | Use the string `'2.1'` for new records. Existing `'2.0'` records remain readable under their original contract; do not silently rewrite them. |
 | `record_version` | Integer: 1 for a root, parent + 1 for a linear child, highest parent + 1 for a merge. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for `linear`; null for `root` and `merge`. |
@@ -29,7 +29,13 @@ This module can be installed alone. The full machine-checkable schema ships with
 
 ## Payload reminders
 
-- A mechanism payload lists at least two candidates, each with `mechanism_id`, `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), `channel_observation`, `discriminating_prediction`, `reverse_or_falsifier`, and `residual_comparison_rule`.
+- A mechanism payload lists at least one complete candidate, each with `mechanism_id`, `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), `channel_observation`, `discriminating_prediction`, `reverse_or_falsifier`, and `residual_comparison_rule`. In schema 2.1 a single candidate requires a `competition_search` object with non-empty `search_scope`, `reason_no_alternative`, and `failure_conditions`. Document a real search; do not invent a second candidate or promote the remaining candidate by default.
 - A dynamics payload records each event's fact status (`observed`, `externally_reported`, `planned`, `hypothetical`, `simulated`, `unknown`), sources, window, observation time, affected actors and circles, channel, direct change, evidence state, disputes, competing explanations, reversibility, duration, and follow-up observations.
-- A human payload records observation position, privacy state, allowed purpose, the four affected-position classes, at least two alternative explanations, and responsible human review.
+- A human payload records observation position, privacy state, allowed purpose, the four affected-position classes, reasonable `alternative_explanations`, and responsible human review. In schema 2.1 fewer than two alternatives requires the same complete `competition_search` object; an empty list explains the actual search limit rather than proving a unique interpretation.
 - A claim whose `depends_on` includes a contradicted, withdrawn, or retired claim is never `supported`, and no claim ceiling exceeds its dependencies' ceilings or the record ceiling.
+
+## Versioned optional records
+
+Schema 2.1 adds optional top-level `problem_reopenings` and `design_candidates`; neither is one of the twenty required fields. Consult the router schema for their complete shapes before emitting them. A reopening retains the original question, proposer, reason, disposition and reasons, relationship to the new question, affected claim IDs, and preserved results. A design candidate retains its starting points, derivation, proposal, assumptions, checks, failure conditions and status; its `evidence_status` stays `candidate`, including after a design check. Design candidates belong only to `synthesis_design` records.
+
+Schema 2.0 records do not admit these additions or `competition_search` and retain their original minimum of two mechanism candidates and two human alternatives. Continue an old record through an explicit child with schema 2.1 when these extensions are needed, preserving its original contents and results. A format migration supplies no new evidence or permission.

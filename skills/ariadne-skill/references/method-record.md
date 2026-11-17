@@ -29,7 +29,7 @@ The machine-checkable schema ships with this skill at `references/method-record.
 | Field | Meaning |
 |---|---|
 | `record_id` | Stable Ariadne case/version identifier. |
-| `schema_version` | Record schema version; use `2.0`. |
+| `schema_version` | Record schema version; use `2.1` for new records. Existing `2.0` records remain readable; optional reopening and design fields require `2.1`. |
 | `record_version` | Monotonic integer within a lineage. |
 | `lineage_kind` | `root`, `linear`, or `merge`. |
 | `parent_record_id` | Sole parent ID for a linear child; null for a root or merge. |
@@ -116,7 +116,7 @@ For an ordinary module child with requested local ceiling `c`, use `min(parent_c
 
 ## Proposition-level dependencies
 
-The record ceiling is the maximum any claim in the record may reach; individual claims may stop lower. Use `depends_on` to name the earlier claims a claim rests on, and an optional claim `ceiling` to register its own limit (source §2.9, §13.1):
+The record ceiling is the maximum any claim in this combined record may reach; individual claims may stop lower. This serialization limit does not retract independently supported findings in the original lane records. Deliver those findings with their own record references and limits when a failed unrelated lane lowers the merge. Use `depends_on` to name the earlier claims a claim rests on, and an optional claim `ceiling` to register its own limit (source §2.9, §13.1):
 
 - `depends_on` names only claims that appear earlier in the same record;
 - a claim cannot stay `supported` when any dependency is `contradicted`, `withdrawn`, or `retired`;
@@ -151,10 +151,10 @@ Use these run states:
 
 Typed payloads:
 
-- **`ariadne-human`:** observation position, privacy state, permitted purpose, all four structured affected-position classes (`direct`, `indirect`, `low_power`, `no_exit`), at least two distinct alternative explanations, and responsible human review.
+- **`ariadne-human`:** observation position, privacy state, permitted purpose, all four structured affected-position classes (`direct`, `indirect`, `low_power`, `no_exit`), the material-supported alternative explanations, with `competition_search` (`search_scope`, `reason_no_alternative`, `failure_conditions`) when fewer than two are available, and responsible human review.
 - **`ariadne-dynamics`:** model version, observation position, and the complete event contract, with fact status `observed`, `externally_reported`, `planned`, `hypothetical`, `simulated`, or `unknown`; an actual unauthorized act is still an observed or reported event with its permission status stated in the text fields.
-- **`ariadne-mechanism`:** at least two distinguishable candidates, each with a `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), channel observation, discriminating prediction, reverse or falsifying condition, and residual comparison rule.
-- **`ariadne-forecast`:** exactly one complete branch: a preregistration linked to this record ID/version (with `recursion_stage` 0-3 and the `response_regime` under which the target is defined) or a post-hoc reconstruction with calibration and failure classification.
+- **`ariadne-mechanism`:** one or more distinguishable candidates, with `competition_search` when only one is available, each with a `temporal_route` (`current_state`, `carried_history`, `historical_increment`, or `not_applicable`), channel observation, discriminating prediction, reverse or falsifying condition, and residual comparison rule.
+- **`ariadne-forecast`:** schema 2.1 permits a single mechanism or path only with the complete `competition_search` account; the fair baseline and affirmative support remain required. Exactly one complete branch: a preregistration linked to this record ID/version (with `recursion_stage` 0-3 and the `response_regime` under which the target is defined) or a post-hoc reconstruction with calibration and failure classification.
 - **`ariadne-choice`:** facts, explicit values, structured options with exactly one `no_action`, jurisdiction, authorization, stop conditions, rollback plan, and `analytic_recommendation` (null, or an option ID with normative premise IDs, reasons, costs, objections, change conditions, and `adoption_status: deliberation_only`). A non-null recommendation requires `requirements_only`.
 - **`ariadne-audit`:** ordered IT1-IT4 and IG1-IG7 statuses, the strong-judgment register (`triggered` or `not_triggered`, reason, SJ1-SJ8), and contestability. IG6 `passed` binds SJ1-SJ8 all `passed`; IG6 `not_applicable` binds `not_triggered` with a reason.
 
@@ -162,9 +162,15 @@ Do not overload the closed `evidence_cutoff` object.
 
 A claim with `status: supported` must resolve each `support_id` to an admitted source or an earlier claim in this record and each `support_rule_id` to the explicit `rule_registry`. Module completion, an empty list, a heading, a ghost source, or an undeclared `RULE:*` label is not support.
 
+## Optional problem and design records
+
+Schema 2.1 adds two optional lists; neither is a universal intake requirement. `problem_reopenings` records `reopening_id`, `original_question`, `proposed_question`, `proposer`, `reason`, `disposition` (`accepted`, `declined`, `pending`), `disposition_reason`, `relationship` (`replace`, `parallel`, `refine`), `affected_claim_ids` and `preserved_results`. Claim references must resolve; record why a question was accepted or declined rather than silently overwriting it.
+
+On `synthesis_design`, `design_candidates` records `candidate_id`, `starting_points`, `derivation`, `proposal`, `assumptions`, `checks`, `failure_conditions`, `status` (`proposed`, `checked`, `rejected`) and `evidence_status: candidate`. IDs must be unique; `checked` is not empirical confirmation. See [generative-workflow.md](generative-workflow.md).
+
 ## L1 compact profile
 
-An L1 run (low impact, reversible, limited material) stays schema-valid while staying small:
+An L1 run (low impact, reversible, limited material) may use concise prose. When a machine record is useful or requested, it stays schema-valid while staying small:
 
 - Keep all twenty required top-level fields. `claim_ledger`, `rule_registry`, `conflicts`, and `module_payloads` may remain empty arrays.
 - Discharge a bounded module finding as a single-line declaration plus an explicit gap list: put the declaration in the claim ledger (or in `unknowns` when it is a gap), list what a full run would still check in `unknowns`, and do not fabricate a typed payload around it.

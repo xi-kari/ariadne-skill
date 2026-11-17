@@ -32,7 +32,8 @@ Freeze the entry after the input cutoff and before the outcome (§12.2). Use exp
 | `information_set_ids` | Every source admitted at the cutoff. |
 | `simple_baseline` | Fair trend, persistence, frequency, single-focus, or domain baseline. |
 | `candidate_mechanisms` | Distinguishable channels, each with weakening evidence. |
-| `paths` | Mutually exclusive, parallel, or incomparable paths with stable IDs. |
+| `paths` | Applicable, material-supported mutually exclusive, parallel or incomparable paths with stable IDs; no category quota. |
+| `competition_search` | In schema 2.1, required when either mechanisms or paths has only one entry: `search_scope`, `reason_no_alternative`, `failure_conditions`. Not required by legacy 2.0, whose original two-entry minimum remains unchanged. A unique candidate does not establish support or remove the baseline. |
 | `recursion_stage` | 0 for a forecast with no recursive re-entry; 1-3 for the order being evaluated. |
 | `expression` | Probability or interval, ordered support, conditional direction, or abstention. |
 | `evaluation_rule` | Metric, tolerance, missing-data rule, comparison population, and decision threshold when the forecast feeds a decision (otherwise `not_applicable`). |

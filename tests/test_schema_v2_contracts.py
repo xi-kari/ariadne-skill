@@ -54,7 +54,7 @@ def test_bundled_schema_copy_is_byte_identical() -> None:
     canonical = (ROOT / "schemas" / "method-record.schema.json").read_bytes()
     bundled = (ROOT / "skills" / "ariadne-skill" / "references" / "method-record.schema.json").read_bytes()
     assert canonical == bundled
-    assert json.loads(canonical)["properties"]["schema_version"]["const"] == "2.0"
+    assert json.loads(canonical)["properties"]["schema_version"]["enum"] == ["2.0", "2.1"]
 
 
 def test_task_profile_is_required_and_closed() -> None:
@@ -390,7 +390,7 @@ def test_human_variable_cards_carry_low_tier_routes_and_new_source() -> None:
     cards = json.loads(
         (ROOT / "skills" / "ariadne-human" / "references" / "human-variable-cards.json").read_text(encoding="utf-8")
     )
-    assert cards["source_sha256"] == "18a7cc167faa3eda68a04b21313f833be6583abf1a2a47523a246a5f8a7eaee6"
+    assert cards["source_sha256"] == "6ef2e508474d4ac1ad07d7e4e068955342c405b5f680afcfc40d68cca3d0149c"
     for card in cards["human_variables"]:
         routes = card["conditional_support_routes"]
         assert "-R0-" in routes[0]["route_id"], card["id"]
