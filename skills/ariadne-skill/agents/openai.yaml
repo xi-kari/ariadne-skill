@@ -1,6 +1,6 @@
 interface:
   display_name: "Ariadne"
-  short_description: "Ariadne's router for bounded Lattice Kernel method runs"
+  short_description: "Ariadne methods for grounded answers and finished work"
   default_prompt: "Use $ariadne-skill to apply the complete Lattice Kernel methodology to this problem."
 
 policy:

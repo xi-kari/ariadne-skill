@@ -709,22 +709,18 @@ def test_rfc3339_format_checker_rejects_invalid_deadlines_everywhere() -> None:
 
 
 def test_source_navigation_rejects_missing_numbering_and_non_proof_boundaries() -> None:
-    path = ROOT / "skills" / "ariadne-skill" / "references" / "source-navigation.json"
-    assert path.is_file(), "ariadne-skill must directly own Appendix B/D navigation"
+    from scripts.architecture import load_architecture, validate_architecture
+
+    package_root = ROOT / "skills" / "ariadne-skill"
+    path = ROOT / "skills" / "ariadne-skill" / "references" / "library" / "source-navigation.json"
+    assert path.is_file(), "the installed package must include Appendix B/D navigation"
     data = json.loads(path.read_text(encoding="utf-8"))
     validate_source = getattr(repo_validator, "validate_source_navigation", None)
-    validate_routes = getattr(repo_validator, "validate_reference_routes", None)
     assert callable(validate_source)
-    assert callable(validate_routes)
     assert validate_source(data) == []
-
-    main_skill = (ROOT / "skills" / "ariadne-skill" / "SKILL.md").read_text(encoding="utf-8")
-    expected_refs = repo_validator.EXPECTED_REFERENCES["ariadne-skill"]
-    assert validate_routes("ariadne-skill", main_skill, expected_refs) == []
-    without_direct_route = main_skill.replace(
-        "(references/source-navigation.json)", "(source-navigation.json)"
-    )
-    assert validate_routes("ariadne-skill", without_direct_route, expected_refs)
+    manifest = load_architecture(package_root)
+    assert manifest["source"] == path.relative_to(package_root).as_posix()
+    assert validate_architecture(manifest, package_root, check_files=True) == []
 
     missing_numbering = copy.deepcopy(data)
     missing_numbering["appendix_b_numbering"].pop()
@@ -771,14 +767,16 @@ def test_stage_order_and_distribution_metadata_fail_closed() -> None:
     plan_status = extract_status(
         (ROOT / "docs" / "superpowers" / "plans" / "2026-08-03-ariadne-skill-implementation.md").read_text(encoding="utf-8")
     )
-    readme_status = extract_status((ROOT / "README.md").read_text(encoding="utf-8"))
-    assert plan_status == readme_status
     assert validate_status(plan_status) == []
 
     invalid_order = copy.deepcopy(plan_status)
     invalid_order["WHOLE_SUITE_CONTENT_COMPLETE"] = "pending"
     invalid_order["INTEGRATED_REVIEW"] = "complete"
     assert validate_status(invalid_order)
+
+    invalid_release = copy.deepcopy(plan_status)
+    invalid_release["RELEASE"] = "pending"
+    assert validate_status(invalid_release)
 
     metadata = yaml.safe_load(
         (ROOT / "skills" / "ariadne-skill" / "agents" / "openai.yaml").read_text(encoding="utf-8")

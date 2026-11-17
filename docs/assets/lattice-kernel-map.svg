@@ -1,110 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="km-title">
-  <title id="km-title">Lattice Kernel 方法地图：复杂请求经总路由分类后，先由 ariadne-framing 冻结对象、ariadne-evidence 冻结证据截止点；尺度、机制、人类领域三个模块可在同对象同截止点的准入条件下并行；动态、前瞻、选择按任务需要进入；最后由 ariadne-audit 合并——输出上限取最小、冲突具名保留，产出白话判断与 Method Record 两层输出。</title>
-  <defs>
-    <pattern id="km-grid" width="72" height="72" patternUnits="userSpaceOnUse">
-      <path d="M72 0H0V72" fill="none" stroke="#B4C9DA" stroke-width="1"/>
-    </pattern>
-    <marker id="km-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M0 1L9 5L0 9Z" fill="#B03A2E"/>
-    </marker>
-  </defs>
-  <rect width="1200" height="560" fill="#F5F2E9"/>
-  <rect x="11" y="11" width="1178" height="538" fill="url(#km-grid)"/>
-  <rect x="10" y="10" width="1180" height="540" fill="none" stroke="#1B1A17" stroke-width="2"/>
-  <rect x="17" y="17" width="1166" height="526" fill="none" stroke="#1B1A17" stroke-width="1"/>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace">
-    <text x="44" y="46" font-size="12" letter-spacing="2" fill="#2E5F8A">ARIADNE-02 · METHOD MAP</text>
-    <text x="1156" y="46" font-size="11" fill="#5B5850" text-anchor="end">红线＝方法主线 · 蓝字＝准入与标注 · 虚线框＝按需进入</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-labelledby="map-title map-desc">
+  <title id="map-title">一条可以继续的工作线</title>
+  <desc id="map-desc">用户目标与已有材料进入按需组合的方法工作。理解、发现、推演、选择、构建与复核可以交叉，并非固定流水线。输出是有据的结果或具体成品；新证据、异议和变化的约束返回受影响的工作，有效结果继续保留。</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L8 5L1 9" fill="none" stroke="#ad3827" stroke-width="1.6"/></marker></defs>
+  <rect width="1200" height="400" fill="#edede3"/>
+  <g fill="none" stroke="#ad3827" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M244 166H331"/>
+    <path d="M821 166H902"/>
+    <path d="M1050 259V307Q1050 337 1019 337H561Q530 337 530 307V272"/>
   </g>
-  <g fill="none" stroke="#B03A2E" stroke-width="2" marker-end="url(#km-ar)">
-    <path d="M188 92H230"/>
-    <path d="M444 92H500"/>
-    <path d="M706 92H770"/>
-    <path d="M886 120V143H640V160"/>
-    <path d="M640 266V290"/>
-    <path d="M640 396V420"/>
-    <path d="M790 458H824"/>
+  <circle cx="44" cy="166" r="6" fill="#ad3827"/>
+  <path d="M50 166H77" stroke="#ad3827" stroke-width="2"/>
+  <g font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+    <text x="79" y="121" font-size="12" fill="#65675e" letter-spacing="2">从这里出发</text>
+    <text x="79" y="173" font-size="30" fill="#24251f">用户目标</text>
+    <text x="79" y="210" font-size="18" fill="#65675e">已有材料与实际限制</text>
   </g>
-  <g fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5">
-    <rect x="48" y="64" width="140" height="56"/>
-    <rect x="236" y="60" width="208" height="64"/>
-    <rect x="506" y="64" width="200" height="56"/>
-    <rect x="776" y="64" width="220" height="56"/>
+  <rect x="349" y="65" width="452" height="207" rx="2" fill="#f7f4ed" stroke="#c9cbbd"/>
+  <path d="M374 65H470" stroke="#ad3827" stroke-width="3"/>
+  <g font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" text-anchor="middle">
+    <text x="575" y="109" font-size="12" fill="#65675e" letter-spacing="2">按需要组合，不必全部走一遍</text>
+    <g font-size="24" fill="#24251f"><text x="432" y="163">理解</text><text x="575" y="163">发现</text><text x="717" y="163">推演</text><text x="432" y="211">选择</text><text x="575" y="211">构建</text><text x="717" y="211">复核</text></g>
+    <text x="575" y="248" font-size="12" fill="#65675e">共同推理操作 · 按需读取的资料</text>
   </g>
-  <rect x="242" y="66" width="196" height="52" fill="none" stroke="#1B1A17" stroke-width="1"/>
-  <g font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#1B1A17" text-anchor="middle">
-    <text x="118" y="89">复杂请求</text>
-    <text x="340" y="85">总路由 · 分类与调度</text>
-    <text x="606" y="89">冻结对象与边界</text>
-    <text x="886" y="89">冻结证据截止点</text>
+  <g fill="#fffdf8" stroke="#c9cbbd"><path d="M927 90H1154V257H927Z" transform="rotate(3 1040 173)"/><path d="M917 84H1144V251H917Z"/></g>
+  <g font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+    <text x="938" y="117" font-size="12" fill="#65675e" letter-spacing="1">完成实际终点</text>
+    <text x="938" y="163" font-size="26" fill="#24251f">有据的结果</text>
+    <text x="938" y="201" font-size="26" fill="#ad3827">具体的成品</text>
+    <text x="938" y="233" font-size="12" fill="#65675e">保存 · 检查 · 交付</text>
   </g>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" fill="#2E5F8A" text-anchor="middle">
-    <text x="118" y="108">REQUEST</text>
-    <text x="340" y="106">ariadne-skill</text>
-    <text x="606" y="108">ariadne-framing</text>
-    <text x="886" y="108">ariadne-evidence</text>
-  </g>
-  <rect x="280" y="166" width="720" height="100" fill="none" stroke="#1B1A17" stroke-width="1"/>
-  <text x="292" y="188" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" letter-spacing="1" fill="#2E5F8A">并行 PARALLEL · 准入＝同一对象记录＋同一证据截止点</text>
-  <g fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5">
-    <rect x="300" y="200" width="200" height="52"/>
-    <rect x="540" y="200" width="200" height="52"/>
-    <rect x="780" y="200" width="200" height="52"/>
-  </g>
-  <g font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#1B1A17" text-anchor="middle">
-    <text x="400" y="222">尺度转换</text>
-    <text x="640" y="222">机制比较</text>
-    <text x="880" y="222">人类领域约束</text>
-  </g>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" fill="#2E5F8A" text-anchor="middle">
-    <text x="400" y="241">ariadne-scale</text>
-    <text x="640" y="241">ariadne-mechanism</text>
-    <text x="880" y="241">ariadne-human</text>
-  </g>
-  <rect x="280" y="296" width="720" height="100" fill="none" stroke="#1B1A17" stroke-width="1" stroke-dasharray="7 5"/>
-  <text x="292" y="318" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" letter-spacing="1" fill="#2E5F8A">按需 ON-DEMAND · 按任务进入，不是固定流水线</text>
-  <g fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5">
-    <rect x="300" y="330" width="200" height="52"/>
-    <rect x="540" y="330" width="200" height="52"/>
-    <rect x="780" y="330" width="200" height="52"/>
-  </g>
-  <g font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#1B1A17" text-anchor="middle">
-    <text x="400" y="352">动态推演</text>
-    <text x="640" y="352">条件前瞻</text>
-    <text x="880" y="352">有限选择</text>
-  </g>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" fill="#2E5F8A" text-anchor="middle">
-    <text x="400" y="371">ariadne-dynamics</text>
-    <text x="640" y="371">ariadne-forecast</text>
-    <text x="880" y="371">ariadne-choice</text>
-  </g>
-  <rect x="490" y="426" width="300" height="64" fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5"/>
-  <text x="620" y="451" font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#1B1A17" text-anchor="middle">审计与合并 · 上限取最小</text>
-  <text x="620" y="472" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" fill="#2E5F8A" text-anchor="middle">ariadne-audit · 冲突具名保留</text>
-  <g transform="rotate(-8 754 458)">
-    <circle cx="754" cy="458" r="21" fill="none" stroke="#B03A2E" stroke-width="1.5"/>
-    <circle cx="754" cy="458" r="16" fill="none" stroke="#B03A2E" stroke-width="1"/>
-    <text x="754" y="462" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="9" fill="#B03A2E" text-anchor="middle">NONE</text>
-  </g>
-  <rect x="830" y="426" width="320" height="64" fill="#FFFDF6" stroke="#1B1A17" stroke-width="1.5"/>
-  <text x="990" y="451" font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#1B1A17" text-anchor="middle">两层输出：白话判断＋方法记录</text>
-  <text x="990" y="472" font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace" font-size="11" fill="#2E5F8A" text-anchor="middle">plain answer + Method Record</text>
-  <line x1="10" y1="506" x2="1190" y2="506" stroke="#1B1A17" stroke-width="2"/>
-  <line x1="360" y1="506" x2="360" y2="543" stroke="#1B1A17" stroke-width="1"/>
-  <line x1="760" y1="506" x2="760" y2="543" stroke="#1B1A17" stroke-width="1"/>
-  <line x1="980" y1="506" x2="980" y2="543" stroke="#1B1A17" stroke-width="1"/>
-  <g font-family="ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace">
-    <g font-size="10" letter-spacing="1.5" fill="#2E5F8A">
-      <text x="30" y="523">SHEET</text>
-      <text x="380" y="523">TITLE</text>
-      <text x="780" y="523">BASIS</text>
-      <text x="1000" y="523">AUTHORIZATION_EFFECT</text>
-    </g>
-    <g font-size="13" fill="#1B1A17">
-      <text x="30" y="540">ARIADNE-02 · 1:1</text>
-      <text x="380" y="540">LATTICE KERNEL 方法地图</text>
-      <text x="780" y="540">skills/ariadne-skill</text>
-      <text x="1000" y="540" fill="#B03A2E">NONE</text>
-    </g>
-  </g>
+  <rect x="643" y="320" width="320" height="33" fill="#edede3"/>
+  <text x="803" y="342" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#ad3827">新证据 / 异议 / 变化的约束</text>
+  <text x="44" y="378" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#65675e">修订受影响的部分，保留仍然有效的结果。</text>
 </svg>

@@ -15,15 +15,6 @@ ROOT = Path(__file__).resolve().parents[1]
 
 EXPECTED_SKILLS = {
     "ariadne-skill",
-    "ariadne-framing",
-    "ariadne-evidence",
-    "ariadne-scale",
-    "ariadne-mechanism",
-    "ariadne-human",
-    "ariadne-dynamics",
-    "ariadne-forecast",
-    "ariadne-choice",
-    "ariadne-audit",
 }
 EXPECTED_HOSTS = {
     "codex",
@@ -113,17 +104,17 @@ def test_site_build_rejects_a_symlinked_source_directory(tmp_path: Path) -> None
         module.build_site(repo_root, repo_root / "build" / "site")
 
 
-def test_site_html_exposes_all_modules_without_javascript(tmp_path: Path) -> None:
+def test_site_html_exposes_the_installable_entry_without_javascript(tmp_path: Path) -> None:
     module = _load_module("scripts.build_site")
     output = module.build_site(ROOT, tmp_path / "site")
     html = (output / "index.html").read_text(encoding="utf-8")
     static_html = html.split("<script", maxsplit=1)[0]
 
-    for skill in EXPECTED_SKILLS:
+    manifest = json.loads((ROOT / "adapters/compatibility.json").read_text(encoding="utf-8"))
+    for skill in manifest["skills"]:
         assert skill in static_html
-    assert "一套让 AI Agent 思考和处理复杂问题的方法论集群" in static_html
-    assert "authorization_effect" in static_html
-    assert "none" in static_html
+    assert "<main" in static_html
+    assert "<h1" in static_html
 
 
 def test_site_links_to_all_adapter_compatibility_evidence() -> None:
@@ -146,6 +137,7 @@ def test_adapter_manifest_covers_exact_hosts_and_skills() -> None:
     assert data["schema_version"] == 1
     assert data["default_bundle"] == "complete"
     assert set(data["skills"]) == EXPECTED_SKILLS
+    assert "router_only_degradation" not in data
     assert {host["id"] for host in data["hosts"]} == EXPECTED_HOSTS
 
 
@@ -188,6 +180,41 @@ def test_adapter_validator_rejects_whitespace_variant_install_drift(tmp_path: Pa
     assert any("must install the complete bundle" in error for error in errors)
 
 
+def test_single_host_install_is_a_complete_package(tmp_path: Path) -> None:
+    module = _load_module("scripts.validate_adapters")
+    command = "npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex\n"
+    (tmp_path / "docs").mkdir()
+    for relative in ("README.md", "docs/agent-compatibility.md"):
+        (tmp_path / relative).write_text(command, encoding="utf-8")
+
+    assert module._validate_install_documents(
+        tmp_path, ["ariadne-skill"], ["codex", "claude-code", "reasonix"], ["codex", "claude-code"]
+    ) == []
+
+
+@pytest.mark.parametrize(
+    "mutation,expected",
+    [
+        (("--copy ", ""), "must use --copy"),
+        (("-a codex", "-a invented-host"), "not registered manifest hosts"),
+        (("-a codex", "-a reasonix"), "native-agent-skills hosts"),
+        (("-a codex", ""), "must select a native-agent-skills host"),
+        (("--skill ariadne-skill", "--skill '*'"), "must install the complete bundle"),
+    ],
+)
+def test_single_package_install_rejects_unsupported_forms(tmp_path: Path, mutation, expected) -> None:
+    module = _load_module("scripts.validate_adapters")
+    command = "npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex\n"
+    (tmp_path / "docs").mkdir()
+    for relative in ("README.md", "docs/agent-compatibility.md"):
+        (tmp_path / relative).write_text(command.replace(*mutation), encoding="utf-8")
+
+    errors = module._validate_install_documents(
+        tmp_path, ["ariadne-skill"], ["codex", "reasonix"], ["codex"]
+    )
+    assert any(expected in error for error in errors)
+
+
 def test_adapter_validator_rejects_every_declared_host_mirror_root(tmp_path: Path) -> None:
     """Catches a mirror gate that overlooks a path declared only by one host."""
     module = _load_module("scripts.validate_adapters")
@@ -223,8 +250,8 @@ def test_reasonix_stays_a_bounded_compatibility_subset() -> None:
 
     assert reasonix["compatibility"] == "directory-compatible-subset"
     assert set(reasonix["required_smoke_checks"]) == {
-        "json-references",
-        "peer-routing",
+        "resource-loading",
+        "path-routing",
         "context-growth",
     }
 

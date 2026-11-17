@@ -1,0 +1,103 @@
+{
+  "artifact_version": "1.0",
+  "artifact_type": "forecast_draft",
+  "forecast_id": "synthetic-queue-20261117T012633967966Z",
+  "outcome_known": false,
+  "model": {
+    "id": "synthetic-manual-queue-rule",
+    "version": "1"
+  },
+  "target": {
+    "question": "【合成测试】虚构队列在截止时的未处理项目数是否严格超过 100？",
+    "scope": "仅指 synthetic-fictional-queue-T08 这一虚构队列，统计未处理项目数；队列身份和统计口径保持不变。本测试不包含任何真实队列。",
+    "outcome_rule": "仅使用截止瞬间、同一身份和口径的明确合成结果标签 N：整数 N > 100 为是，N <= 100 为否；缺失结果保留 null，不填零，不用当前假设 80 代替未来结果。"
+  },
+  "input": {
+    "cutoff": "2026-11-17T01:26:33Z",
+    "sources": [
+      {
+        "source_id": "synthetic-assumed-80",
+        "description": "合成测试材料：用户提供的唯一假设快照为 80 个未处理项目，未被现实观测证实。此 available_at 为本轮采纳该假设的真实 UTC 时间。没有流入、服务、历史频率或概率数据。",
+        "kind": "assumption",
+        "available_at": "2026-11-17T01:26:33Z"
+      }
+    ]
+  },
+  "window": {
+    "starts_at": "2026-11-17T02:26:33Z",
+    "deadline": "2026-11-18T01:26:33Z",
+    "error_tolerance": "合成测试使用截止时的精确整数计数，阈值无容差；恰好 100 不属于超过 100。缺少对应时点标签时保留缺失，不作插值。"
+  },
+  "baseline": {
+    "as_of": "2026-11-17T01:26:33Z",
+    "description": "合成测试的简单持平基线：当前假设计数持续不变；这只是冻结的比较规则，不是现实预测。",
+    "expectation": "截止时仍为 80，故按该基线不超过 100。",
+    "evaluation_rule": "若以后提供符合口径的合成标签 N，记录 N - 80 和 abs(N - 80)，以及阈值判断是否一致；无标签则比较不可评价。"
+  },
+  "mechanisms": [
+    {
+      "candidate_id": "synthetic-balance",
+      "claim": "合成条件候选：若从假设快照到截止时累计流入恰好等于累计移出，且无其他计数变化，则计数保持 80。流量平衡仅是假设，尚无数据支持其发生。",
+      "basis_source_ids": [
+        "synthetic-assumed-80"
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "path_id": "synthetic-stable",
+      "description": "合成条件路径：80 → 在净增为零的额外条件下 → 截止仍为 80，不超过 100。本路径没有概率、权重或优先排序。",
+      "mechanism_ids": [
+        "synthetic-balance"
+      ],
+      "basis_source_ids": [
+        "synthetic-assumed-80"
+      ]
+    }
+  ],
+  "competition_search": {
+    "search_scope": "仅搜索用户提供的合成快照 80 及计数恒等关系；检查流入、移出、趋势、故障等是否有材料支撑，不作外部数据查询。",
+    "reason_no_alternative": "只有一个静态假设数值，没有足以指定第二个完整机制或路径的流量及事件材料；保留上述持平条件候选作为演示，不声称它较可能或穷尽未来，净增与净减均未被排除。",
+    "failure_conditions": "累计流入与移出不平衡即使持平路径不成立；净增超过 20 时阈值结果翻转。身份、统计口径变化会破坏目标条件。"
+  },
+  "expression": {
+    "kind": "unknown",
+    "reason": "合成测试只有假设快照 80，不能支持概率、信念数值、权重、方向判断或路径排序；明确弃权，不作可计为命中或失败的正负预测。"
+  },
+  "decision_use": {
+    "status": "not_applicable",
+    "reason": "合成测试仅演示本地登记、原件验证和一次缺失标签追加，不用于现实决策。"
+  },
+  "evaluation": {
+    "rule": "按冻结的 N > 100 规则记录未来明确合成标签；unknown 表达不评分。目标标签、基线比较及预测可评价性分别保留，缺失标签不是零。",
+    "calibration_plan": "本合成测试不声称概率校准或预测能力。保留全部登记和追加历史；如以后汇总，应报告总登记数、unknown 弃权数、缺失标签数与实际可评价数，本条不进入预测命中率或概率评分分母。",
+    "failure_rules": {
+      "supported": "本条 unknown 表达不适用；即使后来提供超过 100 的合成标签，也不能计为预测命中。",
+      "not_supported": "本条 unknown 表达不适用；弃权不计为正负预测失败。",
+      "unresolved": "合成标签存在冲突或不足以确定同一目标结果时，保留争议和缺口。",
+      "target_invalid": "虚构队列身份或统计口径变更，使原目标不再指向同一对象；保留原件。",
+      "not_evaluable": "本条原始表达明确弃权；未取得标签时 actual_result 为 null，基线也不可评价；后续任何合成结果与弃权评分分别记录。"
+    }
+  },
+  "signals": {
+    "early": [
+      "合成测试中若以后获得独立记录的到达批次或处理能力变化，可用来检查流量平衡条件；目前未得到这些记录。"
+    ],
+    "reverse": [
+      "合成测试中若累计流入与移出出现非零差额，持平条件即被推翻；目前没有这类标签。"
+    ],
+    "pause": [
+      "缺少同一口径的截止标签时暂停结果判定；任何将合成假设当作现实证据的使用均不在本测试范围内。"
+    ],
+    "retirement": [
+      "虚构队列身份或统计口径被替换时停用该目标；需另建新 ID 并保留旧登记。"
+    ]
+  },
+  "response_regime": "合成测试仅在本目录写入和验证文件，不发布到外部，不触发现实队列干预；工具执行成功不证明队列机制或预测能力。",
+  "review": {
+    "owner": "本轮执行助手：负责登记后立即进行一次缺失标签检查及追加，最迟在 next_review_at 前完成；本轮不安排无人值守的截止复查。",
+    "next_review_at": "2026-11-17T01:36:33Z",
+    "writeback_due_at": "2026-11-18T02:26:33Z",
+    "destination": "/workspace/ariadne-behavior-runs/T08/synthetic-registry/synthetic-queue-20261117T012633967966Z/resolutions；仅追加新记录，原件不重写。writeback_due_at 是本合成合同的截止后边界，不代表已安排未来后台任务。"
+  }
+}

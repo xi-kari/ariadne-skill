@@ -1,5 +1,7 @@
 # Sequential Chain Scenarios
 
+> Legacy Method Record 2.0/2.1 compatibility scenarios. The frozen module names and ordering below describe historical serialized runs; they do not define the current single-entry paths or require new work to use the old record shape.
+
 The authoritative prompts, material text, source IDs, seed parent Method Records, and expected facts/unknowns/ceilings are frozen in [fixtures/frozen-scenarios.json](fixtures/frozen-scenarios.json). Do not paraphrase or supplement them during a scored run.
 
 Run C01-C03 with only each scenario's `prompt`, `materials`, `source_ids`, and `seed_parent_record`. Every scenario contains actual sequential and clustered `mode_results` plus an independent `mode_contract`. Preserve the exact declared sequential module order and parent ID/version edge. In clustered mode, preserve the prefix, same-parent lanes, canonical multi-parent audit merge, and exact downstream suffix. A module may organize the frozen label but may not promote it to an observation, add outside facts, or raise the ceiling merely because it completed.

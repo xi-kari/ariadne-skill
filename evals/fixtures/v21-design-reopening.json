@@ -1,0 +1,136 @@
+{
+  "record_id": "ariadne:review-schedule:root:v1",
+  "schema_version": "2.1",
+  "record_version": 1,
+  "lineage_kind": "root",
+  "parent_record_id": null,
+  "parent_records": [],
+  "request_type": "synthesis_design",
+  "object_contract": {
+    "boundary": "Synthetic two-reviewer scheduling exercise; no real team is represented",
+    "state_variables": [
+      "daily coverage",
+      "days assigned per reviewer",
+      "review deadlines"
+    ],
+    "relations_or_transitions": [
+      "assign reviewers to weekday windows"
+    ],
+    "interfaces": [
+      "document intake",
+      "review completion"
+    ],
+    "time_window": "One hypothetical Monday-Friday work week",
+    "scale_profile": {
+      "aggregation": "two reviewers",
+      "time": "one week"
+    },
+    "identity_criterion": "same two reviewer roles and the explicitly revised task",
+    "task_profile": {
+      "target_query": "Draft a feasible review schedule after reconsidering the original timing constraint",
+      "horizon": "one hypothetical work week",
+      "environment": "synthetic exercise; availability assumptions must be checked before real use",
+      "allowed_operations": "generate and check a draft; no external adoption or assignment",
+      "error_tolerance": "no overlap beyond declared per-person capacity in the draft"
+    },
+    "status": "candidate"
+  },
+  "evidence_cutoff": {
+    "as_of": "2026-11-17T00:00:00Z",
+    "included_source_ids": [
+      "synthetic-brief-1"
+    ],
+    "excluded_after_cutoff": true
+  },
+  "scale_scope": {
+    "source": "synthetic two-reviewer task",
+    "target": "same task with an explicitly proposed timing refinement",
+    "transform_kind": "none",
+    "transform_status": "not_needed"
+  },
+  "claim_ledger": [
+    {
+      "claim_id": "claim-1",
+      "claim_type": "F",
+      "text": "Candidate inference within the supplied hypothetical model: the original simultaneous deadline exceeds the stated one-person capacity.",
+      "status": "candidate",
+      "support_ids": [
+        "synthetic-brief-1"
+      ],
+      "support_rule_ids": [],
+      "counterevidence_ids": []
+    }
+  ],
+  "rule_registry": [],
+  "unknowns_and_counterevidence": {
+    "unknowns": [
+      "Real reviewer availability and permission to change deadlines are not established by this synthetic fixture."
+    ],
+    "counterevidence": []
+  },
+  "conflicts": [],
+  "output_ceiling": "description_only",
+  "ceiling_transition": {
+    "operation": "root",
+    "inputs": [],
+    "basis": [],
+    "result": "description_only"
+  },
+  "module_runs": [
+    {
+      "module": "ariadne-framing",
+      "status": "completed",
+      "input_records": [],
+      "output_record": {
+        "record_id": "ariadne:review-schedule:root:v1",
+        "record_version": 1
+      }
+    }
+  ],
+  "module_payloads": [],
+  "recommended_next_modules": [
+    "ariadne-evidence"
+  ],
+  "authorization_effect": "none",
+  "problem_reopenings": [
+    {
+      "reopening_id": "reopen-1",
+      "original_question": "Can both reviews finish in the same one-person window?",
+      "proposed_question": "Can a changed review window meet the same final delivery deadline?",
+      "proposer": "Hypothetical review owner",
+      "reason": "The initial problem treated an intermediate review window as fixed.",
+      "disposition": "accepted",
+      "disposition_reason": "A separate timing refinement can be explored without deleting the original capacity failure.",
+      "relationship": "refine",
+      "affected_claim_ids": [
+        "claim-1"
+      ],
+      "preserved_results": [
+        "The supplied original-window failure remains in the case; the new draft does not make that old test successful."
+      ]
+    }
+  ],
+  "design_candidates": [
+    {
+      "candidate_id": "design-1",
+      "starting_points": [
+        "synthetic-brief-1: one-person capacity in the original window",
+        "reopen-1: explore a revised intermediate review window"
+      ],
+      "derivation": "Split the two reviews across declared windows; retain the original final delivery requirement.",
+      "proposal": "Assign the first review to the original window and the second to a later window before final delivery, conditional on a valid window change and available reviewer.",
+      "assumptions": [
+        "The later window has one available reviewer.",
+        "The deadline owner may approve the intermediate window change."
+      ],
+      "checks": [
+        "Compare both assigned windows with the final deadline.",
+        "Check each reviewer has capacity in the relevant window.",
+        "Verify permission before any actual assignment."
+      ],
+      "failure_conditions": "Reject if the moved window misses an external obligation.",
+      "status": "proposed",
+      "evidence_status": "candidate"
+    }
+  ]
+}

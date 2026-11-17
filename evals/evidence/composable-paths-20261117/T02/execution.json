@@ -1,0 +1,89 @@
+{
+  "task_id": "T02",
+  "actor": "behavior_a",
+  "scope_note": "This actor handled T01, T02 and T09 in one batch. Shared preparation and artifact commands below are actual executed commands, not hypothetical steps. Some commands touched multiple assigned cases. No rubric, other agents' responses, or original theory source was accessed. This log covers completed commands through final response inspection; it is not a score.",
+  "commands": [
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/skill/SKILL.md",
+      "exit_code": 0,
+      "result_summary": "Read the frozen Ariadne skill entry in full."
+    },
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/T02/prompt.txt",
+      "exit_code": 0,
+      "result_summary": "Read the full T02 synthetic task prompt."
+    },
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/skill/references/kernel.md",
+      "exit_code": 0,
+      "result_summary": "Read the Lattice Kernel in full."
+    },
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/skill/paths/understand.md",
+      "exit_code": 0,
+      "result_summary": "Read the Understand path in full."
+    },
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/skill/references/library/evidence-contracts.md",
+      "exit_code": 0,
+      "result_summary": "Command succeeded; tool display was truncated. Relevant causal and per-proposition sections were subsequently retrieved with sed."
+    },
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/skill/references/library/representation-and-closure.md",
+      "exit_code": 0,
+      "result_summary": "Read representation and closure reference, including F3 and joint-response composition boundaries."
+    },
+    {
+      "command": "rg -n '^## (Causal|Per-Proposition|Per-proposition|Analogy)' /workspace/ariadne-behavior-runs/skill/references/library/evidence-contracts.md",
+      "exit_code": 0,
+      "output": "95:## Causal Contract, Estimands, and Chains\n110:## Analogy and Formal Conclusions\n235:## Per-Proposition Downgrade\n"
+    },
+    {
+      "command": "cat /workspace/ariadne-behavior-runs/skill/references/responsibility.md",
+      "exit_code": 0,
+      "result_summary": "Read shared responsibilities in full."
+    },
+    {
+      "command": "sed -n '95,122p' /workspace/ariadne-behavior-runs/skill/references/library/evidence-contracts.md",
+      "exit_code": 0,
+      "result_summary": "Read causal estimands, local effects and joint response, formal conclusions, and ordinary evidence support."
+    },
+    {
+      "command": "sed -n '235,251p' /workspace/ariadne-behavior-runs/skill/references/library/evidence-contracts.md",
+      "exit_code": 0,
+      "result_summary": "Read per-proposition downgrade and evidence-output sections."
+    },
+    {
+      "command": "python - <<'PY'\nfrom pathlib import Path\nimport json\nresponses=json.loads(\"{\\\"T01\\\":\\\"不意味着。这是四件不同的事：承认制度存在，是承认它作为一套规则或安排成立；理解它，是知道规则怎样运作；有效实施，是规则实际得到执行；正当性，则要看它是否有合理依据、是否公平等。\\\\n\\\\n例如，大家都承认学校有奖学金制度，但有人不了解申请条件，学校也可能迟迟不发钱，而制度本身还可能不合理地排除某些学生。存在、理解、落实、正当，不能相互替代。\\\\n\\\",\\\"T02\\\":\\\"**不能从两个平均因果效应都是 0.5，推出整条链的效应必为 0.25；也不能因为链条尚未识别，就把独立随机试验得到的整体效应估计 0.2 降成纯猜测。**\\\\n\\\\n两个局部研究各自支持其人群、处理与比较定义下的边效应。将它们连接起来，还需要知道两段响应是否发生在同一批个体上、处理与中介定义是否兼容，以及是否存在其他路径。即使这些定义都一致、没有直接路径，两个平均值也不够。\\\\n\\\\n给一个同一人群内的具体构造。令处理 (A\\\\\\\\in\\\\\\\\{0,1\\\\\\\\})，中介 (M) 和结果 (Y) 也都是二元变量。每个人有两个固定响应特征 (U,V\\\\\\\\in\\\\\\\\{0,1\\\\\\\\})，且\\\\n\\\\n\\\\\\\\[\\\\nM(a)=Ua,\\\\\\\\qquad Y(a,m)=Vm.\\\\n\\\\\\\\]\\\\n\\\\n也就是说，(U=1) 的人中介会响应处理，(V=1) 的人结果会响应中介；处理对结果没有绕过中介的直接作用。人群组成如下：\\\\n\\\\n| 响应类型 (U,V) | 人群比例 |\\\\n|---|---:|\\\\n| (1,1) | 0.2 |\\\\n| (1,0) | 0.3 |\\\\n| (0,1) | 0.3 |\\\\n| (0,0) | 0.2 |\\\\n\\\\n若在同一人群中分别随机干预处理和中介，则两条边的平均因果效应为\\\\n\\\\n\\\\\\\\[\\\\nE[M(1)-M(0)]=E[U]=0.5,\\\\n\\\\\\\\]\\\\n\\\\\\\\[\\\\nE[Y(a,1)-Y(a,0)]=E[V]=0.5.\\\\n\\\\\\\\]\\\\n\\\\n但随机改变处理、让中介自然响应时，整体效应是\\\\n\\\\n\\\\\\\\[\\\\nE[Y(1,M(1))-Y(0,M(0))]=E[UV]=0.2,\\\\n\\\\\\\\]\\\\n\\\\n而不是 (E[U]E[V]=0.25)。只有 20% 的人两段都响应；两段各有 50% 响应，并没有告诉我们这两群人重合多少。这里 (E[UV]=E[U]E[V]+\\\\\\\\operatorname{Cov}(U,V))，协方差为 (-0.05)。若额外条件使乘积公式成立，才可以相乘。\\\\n\\\\n因此，这三项研究结果可以同时成立。上述构造是逻辑反例，不是对真实机制的发现。独立随机试验的 **0.2 是其自身人群和处理定义下有直接实验依据的整体效应点估计**，不依赖我们先解释清楚中间链条；它也不自动证明某种中介机制或支持跨人群外推。还要保留估计的不确定性：题目没有样本量、标准误或置信区间，不能把 0.2 当成无误差的真值，也不能仅凭 0.2 与 0.25 不同就宣称统计上显著冲突。\\\\n\\\",\\\"T09\\\":\\\"**第一种情况不必先辨别状态，可以直接选 (b)。第二种情况没有能在两种状态下都保证允许的单一动作。**\\\\n\\\\n把当前可能状态记为 (S=\\\\\\\\{s_1,s_2\\\\\\\\})，各状态允许集合记为 (A(s))。对于“选一次动作，并保证不论实际是哪种状态都允许”这个要求，存在可选动作的充要条件是\\\\n\\\\n\\\\\\\\[\\\\n\\\\\\\\bigcap_{s\\\\\\\\in S}A(s)\\\\\\\\ne\\\\\\\\varnothing.\\\\n\\\\\\\\]\\\\n\\\\n理由很直接：任何保证可行的动作都必须属于每个允许集合；反过来，交集中的任一动作都满足这一要求。\\\\n\\\\n- 第一种情况：(\\\\\\\\{a,b\\\\\\\\}\\\\\\\\cap\\\\\\\\{b,c\\\\\\\\}=\\\\\\\\{b\\\\\\\\})。因此选 (b) 即可，实际状态仍可未知。\\\\n- 第二种情况：(\\\\\\\\{a\\\\\\\\}\\\\\\\\cap\\\\\\\\{c\\\\\\\\}=\\\\\\\\varnothing)。每个状态各自有可行动作，但当前没有共同动作。形式上，(\\\\\\\\forall s\\\\\\\\,\\\\\\\\exists x\\\\\\\\in A(s)) 成立，而 (\\\\\\\\exists x\\\\\\\\,\\\\\\\\forall s\\\\\\\\,[x\\\\\\\\in A(s)]) 不成立。\\\\n\\\\n若第二种情况必须保证成功，且这些集合固定、只能选一次，就需要先取得足以区分这两个状态的信息。也可以另行研究是否能改变允许集合或采用观察后行动的策略，但那属于修改后的问题；随机选 (a) 或 (c) 也不能保证两种状态下都成功。\\\\n\\\\n这些都是**给定模型内的结论**。现实里 (b) 是否真的可行，还取决于状态列表是否完整、允许集合是否准确，以及所需资源、时间、保护条件和有效权限是否确实具备。集合交集能证明“若这些前提成立，则 (b) 可行”，不能替我们证明现实前提已经满足。\\\\n\\\"}\")\nfor task, content in responses.items():\n    path=Path('/workspace/ariadne-behavior-runs')/task/'response.md'\n    path.write_text(content, encoding='utf-8')\n    print(f'{task}: saved {path.stat().st_size} bytes')\nPY",
+      "chunk_id": "0d7588",
+      "wall_time_seconds": 3.6423e-05,
+      "exit_code": 0,
+      "original_token_count": 17,
+      "output": "T01: saved 498 bytes\nT02: saved 2074 bytes\nT09: saved 1522 bytes\n"
+    },
+    {
+      "command": "python - <<'PY'\nfrom pathlib import Path\nfor task in ('T01','T02','T09'):\n    path=Path('/workspace/ariadne-behavior-runs')/task/'response.md'\n    print(task)\n    print(path.read_text(encoding='utf-8'))\nPY",
+      "chunk_id": "b73295",
+      "wall_time_seconds": 3.2508e-05,
+      "exit_code": 0,
+      "original_token_count": 1028,
+      "output": "T01\n不意味着。这是四件不同的事：承认制度存在，是承认它作为一套规则或安排成立；理解它，是知道规则怎样运作；有效实施，是规则实际得到执行；正当性，则要看它是否有合理依据、是否公平等。\n\n例如，大家都承认学校有奖学金制度，但有人不了解申请条件，学校也可能迟迟不发钱，而制度本身还可能不合理地排除某些学生。存在、理解、落实、正当，不能相互替代。\n\nT02\n**不能从两个平均因果效应都是 0.5，推出整条链的效应必为 0.25；也不能因为链条尚未识别，就把独立随机试验得到的整体效应估计 0.2 降成纯猜测。**\n\n两个局部研究各自支持其人群、处理与比较定义下的边效应。将它们连接起来，还需要知道两段响应是否发生在同一批个体上、处理与中介定义是否兼容，以及是否存在其他路径。即使这些定义都一致、没有直接路径，两个平均值也不够。\n\n给一个同一人群内的具体构造。令处理 (A\\in\\{0,1\\})，中介 (M) 和结果 (Y) 也都是二元变量。每个人有两个固定响应特征 (U,V\\in\\{0,1\\})，且\n\n\\[\nM(a)=Ua,\\qquad Y(a,m)=Vm.\n\\]\n\n也就是说，(U=1) 的人中介会响应处理，(V=1) 的人结果会响应中介；处理对结果没有绕过中介的直接作用。人群组成如下：\n\n| 响应类型 (U,V) | 人群比例 |\n|---|---:|\n| (1,1) | 0.2 |\n| (1,0) | 0.3 |\n| (0,1) | 0.3 |\n| (0,0) | 0.2 |\n\n若在同一人群中分别随机干预处理和中介，则两条边的平均因果效应为\n\n\\[\nE[M(1)-M(0)]=E[U]=0.5,\n\\]\n\\[\nE[Y(a,1)-Y(a,0)]=E[V]=0.5.\n\\]\n\n但随机改变处理、让中介自然响应时，整体效应是\n\n\\[\nE[Y(1,M(1))-Y(0,M(0))]=E[UV]=0.2,\n\\]\n\n而不是 (E[U]E[V]=0.25)。只有 20% 的人两段都响应；两段各有 50% 响应，并没有告诉我们这两群人重合多少。这里 (E[UV]=E[U]E[V]+\\operatorname{Cov}(U,V))，协方差为 (-0.05)。若额外条件使乘积公式成立，才可以相乘。\n\n因此，这三项研究结果可以同时成立。上述构造是逻辑反例，不是对真实机制的发现。独立随机试验的 **0.2 是其自身人群和处理定义下有直接实验依据的整体效应点估计**，不依赖我们先解释清楚中间链条；它也不自动证明某种中介机制或支持跨人群外推。还要保留估计的不确定性：题目没有样本量、标准误或置信区间，不能把 0.2 当成无误差的真值，也不能仅凭 0.2 与 0.25 不同就宣称统计上显著冲突。\n\nT09\n**第一种情况不必先辨别状态，可以直接选 (b)。第二种情况没有能在两种状态下都保证允许的单一动作。**\n\n把当前可能状态记为 (S=\\{s_1,s_2\\})，各状态允许集合记为 (A(s))。对于“选一次动作，并保证不论实际是哪种状态都允许”这个要求，存在可选动作的充要条件是\n\n\\[\n\\bigcap_{s\\in S}A(s)\\ne\\varnothing.\n\\]\n\n理由很直接：任何保证可行的动作都必须属于每个允许集合；反过来，交集中的任一动作都满足这一要求。\n\n- 第一种情况：(\\{a,b\\}\\cap\\{b,c\\}=\\{b\\})。因此选 (b) 即可，实际状态仍可未知。\n- 第二种情况：(\\{a\\}\\cap\\{c\\}=\\varnothing)。每个状态各自有可行动作，但当前没有共同动作。形式上，(\\forall s\\,\\exists x\\in A(s)) 成立，而 (\\exists x\\,\\forall s\\,[x\\in A(s)]) 不成立。\n\n若第二种情况必须保证成功，且这些集合固定、只能选一次，就需要先取得足以区分这两个状态的信息。也可以另行研究是否能改变允许集合或采用观察后行动的策略，但那属于修改后的问题；随机选 (a) 或 (c) 也不能保证两种状态下都成功。\n\n这些都是**给定模型内的结论**。现实里 (b) 是否真的可行，还取决于状态列表是否完整、允许集合是否准确，以及所需资源、时间、保护条件和有效权限是否确实具备。集合交集能证明“若这些前提成立，则 (b) 可行”，不能替我们证明现实前提已经满足。\n\n"
+    },
+    {
+      "command": "python - <<'PY'\nfrom pathlib import Path\nfor task in ('T02','T09'):\n    path=Path('/workspace/ariadne-behavior-runs')/task/'response.md'\n    lines=path.read_text(encoding='utf-8').splitlines(keepends=True)\n    revised=[]\n    in_display=False\n    for line in lines:\n        if line.strip() == r'\\[':\n            in_display=True\n        if in_display or line.startswith('|'):\n            revised.append(line)\n        else:\n            out=''\n            depth=0\n            for ch in line:\n                if ch == '(':\n                    if depth == 0:\n                        out += r'\\('\n                    else:\n                        out += ch\n                    depth += 1\n                elif ch == ')':\n                    depth -= 1\n                    out += r'\\)' if depth == 0 else ch\n                else:\n                    out += ch\n            revised.append(out)\n        if line.strip() == r'\\]':\n            in_display=False\n    path.write_text(''.join(revised), encoding='utf-8')\n    print(f'{task}: repaired inline math delimiters')\nPY",
+      "chunk_id": "86ee48",
+      "wall_time_seconds": 2.7651e-05,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "T02: repaired inline math delimiters\nT09: repaired inline math delimiters\n"
+    },
+    {
+      "command": "python - <<'PY'\nfrom pathlib import Path\nfrom fractions import Fraction\nweights={(1,1):Fraction(2,10),(1,0):Fraction(3,10),(0,1):Fraction(3,10),(0,0):Fraction(2,10)}\nprint('T02 exact arithmetic:', {'total_weight':str(sum(weights.values())), 'E_U':str(sum(u*p for (u,v),p in weights.items())), 'E_V':str(sum(v*p for (u,v),p in weights.items())), 'E_UV':str(sum(u*v*p for (u,v),p in weights.items()))})\nprint('T09 intersections:', sorted({'a','b'} & {'b','c'}), sorted({'a'} & {'c'}))\nfor task in ('T01','T02','T09'):\n    path=Path('/workspace/ariadne-behavior-runs')/task/'response.md'\n    print(f'--- {task} final response ---')\n    print(path.read_text(encoding='utf-8'))\nPY",
+      "chunk_id": "d5a14b",
+      "wall_time_seconds": 2.044e-05,
+      "exit_code": 0,
+      "original_token_count": 1084,
+      "output": "T02 exact arithmetic: {'total_weight': '1', 'E_U': '1/2', 'E_V': '1/2', 'E_UV': '1/5'}\nT09 intersections: ['b'] []\n--- T01 final response ---\n不意味着。这是四件不同的事：承认制度存在，是承认它作为一套规则或安排成立；理解它，是知道规则怎样运作；有效实施，是规则实际得到执行；正当性，则要看它是否有合理依据、是否公平等。\n\n例如，大家都承认学校有奖学金制度，但有人不了解申请条件，学校也可能迟迟不发钱，而制度本身还可能不合理地排除某些学生。存在、理解、落实、正当，不能相互替代。\n\n--- T02 final response ---\n**不能从两个平均因果效应都是 0.5，推出整条链的效应必为 0.25；也不能因为链条尚未识别，就把独立随机试验得到的整体效应估计 0.2 降成纯猜测。**\n\n两个局部研究各自支持其人群、处理与比较定义下的边效应。将它们连接起来，还需要知道两段响应是否发生在同一批个体上、处理与中介定义是否兼容，以及是否存在其他路径。即使这些定义都一致、没有直接路径，两个平均值也不够。\n\n给一个同一人群内的具体构造。令处理 \\(A\\in\\{0,1\\}\\)，中介 \\(M\\) 和结果 \\(Y\\) 也都是二元变量。每个人有两个固定响应特征 \\(U,V\\in\\{0,1\\}\\)，且\n\n\\[\nM(a)=Ua,\\qquad Y(a,m)=Vm.\n\\]\n\n也就是说，\\(U=1\\) 的人中介会响应处理，\\(V=1\\) 的人结果会响应中介；处理对结果没有绕过中介的直接作用。人群组成如下：\n\n| 响应类型 (U,V) | 人群比例 |\n|---|---:|\n| (1,1) | 0.2 |\n| (1,0) | 0.3 |\n| (0,1) | 0.3 |\n| (0,0) | 0.2 |\n\n若在同一人群中分别随机干预处理和中介，则两条边的平均因果效应为\n\n\\[\nE[M(1)-M(0)]=E[U]=0.5,\n\\]\n\\[\nE[Y(a,1)-Y(a,0)]=E[V]=0.5.\n\\]\n\n但随机改变处理、让中介自然响应时，整体效应是\n\n\\[\nE[Y(1,M(1))-Y(0,M(0))]=E[UV]=0.2,\n\\]\n\n而不是 \\(E[U]E[V]=0.25\\)。只有 20% 的人两段都响应；两段各有 50% 响应，并没有告诉我们这两群人重合多少。这里 \\(E[UV]=E[U]E[V]+\\operatorname{Cov}(U,V)\\)，协方差为 \\(-0.05\\)。若额外条件使乘积公式成立，才可以相乘。\n\n因此，这三项研究结果可以同时成立。上述构造是逻辑反例，不是对真实机制的发现。独立随机试验的 **0.2 是其自身人群和处理定义下有直接实验依据的整体效应点估计**，不依赖我们先解释清楚中间链条；它也不自动证明某种中介机制或支持跨人群外推。还要保留估计的不确定性：题目没有样本量、标准误或置信区间，不能把 0.2 当成无误差的真值，也不能仅凭 0.2 与 0.25 不同就宣称统计上显著冲突。\n\n--- T09 final response ---\n**第一种情况不必先辨别状态，可以直接选 \\(b\\)。第二种情况没有能在两种状态下都保证允许的单一动作。**\n\n把当前可能状态记为 \\(S=\\{s_1,s_2\\}\\)，各状态允许集合记为 \\(A(s)\\)。对于“选一次动作，并保证不论实际是哪种状态都允许”这个要求，存在可选动作的充要条件是\n\n\\[\n\\bigcap_{s\\in S}A(s)\\ne\\varnothing.\n\\]\n\n理由很直接：任何保证可行的动作都必须属于每个允许集合；反过来，交集中的任一动作都满足这一要求。\n\n- 第一种情况：\\(\\{a,b\\}\\cap\\{b,c\\}=\\{b\\}\\)。因此选 \\(b\\) 即可，实际状态仍可未知。\n- 第二种情况：\\(\\{a\\}\\cap\\{c\\}=\\varnothing\\)。每个状态各自有可行动作，但当前没有共同动作。形式上，\\(\\forall s\\,\\exists x\\in A(s)\\) 成立，而 \\(\\exists x\\,\\forall s\\,[x\\in A(s)]\\) 不成立。\n\n若第二种情况必须保证成功，且这些集合固定、只能选一次，就需要先取得足以区分这两个状态的信息。也可以另行研究是否能改变允许集合或采用观察后行动的策略，但那属于修改后的问题；随机选 \\(a\\) 或 \\(c\\) 也不能保证两种状态下都成功。\n\n这些都是**给定模型内的结论**。现实里 \\(b\\) 是否真的可行，还取决于状态列表是否完整、允许集合是否准确，以及所需资源、时间、保护条件和有效权限是否确实具备。集合交集能证明“若这些前提成立，则 \\(b\\) 可行”，不能替我们证明现实前提已经满足。\n\n"
+    }
+  ]
+}

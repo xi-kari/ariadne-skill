@@ -1,5 +1,7 @@
 # Clustered Execution Scenarios
 
+> Legacy Method Record 2.0/2.1 compatibility scenarios. The frozen module names and ordering below describe historical serialized runs; they do not define the current single-entry paths or require new work to use the old record shape.
+
 K01 and K02, together with the clustered counterparts for C01-C03, are fully frozen in [fixtures/frozen-scenarios.json](fixtures/frozen-scenarios.json): exact prompts, materials, source IDs, seed parent records, expected invariants, mode contracts, and reference sequential/clustered lineage graphs are machine-checkable.
 
 For a fresh run, give every sibling the exact same seed parent, materials, and cutoff. Create deterministic module output IDs. Audit merges all sibling IDs and versions in canonical order, then later work uses the merge as its parent. Do not average conflicts or treat module text as new evidence.

@@ -1,0 +1,12 @@
+{
+  "tool": "exec_command",
+  "cmd": "python - <<'PY'\nimport csv\nimport json\nfrom pathlib import Path\n\nroot = Path('/workspace/ariadne-behavior-runs/T03')\nrows = [\n    {'day': '周一', 'A': 1, 'B': 0},\n    {'day': '周二', 'A': 1, 'B': 0},\n    {'day': '周三', 'A': 1, 'B': 1},\n    {'day': '周四', 'A': 0, 'B': 1},\n    {'day': '周五', 'A': 0, 'B': 1},\n]\nwith (root / 'rota.csv').open('w', encoding='utf-8', newline='') as f:\n    writer = csv.DictWriter(f, fieldnames=['day', 'A', 'B'])\n    writer.writeheader()\n    writer.writerows(rows)\n\nwith (root / 'rota.csv').open(encoding='utf-8', newline='') as f:\n    reader = csv.DictReader(f)\n    assert reader.fieldnames == ['day', 'A', 'B']\n    saved = list(reader)\nexpected_days = ['周一', '周二', '周三', '周四', '周五']\nassert [row['day'] for row in saved] == expected_days\nassert all(row[p] in {'0', '1'} for row in saved for p in ['A', 'B'])\ncoverage = {row['day']: sum(int(row[p]) for p in ['A', 'B']) for row in saved}\ncounts = {p: sum(int(row[p]) for row in saved) for p in ['A', 'B']}\nassert all(n >= 1 for n in coverage.values())\nassert coverage['周三'] == 2\nassert all(n <= 3 for n in counts.values())\n\nexplanation = '''已生成可行排班，rota.csv 中 1 表示参加，0 表示不参加。\n\nA：周一、周二、周三，共 3 天。\nB：周三、周四、周五，共 3 天。\n\n已重新读取保存后的 rota.csv 并实际核验：周一至周五覆盖人数分别为 1、1、2、1、1；每天至少一人，周三两人；A、B 均未超过每人最多 3 天。文件包含且仅包含周一至周五五行排班，人员值均为 0 或 1。\n\n五天基本覆盖需要 5 人天，周三增加 1 人天，共需 6 人天，恰好用满两人各 3 天的总容量。本排班基于 A、B 每天均可参加的给定条件。\n'''\n(root / '说明.md').write_text(explanation, encoding='utf-8')\nassert (root / '说明.md').read_text(encoding='utf-8') == explanation\nprint((root / 'rota.csv').read_text(encoding='utf-8'))\nprint(json.dumps({'coverage': coverage, 'person_days': counts, 'checks': '全部通过'}, ensure_ascii=False))\nprint((root / '说明.md').read_text(encoding='utf-8'))\nPY",
+  "workdir": "/workspace/ariadne-behavior-runs/T03",
+  "result": {
+    "chunk_id": "f78914",
+    "wall_time_seconds": 0.000032228,
+    "exit_code": 0,
+    "original_token_count": 205,
+    "output": "day,A,B\n周一,1,0\n周二,1,0\n周三,1,1\n周四,0,1\n周五,0,1\n\n{\"coverage\": {\"周一\": 1, \"周二\": 1, \"周三\": 2, \"周四\": 1, \"周五\": 1}, \"person_days\": {\"A\": 3, \"B\": 3}, \"checks\": \"全部通过\"}\n已生成可行排班，rota.csv 中 1 表示参加，0 表示不参加。\n\nA：周一、周二、周三，共 3 天。\nB：周三、周四、周五，共 3 天。\n\n已重新读取保存后的 rota.csv 并实际核验：周一至周五覆盖人数分别为 1、1、2、1、1；每天至少一人，周三两人；A、B 均未超过每人最多 3 天。文件包含且仅包含周一至周五五行排班，人员值均为 0 或 1。\n\n五天基本覆盖需要 5 人天，周三增加 1 人天，共需 6 人天，恰好用满两人各 3 天的总容量。本排班基于 A、B 每天均可参加的给定条件。\n\n"
+  }
+}

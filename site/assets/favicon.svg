@@ -1,13 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="fav-title">
-  <title id="fav-title">Ariadne 图标：图纸方框内一条红色直角走线穿过格点</title>
-  <rect width="64" height="64" fill="#F5F2E9"/>
-  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#1B1A17" stroke-width="3"/>
-  <rect x="10" y="10" width="44" height="44" fill="none" stroke="#1B1A17" stroke-width="1"/>
-  <polyline points="16,46 16,22 32,22 32,40 48,40 48,18" fill="none" stroke="#B03A2E" stroke-width="3.5"/>
-  <g fill="#F5F2E9" stroke="#1B1A17" stroke-width="2">
-    <circle cx="16" cy="46" r="4"/>
-    <circle cx="32" cy="22" r="4"/>
-    <circle cx="32" cy="40" r="4"/>
-    <circle cx="48" cy="18" r="4"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="favicon-title">
+  <title id="favicon-title">Ariadne：一条回环并继续向前的朱红色线</title>
+  <rect width="64" height="64" rx="12" fill="#f7f4ed"/>
+  <path d="M47 18V43C47 50 54 49 56 45M47 25C44 15 23 14 17 28C9 47 25 54 38 44C45 39 47 30 47 18" fill="none" stroke="#ad3827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="56" cy="45" r="3" fill="#ad3827"/>
 </svg>

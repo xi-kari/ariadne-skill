@@ -1,0 +1,392 @@
+{
+  "reviewed_at": "2026-11-17T01:25:18.829991+00:00",
+  "base_url": "http://127.0.0.1:8765/",
+  "phase": "final_review",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "overflowElements": [],
+      "page_errors": [],
+      "failed_responses": [],
+      "all_paths": 6,
+      "copy_buttons": 1
+    },
+    "mobile_390": {
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "overflowElements": [
+        {
+          "tag": "TABLE",
+          "class": "rota-table",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "CAPTION",
+          "class": "",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "THEAD",
+          "class": "",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "TR",
+          "class": "",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "TH",
+          "class": "",
+          "id": "",
+          "left": 378,
+          "right": 420
+        },
+        {
+          "tag": "TBODY",
+          "class": "",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "TR",
+          "class": "",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 378,
+          "right": 420
+        },
+        {
+          "tag": "TR",
+          "class": "proposed-row",
+          "id": "",
+          "left": 20,
+          "right": 420
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 378,
+          "right": 420
+        },
+        {
+          "tag": "CODE",
+          "class": "",
+          "id": "",
+          "left": 40,
+          "right": 575
+        }
+      ],
+      "page_errors": [],
+      "failed_responses": [],
+      "all_paths": 6,
+      "copy_buttons": 1
+    },
+    "narrow_320": {
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "overflowElements": [
+        {
+          "tag": "TABLE",
+          "class": "rota-table",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "CAPTION",
+          "class": "",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "THEAD",
+          "class": "",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "TR",
+          "class": "",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "TH",
+          "class": "",
+          "id": "",
+          "left": 290,
+          "right": 332
+        },
+        {
+          "tag": "TH",
+          "class": "",
+          "id": "",
+          "left": 332,
+          "right": 374
+        },
+        {
+          "tag": "TH",
+          "class": "",
+          "id": "",
+          "left": 374,
+          "right": 416
+        },
+        {
+          "tag": "TBODY",
+          "class": "",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "TR",
+          "class": "",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 290,
+          "right": 332
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 332,
+          "right": 374
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 374,
+          "right": 416
+        },
+        {
+          "tag": "TR",
+          "class": "proposed-row",
+          "id": "",
+          "left": 16,
+          "right": 416
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 290,
+          "right": 332
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 332,
+          "right": 374
+        },
+        {
+          "tag": "TD",
+          "class": "",
+          "id": "",
+          "left": 374,
+          "right": 416
+        },
+        {
+          "tag": "CODE",
+          "class": "",
+          "id": "",
+          "left": 36,
+          "right": 571
+        }
+      ],
+      "page_errors": [],
+      "failed_responses": [],
+      "all_paths": 6,
+      "copy_buttons": 1
+    }
+  },
+  "interactions": {
+    "first_tab": {
+      "text": "跳到正文",
+      "tag": "A",
+      "outline": "rgb(173, 56, 39) solid 3px",
+      "visible": true
+    },
+    "skip_target": {
+      "hash": "#main-content",
+      "activeTag": "MAIN",
+      "activeId": "main-content"
+    },
+    "keyboard_focus_steps": [
+      {
+        "text": "在你的 Agent 中使用 ↗",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "看一个完整例子 ↓",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "UNDERSTAND ↗先把事情读懂。厘清概念、材料与解释，找到真正需要说明的差异。理解 → 有依据的说明",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "DISCOVER ↗再找一个新角度。质疑前提，提出反例、新问题、竞争机制或可检验的设计。发现 → 有来路的候选",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "PROJECT ↗看条件改变以后。展开相关路径、时钟与分叉，找到能区分结果的观察。推演 → 有条件的路径",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "DECIDE ↗把取舍讲清楚。比较可行性、标准、代价与受影响位置，给出有前提的推荐。选择 → 有理由的判断",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "CREATE ↗把想法做出来。完成文稿、规则、计划或实现，在已有授权内保存并检查。构建 → 具体的成品",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "REVIEW ↗让结果经得起追问。复核依据、推导、反例与实际结果，修正真正受影响的部分。复核 → 可继续的修订",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "每个字母代表一人，每晚一个班夜晚12345678原表ABABCDCD候选ABCDABCD",
+        "tag": "DIV",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "这次工作为什么不需要所有路径？＋",
+        "tag": "SUMMARY",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "下载三版示例排班 CSV ↓",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "阅读完整架构 ↗",
+        "tag": "A",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "复制命令",
+        "tag": "BUTTON",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      },
+      {
+        "text": "npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex",
+        "tag": "PRE",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px"
+      }
+    ],
+    "details_enter_opens": true,
+    "details_space_closes": true,
+    "clipboard_success": {
+      "matches_command": true,
+      "value": "npx skills add xi-kari/ariadne-skill --skill ariadne-skill --copy -a codex",
+      "status": "安装命令已复制到剪贴板。"
+    },
+    "clipboard_failure": {
+      "button": "请手动复制",
+      "status": "无法访问剪贴板，请选中下方命令复制。",
+      "method": "explicit simulated Clipboard API rejection"
+    },
+    "csv_download": {
+      "suggested_filename": "example-rota.csv",
+      "failure": null,
+      "bytes": 359
+    },
+    "no_js_desktop": {
+      "paths": 6,
+      "native_details_open": true,
+      "copy_buttons": 0,
+      "command_present": true,
+      "download_link": "assets/example-rota.csv",
+      "viewport_width": 1440,
+      "document_scroll_width": 1440
+    },
+    "no_js_mobile": {
+      "paths": 6,
+      "native_details_open": true,
+      "copy_buttons": 0,
+      "command_present": true,
+      "download_link": "assets/example-rota.csv",
+      "viewport_width": 390,
+      "document_scroll_width": 390
+    }
+  },
+  "limitations": [
+    "Chromium desktop engine only; no Safari/Firefox or actual mobile hardware tested.",
+    "No screen-reader software, OS high-contrast mode or zoom-specific audit tested.",
+    "Clipboard success used real API with local permission; rejection state was explicitly simulated.",
+    "README Markdown and destinations were checked locally; GitHub rendered page and external link availability were not opened.",
+    "Hosted deployment was not inspected or published.",
+    "No full WCAG conformance audit performed."
+  ],
+  "manual_visual_review": {
+    "completed": true,
+    "method": "Manually inspected actual Chromium screenshots for desktop hero, path grid, continuity and docs; 390px example and method; 320px paths, continuity, install, hero cards and method; no-JS open details; 404; README hero/map and OG assets. Full-page captures also retained.",
+    "issues_fixed": [
+      "root horizontal overflow from install grid min-content",
+      "missing return-arrow font glyph",
+      "skip-link explicit keyboard target",
+      "narrow hero text and synthetic caption overlapped by paper cards",
+      "mobile architecture SVG text too small; responsive HTML version added",
+      "scrollspy selected previous section at narrow boundary",
+      "dark-section focus outline intersected details text and lacked stronger contrast",
+      "deep 404 relative asset and home links"
+    ],
+    "unfixed_visual_blockers": []
+  }
+}

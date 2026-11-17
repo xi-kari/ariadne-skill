@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    "response.md",
+    "pilot_plan.md"
+  ],
+  "saved_and_read_back": [
+    "response.md",
+    "pilot_plan.md"
+  ],
+  "arithmetic_checked": {
+    "planned_total": 48,
+    "planned_per_stratum": 24,
+    "planned_immediate_total": 24,
+    "planned_delayed_total": 24,
+    "weekly_teacher_hours": 6,
+    "primary_followup_week": 12,
+    "delayed_training_starts_week": 13
+  },
+  "draft_parameters_not_observed_data": true,
+  "pilot_plan_sha256": "c99414ca101fffc36c647fc1de86a333db9ddd63388405ccc4237e71c957e2d6"
+}

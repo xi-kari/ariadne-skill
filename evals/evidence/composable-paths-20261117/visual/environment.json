@@ -1,0 +1,37 @@
+{
+  "prepared_at": "2026-11-17T01:14:47.212538+00:00",
+  "scope": "Local static Ariadne site only; no external accounts or publication.",
+  "phase": "prepared_only_no_site_review",
+  "python": "3.12.14",
+  "playwright": "1.62.0",
+  "browser": "Chromium",
+  "browser_version": "156.0.8078.79",
+  "browser_executable": "/usr/bin/chromium",
+  "launch_check": "about:blank opened successfully",
+  "planned_viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "mobile_390",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "narrow_320",
+      "width": 320,
+      "height": 740
+    }
+  ],
+  "planned_checks": [
+    "Full-page screenshots and human visual inspection",
+    "Horizontal overflow and clipped content",
+    "No-JavaScript content and native details",
+    "Keyboard focus and skip link",
+    "Details keyboard interaction",
+    "Clipboard button with local permission and failure state",
+    "Local asset load and page errors"
+  ]
+}

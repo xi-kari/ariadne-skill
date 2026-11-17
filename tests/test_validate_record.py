@@ -50,7 +50,7 @@ def test_bundled_validator_rejects_a_broken_record() -> None:
     schema = json.loads(
         (ROOT / "schemas" / "method-record.schema.json").read_text(encoding="utf-8")
     )
-    text = (ROOT / "skills/ariadne-skill/references/l1-record-template.md").read_text(
+    text = (ROOT / "skills/ariadne-skill/references/legacy/l1-record-template.md").read_text(
         encoding="utf-8"
     )
     record = extract_marked_method_records(text)[0]
